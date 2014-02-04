@@ -1,0 +1,23 @@
+{
+  "irc": {
+    "nick": "",
+    "password": "",
+    "port": 6667,
+    "realName": "",
+    "sasl": false,
+    "secure": true,
+    "server": "irc.freenode.net",
+    "userName": "bot",
+    "channels": [
+      "#botwar"
+    ],
+    "control": "#botwar"
+  },
+  "bitly": {
+    "username": "",
+    "password": ""
+  },
+  "udp": {
+    "port": 0000 
+  }
+}
