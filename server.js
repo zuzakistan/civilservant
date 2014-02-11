@@ -9,6 +9,4 @@ bot.config = config
 module.exports = bot
 
 console.log('Hello!')
-var functionality = require('require-all')({
-  dirname: __dirname + '/modules'
-})
+var functionality = require('require-all')(__dirname + '/modules')

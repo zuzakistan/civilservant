@@ -13,6 +13,10 @@
     "bitly": "~1.2.5",
     "node-schedule": "~0.1.13",
     "underscore": "~1.5.2",
-    "request": "~2.33.0"
+    "request": "~2.33.0",
+    "suncalc": "~1.2.2",
+    "date-util": "~1.2.0",
+    "mediawiki-api": "~0.1.5",
+    "wait.for": "~0.6.3"
   }
 }
