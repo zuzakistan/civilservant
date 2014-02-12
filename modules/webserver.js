@@ -1,4 +1,5 @@
 var express = require('express')
+var bot = require('..')
 var app = express()
 
 app.get('/', function(req, res) {
@@ -6,6 +7,6 @@ app.get('/', function(req, res) {
 })
 
 
-app.listen(31337)
+app.listen(bot.config.web.port)
 
 module.exports = app

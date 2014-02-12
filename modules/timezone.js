@@ -72,9 +72,9 @@ function getUtc(nick){
   if (TZ[nick] == 0) {
     return "UTC"
   } else if (TZ[nick] > 0) {
-    return "UTC-"+TZ[nick];
+    return "UTC+"+TZ[nick]
   } else {
-    return "UTC+"+Math.abs(TZ[nick]);
+    return "UTC"+TZ[nick]
   }
 }
 
@@ -117,7 +117,6 @@ function pad(number) {
 }
 
 web.get('/timezones.json', function(req,res){
-  
       res.header("Access-Control-Allow-Origin", "*");
         res.header("Access-Control-Allow-Headers", "X-Requested-With");
   res.json(TZ)
