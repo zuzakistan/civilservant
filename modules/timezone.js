@@ -1,6 +1,7 @@
 var mediawiki = require('mediawiki-api');
 var bot = require('..');
-var TZ = 0;
+var web = require('./webserver')
+var TZ = {};
 /*
 wiki = new mediawiki('gsi.zuzakistan.com');
 wiki.isBot = true;
@@ -57,10 +58,8 @@ var places = {
   "UTC+11": "Vladivostok",
   "UTC+12": "Wellington"
 }
-function getOffset(x) {
-  console.log("TZ = " + TZ);
-  var y = x - TZ;
-  console.log(y)
+function getOffset(x,nick) {
+  var y = x - TZ[nick];
   if ( y > 24) {
     y -= 24;
   } else if ( y < 0 ) {
@@ -69,13 +68,13 @@ function getOffset(x) {
   return y;
 }
 
-function getUtc(){
-  if (TZ == 0) {
+function getUtc(nick){
+  if (TZ[nick] == 0) {
     return "UTC"
-  } else if (TZ > 0) {
-    return "UTC-"+TZ;
+  } else if (TZ[nick] > 0) {
+    return "UTC-"+TZ[nick];
   } else {
-    return "UTC+"+Math.abs(TZ);
+    return "UTC+"+Math.abs(TZ[nick]);
   }
 }
 
@@ -84,23 +83,42 @@ bot.addListener('message', function (nick, to, text, message) {
   var now = new Date;
   if (args[0] == "!tz") {
     if(args[1] == "help") {
-      bot.say(to, nick + ":!tz returns current time in ZPT. Use !tz set <hour> to adjust ZPT to that time.")
+      bot.say(to, nick + ": !tz to get your current timezone. !tz set <hour> to derive and set your timezone from the hour specified. !tz list to show all personal timezones.")
+      return
+    }
+    if(args[1] == "list" || args[1] == "all") {
+      var list = "";
+      for (var key in TZ) {
+        list = list + pad(getOffset(now.getHours(),key)) + ":" + pad(now.getMinutes()) + " " +  key.charAt(0).toUpperCase() + "PT  "
+      }
+      bot.say(to, nick + ": " + list)
       return
     }
     if(args[1] == "set") {
-      console.log("hi");
       if(args[2] > -1 && args[2] < 25){
-        TZ = now.getHours() - args[2]
-        if (TZ > 12) {
-          TZ -= 24
+        TZ[nick] = now.getHours() - args[2]
+        if (TZ[nick] > 12) {
+          TZ[nick] -= 24
         }
-        console.log("TZ set to "+ args[2]);
       } else {
         bot.say(to, nick + ": invalid time");
       }
     }
-    var hours = "00" + getOffset(now.getHours())
-    var mins= "00" + now.getMinutes();
-    bot.say(to, "It is currently " + hours.substr(hours.length-2) + ':' + mins.substr(mins.length-2) + " ZPT (" + getUtc() + " · " + places[getUtc()] + ")");
+    if (!TZ[nick]){
+      TZ[nick] = 0;
+    }
+    bot.say(to, "It is currently " + pad(getOffset(now.getHours(),nick)) + ':' + pad(now.getMinutes()) + " " + nick.charAt(0).toUpperCase() + "PT (" + getUtc(nick) + " · " + places[getUtc(nick)] + ")");
   }
+})
+
+function pad(number) {
+  number = "00" + number;
+  return number.substr(number.length-2)
+}
+
+web.get('/timezones.json', function(req,res){
+  
+      res.header("Access-Control-Allow-Origin", "*");
+        res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  res.json(TZ)
 })
