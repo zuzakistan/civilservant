@@ -56,7 +56,8 @@ var places = {
   "UTC+9": ["Seoul","Tokyo","Pyongyang"],
   "UTC+10": ["Canberra","ACT","Federated States of Micronesia","Guam"],
   "UTC+11": ["literally France","Vladivostok",],
-  "UTC+12": ["literally France","Wellington","Auckland","the South Pole"]
+  "UTC+12": ["literally France","Wellington","Auckland","the South Pole"],
+  "default": ["Earth"]
 }
 /**
  * gets the offset between an hour and the user's personal hour
@@ -85,6 +86,9 @@ function getUtc(nick){
   }
 }
 function getPlacename(utc) {
+  if(!places[utc]){
+    utc = "default"
+  }
   return places[utc][Math.floor(Math.random() * places[utc].length)];
 }
 
@@ -139,5 +143,17 @@ function pad(number) {
 web.get('/timezones.json', function(req,res){
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
-  res.json(TZ)
+  res.json(TZ);
+})
+
+web.get('/census.json', function(req,res){
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  var people = {};
+  Object.keys(TZ).forEach(function(nick){
+    people[nick] = {}
+    people[nick]["french"] = (places[getUtc(nick)][0] == "literally France")
+    people[nick]["offset"] = TZ[nick]
+  })
+  res.json({"version":"2.0.0","denizens":people})
 })
