@@ -105,7 +105,7 @@ bot.addListener('message', function (nick, to, text, message) {
       for (var key in TZ) {
         list = list + pad(getOffset(now.getHours(),key)) + ":" + pad(now.getMinutes()) + " " +  key.charAt(0).toUpperCase() + "PT  "
       }
-      bot.say(to, nick + ": " + list)
+      bot.say(to, nick + ": " + list + " http://horologicalaffairs.gsi.zuzakistan.com/")
       return
     }
     if(args[1] == "set") {
