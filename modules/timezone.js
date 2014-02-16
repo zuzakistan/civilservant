@@ -1,7 +1,13 @@
 var mediawiki = require('mediawiki-api');
 var bot = require('..');
 var web = require('./webserver')
-var TZ = {};
+var fs = require('fs')
+var TZ = {}
+try {
+  TZ = JSON.parse(fs.readFileSync('./timezone.json','utf8'))
+} catch (e) {
+  TZ = {}
+}
 /*
 wiki = new mediawiki('gsi.zuzakistan.com');
 wiki.isBot = true;
@@ -123,6 +129,7 @@ bot.addListener('message', function (nick, to, text, message) {
     }
     var timezone = getUtc(nick)
     bot.say(to, "It is currently " + pad(getOffset(now.getHours(),nick)) + ':' + pad(now.getMinutes()) + " " + nick.charAt(0).toUpperCase() + "PT (" + timezone + " · " + getPlacename(timezone) + ")");
+    fs.writeFileSync('./timezones.json', JSON.stringify(TZ,null,'    '))
   } else if (args[0] == "!france") {
      if (!TZ[nick]){
       TZ[nick] = 0;
