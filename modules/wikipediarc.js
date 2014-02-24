@@ -5,7 +5,7 @@ var wikipedia = new irc.Client('irc.wikimedia.org','civilservant',{
 })
 
 wikipedia.addListener('message', function (nick,to,text,message) {
-  if ((text.indexOf('Aberystwyth') != -1) || text.indexOf('fig roll') != -1 || text.indexOf('144.124.') != -1) {
+  if ((text.indexOf('Aberystwyth') != -1) || text.indexOf('fig roll') != -1 || text.indexOf(' 144.124.') != -1) {
     console.log(text);
     bot.notice(bot.config.irc.control,text);
   }
