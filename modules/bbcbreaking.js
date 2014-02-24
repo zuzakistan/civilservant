@@ -17,7 +17,11 @@ var pulse = schedule.scheduleJob(pulserule, function(){
         if(err){
             console.log(err.message);
         } else {
+          try {
             var data = JSON.parse(body);
+          } catch (e) {
+            return
+          }
             data.entries.forEach(function(item){
                 if(!_.contains(stale,item.url)){
                     stale.push(item.url);
