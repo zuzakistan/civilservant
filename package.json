@@ -18,6 +18,8 @@
     "date-util": "~1.2.0",
     "mediawiki-api": "~0.1.5",
     "wait.for": "~0.6.3",
-    "express": "~3.4.8"
+    "express": "~3.4.8",
+    "pinger": "0.0.5",
+    "nao-parse": "0.0.1"
   }
 }
