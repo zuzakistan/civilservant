@@ -20,6 +20,7 @@
     "wait.for": "~0.6.3",
     "express": "~3.4.8",
     "pinger": "0.0.5",
-    "nao-parse": "0.0.1"
+    "nao-parse": "0.0.1",
+    "scrape": "~0.2.3"
   }
 }
