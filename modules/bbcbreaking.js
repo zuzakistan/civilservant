@@ -32,14 +32,15 @@ var pulse = schedule.scheduleJob(pulserule, function(){
                         msg += "\u00035";
                         msg += item.prompt;
                         msg += ":";
+                        msg += "\u00030"; // white (so breaking stands out)
                     } else {
                         var len = item.prompt.length;
                         var color = "\u0003";
                         color += (parseInt(len,16)%15);
                         msg += color + item.prompt + ":";
-                        msg += " \u0003 ";
+                        msg += "\u0003"; // cancel coloring
                     }
-                    msg += item.headline;
+                    msg += " " + item.headline;
                     bitly.shorten(item.url, function(err, response){
                         if(err){
                           throw err;
