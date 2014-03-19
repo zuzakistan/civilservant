@@ -8,11 +8,11 @@ levels = {
   'plenty': 30,
 }
 messages = {
-  'depleted': "Martial Law has been declared",
-  'emergency': "A state of emergency has been declared",
-  'warning': "Citizens are advised: Fig Roll supplies are low",
+  'depleted': "Martial Law has been declared.",
+  'emergency': "A state of emergency has been declared.",
+  'warning': "Citizens are advised: fig roll supplies are low",
   'normal': "Fig Roll supplies are addequate",
-  'plenty': "Fig Roll supplies are plentyfull"
+  'plenty': "Fig Roll supplies are plentiful"
 };
  
 function figrequest(bot, to) {
@@ -46,7 +46,7 @@ function figrequest(bot, to) {
       if(supply == 0) {
         message = messages['depleted'];
       }
-      message = message + ". ("+supply+" Fig Rolls)";
+      message = message + ". ("+supply+" fig rolls)";
       if(bot) {
         bot.say(to, message);
       }
