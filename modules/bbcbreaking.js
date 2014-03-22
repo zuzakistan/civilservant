@@ -71,6 +71,8 @@ client.addListener('message', function(nick,to,text,message){
       nox = false;
       client.say(to, nick + ": BBC News feed started.")
     }
+  } else if(text == "!news corrections"){
+    client.say(to, nick+": http://www.bbc.co.uk/news/21323537")
   }
 })
 

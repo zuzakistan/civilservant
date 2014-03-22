@@ -17,6 +17,10 @@ bot.addListener('message', function (nick, to, text, message) {
           bot.say(to, nick + ': Collection time is ' + curr[0] + ' minutes. Delivery time is ' + curr[1] + ' minutes.')
         }
       })
+      $('span').each(function (span) {
+        var curr = pre.attribs.class
+        if (curr == 'online_msg') {
+          bot.say(span.text)
     })
   }
 })
