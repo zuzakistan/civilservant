@@ -18,9 +18,11 @@ bot.addListener('message', function (nick, to, text, message) {
         }
       })
       $('span').each(function (span) {
-        var curr = pre.attribs.class
+        var curr = span.attribs.class
         if (curr == 'online_msg') {
-          bot.say(span.text)
+          bot.say(to, span.text)
+        }
+      })
     })
   }
 })
