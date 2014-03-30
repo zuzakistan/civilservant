@@ -8,19 +8,20 @@
   },
   "license": "ISC",
   "dependencies": {
-    "irc": "~0.3.6",
-    "require-all": "0.0.8",
     "bitly": "~1.2.5",
-    "node-schedule": "~0.1.13",
-    "underscore": "~1.5.2",
-    "request": "~2.33.0",
-    "suncalc": "~1.2.2",
     "date-util": "~1.2.0",
-    "mediawiki-api": "~0.1.5",
-    "wait.for": "~0.6.3",
     "express": "~3.4.8",
-    "pinger": "0.0.5",
+    "irc": "~0.3.6",
+    "mediawiki-api": "~0.1.5",
     "nao-parse": "0.0.1",
-    "scrape": "~0.2.3"
+    "node-schedule": "~0.1.13",
+    "parse-rss": "^0.1.1",
+    "pinger": "0.0.5",
+    "request": "~2.33.0",
+    "require-all": "0.0.8",
+    "scrape": "~0.2.3",
+    "suncalc": "~1.2.2",
+    "underscore": "~1.5.2",
+    "wait.for": "~0.6.3"
   }
 }
