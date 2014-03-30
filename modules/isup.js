@@ -11,7 +11,7 @@ bot.addListener('message', function(nick,to,text,message){
         var str = 'HTTP/' + res.httpVersion + ' ' + res.req.method + ' ' + res.request.href + ' → ' + res.statusCode
         var flag = ''
         try {
-          str += ' (' + res.headers['content-type'] + ' · ' + res.headers.server + ')'
+          str += ' (' + res.headers['content-type'] + ' · ' + res.headers.server + ' · ' + body.length + ')'
         } catch(e) {
           flag += '!'
         }
