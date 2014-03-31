@@ -5,7 +5,9 @@ var Bitly = require('bitly')
 var parser = require('parse-rss')
 var rssfeeds = {
   "schneier": "https://www.schneier.com/blog/atom.xml",
-  "xkcd": "http://xkcd.com/atom.xml"
+  "xkcd": "http://xkcd.com/atom.xml",
+  "foxtrot": "http://feeds.feedburner.com/Foxtrotcom",
+  "smbc": "http://feeds.feedburner.com/smbc-comics/PvLb"
 }
 var urls = []
 
@@ -21,22 +23,26 @@ var pulse = schedule.scheduleJob(pulserule, function() {
       if (err) {
         console.log(err)
       }
-      if (urls.indexOf(rss[0].link) == -1) {
-        var str = "\u0003" + (parseInt(identifier.length,16)%15) + identifier + '\u0003 ' + rss[0].title + ' '
-        if (rss[0].link.length > 25) {
-          bitly.shorten(rss[0].link, function (err, res) {
-            str += res.data.url
+      try {
+        if (urls.indexOf(rss[0].link) == -1) {
+          var str = "\u0003" + (parseInt(identifier.length,16)%15) + identifier + '\u0003 ' + rss[0].title + ' '
+          if (rss[0].link.length > 25) {
+            bitly.shorten(rss[0].link, function (err, res) {
+              str += res.data.url
+              bot.config.irc.channels.forEach(function(chan) {
+                bot.notice(chan, str)
+              })
+            })
+          } else {
+            str += rss[0].link
             bot.config.irc.channels.forEach(function(chan) {
               bot.notice(chan, str)
             })
-          })
-        } else {
-          str += rss[0].link
-          bot.config.irc.channels.forEach(function(chan) {
-            bot.notice(chan, str)
-          })
+          }
+          urls.push(rss[0].link)
         }
-        urls.push(rss[0].link)
+      } catch(e) {
+        // do nowt
       }
     })
   })
