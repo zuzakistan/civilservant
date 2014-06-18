@@ -1,7 +1,7 @@
 var request = require("request");
 var bot = require('..');
 var figsrcurl = "https://gsi.zuzakistan.com/w/api.php?action=parse&page=template:Stockpile&format=json"
- 
+
 levels = {
   'emergency': 5,
   'warning': 10,
@@ -14,20 +14,18 @@ messages = {
   'normal': "Fig Roll supplies are addequate",
   'plenty': "Fig Roll supplies are plentiful"
 };
- 
+
 function figrequest(bot, to) {
   request(figsrcurl, function(err, res, body){
     if(err){
-      console.log(err.message);
+		return
     } else {
       try {
         var data = JSON.parse(body);
       } catch (e) {
-        console.log(e);
         return
       }
       if(! data.parse) {
-        console.log(body);
         return;
       }
       if(! data.parse.text) return;
@@ -50,13 +48,10 @@ function figrequest(bot, to) {
       if(bot) {
         bot.say(to, message);
       }
-      else {
-        console.log(message);
-      }
     }
   });
 }
- 
+
 if(bot) {
   bot.addListener('message', function (nick,to,text,message) {
     var args = text.split(' ');
