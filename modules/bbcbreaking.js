@@ -5,6 +5,7 @@ var _ = require("underscore");
 var Bitly = require('bitly');
 
 var stale = [];
+var stale2 = [];
 
 var bitly = new Bitly(client.config.bitly.username, client.config.bitly.password);
 
@@ -28,24 +29,38 @@ var pulse = schedule.scheduleJob(pulserule, function(){
                 if(!_.contains(stale,item.headline+'%'+item.url)){
                     stale.push(item.headline+"%"+item.url)
                     var msg = "";
-                    if(item.isbreaking){
-                        msg += "\u00035";
-                        msg += item.prompt;
-                        msg += ":";
-                        msg += "\u00030"; // white (so breaking stands out)
+                    if(item.isBreaking === "true"){
+						if ( !_.contains( stale2, item.url ) ) {
+							stale2.push(item.url)
+							msg += "\u000315,5";
+							msg += item.prompt;
+							msg += ":";
+							msg += "\u000315"; // white (so breaking stands out)
+						} else {
+							msg += '\u00035';
+							msg += item.prompt;
+							msg += ':';
+							msg += '\u000315';
+						}
                     } else {
                         var len = item.prompt.length;
-                        var color = "\u0003";
-                        color += (parseInt(len,16)%15);
-                        msg += color + item.prompt + ":";
-                        msg += "\u0003"; // cancel coloring
+						var color = 0;
+						for ( var i = 0; i < len; i++ ) {
+							color += item.prompt.charCodeAt( i );
+						}
+						color = color % 15;
+                        msg += '\u0003' + color + item.prompt + ":";
+                        msg += "\u0003 "; // cancel coloring
                     }
-                    msg += " " + item.headline;
+                    msg += item.headline;
                     bitly.shorten(item.url, function(err, response){
                         if(err){
-                          throw err;
+							msg += item.url;
                         } else if (response.data.url !== undefined) {
                           msg += " " + response.data.url;
+							if ( item.isLive === "true" ) {
+								msg += " \u000313(live)\u0003"
+							}
                         } else {
                           msg += " \u00031<" + articlePending().join(' ') + ">";
                         }
