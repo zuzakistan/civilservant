@@ -51,17 +51,15 @@ schedule.scheduleJob( pulserule, function () {
 						stale.push( item.headline + '%' + item.url );
 						var msg = '';
 						if ( item.isBreaking === 'true' ) {
-							if ( !_.contains( stale2, item.url ) ) {
+							msg += '\u00035';
+							msg += item.prompt;
+							msg += ':';
+							if ( !_.contains( stale2, item.url ) && !_.contains( stale2, item.headline ) ) {
 								stale2.push( item.url );
-								msg += '\u000315,5';
-								msg += item.prompt;
-								msg += ':';
-								msg += '\u000315'; // white (so breaking stands out)
+								stale2.push( item.headline );
+								msg += '\u000315 '; // white (so breaking stands out)
 							} else {
-								msg += '\u00035';
-								msg += item.prompt;
-								msg += ':';
-								msg += '\u000315';
+								msg += '\u0003 ';
 							}
 						} else {
 							var len = item.prompt.length;
