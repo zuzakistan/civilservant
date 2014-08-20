@@ -1,9 +1,9 @@
-var bot = require('..');
-var fs = require('fs');
-var langs = require('languages');
+var bot = require( '..' );
+var fs = require( 'fs' );
+var langs = require( 'languages' );
 var iw = __dirname + '/interwikis.json';
 
-bot.addListener('message', function(nick,to,text,message){
+bot.addListener( 'message', function( nick, to, text ){
 	var regexp = /\[\[(.*?)(?:\|.*?)?\]\]/g;
 	var match = regexp.exec( text );
 	if ( match ) {
@@ -21,7 +21,7 @@ bot.addListener('message', function(nick,to,text,message){
 			d = JSON.parse(d);
 			var str = '';
 			if(d[namespace]) {
-				str = d[namespace].replace("$1",match);
+				str = d[namespace].replace('$1',match);
 			} else {
 				match = match.charAt( 0 ).toUpperCase() + match.slice( 1 );
 				if ( langs.isValid(namespace) ) {

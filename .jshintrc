@@ -1,0 +1,17 @@
+{
+	// enforcing
+	"bitwise": true,
+	"curly": true,
+	"eqeqeq": true,
+	"freeze": true,
+	"latedef": true,
+	"noarg": true,
+	"nonew": true,
+	"quotmark": "single",
+	"strict": false,
+	"undef": true,
+	"unused": true,
+
+	// environment
+	"node": true
+}

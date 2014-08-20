@@ -1,12 +1,12 @@
-var config = require( './config.json' )
+var config = require( './config.json' );
 
-var irc = require( 'irc' )
+var irc = require( 'irc' );
 
-var bot = new irc.Client( config.irc.server, config.irc.nick, config.irc )
+var bot = new irc.Client( config.irc.server, config.irc.nick, config.irc );
 
-bot.config = config
+bot.config = config;
 
-module.exports = bot
+module.exports = bot;
 
-console.log('Hello!')
-var functionality = require('require-all')(__dirname + '/modules')
+console.log('Hello!');
+require('require-all')(__dirname + '/modules');
