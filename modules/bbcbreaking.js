@@ -3,15 +3,17 @@ var schedule = require( 'node-schedule' );
 var request = require( 'request' );
 var _ = require( 'underscore' );
 var Bitly = require( 'bitly' );
+var slack = require('slack-notify')('https://' + client.config.slack.org + '.slack.com/services/hooks/incoming-webhook?token=' + client.config.slack.token );
+var fs = require( 'fs' );
 
-var stale = [];
+var stale = require( __dirname + '/stale.json' );
 var stale2 = [];
 
 var bitly = new Bitly( client.config.bitly.username, client.config.bitly.password );
 
 var pulserule= new schedule.RecurrenceRule();
 pulserule.second = [0,30];
-var nox = true;
+var nox = false;
 
 function articlePending() {
 	var article = [
@@ -39,6 +41,12 @@ function articlePending() {
 	];
 }
 
+function toTitleCase( str ) {
+	return str.replace( /\w\S*/g, function ( txt ) {
+		return txt.charAt( 0 ).toUpperCase() + txt.substr( 1 ).toLowerCase();
+	} );
+}
+
 schedule.scheduleJob( pulserule, function () {
 	request( 'http://www.bbc.co.uk/news/10284448/ticker.sjson', function( err, res, body ) {
 		if ( err ) {
@@ -49,6 +57,7 @@ schedule.scheduleJob( pulserule, function () {
 				data.entries.forEach( function ( item ) {
 					if ( !_.contains( stale, item.headline + '%' + item.url ) ) {
 						stale.push( item.headline + '%' + item.url );
+						fs.writeFile( __dirname + '/stale.json', JSON.stringify( stale, null, 4 ) );
 						var msg = '';
 						if ( item.isBreaking === 'true' ) {
 							msg += '\u00035';
@@ -57,7 +66,7 @@ schedule.scheduleJob( pulserule, function () {
 							if ( !_.contains( stale2, item.url ) && !_.contains( stale2, item.headline ) ) {
 								stale2.push( item.url );
 								stale2.push( item.headline );
-								msg += '\u000315 '; // white (so breaking stands out)
+								msg += '\u0003 \u0002'; // white (so breaking stands out)
 							} else {
 								msg += '\u0003 ';
 							}
@@ -89,6 +98,14 @@ schedule.scheduleJob( pulserule, function () {
 								}
 							} );
 						} );
+						slack.send( {
+							channel: '#news',
+							icon_url: 'https://i.imgur.com/Ikxp2g7.png',
+							text: item.url ? '<' + item.url + '|' + item.headline + '>' : item.headline,
+							username: 'BBC ' + toTitleCase( item.prompt ),
+							color: item.isBreaking ? '#990000' : null,
+							unfurl_links: true
+						} );
 					}
 				} );
 			} catch ( e ) {
@@ -107,8 +124,21 @@ client.addListener( 'message', function ( nick, to, text ){
 			nox = false;
 			client.say( to, nick + ': BBC News feed started.' );
 		}
-	} else if ( text === '!news corrections' ){
+	} else if ( text === '!news corrections' ) {
 		client.say( to, nick + ': http://www.bbc.co.uk/news/21323537' );
+	} else if ( text === '!news status' ) {
+		if ( nox === false ) {
+			client.say( to, nick + ': BBC News feed is active.' );
+		} else if ( nox === true ) {
+			client.say( to, nick + ': BBC News feed is silenced.' );
+		} else {
+			client.say( to, nick + ': BBC News feed is buggered.' );
+		}
+	} else if ( text === '!news wipe' ) {
+		stale = [];
+		fs.writeFileSync( __dirname + '/stale.json', JSON.stringify( stale, null, 4 ) );
+		client.say( to, nick + ': wiped history (brace for impact)' );
 	}
 } );
+
 

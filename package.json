@@ -23,6 +23,7 @@
     "request": "~2.33.0",
     "require-all": "0.0.8",
     "scrape": "~0.2.3",
+    "slack-notify": "^0.1.2",
     "suncalc": "~1.2.2",
     "underscore": "~1.5.2",
     "wait.for": "~0.6.3"

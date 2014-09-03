@@ -22,5 +22,13 @@
   },
   "web": {
     "port": 0000
+  },
+  "ziron": {
+      "sid": "",
+      "token": ""
+  },
+  "slack": {
+	  "org": "",
+	  "token": ""
   }
 }
