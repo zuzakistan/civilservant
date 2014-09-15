@@ -92,11 +92,9 @@ schedule.scheduleJob( pulserule, function () {
 							} else {
 								msg += ' \u00031<' + articlePending().join( ' ' ) + '>';
 							}
-							client.config.irc.channels.forEach( function ( chan ) {
-								if ( !nox ) {
-									client.notice(chan, msg);
-								}
-							} );
+							if ( !nox ) {
+								client.notice(client.config.irc.control, msg);
+							}
 						} );
 						slack.send( {
 							channel: '#news',
@@ -135,9 +133,13 @@ client.addListener( 'message', function ( nick, to, text ){
 			client.say( to, nick + ': BBC News feed is buggered.' );
 		}
 	} else if ( text === '!news wipe' ) {
-		stale = [];
-		fs.writeFileSync( __dirname + '/stale.json', JSON.stringify( stale, null, 4 ) );
-		client.say( to, nick + ': wiped history (brace for impact)' );
+		if ( to === client.config.irc.control ) {
+			stale = [];
+			fs.writeFileSync( __dirname + '/stale.json', JSON.stringify( stale, null, 4 ) );
+			client.say( to, nick + ': wiped history (brace for impact)' );
+		} else {
+			client.say( to, nick + ': you are not allowed to do that.' );
+		}
 	}
 } );
 

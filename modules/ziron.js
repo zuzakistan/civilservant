@@ -3,6 +3,9 @@ var request = require( 'request' );
 bot.addListener( 'message', function ( nick, to, text ) {
 	var args = text.split( ' ' );
 	if ( args[0] === '!ziron' ) {
+		if ( to !== bot.config.irc.control ) {
+			return;
+		}
 		if ( args[1] === 'send' ) {
 			if ( bot.config.ziron.numbers[args[2]] === undefined ) {
 				bot.say( to, nick + ': cannot send SMS to ' + args[2] );

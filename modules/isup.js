@@ -4,6 +4,9 @@ var request = require( 'request' );
 bot.addListener( 'message', function( nick, to, text ){
 	var args = text.split( ' ' );
 	if ( args[0] === '!isup' || args[0] === '!get' || args[0] === '!web' ) {
+		if ( to !== bot.config.irc.control ) {
+			return;
+		}
 		request( args[1], function( err, res, body ) {
 			if ( err ) {
 				bot.say( to, nick + ': ' + err.message );
