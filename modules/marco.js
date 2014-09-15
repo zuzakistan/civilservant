@@ -2,7 +2,7 @@ var scrape = require('scrape');
 var bot = require('..');
 
 bot.addListener( 'message', function ( nick, to, text ) {
-	var marco = 'http://newmarco.co.uk/new_orderorder_takeaway_in_Cardiganshire_try_Pizzas_c_64751.htm';
+	var marco = bot.config.touchtosuccess.url;
 	if ( text === '!marco' ) {
 		scrape.request(marco, function ( err, $ ) {
 			if ( err ) {
