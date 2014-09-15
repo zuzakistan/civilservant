@@ -14,10 +14,20 @@ bot.addListener( 'message', function ( nick, to, text ) {
 	} else if ( text === '!postcode' ) {
 		bot.say( to, nick + ': OX26 2FY' );
 	} else if ( text === '!control' ) {
-		if ( to === bot.config.irc.control ) {
+			if ( to === bot.config.irc.control ) {
 			bot.say( to, nick + ': this is the control channel' );
 		} else {
 			bot.say( to, nick + ': this is not the control channel' );
+		}
+	} else if ( text === '!config flush' ) {
+		if ( to === bot.config.irc.control ) {
+			var oldconfig = bot.config;
+			bot.config = require( '../config.json' );
+			if ( bot.config === oldconfig ) {
+				bot.say( to, nick + ': done, but no changes found' );
+			} else {
+				bot.say( to, nick + ': done' );
+			}
 		}
 	}
 } );
