@@ -1,34 +1,37 @@
 {
-  "irc": {
-    "nick": "",
-    "password": "",
-    "port": 6667,
-    "realName": "",
-    "sasl": false,
-    "secure": true,
-    "server": "irc.freenode.net",
-    "userName": "bot",
-    "channels": [
-      "#botwar"
-    ],
-    "control": "#botwar"
-  },
-  "bitly": {
-    "username": "",
-    "password": ""
-  },
-  "udp": {
-    "port": 0000 
-  },
-  "web": {
-    "port": 0000
-  },
-  "ziron": {
-      "sid": "",
-      "token": ""
-  },
-  "slack": {
-	  "org": "",
-	  "token": ""
-  }
+	"irc": {
+		"nick": "",
+		"password": "",
+		"port": 6697,
+		"realName": "",
+		"sasl": false,
+		"secure": true,
+		"server": "irc.freenode.net",
+		"userName": "bot",
+		"channels": [
+			"#botwar"
+		],
+		"control": "#botwar"
+	},
+	"bitly": {
+		"username": "",
+		"password": ""
+	},
+	"udp": {
+		"port": 0000
+	},
+	"web": {
+		"port": 0000
+	},
+	"ziron": {
+		"sid": "",
+		"token": "",
+		"numbers": {
+			"foo": "+447234567890"
+		}
+	},
+	"slack": {
+		"org": "",
+		"token": ""
+	}
 }
