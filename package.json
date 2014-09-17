@@ -6,6 +6,7 @@
   "license": "ISC",
   "dependencies": {
     "bitly": "~1.2.5",
+    "body-parser": "^1.8.2",
     "date-util": "~1.2.0",
     "express": "~3.4.8",
     "i18n-iso-countries": "^0.3.0",
