@@ -9,7 +9,8 @@ app.get('/', function(req, res) {
 } );
 
 app.post('/notification', function ( req, res ) {
-	bot.notice( bot.config.irc.control, '<' + req.connection.remoteAddress + '> ' + req.body.message.replace( /(?:\r\n|\r|\n)/g, '' ) );
+	var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+	bot.notice( bot.config.irc.control, '<' + ip + '> ' + req.body.message.replace( /(?:\r\n|\r|\n)/g, '' ) );
 	res.json( {'message':'done'} );
 } );
 
