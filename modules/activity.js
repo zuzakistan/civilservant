@@ -1,13 +1,17 @@
 var bot = require( '..' );
 var web = require( './webserver' );
-var activity = {};
+var chans  = {};
+var nicks = {};
 
-bot.addListener( 'message', function ( nick, to, text ) {
+bot.addListener( 'message', function ( nick, to ) {
 	var now = new Date();
-	activity[to] = {
+	chans[to] = {
 		nick: nick,
-		message: text,
 		time:now.getTime()
+	};
+	nicks[nick] = {
+		chan: to,
+		time: now.getTime()
 	};
 } );
 
@@ -15,5 +19,5 @@ bot.addListener( 'message', function ( nick, to, text ) {
 web.get( '/activity.json', function ( req, res ) {
 	res.header( 'Access-Control-Allow-Origin', '*' );
 	res.header( 'Access-Control-Allow-Headers', 'X-Requested-With' );
-	res.json( activity );
+	res.json( { 'chans': chans, 'nicks': nicks } );
 } );
