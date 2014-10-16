@@ -44,7 +44,7 @@ bot.addListener( 'message', function ( nick, to, text ) {
 				console.log( b );
 				b = JSON.parse( b );
 				b = b[0];
-				bot.say( to, nick + ': ' + b.type + ' ' + b.status + ' to ' + b.dst + ' from ' + b.src + ' (' + b.data + ')' );
+				bot.say( to, nick + ': ' + b.type + ' ' + b.status + ' to ' + bot.config.ziron.numbers[args[2]] + ' from ' + b.src + ' (' + b.data + ')' );
 			} );
 		} else if ( args[1] === 'balance' ) {
 			request.get( 'https://api.ziron.net/v1/Accounts/' + bot.config.ziron.auth.sid + '/Balances', {
