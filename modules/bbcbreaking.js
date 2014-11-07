@@ -46,6 +46,10 @@ function toTitleCase( str ) {
 		return txt.charAt( 0 ).toUpperCase() + txt.substr( 1 ).toLowerCase();
 	} );
 }
+function constructStorage( item ) {
+	var ret = item.headline + '%' + item.url + '%' + item.isBreaking.toString();
+	return ret + '%' + item.prompt;
+}
 
 schedule.scheduleJob( pulserule, function () {
 	request( 'http://www.bbc.co.uk/news/10284448/ticker.sjson', function( err, res, body ) {
@@ -55,8 +59,8 @@ schedule.scheduleJob( pulserule, function () {
 			try {
 				var data = JSON.parse( body );
 				data.entries.forEach( function ( item ) {
-					if ( !_.contains( stale, item.headline + '%' + item.url ) ) {
-						stale.push( item.headline + '%' + item.url );
+					if ( !_.contains( stale, constructStorage( item ) ) ) {
+						stale.push( constructStorage( item ) );
 						fs.writeFile( __dirname + '/stale.json', JSON.stringify( stale, null, 4 ) );
 						var msg = '';
 						if ( item.isBreaking === 'true' ) {
