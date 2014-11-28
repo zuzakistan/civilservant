@@ -90,8 +90,15 @@ schedule.scheduleJob( pulserule, function () {
 								msg += item.url;
 							} else if ( response.data.url !== undefined ) {
 								msg += ' ' + response.data.url;
+								var meta = [];
 								if ( item.isLive === 'true' ) { // must be string
-									msg += ' \u000313(live)\u0003';
+									meta.push( 'live' );
+								}
+								if ( item.mediaType !== 'Standard' ) {
+									meta.push( item.mediaType.toLowerCase() );
+								}
+								if ( meta.length !== 0 ) {
+									msg += ' \u000313(' + meta.join( ' ' ) + '\u0003';
 								}
 							} else {
 								msg += ' \u00031<' + articlePending().join( ' ' ) + '>';
@@ -144,6 +151,8 @@ client.addListener( 'message', function ( nick, to, text ){
 		} else {
 			client.say( to, nick + ': you are not allowed to do that.' );
 		}
+	} else if ( text === '!news count' ) {
+		client.say( to, nick + ': ' + stale.length() + ' entries in memory' );
 	}
 } );
 
