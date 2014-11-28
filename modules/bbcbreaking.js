@@ -98,7 +98,7 @@ schedule.scheduleJob( pulserule, function () {
 									meta.push( item.mediaType.toLowerCase() );
 								}
 								if ( meta.length !== 0 ) {
-									msg += ' \u000313(' + meta.join( ' ' ) + '\u0003';
+									msg += ' \u000313(' + meta.join( ' ' ) + ')\u0003';
 								}
 							} else {
 								msg += ' \u00031<' + articlePending().join( ' ' ) + '>';
