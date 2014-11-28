@@ -1,10 +1,7 @@
 var bot = require( '..' );
 var irc = require( 'irc' );
 var wikipedia = new irc.Client( 'irc.wikimedia.org', 'civilservant', {
-  port:6667,channels:[
-	'#en.wikipedia','#en.wikinews','#wikimania2014.wikimedia',
-	'#en.wiktionary','#en.wikibooks','#en.wikiversity','#en.wikisource',
-	'#en.wikivoyage','#meta.wikimedia','#commons.wikimedia']
+  port:6667,channels:bot.config.wikipedia.channels
 } );
 
 wikipedia.addListener( 'message', function ( nick, to, text ) {
