@@ -70,7 +70,7 @@ schedule.scheduleJob( pulserule, function () {
 							if ( !_.contains( stale2, item.url ) && !_.contains( stale2, item.headline ) ) {
 								stale2.push( item.url );
 								stale2.push( item.headline );
-								msg += '\u0003 \u0002'; // white (so breaking stands out)
+								msg += '\u0031\u0003 \u0002'; // white (so breaking stands out)
 							} else {
 								msg += '\u0003 ';
 							}
@@ -81,6 +81,9 @@ schedule.scheduleJob( pulserule, function () {
 								color += item.prompt.charCodeAt( i );
 							}
 							color = color % 15;
+							if ( color === 5 ) {
+								color = 10;
+							}
 							msg += '\u0003' + color + item.prompt + ':';
 							msg += '\u0003 '; // cancel coloring
 						}
@@ -152,7 +155,7 @@ client.addListener( 'message', function ( nick, to, text ){
 			client.say( to, nick + ': you are not allowed to do that.' );
 		}
 	} else if ( text === '!news count' ) {
-		client.say( to, nick + ': ' + stale.length() + ' entries in memory' );
+		client.say( to, nick + ': ' + stale.length.toLocaleString( 'en' ) + ' entries in memory' );
 	}
 } );
 
