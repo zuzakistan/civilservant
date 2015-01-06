@@ -63,22 +63,34 @@ schedule.scheduleJob( pulserule, function () {
 						stale.push( constructStorage( item ) );
 						fs.writeFile( __dirname + '/stale.json', JSON.stringify( stale, null, 4 ) );
 						var msg = '';
+						var len = item.prompt.length;
+						var color = 0;
 						if ( item.isBreaking === 'true' ) {
-							msg += '\u00035';
+							msg += '\x1F';
+							if ( item.prompt.indexOf( 'BREAKING' ) !== -1 ) {
+								msg += '\u00035';
+							} else {
+								for ( var i = 0; i < len; i++ ) {
+									color += item.prompt.charCodeAt( i );
+								}
+								color = color % 15;
+								if ( color === 5 ) {
+									color = 10;
+								}
+								msg += '\u0003' + color;
+							}
 							msg += item.prompt;
-							msg += ':';
+							msg += ':\x0F';
 							if ( !_.contains( stale2, item.url ) && !_.contains( stale2, item.headline ) ) {
 								stale2.push( item.url );
 								stale2.push( item.headline );
-								msg += '\u0031\u0003 \u0002'; // white (so breaking stands out)
+								msg += '\u0003 \u0002'; // white (so breaking stands out)
 							} else {
 								msg += '\u0003 ';
 							}
 						} else {
-							var len = item.prompt.length;
-							var color = 0;
-							for ( var i = 0; i < len; i++ ) {
-								color += item.prompt.charCodeAt( i );
+							for ( var j = 0; j < len; j++ ) {
+								color += item.prompt.charCodeAt( j );
 							}
 							color = color % 15;
 							if ( color === 5 ) {
