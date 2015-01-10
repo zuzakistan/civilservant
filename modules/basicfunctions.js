@@ -4,7 +4,7 @@ bot.addListener( 'message', function ( nick, to, text ) {
 	if ( text.substr( 0, 4 ) === '!say' ) {
 		bot.notice( to, text.substr( text.indexOf( ' ' ) + 1 ) );
 	} else if ( text.substr( 0, 4 ) === '!src' ) {
-		bot.notice( to, nick + ': https://github.com/zuzakistan/civilservant' );
+		bot.say( to, nick + ': https://github.com/zuzakistan/civilservant' );
 	} else if ( text.substr( 0, 5 ) === '!quit' ) {
 		if ( to === bot.config.irc.control ) {
 			process.exit( 0 );
