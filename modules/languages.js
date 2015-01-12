@@ -14,9 +14,9 @@ bot.addListener( 'message', function ( nick, to, text ) {
 		} else {
 			if ( args[1].length !== 2 ) {
 				if ( args[1].length === 3 ) {
-					bot.say( to, 'Sorry, nobody has bothered making an npm module for ISO 639-3.' );
+					bot.say( to, 'ISO 639-3 unsupported.' );
 				} else {
-					bot.say( to, 'Is that an ISO 639-1 code?' );
+					bot.say( to, 'ISO 639-1 code not found.' );
 				}
 			} else {
 				bot.say( to,args[1] + ' is not recognised as an ISO 639-1 code.' );
@@ -30,7 +30,7 @@ bot.addListener( 'message', function ( nick, to, text ) {
 			if ( countries.getName( code, 'en' ) ) {
 				bot.say( to, code + ' → ' + countries.getName( code, 'en' ) + ' · ' + countries.getName( code, 'de' ) );
 			} else {
-				bot.say( to, 'Is that an ISO 3166-1 code?' );
+				bot.say( to, 'ISO 3166 code not found' );
 			}
 		}
 	}
