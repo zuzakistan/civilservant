@@ -15,6 +15,7 @@ bot.addListener( 'message', function ( nick, to, text ) {
 			var data = args;
 			data.splice(0, 3);
 			data = data.join( ' ' );
+			data = '<' + nick + '> ' + data;
 			data = 'dst=' + number + '&data=' + data;
 			data += '&src=' + bot.config.ziron.sender;
 			request.post( 'https://api.ziron.net/v1/Accounts/' + bot.config.ziron.auth.sid + '/Messages', {
