@@ -1,4 +1,5 @@
 {
-	"project.name": "civilservant",
-	"phabricator.uri": "https://fluv.net"
+	"repository.callsign": "CS",
+	"project.name": "Civilservant",
+	"phabricator.uri": "https://fluv.net/"
 }
