@@ -2,7 +2,6 @@ var express = require( 'express' );
 var bot = require( '..' );
 var app = express();
 
-if ( // syntax error!
 app.use( express.bodyParser() );
 
 app.get('/', function(req, res) {
