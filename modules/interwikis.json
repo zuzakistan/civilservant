@@ -443,5 +443,6 @@
 	"w": "https://en.wikipedia.org/wiki/$1",
 	"4chan": "https://boards.4chan.org/$1",
 	"rekt": "https://wiki.rekt.io/wiki/$1",
-	"xkcd": "http://xkcd.com/$1"
+	"xkcd": "http://xkcd.com/$1",
+	"phab": "https://phabricator.wikimedia.org/$1"
 }
