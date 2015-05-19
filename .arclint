@@ -2,7 +2,18 @@
   "linters": {
     "jshint": {
       "type": "jshint",
-      "include": "(\\.js$)"
+      "include": [
+        "(\\.js$)"
+      ]
+    },
+    "json": {
+      "type": "json",
+      "include": [
+        "(\\.json$)",
+        "(^\\.arclint$)",
+        "(^\\.arcconfig$)",
+       "(^\\.json.sample$)"
+      ]
     }
   }
 }
