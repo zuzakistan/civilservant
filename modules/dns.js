@@ -3,7 +3,7 @@ var dns = require( 'dns' );
 
 bot.addListener( 'message', function ( nick, to, text ) {
 	var args = text.split( ' ' );
-	if ( args[0] === '!rdns' ) {
+	if ( args[0] === '!rdns' || args[0] === '!host' ) {
 		try {
 			dns.reverse( args[1], function ( err, data ) {
 				if ( err ) {
