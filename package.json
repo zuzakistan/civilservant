@@ -27,6 +27,7 @@
     "slack-notify": "^0.1.2",
     "suncalc": "~1.2.2",
     "underscore": "~1.5.2",
+    "us-states": "0.0.1",
     "wait.for": "~0.6.3"
   }
 }

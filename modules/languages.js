@@ -1,6 +1,7 @@
 var bot = require( '..' );
 var langs = require( 'languages' );
 var countries = require( 'i18n-iso-countries' );
+var states = require('us-states');
 
 bot.addListener( 'message', function ( nick, to, text ) {
 	var args = text.split( ' ' );
@@ -31,6 +32,17 @@ bot.addListener( 'message', function ( nick, to, text ) {
 				bot.say( to, code + ' → ' + countries.getName( code, 'en' ) + ' · ' + countries.getName( code, 'de' ) );
 			} else {
 				bot.say( to, 'ISO 3166 code not found' );
+			}
+		}
+	} else if ( args[0] === '!state' ) {
+		if ( !args[1] ) {
+			bot.say( to, 'Usage: !state <code>' );
+		} else {
+			var code = args[1].toUpperCase();
+			if ( states[code] ) {
+				bot.say( to, code + ' → ' + states[code] );
+			} else {
+				bot.say( to, 'USPS code not found' );
 			}
 		}
 	}
