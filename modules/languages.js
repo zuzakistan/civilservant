@@ -5,6 +5,7 @@ var states = require('us-states');
 
 bot.addListener( 'message', function ( nick, to, text ) {
 	var args = text.split( ' ' );
+	var code;
 	if ( args[0] === '!lang' ) {
 		if ( !args[1] ) {
 			bot.say( to, 'Usage: !lang <code>' );
@@ -27,7 +28,7 @@ bot.addListener( 'message', function ( nick, to, text ) {
 		if ( !args[1] ) {
 			bot.say(to, 'Usage: !country <code>' );
 		} else {
-			var code = args[1].toUpperCase();
+			code = args[1].toUpperCase();
 			if ( countries.getName( code, 'en' ) ) {
 				bot.say( to, code + ' → ' + countries.getName( code, 'en' ) + ' · ' + countries.getName( code, 'de' ) );
 			} else {
@@ -38,7 +39,7 @@ bot.addListener( 'message', function ( nick, to, text ) {
 		if ( !args[1] ) {
 			bot.say( to, 'Usage: !state <code>' );
 		} else {
-			var code = args[1].toUpperCase();
+			code = args[1].toUpperCase();
 			if ( states[code] ) {
 				bot.say( to, code + ' → ' + states[code] );
 			} else {
