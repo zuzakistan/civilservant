@@ -11,8 +11,6 @@ bot.addListener( 'message', function ( nick, to, text ) {
 		} else {
 			console.log( '!quit attempted by ' + nick + ' in ' + to  + ' (ignoring)');
 		}
-	} else if ( text === '!postcode' ) {
-		bot.say( to, nick + ': OX26 2FY' );
 	} else if ( text === '!control' ) {
 			if ( to === bot.config.irc.control ) {
 			bot.say( to, nick + ': this is the control channel' );
