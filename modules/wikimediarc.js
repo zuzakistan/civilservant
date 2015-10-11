@@ -6,7 +6,7 @@ var wikipedia = new irc.Client( 'irc.wikimedia.org', 'civilservant', {
 
 wikipedia.addListener( 'message', function ( nick, to, text ) {
 	// mediawiki titles can never have a pipe in them, so this is almost safe
-	if ( new RegExp( bot.config.wikipedia.watchlist.join( '|' ) ).test( text ) ) {
+	if ( new RegExp( bot.config.wikipedia.watchlist.join( '|' ), 'i' ).test( text ) ) {
 		if ( text.indexOf( '[[Help:Cat-a-lot|Cat-a-lot]]:' ) !== -1 ) {
 			return;
 		}
