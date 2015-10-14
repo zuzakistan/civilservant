@@ -9,7 +9,7 @@ client.addListener( 'message', function ( nick, to, text ) {
 			}
 			try {
 				var dat = JSON.parse( b );
-				client.say( to, nick + ':' + dat.ip + ' → ' + dat.country_code );
+				client.say( to, nick + ': ' + dat.ip + ' → ' + dat.country_code );
 			} catch ( e ) {
 				client.say( to, nick + ': something went wrong: ' + e.message );
 			}
