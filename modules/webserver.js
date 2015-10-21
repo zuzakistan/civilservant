@@ -1,3 +1,8 @@
+/**
+ * webserver.js
+ *
+ * Runs a webserver, because all IRC bots need to do that, right?
+ */
 var express = require( 'express' );
 var bot = require( '..' );
 var app = express();

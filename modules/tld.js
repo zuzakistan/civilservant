@@ -1,3 +1,9 @@
+/**
+ * tld.js
+ *
+ * !tld <tld>
+ * Checks whether a given string is a TLD in Iana's database.
+ */
 var bot = require( '..' );
 var request = require( 'request' );
 bot.addListener( 'message', function ( nick, to, text ) {

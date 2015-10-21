@@ -1,3 +1,20 @@
+/**
+ * basicfunctions.js
+ *
+ * Governs a few simple administrative commands.
+ *
+ * !say <text>
+ * Makes the bot NOTICE the current channel with the content.
+ *
+ * !src
+ * Displays a link to the source code of the bot.
+ *
+ * !quit
+ * Checks to see whether the current channel is the control channel.
+ *
+ * !config flush
+ * Cycles the configuration of the bot. [Control channel only.]
+ */
 var bot = require( '..' );
 
 bot.addListener( 'message', function ( nick, to, text ) {

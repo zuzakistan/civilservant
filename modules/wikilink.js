@@ -1,3 +1,11 @@
+/**
+ * wikilink.js
+ *
+ * Expands [[ ]] links, such as those used in Mediawiki, to full URLs.
+ * Respects interwiki links, but only ones that are hardcoded into the bot.
+ *
+ * e.g. [[Test]] will expand to https://en.wikipedia.org/wiki/Test.
+ */
 var bot = require( '..' );
 var fs = require( 'fs' );
 var langs = require( 'languages' );

@@ -1,3 +1,19 @@
+/**
+ * urlshorten.js
+ *
+ * Operations to do with short URLS.
+ *
+ * !expand [url]
+ * Expands the given URL.
+ * If URL not given, takes the last URL from the channel.
+ *
+ * !shorten [url]
+ * Shortens the given URL.
+ * If URL not given, takes the last URL from the channel.
+ *
+ * TODO:
+ * This won't work well when the bot is in more than one channel.
+ */
 var client = require( '..' );
 var Bitly = require( 'bitly' );
 var expand = require( 'url-expand' );

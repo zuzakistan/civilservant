@@ -1,3 +1,11 @@
+/**
+ * wikimediarc.js
+ *
+ * Sends interesting Wikipedia changes to the main channel.
+ *
+ * !watchlist
+ * Returns the current watchlist.
+ */
 var bot = require( '..' );
 var irc = require( 'irc' );
 var wikipedia = new irc.Client( 'irc.wikimedia.org', 'civilservant', {

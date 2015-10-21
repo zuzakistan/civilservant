@@ -1,3 +1,9 @@
+/**
+ * edballs.js
+ *
+ * Echoes every time someone says "Ed Balls", conserving casing.
+ *
+ */
 var bot = require( '..' );
 
 // https://twitter.com/edballsmp/status/63623585020915713

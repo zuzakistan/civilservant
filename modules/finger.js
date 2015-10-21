@@ -1,3 +1,16 @@
+/**
+ * finger.js
+ *
+ * Uses the finger command to look up details about arbitrary users.
+ *
+ * No longer useful unless running on the Aberystwyth network, as
+ * remote fingering has been disabled for several years.
+ *
+ * !finger <username>
+ * Fingers a user on central.aber.ac.uk
+ *
+ * @deprecated
+ */
 var bot = require( '..' );
 var exec = require( 'child_process' ).exec;
 

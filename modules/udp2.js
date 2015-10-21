@@ -1,3 +1,8 @@
+/**
+ * udp2.js
+ *
+ * Forwards strings sent via UDP to the channel.
+ */
 var bot = require( '..' );
 var dgram = require( 'dgram' );
 var server = dgram.createSocket( 'udp4' );

@@ -1,3 +1,23 @@
+/**
+ * bbcbreaking.js
+ *
+ * Parses the BBC News homepage ticker and reports breaking news when
+ * it occurs.
+ *
+ * !news
+ * Toggles the news feed (globally) on and off.
+ *
+ * !news corrections
+ * Outputs the link to the BBC contact pages.
+ *
+ * !news status
+ * Returns the current status of the BBC news feed
+ *
+ * !news wipe
+ * Purges the cache of stale news stories.
+ * This may cause a large number of stories to be retransmitted.
+ * [Control channel only.]
+ */
 var client = require( '..' );
 var schedule = require( 'node-schedule' );
 var request = require( 'request' );

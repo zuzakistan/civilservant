@@ -1,3 +1,9 @@
+/**
+ * iss.js
+ *
+ * !space
+ * Returns data on the number of people in space at the current time.
+ */
 var bot = require( '..' );
 var request = require( 'request' );
 bot.addListener( 'message', function ( nick, to, text ) {
