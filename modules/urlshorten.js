@@ -1,5 +1,6 @@
 var client = require( '..' );
 var Bitly = require( 'bitly' );
+var expand = require( 'url-expand' );
 
 var bitly = new Bitly( client.config.bitly.username, client.config.bitly.password );
 
@@ -28,6 +29,21 @@ client.addListener( 'message', function ( nick, to, text ) {
 					client.say( to, 'Error shortening URL.' );
 				} else if ( response.data.url !== undefined ) {
 					client.say( to, nick + ': ' +  response.data.url );
+				}
+			} );
+		} );
+	} else if ( args[0] === '!expand' ) { // A++ would repeat code again
+		if ( args[1] ) {
+			args.shift();
+		} else {
+			args = last;
+		}
+		args.forEach( function ( url ) {
+			expand( url, function ( err, response ) {
+				if ( err ) {
+					client.say( to, 'Error expanding URL.' );
+				} else if ( response !== undefined ) {
+					client.say( to, nick + ': ' +  response );
 				}
 			} );
 		} );
