@@ -1,7 +1,7 @@
 /**
  * urlshorten.js
  *
- * Operations to do with short URLS.
+ * Operations to do with short URLs.
  *
  * !expand [url]
  * Expands the given URL.
