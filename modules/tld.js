@@ -23,7 +23,7 @@ bot.addListener( 'message', function ( nick, to, text ) {
 				if ( data.indexOf( args[1].toUpperCase() ) !== -1  ) {
 					return bot.say( to, nick + ': ' + args[1] + ' is a TLD' );
 				} else {
-					return bot.say( to, nick + ': ' + args[1] + ' not found in TLD database' );
+					return bot.say( to, nick + ': ' + args[1] + ' is not in IANA\'s list of TLDs' );
 				}
 			}
 		);
