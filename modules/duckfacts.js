@@ -1,3 +1,14 @@
+/**
+ * duckfacts.js
+ *
+ * Sends a load of spam to a phone number on command.
+ *
+ * !duckfact
+ * Sends an SMS containing a carefully curated fact about everybody's
+ * favourite species in the Anatidae family of birds.
+ * [Control channel only.]
+ *
+ */
 var bot = require( '..' );
 var read = require( 'fs' ).readFileSync;
 var write = require( 'fs' ).writeFileSync;

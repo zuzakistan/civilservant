@@ -1,3 +1,13 @@
+/**
+ * isup.js
+ *
+ * !isup <url>
+ * !get <url>
+ * !web <url>
+ * Grabs an arbitrary URL and returns select headers.
+ * [Control channel only.]
+ *
+ */
 var bot = require('..');
 var request = require( 'request' );
 

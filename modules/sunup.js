@@ -1,3 +1,10 @@
+/**
+ * sunup.js
+ *
+ * !sunrise
+ * Returns solar data for Aberystwyth for today.
+ *
+ */
 var bot = require( '..' );
 var suncalc = require( 'suncalc' );
 require( 'date-util' );

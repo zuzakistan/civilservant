@@ -1,3 +1,17 @@
+/**
+ * ziron.js
+ *
+ * Sends text messages.
+ *
+ * !ziron balance
+ * Get current balance.
+ *
+ * !ziron <recipient> <message>
+ * Sends a text message.
+ *
+ * !ziron status
+ * Gets the current statuspage for Ziron.
+ */
 var bot = require( '..' );
 var request = require( 'request' );
 bot.addListener( 'message', function ( nick, to, text ) {

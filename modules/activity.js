@@ -1,3 +1,12 @@
+/**
+ * activity.js
+ *
+ * Exposes a JSON endpoint somewhere on the Internet to keep track of
+ * the last-spoken time of users.
+ *
+ * Requires webserver.
+ */
+
 var bot = require( '..' );
 var web = require( './webserver' );
 var chans  = {};

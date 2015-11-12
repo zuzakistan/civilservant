@@ -1,3 +1,10 @@
+/**
+ * geolookup.js
+ *
+ * !geo <ip address>
+ * Looks up the location of an IP address.
+ *
+ */
 var client = require( '..' );
 var request = require( 'request' );
 client.addListener( 'message', function ( nick, to, text ) {

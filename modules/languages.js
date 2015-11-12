@@ -1,3 +1,16 @@
+/**
+ * languages.js
+ *
+ * !lang <code>
+ * Looks up the ISO 639-1 code for a language.
+ *
+ * !country <code>
+ * Looks up the ISO 3166-alpha2 code for a country, and returns
+ * the name in English and German.
+ *
+ * !state <code>
+ * Looks up the USPS code for a US state.
+ */
 var bot = require( '..' );
 var langs = require( 'languages' );
 var countries = require( 'i18n-iso-countries' );

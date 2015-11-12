@@ -1,3 +1,14 @@
+/**
+ * marco.js
+ *
+ * !marco
+ * Returns the delivery and collection times of my favourite takeaway.
+ *
+ * !pizza
+ * Returns a random pizza from the range.
+ * Broken since an upstream update.
+ *
+ */
 var scrape = require('scrape');
 var bot = require('..');
 

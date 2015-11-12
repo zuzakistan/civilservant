@@ -1,3 +1,11 @@
+/**
+ * paste.js
+ *
+ * Administrative actions for a pastebin.
+ *
+ * !del <slug>
+ * Deletes a paste.
+ */
 var bot = require( '..' );
 var del = require( 'fs' ).unlink;
 bot.addListener( 'message', function ( nick, to, text ) {

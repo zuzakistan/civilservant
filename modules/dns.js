@@ -1,3 +1,11 @@
+/**
+ * dns.js
+ *
+ * !rdns <ip address>
+ * !host <ip address>
+ * Queries the DNS server for the reverse DNS of an IP.
+ *
+ */
 var bot = require( '..' );
 var dns = require( 'dns' );
 
