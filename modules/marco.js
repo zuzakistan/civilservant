@@ -26,11 +26,8 @@ bot.addListener( 'message', function ( nick, to, text ) {
 					bot.say(to, nick + ': Collection time is ' + curr[0] + ' minutes. Delivery time is ' + curr[1] + ' minutes.');
 				}
 			} );
-			$( 'span' ).each( function ( span ) {
-				var curr = span.attribs.class;
-				if ( curr === 'online_msg' ) {
-					bot.say( to, span.text );
-				}
+			$( 'div.alert h2' ).each( function ( h2 ) {
+				bot.say( to, nick + ': ' + h2.text );
 			} );
 		} );
 	} else if ( text === '!pizza') {
