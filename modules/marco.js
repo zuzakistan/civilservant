@@ -5,8 +5,7 @@
  * Returns the delivery and collection times of my favourite takeaway.
  *
  * !pizza
- * Returns a random pizza from the range.
- * Broken since an upstream update.
+ * Returns a random pizza from the "classic" range.
  *
  */
 var scrape = require('scrape');
@@ -40,11 +39,12 @@ bot.addListener( 'message', function ( nick, to, text ) {
 				return console.error( err );
 			}
 			var pizzas = [];
-			$( 'div' ).each( function ( div ) {
-				if ( div.attribs.class === 'subcat_name' ) {
-					pizzas.push( div.text );
+			$( 'div.subcat_name a' ).each( function ( a ) {
+				console.log( a );
+				pizzas.push( a.text );
 				}
-			} );
+			);
+			console.log(pizzas);
 			bot.say( to, nick + ': ' + pizzas[Math.floor( Math.random() * pizzas.length )] );
 		} );
 	}
