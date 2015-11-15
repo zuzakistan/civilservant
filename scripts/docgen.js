@@ -22,6 +22,9 @@ dir.readFiles( 'modules', {
 			if ( comment.raw.substring( 0, 3 ) === '/**' ) {
 					var isPreamble = true;
 					comment.lines.forEach( function ( line ) {
+						// replace <foo> with _foo_
+						line = line.replace( /</g, '_' );
+						line = line.replace( />/g, '_' );
 						if ( line.match( /^!/ ) ) {
 							isPreamble = false;
 							docs += '## ' + line + '\n'; } else if ( !isPreamble )  {

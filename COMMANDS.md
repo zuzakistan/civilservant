@@ -35,8 +35,7 @@
 ## !marco
    Returns the delivery and collection times of my favourite takeaway.
 ## !pizza
-   Returns a random pizza from the range.
-   Broken since an upstream update.
+   Returns a random pizza from the "classic" range.
 ## !del <slug>
    Deletes a paste.
 ## !sunrise
