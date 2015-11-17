@@ -74,7 +74,11 @@ bot.addListener( 'message', function ( nick, to, text ) {
 				} else {
 					try {
 						b = JSON.parse( b );
-						bot.say( to, nick + ': ' + b.balance + ' ' + b.currency );
+						if ( typeof b.balance === 'undefined' || typeof b.currency === 'undefined' ) {
+							bot.say( to, nick + ': balance lookup failed badly (bad auth?)' );
+						} else {
+							bot.say( to, nick + ': ' + b.balance + ' ' + b.currency );
+						}
 					} catch ( e ) {
 						bot.say( to, nick + ': balance lookup failed (' + e + ')' );
 					}
