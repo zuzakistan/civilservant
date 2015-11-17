@@ -3,4 +3,4 @@ and easy way of combining multiple IRC bots under one nickname.
 
 For information on valid commands for which the bot responds, see `COMMANDS.md`.
 
-[![Build Status](https://travis-ci.org/zuzakistan/civilservant.svg)](https://travis-ci.org/zuzakistan/civilservant)
+[![Build Status](https://travis-ci.org/zuzakistan/civilservant.svg)](https://travis-ci.org/zuzakistan/civilservant) (*n.b.* actually just a lint)
