@@ -19,7 +19,6 @@
     "nao-parse": "0.0.1",
     "node-schedule": "~0.1.13",
     "number-abbreviate": "0.0.3",
-    "number_format": "^0.1.0",
     "parse-rss": "^0.1.1",
     "pinger": "0.0.5",
     "request": "~2.33.0",
