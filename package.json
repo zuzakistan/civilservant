@@ -4,7 +4,8 @@
   "description": "ERROR: No README.md file found!",
   "main": "server.js",
   "scripts": {
-	  "docs": "node scripts/docgen.js"
+	  "docs": "node scripts/docgen.js",
+	  "test": "node scripts/*.js && node_modules/jshint/bin/jshint *.js modules/*.js scripts/*.js"
   },
   "license": "ISC",
   "dependencies": {
