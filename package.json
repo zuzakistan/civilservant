@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
 	  "docs": "node scripts/docgen.js",
-	  "test": "node scripts/*.js && node_modules/jshint/bin/jshint *.js modules/*.js scripts/*.js"
+	  "test": "node_modules/jshint/bin/jshint *.js modules/*.js scripts/*.js test/*.js && node_modules/mocha/bin/mocha -R list"
   },
   "license": "ISC",
   "dependencies": {
@@ -29,6 +29,7 @@
   "devDependencies": {
     "extract-comments": "^0.8.6",
     "jshint": "^2.5.4",
+    "mocha": "^2.3.4",
     "node-dir": "^0.1.11",
     "precommit-hook": "^1.0.7",
     "simple-grep": "0.0.2"

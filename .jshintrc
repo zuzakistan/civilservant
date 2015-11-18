@@ -12,5 +12,11 @@
 	"unused": true,
 
 	// environment
-	"node": true
+	"node": true,
+
+	// test opt-outs that really need to be sorted properly
+	"predef": [
+		"describe",
+		"it"
+	]
 }
