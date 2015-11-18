@@ -3,6 +3,10 @@
   "version": "0.0.0",
   "description": "ERROR: No README.md file found!",
   "main": "server.js",
+  "author": "Douglas Gardner <douglas@chippy.ch>",
+  "contributors": [
+	  "danharibo <danharibo@gmail.com>"
+  ],
   "scripts": {
 	  "docs": "node scripts/docgen.js",
 	  "test": "node_modules/jshint/bin/jshint *.js modules/*.js scripts/*.js test/*.js && node_modules/mocha/bin/mocha -R list"
