@@ -9,6 +9,9 @@
  * !src
  * Displays a link to the source code of the bot.
  *
+ * !help
+ * Displays a link to COMMANDS.md
+ *
  * !quit
  * Checks to see whether the current channel is the control channel.
  *

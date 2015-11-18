@@ -2,12 +2,20 @@
    Makes the bot NOTICE the current channel with the content.
 ## !src
    Displays a link to the source code of the bot.
-## !help
-   Displays a link to the command help of the bot.
 ## !quit
    Checks to see whether the current channel is the control channel.
 ## !config flush
    Cycles the configuration of the bot. [Control channel only.]
+## !news
+   Toggles the news feed (globally) on and off.
+## !news corrections
+   Outputs the link to the BBC contact pages.
+## !news status
+   Returns the current status of the BBC news feed
+## !news wipe
+   Purges the cache of stale news stories.
+   This may cause a large number of stories to be retransmitted.
+   [Control channel only.]
 ## !rdns _ip address_
 ## !host _ip address_
    Queries the DNS server for the reverse DNS of an IP.
@@ -44,6 +52,16 @@
    Returns solar data for Aberystwyth for today.
 ## !tld _tld_
    Checks whether a given string is a TLD in Iana's database.
+## !expand [url]
+   Expands the given URL.
+   If URL not given, takes the last URL from the channel.
+## !shorten [url]
+   Shortens the given URL.
+   If URL not given, takes the last URL from the channel.
+   TODO:
+   This won't work well when the bot is in more than one channel.
+## !watchlist
+   Returns the current watchlist.
 ## !ziron balance
    Get current balance.
 ## !ziron _recipient_ _message_
