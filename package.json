@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "description": "ERROR: No README.md file found!",
   "main": "server.js",
+  "private": true,
   "author": "Douglas Gardner <douglas@chippy.ch>",
   "contributors": [
 	  "danharibo <danharibo@gmail.com>"
