@@ -2,6 +2,8 @@
    Makes the bot NOTICE the current channel with the content.
 ## !src
    Displays a link to the source code of the bot.
+## !help
+   Displays a link to COMMANDS.md
 ## !quit
    Checks to see whether the current channel is the control channel.
 ## !config flush
@@ -35,6 +37,8 @@
 ## !web _url_
    Grabs an arbitrary URL and returns select headers.
    [Control channel only.]
+## !khan
+   Makes the bot say KHAAAAAAAAAAAAN.
 ## !lang _code_
    Looks up the ISO 639-1 code for a language.
 ## !country _code_
