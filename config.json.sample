@@ -42,5 +42,6 @@
 		"channels": [
 			"#en.wikipedia"
 		]
-	}
+	},
+	"khan": 255
 }

@@ -8,7 +8,8 @@ var bot = require( '..' );
 
 bot.addListener( 'message', function ( nick, to, text ) {
 	if ( text.substr( 0, 5 ) === '!khan' ) {
-		var number = Math.floor(Math.random() * 200) + 1;
+		var a = bot.config.khan || 434;
+		var number = Math.floor(Math.random() * a) + 1;
 		var A = Array(number).join('A');
 		bot.say( to, 'KH' + A + 'N' );
 	}
