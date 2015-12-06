@@ -38,6 +38,9 @@
 		"url": ""
 	},
 	"wikipedia": {
-		"watchlist": []
+		"watchlist": [],
+		"channels": [
+			"#en.wikipedia"
+		]
 	}
 }
