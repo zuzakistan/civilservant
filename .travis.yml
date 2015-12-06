@@ -8,3 +8,5 @@ notifications:
             - "chat.freenode.net##zuzakistan"
         use_notice: true
         skip_join: true
+        on_success: change
+        on_failure: change
