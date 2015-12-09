@@ -18,6 +18,10 @@
  *
  * !config flush
  * Cycles the configuration of the bot. [Control channel only.]
+ *
+ * !nick [nickname]
+ * Changes the nickname of the bot. Fails silently.
+ * Requires `bot.config.irc.allowNickChanges` cvar to be active.
  */
 var bot = require( '..' );
 
@@ -50,5 +54,23 @@ bot.addListener( 'message', function ( nick, to, text ) {
 				bot.say( to, nick + ': done' );
 			}
 		}
+	} else if ( text.substr(0, 5) === '!nick' ) {
+		if (!bot.config.irc.allowNickChanges) {
+			return;
+		}
+		var args = text.split( ' ' );
+		if ( to === bot.config.irc.control ) {
+			if ( args[1] ) {
+				bot.config.irc.nick = args[1];
+			} else {
+				var nicks = require('../names.json');
+				bot.config.irc.nick = nicks[Math.floor( Math.random() * nicks.length )];
+			}
+			bot.send( 'NICK', bot.config.irc.nick );
+		} else {
+			// obligatory quote
+			bot.say( to, 'I\'m sorry ' + nick + ', I\'m afraid I can\'t do that' );
+		}
 	}
+
 } );

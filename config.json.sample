@@ -8,6 +8,7 @@
 		"secure": true,
 		"server": "irc.freenode.net",
 		"userName": "bot",
+		"allowNickChanges": false,
 		"channels": [
 			"#botwar"
 		],
