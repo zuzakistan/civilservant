@@ -18,6 +18,9 @@ bot.addListener( 'message', function ( nick, to, text ) {
 				var data = JSON.parse( b );
 				var ret = '';
 				for ( var i = 0; i < data.people.length; i++ ) {
+					if ( data.people[i].country === 'England' ) { // pet peeve
+						data.people[i].country = 'United Kingdom';
+					}
 					ret += data.people[i].name + ' (' + data.people[i].country + ')';
 					ret += '; ';
 				}
