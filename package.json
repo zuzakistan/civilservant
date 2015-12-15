@@ -6,11 +6,11 @@
   "private": true,
   "author": "Douglas Gardner <douglas@chippy.ch>",
   "contributors": [
-	  "danharibo <danharibo@gmail.com>"
+    "danharibo <danharibo@gmail.com>"
   ],
   "scripts": {
-	  "docs": "node scripts/docgen.js",
-	  "test": "node_modules/jshint/bin/jshint *.js modules/*.js scripts/*.js test/*.js && node_modules/mocha/bin/mocha -R list"
+    "docs": "node scripts/docgen.js",
+    "test": "node_modules/jshint/bin/jshint *.js modules/*.js scripts/*.js test/*.js && node_modules/mocha/bin/mocha -R list"
   },
   "license": "ISC",
   "dependencies": {
@@ -19,6 +19,7 @@
     "express": "~3.4.8",
     "i18n-iso-countries": "^0.3.0",
     "irc": "^0.4.0",
+    "khaan": "0.0.1",
     "languages": "^0.1.3",
     "nao-parse": "0.0.1",
     "node-schedule": "~0.1.13",
