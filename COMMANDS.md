@@ -2,10 +2,16 @@
    Makes the bot NOTICE the current channel with the content.
 ## !src
    Displays a link to the source code of the bot.
+## !commands
+## !help
+   Displays a link to COMMANDS.md
 ## !quit
    Checks to see whether the current channel is the control channel.
 ## !config flush
    Cycles the configuration of the bot. [Control channel only.]
+## !nick [nickname]
+   Changes the nickname of the bot. Fails silently.
+   Requires `bot.config.irc.allowNickChanges` cvar to be active.
 ## !news
    Toggles the news feed (globally) on and off.
 ## !news corrections
