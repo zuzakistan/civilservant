@@ -9,10 +9,18 @@ var khan = require( 'khaan' );
 
 bot.addListener( 'message', function ( nick, to, text ) {
 	if ( text.substr( 0, 5 ) === '!khan' ) {
-		var args = text.split( ' ' );
-		var word = args[1] ? args[1] : 'khan';
+		var words = text.split( ' ' );
+		words.shift();
+		if ( typeof words[0] === 'undefined' ) {
+			words = [ 'khan' ];
+		}
 		var a = bot.config.khan || 434;
+		console.log( words );
+		a = a / words.length;
 		var number = Math.floor(Math.random() * a) + 1;
-		bot.say( to, khan.khan( word, number ) );
+		words = words.map( function ( current ) {
+			return khan.khan( current, number);
+		} );
+		bot.say( to, words.join( ' ' ) );
 	}
 } );
