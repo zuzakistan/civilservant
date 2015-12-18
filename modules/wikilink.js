@@ -9,7 +9,7 @@
 var bot = require( '..' );
 var fs = require( 'fs' );
 var langs = require( 'languages' );
-var iw = __dirname + '/interwikis.json';
+var iw = __dirname + '/../data/interwikis.json';
 
 bot.addListener( 'message', function( nick, to, text ){
 	var regexp = /\[\[(.*?)(?:\|.*?)?\]\]/g;

@@ -59,11 +59,18 @@ bot.addListener( 'message', function ( nick, to, text ) {
 			return;
 		}
 		var args = text.split( ' ' );
+		var nicks;
 		if ( to === bot.config.irc.control ) {
 			if ( args[1] ) {
-				bot.config.irc.nick = args[1];
+				if ( bot.config.irc.allowNickChanges.arbitrary ) {
+					bot.config.irc.nick = args[1];
+				} else {
+					nicks = [ 'briggs', 'cage', 'clegg', 'flamel', 'frost', 'hewer',
+						'offerman', 'park', 'sarkozy' ];
+					bot.config.irc.nick = nicks[Math.floor( Math.random() * nicks.length )];
+				}
 			} else {
-				var nicks = require('../names.json');
+				nicks = require('../data/names.json');
 				bot.config.irc.nick = nicks[Math.floor( Math.random() * nicks.length )];
 			}
 			bot.send( 'NICK', bot.config.irc.nick );

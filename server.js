@@ -1,5 +1,5 @@
 var config = require( './config.json' );
-var nicks = require( './names.json' );
+var nicks = require( './data/names.json' );
 
 var irc = require( 'irc' );
 

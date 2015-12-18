@@ -26,7 +26,7 @@ var Bitly = require( 'bitly' );
 var slack = require('slack-notify')('https://' + client.config.slack.org + '.slack.com/services/hooks/incoming-webhook?token=' + client.config.slack.token );
 var fs = require( 'fs' );
 
-var stale = require( __dirname + '/stale.json' );
+var stale = require( __dirname + '/../data/stale.json' );
 var stale2 = [];
 
 var bitly = new Bitly( client.config.bitly.username, client.config.bitly.password );
@@ -81,7 +81,7 @@ schedule.scheduleJob( pulserule, function () {
 				data.entries.forEach( function ( item ) {
 					if ( !_.contains( stale, constructStorage( item ) ) ) {
 						stale.push( constructStorage( item ) );
-						fs.writeFile( __dirname + '/stale.json', JSON.stringify( stale, null, 4 ) );
+						fs.writeFile( __dirname + '/../data/stale.json', JSON.stringify( stale, null, 4 ) );
 						var msg = '';
 						var len = item.prompt.length;
 						var color = 0;
@@ -181,7 +181,7 @@ client.addListener( 'message', function ( nick, to, text ){
 	} else if ( text === '!news wipe' ) {
 		if ( to === client.config.irc.control ) {
 			stale = [];
-			fs.writeFileSync( __dirname + '/stale.json', JSON.stringify( stale, null, 4 ) );
+			fs.writeFileSync( __dirname + '../data/stale.json', JSON.stringify( stale, null, 4 ) );
 			client.say( to, nick + ': wiped history (brace for impact)' );
 		} else {
 			client.say( to, nick + ': you are not allowed to do that.' );
