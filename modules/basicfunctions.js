@@ -65,8 +65,8 @@ bot.addListener( 'message', function ( nick, to, text ) {
 				if ( bot.config.irc.allowNickChanges.arbitrary ) {
 					bot.config.irc.nick = args[1];
 				} else {
-					nicks = [ 'briggs', 'cage', 'clegg', 'flamel', 'frost', 'hewer',
-						'offerman', 'park', 'sarkozy' ];
+					nicks = [ 'briggs', 'cage', 'clegg', 'flamel', 'frost', 'grimshaw', 'hewer',
+						'lyndhurst', 'offerman', 'park', 'sarkozy' ];
 					bot.config.irc.nick = nicks[Math.floor( Math.random() * nicks.length )];
 				}
 			} else {
