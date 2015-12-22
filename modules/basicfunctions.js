@@ -61,7 +61,9 @@ bot.addListener( 'message', function ( nick, to, text ) {
 		var args = text.split( ' ' );
 		var nicks;
 		if ( to === bot.config.irc.control ) {
-			if ( args[1] ) {
+			if ( args[0] !== '!nick' ) {
+				return; // false positive
+			} else if ( args[1] ) {
 				if ( bot.config.irc.allowNickChanges.arbitrary ) {
 					bot.config.irc.nick = args[1];
 				} else {
