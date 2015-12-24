@@ -8,6 +8,7 @@
 var bot = require( '..' );
 var isEmotional = require( 'emotional_alert' );
 var nox = false;
+var verbose = false; // TODO: cvar
 
 bot.addListener( 'message', function ( nick, to, text ) {
 	if ( !nox ) {
@@ -41,7 +42,9 @@ bot.addListener( 'message', function ( nick, to, text ) {
 				bot.say( to, nick + ': you seem ' + x.adj + x.hwinner + ' (score: ' + x.emotional + ')');
 			} else {
 				// danger phrase
-				bot.say( to, nick + ': that is a worrying thing to say' );
+				if ( verbose ) {
+					bot.say( to, nick + ': that is a worrying thing to say' );
+				}
 			}
 		}
 	}
