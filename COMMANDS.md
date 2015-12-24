@@ -1,3 +1,5 @@
+## !khan
+   Makes the bot say KHAAAAAAAAAAAAN.
 ## !say _text_
    Makes the bot NOTICE the current channel with the content.
 ## !src
@@ -22,6 +24,9 @@
    Purges the cache of stale news stories.
    This may cause a large number of stories to be retransmitted.
    [Control channel only.]
+## !concern
+   Toggles whether the bot should interrupt charged conversations
+   with an unhelpful message.
 ## !rdns _ip address_
 ## !host _ip address_
    Queries the DNS server for the reverse DNS of an IP.
@@ -41,7 +46,7 @@
 ## !web _url_
    Grabs an arbitrary URL and returns select headers.
    [Control channel only.]
-## !khan
+## !khan _word_
    Makes the bot say KHAAAAAAAAAAAAN.
 ## !lang _code_
    Looks up the ISO 639-1 code for a language.
@@ -54,12 +59,16 @@
    Returns the delivery and collection times of my favourite takeaway.
 ## !pizza
    Returns a random pizza from the "classic" range.
+## !nickcount
+   Replies with the cumulative count of nicknames tracked.
 ## !del _slug_
    Deletes a paste.
 ## !sunrise
    Returns solar data for Aberystwyth for today.
 ## !tld _tld_
    Checks whether a given string is a TLD in Iana's database.
+## !ud [headword]
+   Looks up a definition in Urban Dictionary.
 ## !expand [url]
    Expands the given URL.
    If URL not given, takes the last URL from the channel.
