@@ -16,6 +16,7 @@
   "dependencies": {
     "bitly": "~1.2.5",
     "date-util": "~1.2.0",
+    "emotional_alert": "^1.0.3",
     "express": "~3.4.8",
     "i18n-iso-countries": "^0.3.0",
     "irc": "^0.4.0",
