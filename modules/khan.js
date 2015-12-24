@@ -1,7 +1,7 @@
 /**
  * khan.js
  *
- * !khan
+ * !khan <word>
  * Makes the bot say KHAAAAAAAAAAAAN.
  */
 var bot = require( '..' );
