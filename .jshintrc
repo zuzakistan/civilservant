@@ -11,6 +11,9 @@
 	"undef": true,
 	"unused": true,
 
+	// relaxing
+	"esversion": 6,
+
 	// environment
 	"node": true,
 
