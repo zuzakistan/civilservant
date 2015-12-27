@@ -40,13 +40,18 @@ var self = module.exports = {
 		} catch ( e ) {
 			if ( e.code === 'MODULE_NOT_FOUND' ) {
 				var npmModule = e.message.split('\'')[1];
-				console.log( 'Required module ' + npmModule + ' not found; installing' );
-				self.installNpm( npmModule, function ( e ) {
-					if ( e ) {
-						throw e;
-					}
-					self.loadModule( curr );
-				} );
+				if ( bot.config.installModules ) {
+					console.log( 'Required module ' + npmModule + ' not found; installing' );
+					self.installNpm( npmModule, function ( e ) {
+						if ( e ) {
+							throw e;
+						}
+						self.loadModule( curr );
+					} );
+				} else {
+					console.error( 'Please run `npm install --save ' + npmModule + '`');
+					process.exit( 1 );
+				}
 			} else  {
 				console.log( e );
 				console.log( e.stack );
