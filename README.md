@@ -12,7 +12,7 @@ Here is a minimal `config.json` to get started. The IRC object is passed straigh
 		"port": 6667,
 		"nick": "civilservant",
 		"channels": [
-			"##zuzakistan"
+			"##zuzakistan-lab"
 		],
 		"controlChar": "!"
 		"control": "##zuzakistan-lab"
