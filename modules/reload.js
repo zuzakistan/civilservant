@@ -1,4 +1,5 @@
 var exec = require( 'child_process' ).exec;
+var githash = require( 'githash');
 module.exports = {
 	commands: {
 		reload: {
@@ -23,6 +24,13 @@ module.exports = {
 				exec( 'git pull', function () {
 					bot.say( msg.to, msg.nick + ': pulled. Reload?' );
 				} );
+			}
+		},
+		hash: {
+			help: 'Get hash of the current codebase',
+			aliases: [ 'version' ],
+			command: function () {
+				return githash();
 			}
 		}
 	}
