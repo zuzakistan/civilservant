@@ -25,7 +25,12 @@ var _ = require( 'underscore' );
 var Bitly = require( 'bitly' );
 var fs = require( 'fs' );
 
-var stale = require( __dirname + '/../data/stale.json' );
+var stale = [];
+try {
+	stale = require( __dirname + '/../data/stale.json' ) || [];
+} catch ( e ) {
+	//
+}
 var stale2 = [];
 
 var bitly = new Bitly( client.config.bitly.username, client.config.bitly.password );
