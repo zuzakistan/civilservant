@@ -1,27 +1,23 @@
-/**
- * iss.js
- *
- * !ud [headword]
- * Looks up a definition in Urban Dictionary.
- */
-var bot = require( '..' );
 var urban = require( 'urban' );
-bot.addListener( 'message', function ( nick, to, text ) {
-	if ( ( text.substr( 0, 6 ) === '!urban' ) || ( text.substr( 0, 3 ) === '!ud' ) ) {
-		var args = text.split( ' ' );
-		if ( args.length === 1 ) {
-			bot.say( to, nick + ': Usage: !urban <headword>' );
-			return;
-		}
-		args.shift();
-		var req = urban(args.join(' ') );
-		req.first( function ( data ) {
-			if ( typeof data === 'undefined' ) {
-				bot.say( to, nick + ': unable to find a definition for ' + args.join( ' ' ) );
-			} else {
-				bot.say( to, nick + ': ' + data.definition /* + ' ' + data.permalink */ );
+module.exports = {
+	commands: {
+		urban: {
+			aliases: [ 'ud' ],
+			help: 'Looks up a headword in Urban Dictionary',
+			command: function ( bot, msg ) {
+				if ( msg.args.length === 1 ) {
+					return ': Usage: !urban <headword>';
+				}
+				msg.args.shift();
+				var req = urban( msg.args.join(' ') );
+				req.first( function ( data ) {
+					if ( typeof data === 'undefined' ) {
+						bot.say( msg.to, msg.nick + ': unable to find a definition for ' + msg.args.join( ' ' ) );
+					} else {
+						bot.say( msg.to, msg.nick + ': ' + data.definition /* + ' ' + data.permalink */ );
+					}
+				} );
 			}
-		} );
+		}
 	}
-} );
-
+};

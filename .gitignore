@@ -4,3 +4,4 @@ node_modules
 *.swp
 timezones.json
 stale.json
+data/channel-nicks.json

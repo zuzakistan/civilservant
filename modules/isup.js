@@ -1,35 +1,35 @@
-/**
- * isup.js
- *
- * !isup <url>
- * !get <url>
- * !web <url>
- * Grabs an arbitrary URL and returns select headers.
- * [Control channel only.]
- *
- */
-var bot = require('..');
 var request = require( 'request' );
+module.exports = {
+	commands: {
+		isup: {
+			aliases: [ 'get', 'web' ],
+			privileged: true,
+			help: 'Performs a HTTP(S) request to an arbitrary host.',
+			usage: [ 'host' ],
+			command: function ( bot, msg ) {
+				request( msg.args.host, function ( err, res, body ) {
+					if ( err ) {
+						bot.say( msg.to, msg.nick + ': ' + err.message );
+					} else {
+						var str = 'HTTP/' + res.httpVersion + ' ' + res.req.method;
+						str += ' ' + res.req.method + ' ' + res.request.href;
+						str += + ' → ' + res.statusCode;
 
-bot.addListener( 'message', function( nick, to, text ){
-	var args = text.split( ' ' );
-	if ( args[0] === '!isup' || args[0] === '!get' || args[0] === '!web' ) {
-		if ( to !== bot.config.irc.control ) {
-			return;
-		}
-		request( args[1], function( err, res, body ) {
-			if ( err ) {
-				bot.say( to, nick + ': ' + err.message );
-			} else {
-				var str = 'HTTP/' + res.httpVersion + ' ' + res.req.method + ' ' + res.request.href + ' → ' + res.statusCode;
-				var flag = '';
-				try {
-					str += ' (' + res.headers['content-type'] + ' · ' + res.headers.server + ' · ' + body.length + ')';
-				} catch(e) {
-					flag += '!';
-				}
-				bot.say( to, nick + ': ' + str + flag );
+						var flag = '';
+						try {
+							var headers = [
+								res.headers['content-type'],
+								res.headers.server,
+								body.length
+							];
+							str += headers.join( ' · ' );
+						} catch ( e ) {
+							flag = '!';
+						}
+						bot.say( msg.to, msg.nick + ': ' + str + flag );
+					}
+				} );
 			}
-		});
+		}
 	}
-} );
+};

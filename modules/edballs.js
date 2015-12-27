@@ -1,15 +1,10 @@
-/**
- * edballs.js
- *
- * Echoes every time someone says "Ed Balls", conserving casing.
- *
- */
-var bot = require( '..' );
-
-// https://twitter.com/edballsmp/status/63623585020915713
-bot.addListener( 'message', function ( nick, to, text ) {
-	var privycouncillors = text.match( /ed balls/gi );
-	if ( privycouncillors && privycouncillors.length !== 0 ) {
-		bot.say( to, privycouncillors[0] );
+module.exports = {
+	events: {
+		message: function ( bot, nick, to, text ) {
+			var pc = text.match( /ed balls/gi );
+			if ( pc && pc.length !== 0 ) {
+				bot.say( to, pc.join( ' ' ) );
+			}
+		}
 	}
-} );
+};
