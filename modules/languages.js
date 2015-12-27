@@ -1,63 +1,44 @@
-/**
- * languages.js
- *
- * !lang <code>
- * Looks up the ISO 639-1 code for a language.
- *
- * !country <code>
- * Looks up the ISO 3166-alpha2 code for a country, and returns
- * the name in English and German.
- *
- * !state <code>
- * Looks up the USPS code for a US state.
- */
-var bot = require( '..' );
 var langs = require( 'languages' );
 var countries = require( 'i18n-iso-countries' );
-var states = require('us-states');
+var states = require( 'us-states' );
 
-bot.addListener( 'message', function ( nick, to, text ) {
-	var args = text.split( ' ' );
-	var code;
-	if ( args[0] === '!lang' ) {
-		if ( !args[1] ) {
-			bot.say( to, 'Usage: !lang <code>' );
-		}
-		if ( langs.isValid( args[1] ) ) {
-			var info = langs.getLanguageInfo( args[1] );
-			bot.say( to, args[1] + ': ' + info.name + ' → ' + info.nativeName );
-		} else {
-			if ( args[1].length !== 2 ) {
-				if ( args[1].length === 3 ) {
-					bot.say( to, 'ISO 639-3 unsupported.' );
+module.exports = {
+	commands: {
+		lang: {
+			help: 'Looks up an ISO 369-1 language code',
+			usage: [ 'lang' ],
+			command: function ( bot, msg ) {
+				if ( langs.isValid( msg.args.lang ) ) {
+					var info = langs.getLanguageInfo( msg.args.lang );
+					return msg.args.lang + ' → ' + info.name + ' · ' + info.nativeName;
 				} else {
-					bot.say( to, 'ISO 639-1 code not found.' );
+					return 'Invalid ISO 639-1 code.';
 				}
-			} else {
-				bot.say( to,args[1] + ' is not recognised as an ISO 639-1 code.' );
 			}
-		}
-	} else if ( args[0] === '!country' ) {
-		if ( !args[1] ) {
-			bot.say(to, 'Usage: !country <code>' );
-		} else {
-			code = args[1].toUpperCase();
-			if ( countries.getName( code, 'en' ) ) {
-				bot.say( to, code + ' → ' + countries.getName( code, 'en' ) + ' · ' + countries.getName( code, 'de' ) );
-			} else {
-				bot.say( to, 'ISO 3166 code not found' );
+		},
+		country: {
+			help: 'Looks up an ISO 3166 alpha2 country code',
+			usage: [ 'country' ],
+			command: function ( bot, msg ) {
+				var code = msg.args.country.toUpperCase();
+				if ( countries.geName( code, 'en' ) ) {
+					return code + ' → ' + countries.getName( code, 'en' ) + ' · ' + countries.getName( code, 'de' );
+				} else {
+					return 'ISO 3166-alpha2 code not found.';
+				}
 			}
-		}
-	} else if ( args[0] === '!state' ) {
-		if ( !args[1] ) {
-			bot.say( to, 'Usage: !state <code>' );
-		} else {
-			code = args[1].toUpperCase();
-			if ( states[code] ) {
-				bot.say( to, code + ' → ' + states[code] );
-			} else {
-				bot.say( to, 'USPS code not found' );
+		},
+		state: {
+			help: 'Looks up the postal abbbreviation for a US state',
+			usage: [ 'code' ],
+			command: function ( bot, msg ) {
+				var code = msg.args.code.toUpperCase();
+				if ( states[code] ) {
+					return code + ' → ' + states[code];
+				} else {
+					return 'USPS code not found';
+				}
 			}
 		}
 	}
-} );
+};

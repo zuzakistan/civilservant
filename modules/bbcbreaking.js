@@ -18,12 +18,11 @@
  * This may cause a large number of stories to be retransmitted.
  * [Control channel only.]
  */
-var client = require( '..' );
+var client = require( '../server.js' );
 var schedule = require( 'node-schedule' );
 var request = require( 'request' );
 var _ = require( 'underscore' );
 var Bitly = require( 'bitly' );
-var slack = require('slack-notify')('https://' + client.config.slack.org + '.slack.com/services/hooks/incoming-webhook?token=' + client.config.slack.token );
 var fs = require( 'fs' );
 
 var stale = require( __dirname + '/../data/stale.json' );
@@ -142,14 +141,6 @@ schedule.scheduleJob( pulserule, function () {
 								client.notice(client.config.irc.control, msg);
 							}
 						} );
-						slack.send( {
-							channel: '#news',
-							icon_url: 'https://i.imgur.com/Ikxp2g7.png',
-							text: item.url ? '<' + item.url + '|' + item.headline + '>' : item.headline,
-							username: 'BBC ' + toTitleCase( item.prompt ),
-							color: item.isBreaking ? '#990000' : null,
-							unfurl_links: true
-						} );
 					}
 				} );
 			} catch ( e ) {
@@ -158,37 +149,3 @@ schedule.scheduleJob( pulserule, function () {
 		}
 	} );
 } );
-
-client.addListener( 'message', function ( nick, to, text ){
-	if ( text === '!news' ) {
-		if ( nox === false ) {
-			nox = true;
-			client.say( to, nick + ': BBC News feed silenced.' );
-		} else {
-			nox = false;
-			client.say( to, nick + ': BBC News feed started.' );
-		}
-	} else if ( text === '!news corrections' ) {
-		client.say( to, nick + ': http://www.bbc.co.uk/news/21323537' );
-	} else if ( text === '!news status' ) {
-		if ( nox === false ) {
-			client.say( to, nick + ': BBC News feed is active.' );
-		} else if ( nox === true ) {
-			client.say( to, nick + ': BBC News feed is silenced.' );
-		} else {
-			client.say( to, nick + ': BBC News feed is buggered.' );
-		}
-	} else if ( text === '!news wipe' ) {
-		if ( to === client.config.irc.control ) {
-			stale = [];
-			fs.writeFileSync( __dirname + '../data/stale.json', JSON.stringify( stale, null, 4 ) );
-			client.say( to, nick + ': wiped history (brace for impact)' );
-		} else {
-			client.say( to, nick + ': you are not allowed to do that.' );
-		}
-	} else if ( text === '!news count' ) {
-		client.say( to, nick + ': ' + stale.length.toLocaleString( 'en' ) + ' entries in memory' );
-	}
-} );
-
-

@@ -1,33 +1,27 @@
-/**
- * iss.js
- *
- * !space
- * Returns data on the number of people in space at the current time.
- */
-var bot = require( '..' );
 var request = require( 'request' );
-bot.addListener( 'message', function ( nick, to, text ) {
-	if ( text === '!space' ) {
-		request.get( 'http://www.howmanypeopleareinspacerightnow.com/peopleinspace.json', function ( e, r, b ) {
-				if ( e ) {
-					return bot.say( to, nick + ': problem fetching data' );
+module.exports = {
+	commands: {
+		space: {
+			help: 'Displays the people in space right now',
+			command: function ( bot, msg ) {
+				request.get( 'http://www.howmanypeopleareinspacerightnow.com/peopleinspace.json', function ( e, r, b ) {
+						if ( e ) {
+							return 'problem fetching data';
+						}
+						if ( r.statusCode !== 200 ) {
+							return 'problem fetching data (' + r.statusCode + ')';
+						}
+						var data = JSON.parse( b );
+						var ret = [];
+						for ( var i = 0; i < data.people.length; i++ ) {
+							if ( data.people[i].country === 'England' ) { // pet peeve
+								data.people[i].country = 'United Kingdom';
+							}
+							ret.push( data.people[i].name + ' (' + data.people[i].country + ')' );
+						}
+						bot.say( msg.to, msg.nick + ': ' + ret.join( '; ' ) );
+					} );
 				}
-				if ( r.statusCode !== 200 ) {
-					return bot.say( to, nick + ': problem fetching data (' + r.statusCode + ')' );
-				}
-				var data = JSON.parse( b );
-				var ret = '';
-				for ( var i = 0; i < data.people.length; i++ ) {
-					if ( data.people[i].country === 'England' ) { // pet peeve
-						data.people[i].country = 'United Kingdom';
-					}
-					ret += data.people[i].name + ' (' + data.people[i].country + ')';
-					ret += '; ';
-				}
-				ret = ret.substring( 0, ret.length - 2 );
-				bot.say( to, nick + ': ' + ret );
 			}
-		);
-	}
-} );
-
+		}
+};
