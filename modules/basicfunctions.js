@@ -18,7 +18,7 @@ module.exports = {
 		},
 		src: {
 			help: 'Returns a link to the bot\'s source code',
-			aliases: [ 'source' ],
+			aliases: [ 'source', 'patchwelcome' ],
 			command: function () {
 				return 'https://github.com/zuzakistan/civilservant';
 			}
