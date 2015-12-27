@@ -28,7 +28,8 @@
     "suncalc": "^1.7.0",
     "underscore": "^1.8.3",
     "urban": "^0.3.0",
-    "us-states": "0.0.1"
+    "us-states": "0.0.1",
+    "youtube-search": "^1.0.4"
   },
   "devDependencies": {
     "extract-comments": "^0.8.6",
