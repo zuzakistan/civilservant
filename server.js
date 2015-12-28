@@ -24,12 +24,14 @@ bot.fireEvents = function () {
 		if ( bot.events[name] ) {
 			for ( var i = 0; i < bot.events[name].length; i++ ) {
 				var cargs = args;
-				cargs.unshift( bot );
+				if ( cargs[0] !== bot ) { // getting dupes for some reason
+					cargs.unshift( bot );
+				}
 				bot.events[name][i].apply( this, cargs );
 			}
 		}
 	} catch ( e ) {
-		// nowt
+		bot.say( bot.config.irc.control, 'Event ' + name + ' failure: ' + e );
 	}
 };
 
