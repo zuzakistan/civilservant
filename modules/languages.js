@@ -21,7 +21,7 @@ module.exports = {
 			usage: [ 'country' ],
 			command: function ( bot, msg ) {
 				var code = msg.args.country.toUpperCase();
-				if ( countries.geName( code, 'en' ) ) {
+				if ( countries.getName( code, 'en' ) ) {
 					return code + ' → ' + countries.getName( code, 'en' ) + ' · ' + countries.getName( code, 'de' );
 				} else {
 					return 'ISO 3166-alpha2 code not found.';
