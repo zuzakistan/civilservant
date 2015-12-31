@@ -22,7 +22,9 @@ module.exports = {
 			help: 'Pull code from upstream',
 			command: function ( bot, msg ) {
 				exec( 'git pull', function () {
-					bot.say( msg.to, msg.nick + ': pulled. Reload?' );
+					bot.say( msg.to, msg.nick + ': pulled. Reloading...' );
+					bot.reload();
+					bot.say( msg.to, msg.nick + ':                  ...done.' );
 				} );
 			}
 		},
