@@ -54,11 +54,11 @@ module.exports = {
 								x.hwinner = x.winner;
 						}
 
-						bot.say( to, nick + ': you seem ' + x.adj + x.hwinner + ' (score: ' + x.emotional + ')');
+						bot.shout( to, nick + ': you seem ' + x.adj + x.hwinner + ' (score: ' + x.emotional + ')');
 					} else {
 						// danger phrase
 						if ( verbose ) {
-							bot.say( to, nick + ': that is a worrying thing to say' );
+							bot.shout( to, nick + ': that is a worrying thing to say' );
 						}
 					}
 				}

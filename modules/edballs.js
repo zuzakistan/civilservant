@@ -4,7 +4,7 @@ module.exports = {
 		message: function ( bot, nick, to, text ) {
 			var pc = text.match( /(ed balls|the greater good)+/gi );
 			if ( pc && pc.length !== 0 ) {
-				bot.say( to, pc.join( ' ' ) );
+				bot.shout( to, pc.join( ' ' ) );
 			}
 		}
 	}
