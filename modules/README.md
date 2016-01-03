@@ -32,7 +32,7 @@ Privileged commands will only run within the control channel.
 module.exports = {
 	commands: {
 		foo: {
-			priveleged: true,
+			privileged: true,
 			command: function ( bot, msg ) {
 				// your code here
 			}
