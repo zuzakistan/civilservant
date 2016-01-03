@@ -137,7 +137,7 @@ schedule.scheduleJob( pulserule, function () {
 							} else {
 								msg += ' \u00031<' + articlePending().join( ' ' ) + '>';
 							}
-							if ( !nox ) {
+							if ( !nox && !client.config.irc.quiet) {
 								client.notice(client.config.irc.control, msg);
 							}
 						} );
