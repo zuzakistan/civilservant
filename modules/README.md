@@ -130,3 +130,9 @@ module.exports = {
 Other events are available:
 * The `pm` event runs whenever someone talks in private message to the bot (this also fires
   the `message` event.
+* The `url` and `urls` events run whenever a URL is sent within a message.
+  The two are slightly different:
+	* The `url` event fires on every individual URL, and passes a string containing that URL
+	  followed by the usual `message` arguments.
+	* The `urls` event fires up to once for each message, and passes an array of the URLs
+	  featured in that message, followed by the usual `message` arguments.

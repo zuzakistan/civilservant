@@ -17,6 +17,7 @@
     "date-util": "^1.2.1",
     "emotional_alert": "^1.0.3",
     "extract": "^1.0.0",
+    "get-urls": "^5.0.0",
     "githash": "0.0.4",
     "i18n-iso-countries": "^0.10.0",
     "irc": "^0.4.0",
