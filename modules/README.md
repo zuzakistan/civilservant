@@ -24,9 +24,11 @@ module.exports = {
 };
 ```
 
-## Restricting access
+## Metadata
 "Metadata" for commands can be stored by adding an object level.
 Put the main logic under "command".
+
+### Restricting access
 Privileged commands will only run within the control channel.
 ```js
 module.exports = {
@@ -41,7 +43,7 @@ module.exports = {
 };
 ```
 
-## Adding aliases
+### Adding aliases
 You can alias commands by adding an `aliases` key:
 ```js
 module.exports = {
@@ -58,7 +60,7 @@ module.exports = {
 };
 ```
 
-## Help strings
+### Help strings
 It's good practice to tell the user what a command does; adding a `help` key will
 allow the user to query a commands with `!help foo`.
 ```js
@@ -74,7 +76,7 @@ module.exports = {
 };
 ```
 
-## Fixed usage
+### Fixed usage
 Argument validation and extraction is helped by the `usage` key, which should be
 an array of the arguments' meanings from left to right. If the arguments aren't present,
 a help message is displayed instead of running the command.
@@ -92,21 +94,9 @@ module.exports = {
 };
 ```
 
-## Disabling commands
+### Disabling commands
 If the `disabled` key is truthy, the command handler will return before the command itself is processed.
 
-## Events
-By default commands begin with `!`, but this can be configured in `config.json`.
-If you need something  to run on every message, you can add a (single) event:
-```js
-module.exports = {
-	events: {
-		message: function ( nick, to, text, message ) {
-			// your logic here
-		}
-	}
-};
-```
 ## Additional methods
 By default, if a string is returned in a command's function it will be output to the
 channel prefixed by the requesting nickname. If you don't want this, you can leverage
@@ -124,3 +114,19 @@ var msg = {
 };
 ```
 
+## Events
+By default commands begin with `!`, but this can be configured in `config.json`.
+If you need something  to run on every message, you can add a (single) event:
+```js
+module.exports = {
+	events: {
+		message: function ( nick, to, text, message ) {
+			// your logic here
+		}
+	}
+};
+```
+
+Other events are available:
+* The `pm` event runs whenever someone talks in private message to the bot (this also fires
+  the `message` event.
