@@ -9,7 +9,7 @@
     "danharibo <danharibo@gmail.com>"
   ],
   "scripts": {
-    "test": "node_modules/jshint/bin/jshint *.js modules/*.js"
+    "test": "node_modules/jshint/bin/jshint *.js modules/*.js plugins/*.js"
   },
   "license": "ISC",
   "dependencies": {

@@ -3,17 +3,17 @@ var fs = require( 'fs' );
 const MODULE_DIR = './modules';
 
 var self = module.exports = {
-	loadAllModules: function ( bot ) {
-		console.log('Reloading');
+	loadAllModules: function ( bot, dir ) {
+		dir = dir || MODULE_DIR; // default param
 		// clear existing:
 		bot.events = {};
 		bot.modules = []; // informational only
 		bot.commands = [];
 
-		return fs.readdir( MODULE_DIR, function ( err, files ) {
+		return fs.readdir( dir, function ( err, files ) {
 			for ( var i = 0; i < files.length; i++ ) {
 				if ( files[i].substr( -3 ) === '.js' ) {
-					if ( self.loadModule( bot, MODULE_DIR + '/' + files[i] ) ) {
+					if ( self.loadModule( bot, dir + '/' + files[i] ) ) {
 						// console.log( 'Loaded ' + files[i] );
 						bot.modules.push( files[i] );
 					} else {
