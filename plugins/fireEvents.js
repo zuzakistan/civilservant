@@ -21,6 +21,5 @@ bot.fireEvents = function () {
 	} catch ( e ) {
 		console.error( 'Error processing ' + name + ' event: ' );
 		console.error( e.stack );
-		console.error( JSON.stringify( e ) );
 	}
 };
