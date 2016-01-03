@@ -37,3 +37,11 @@ Some explanation of the not-obvious options:
   channel can perform potentially dangerous commands.
 * `installModules`: whether to attempt(!) to install missing NPM modules.
   If set to `false`, it'll just quit and ask you to install manually.
+
+# Installation
+Some modules require the `canvas` module, which depends on Cairo.
+You may need to install `libcairo2-dev` and `libpango1.0-dev` on Ubuntu.
+On CentOS, you apparently need `cairo` and `cairo-devel`.
+
+If you are having problems installing these, just delete the `modules/imgur.js` file.
+We won't mind.
