@@ -15,7 +15,8 @@ Here is a minimal `config.json` to get started. The IRC object is passed straigh
 			"##zuzakistan-lab"
 		],
 		"controlChar": "!"
-		"control": "##zuzakistan-lab"
+		"control": "##zuzakistan-lab",
+		"quiet": false
 	},
 	"bitly": {
 		"username": "",
