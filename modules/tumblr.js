@@ -8,7 +8,12 @@ module.exports = {
 				var file = fs.readFileSync( __rootdir + '/data/tumblr.txt', { encoding: 'utf-8' } );
 				var questions = file.split( '\n' );
 				var index = msg.args[1] || Math.floor( Math.random() * questions.length );
-				return '[Question ' + index + '] ' + questions[index];
+				var question = questions[index];
+				if ( question ) {
+					return '[Question ' + index + '] ' + questions[index];
+				} else {
+					return 'Question not found.';
+				}
 			}
 		}
 	}
