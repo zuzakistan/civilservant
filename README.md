@@ -38,6 +38,8 @@ Some explanation of the not-obvious options:
   channel can perform potentially dangerous commands.
 * `installModules`: whether to attempt(!) to install missing NPM modules.
   If set to `false`, it'll just quit and ask you to install manually.
+* `quiet` toggles unsolicited pronouncements. If you like your bots to speak
+  only when spoken to, set this to `true`.
 
 # Installation
 Some modules require the `canvas` module, which depends on Cairo.
