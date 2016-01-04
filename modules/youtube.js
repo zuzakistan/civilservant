@@ -14,6 +14,7 @@ module.exports = {
 				var query = msg.args.join( ' ' );
 				var opts = bot.config.youtube || {};
 				opts.maxResults = 1;
+				opts.type = 'video,channel';
 				yt( query, opts, function ( err, results ) {
 					if ( err ) {
 						return bot.say( msg.to, msg.nick + ': ' + err );
