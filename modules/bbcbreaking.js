@@ -27,7 +27,7 @@ var fs = require( 'fs' );
 
 var stale = [];
 try {
-	stale = require( __dirname + '/../data/stale.json' ) || [];
+	stale = require( __rootdir + '/data/stale.json' ) || [];
 } catch ( e ) {
 	//
 }
@@ -80,7 +80,7 @@ schedule.scheduleJob( pulserule, function () {
 				data.entries.forEach( function ( item ) {
 					if ( !_.contains( stale, constructStorage( item ) ) ) {
 						stale.push( constructStorage( item ) );
-						fs.writeFile( __dirname + '/../data/stale.json', JSON.stringify( stale, null, 4 ) );
+						fs.writeFile( __rootdir + '/data/stale.json', JSON.stringify( stale, null, 4 ) );
 						var msg = '';
 						var len = item.prompt.length;
 						var color = 0;

@@ -20,6 +20,7 @@
 	// test opt-outs that really need to be sorted properly
 	"predef": [
 		"describe",
-		"it"
+		"it",
+		"__rootdir" // defined in server.js
 	]
 }
