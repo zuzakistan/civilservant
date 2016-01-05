@@ -1,9 +1,26 @@
 var langs = require( 'languages' );
 var countries = require( 'i18n-iso-countries' );
 var states = require( 'us-states' );
+var currencies = require( 'currency-codes' );
 
 module.exports = {
 	commands: {
+		currency: {
+			help: 'Looks up an ISO 4217 currency code',
+			usage: [ 'currency' ],
+			command: function ( bot, msg ) {
+				var code = currencies.code( msg.args.currency );
+				if ( code ) {
+					if ( code.countries ) {
+						return code.code + ' → ' + code.currency + ' (' + code.countries.join( ', ' ) + ')';
+					} else {
+						return code.code + ' → ' + code.currency;
+					}
+				} else {
+					return 'ISO code not found.';
+				}
+			}
+		},
 		lang: {
 			help: 'Looks up an ISO 369-1 language code',
 			usage: [ 'lang' ],

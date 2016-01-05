@@ -14,6 +14,7 @@
   "license": "ISC",
   "dependencies": {
     "bitly": "~1.2.5",
+    "currency-codes": "^1.1.2",
     "date-util": "^1.2.1",
     "emotional_alert": "^1.0.3",
     "extract": "^1.0.0",
