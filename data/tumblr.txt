@@ -1,30 +1,13 @@
-( ͡° ͜ʖ ͡°:relationship status?
-(ಥ_ಥ:finish this: i hate it when...
-(ง'̀-'́ง:are you okay?
-(╯°□°╯︵ ʞooqǝɔɐɟ:besides tumblr, do you have any other social media?
-(╯°□°）╯︵ ┻━┻:what are your thoughts on school?
-(☞ﾟ∀ﾟ☞:would you rather be hugged by a bunny or kissed by a doe?
-(☞ﾟヮﾟ☞ ☜(ﾟヮﾟ☜:who is someone you can tell everything to?
-(づ｡◕‿‿◕｡づ:are you a hugger?
-(づ￣ ³￣づ:have you ever been in love?
-(ノಠ益ಠノ彡┻━┻:how do you let your anger out?
-(ﾉ◕ヮ◕ﾉ*:･ﾟ✧: sexual orientation?
-A:Your current OTP.
-Abortion:
-Actor:
-Actress:
-Aliens:
-Allium:What's the best thing you can cook?
-Amsonia:Would you ever become a vegan?
-Animal:
 Are there any stressful situations in your life?
 Are you a clean or messy person?
+Are you a fan of Designer Clothes?
 Are you a forgiving person?
 Are you a good judge of character?
 Are you a good liar?
 Are you a good singer?
 Are you a gossip?
 Are you a heavy sleeper?
+Are you a hugger?
 Are you a jealous person?
 Are you an innie or an outie?
 Are you currently in a relationship?
@@ -32,6 +15,7 @@ Are you good at hiding your feelings?
 Are you happy with the person you've become?
 Are you listening to music right now?
 Are you mad at someone right now?
+Are you okay?
 Are you psychic in any way?
 Are you religious?
 Are you scared of spiders?
@@ -43,31 +27,21 @@ Are you ticklish?
 Are you tired right now?
 Are you wearing socks right now?
 Are your parents divorced?
-Aster:Would you rather be cold or hot?
-Athlete:
-Autumn or Spring:
-Azalea:What's a movie you cried while watching?
-B:A pairing you initially didn’t consider but someone changed your mind.
-Back stabbers:
-Band:
-Basic question; what's your favorite color/colors?
+Autumn or Spring?
+Basic question: what's your favorite color/colors?
 Baths or showers?
 Be honest. Ever gotten yourself off?
-Beach:
-Ben Stiller or Adam Sandler:
+Ben Stiller or Adam Sandler?
+Besides tumblr, do you have any other social media?
 Best dramatic movie you've seen?
 Best friend?
 Biggest Fear?
 Biggest turn offs?
 Biggest turn ons?
-Blondes or Brunettes:
+Blondes or Brunettes?
 Book that you call your child?
-Book:
-Broke a bone:
-Broke the law:
-Burried or cremated:
-C:A pairing you wish you shipped, but just can't.
-Calla Lily:If you died right now, what song would you want to play at your funeral?
+Broke the law?
+Burried or cremated?
 Can insanity bring on more creativity?
 Can you curl your tongue?
 Can you do any other accents other than your own?
@@ -75,45 +49,42 @@ Can you live a day without TV?
 Can you name all 50 states of America?
 Can you roll your Rs?
 Can you touch your nose with your tongue?
-Candy:
-Carnation:If I handed you a concert ticket right now, who would you want to be the performer?
-Cellphone provider:
-Changed a diaper:
-Chocolate or Flowers:
-Chocolate or vanilla:
+Cellphone provider?
+Changed a diaper?
+Chocolate or Flowers?
+Chocolate or vanilla?
 Choose East Coast or West Coast?
-Clothing store:
-Coach or Chanel:
-Coke or Pepsi:
-College:
+Coach or Chanel?
+Coke or Pepsi?
+College?
 Color of your bedspread?
 Color of your room?
-Color:
-Comedian:
 Compared to this time last year, are you: (a happier or sadder? (b thinner or fatter? (c richer or poorer?
-Concert attended:
 Could you go for the rest of your life without drinking alcohol?
 Could you go the rest of your life without smoking a cigarette?
-Cried in front of someone:
-Curly or Straight hair:
+Curly or Straight hair?
 Cute and fluffy or dramatic and deadly?
-D:What was the first thing you ever contributed to a fandom?
-Daffodil:What's the most thoughtful present you've ever received?
 Daisy:How old were you when you had your first kiss?
 Dandelion:Do you think you're important?
-Day of the week:
+Day of the week?
 Define Art.
 Describe the last scene you read in as few words as possible. No character names or title.
-Designer Clothes:
 Did anyone close to you die?
 Did anyone close to you give birth?
+Did you ever play an instrument? If so what?
 Did you fall in love in 2015?
 Did you go out or stay in last night?
 Did you keep your new year’s resolutions, and will you make more for next year?
 Did you suffer illness or injury?
 Did your family or friends influence you to read when you were younger?
 Did your last kiss take place in/on a bed?
-Disney or Six Flags:
+Disney or Six Flags?
+Do you believe in God?
+Do you believe in Heaven?
+Do you believe in Hell?
+Do you believe in Horoscopes?
+Do you believe in fate?
+Do you believe in ghosts?
 Do you believe in ghosts? How about aliens?
 Do you believe in karma?
 Do you believe in love?
@@ -129,7 +100,7 @@ Do you drive? If so, have you ever crashed?
 Do you fall for people easily?
 Do you get butterflies around the person you like?
 Do you hate anyone now that you didn’t hate this time last year?
-Do you have a 5 year plan:
+Do you have a 5 year plan?
 Do you have a collection of anything?
 Do you have a strong accent?
 Do you have any nicknames?
@@ -143,6 +114,7 @@ Do you have much of an ego?
 Do you keep a journal?
 Do you like long or short hair?
 Do you like the smell of gasoline?
+Do you like when it rains?
 Do you like your age?
 Do you like your own name?
 Do you listen to music when you read? Make a mini playlist for one of your favorite books.
@@ -152,6 +124,8 @@ Do you miss anyone?
 Do you miss the way things were six months ago?
 Do you plan on moving out within the next year?
 Do you play an instrument?
+Do you prefer being hot or cold?
+Do you prefer real-life TV shows or animated TV shows?
 Do you prefer talking on the phone or video chatting online?
 Do you prefer to be behind the camera or in front of it?
 Do you read from recommendations or whatever book catches your eye?
@@ -165,6 +139,7 @@ Do you take drugs?
 Do you talk to yourself?
 Do you tend to hold grudges against people who have done you wrong?
 Do you think you can last in a relationship for 6 months?
+Do you use Ebay?
 Do you use chap stick?
 Do you want a boy a girl for a child?
 Do you want a boyfriend or girlfriend?
@@ -173,21 +148,18 @@ Do you want children:
 Do you want children?
 Do you wear the hood on your hoodie?
 Does anyone like you?
-Dog breed:
-Drunk or High:
-E:Have you added anything stupid/cracky/hilarious to your fandom, if so, what?
-East Coast or West Coast:
-Ebay:
-Ever been in love:
+Dog breed?
+Drunk or High?
+East Coast or West Coast?
+Ever been in love?
 Ever been on a plane?
 Ever been told “it’s not you, it’s me”?
+Ever broken a bone?
+Ever cried in front of someone?
 Ever had a poem or song written about you?
 Ever had a rumor spread about you?
 Ever stuck a foreign object up your nose?
 Extrovert or Introvert?
-F:What’s the longest you’ve ever been in a fandom? What fandom was it?
-Facebook:
-Fate:
 Favorite clean word?
 Favorite female protagonist?
 Favorite food?
@@ -200,38 +172,36 @@ Favorite song?
 Favorite swear word?
 Favorite villain?
 Favorite web site:
+Favourite Comedian?
+Favourite Flower?
+Favourite Grocery store?
+Favourite Holiday?
+Favourite candy?
+Favourite clothing store?
+Favourite food?
+Finish this: I hate it when...
 First book that had a major influence on you?
 First books you remember being obsessed with?
 First time you had a crush:
-Flip flops or high heals:
-Flower:
-Food:
-G:What was your first fandom?
-Gas Prices:
-Gay Marriage:
-George Bush:
-Ghosts:
+Flip flops or high heels?
 Girls.... (finish the sentence); Boys.... (finish the sentence)
-Give a description of the girl/boy I like.
+Give a description of the girl/boy you like.
 Give me 3 random facts.
 Give me the first thing that comes to mind when you hear the word "heart".
 Give us a fact about your personality.
 Give us a random fact about anything.
-God:
-Got a peircing:
 Got any piercings?
-Got my nails done:
 Grab the book nearest to you, turn to page 23, give me line 17.
-Grocery store:
-H:Do you prefer real-life TV shows or animated TV shows?
 Has someone of the opposite sex ever told you they loved you, and meant it?
 Has there ever been a book you wish you could un-read?
 Have tattoos?
+Have you added anything stupid/cracky/hilarious to your fandom, if so, what?
 Have you already thought of baby names, and if so what are they?
 Have you ever been awake for 48 hours straight?
 Have you ever been called a tease?
 Have you ever been famous?
 Have you ever been in a position of authority?
+Have you ever been in love?
 Have you ever been scuba diving?
 Have you ever been skinny dipping?
 Have you ever been to New York?
@@ -246,8 +216,10 @@ Have you ever fired a gun?
 Have you ever found it hard to tell someone you like them?
 Have you ever gone skinny dipping?
 Have you ever got in trouble with the law?
+Have you ever gotten a speeding ticket?
 Have you ever had a secret admirer?
 Have you ever had your heart broken?
+Have you ever had your nails done?
 Have you ever met any celebrities?
 Have you ever regretted kissing someone?
 Have you ever started a rumor?
@@ -261,21 +233,15 @@ Have you kissed three or more people in one night?
 Have you made a list of things to do before you die:
 Have you pre-named your children:
 Have you pretended to like someone?
-Heaven:
-Heliconia:Do you like when it rains?
-Hell:
-Hibiscus:Did you ever play an instrument? If so what?
-Hillary or Obama:
+Hillary or Obama?
 Hold hands with anyone this week?
-Holiday:
 Honestly, has anyone seen you in your underwear in the past 3 months?
-Horoscopes:
-Hot or cold:
 How big is your house?
 How can I win your heart?
 How did you get your name?
 How did you spend Christmas?
-How do you like your steak cooked:
+How do you let your anger out?
+How do you like your steak cooked?
 How do you vent your anger?
 How fast can you run?
 How fast can you type?
@@ -295,24 +261,21 @@ How would you describe your personal fashion concept in 2015?
 How's your relationship with my parent(s)?
 How's your relationship with my sibling(s)?
 How/where do you purchase your books?
-Hugged someone:
 Hugs or Kisses:
 Hydrangea:Starbucks order?
-I am allergic to:
-I am really:
-I have gotten a speeding ticket:
-I have these pets:
 I have/will get a job:
 I lose all respect for people who:
 I was born in:
 I wish I was a professional:
 I would like to move to:
 I:Has tumblr caused you to stop liking any fandoms, if so, which and why?
+If I handed you a concert ticket right now, who would you want to be the performer?
 If the whole world were listening to you right now, what would you say?
 If you are outside, what are you most likely doing?
 If you could meet anyone on this earth, who would it be?
 If you could move somewhere else, would you?
 If you could press a button and make anyone in the world instantaneously explode, who would it be?
+If you died right now, what song would you want to play at your funeral?
 If you were to publish a book what (besides your real name would you use for your author name?
 In a relationship?
 In my pockets:
@@ -328,6 +291,7 @@ Kat McPhee or Taylor Hicks:
 L:Your favorite fanartist/author gives you one request, what do you ask for?
 Last YouTube video watched:
 Last book you read:
+Last concert attended?
 Last person I got mad at:
 Last time I cried:
 Last time someone said something you were thinking:
@@ -383,6 +347,8 @@ Name a book you are scared is not going to be all you hoped it would be.
 Name a book's ending you wish you could change.
 Name a character you like but you really, really shouldn't.
 Name a movie or tv show you wish would have been a book.j
+Name a pairing you initially didn’t consider but someone changed your mind.
+Name a pairing you wish you shipped, but just can't.
 Next Summer:
 Next Weekend:
 Night or Day:
@@ -545,11 +511,13 @@ What are 3 dreams you want to fulfill?
 What are the last four digits in your cell phone number?
 What are you NOT looking forward to?
 What are you allergic to?
+What are you allergic to?
 What are you currently reading?
 What are you going to do when you grow up:
 What are you listening to right now?
 What are you looking forward to in the next week?
 What are you strengths?
+What are your thoughts on school?
 What are your weaknesses?
 What book fandom do you affiliate yourself with the most?
 What character would be your best friend in real life?
@@ -573,6 +541,10 @@ What do you think about most?
 What do you think about movie/tv adaptations?
 What do you think is Satan's last name?
 What do you think of Ebooks?
+What do you think of Gas Prices?
+What do you think of Gay Marriage?
+What do you think of George Bush?
+What do you think of backstabbers?
 What do you typically have for breakfast?
 What do you want to be when I get older?
 What do you wish you’d done less of?
@@ -601,6 +573,7 @@ What is your heritage?
 What is your most expensive piece of clothing?
 What is your personality type?
 What is your secret weapon to get someone to like you?
+What is your sexual orientation?
 What is your sexuality?
 What is your zodiac sign?
 What kept you sane?
@@ -608,6 +581,7 @@ What makes you angry?
 What makes you laugh no matter what?
 What makes you nervous?
 What one thing made your year immeasurably more satisfying?
+What pets do you have?
 What political issue stirred you the most?
 What position do you usually sleep in?
 What qualities do you find annoying in a character?
@@ -620,6 +594,7 @@ What time is it?
 What type of music do you like?
 What was the best book you read?
 What was the best thing you bought?
+What was the first thing you ever contributed to a fandom?
 What was the last book you read?
 What was the last lie you told?
 What was the last movie you saw?
@@ -627,6 +602,7 @@ What was your biggest achievement of the year?
 What was your biggest failure?
 What was your favourite TV program?
 What was your favourite film of this year?
+What was your first fandom?
 What was your greatest musical discovery?
 What was your last dream about?
 What were you doing at 12:30 this afternoon?
@@ -639,26 +615,35 @@ What would you like to have in 2016 that you lacked in 2015?
 What would you name your future daughter?
 What would you want to be written on your tombstone?
 What your last text message says?
+What's a movie you cried while watching?
 What's a reason you've lied to a friend?
 What's a song that always makes you happy when you hear it?
 What's a sound you hate; sound you love?
+What's the best thing you can cook?
 What's the last song you listened to?
 What's the last thing you purchased?
 What's the longest you've ever gone without sleep?
+What's the most thoughtful present you've ever received?
 What's the weather like right now?
 What's the worst injury you've ever had?
 What's the worst place you have ever been to?
+What's your Facebook?
 What's your biggest "what if"?
 What's your childhood career choice?
 What's your favorite animal?
 What's your favorite ice cream flavor?
+What's your favourite animal?
+What's your favourite beach?
 What's your idea of a perfect date?
 What's your lucky number?
+What's your relationship status?
 What's your religion?
 What's your sexual orientation?
 What's your strangest talent?
 What’s the last thing you put in your mouth?
+What’s the longest you’ve ever been in a fandom? What fandom was it?
 What’s your current problem?
+When did you last hug someone?
 When did your last hug take place?
 When is the last time you played the air guitar?
 When was the last time a member of the opposite sex hugged you?
@@ -678,7 +663,10 @@ Who did you last see in person?
 Who did you last share a bed with?
 Who did you miss?
 Who do you feel most comfortable talking to about anything?
+Who is someone you can tell everything to?
 Who is your celebrity crush?
+Who is your current OTP.
+Who is your favourite band?
 Who makes you laugh the most:
 Who was the first person you talked to today?
 Who was the last person you drove with?
@@ -693,7 +681,10 @@ Whose behaviour merited celebration?
 Why are you reading the book you're currently reading?
 Will you get married?
 Work:
+Would you ever become a vegan?
 Would you like to be a big celebrity?
+Would you rather be cold or hot?
+Would you rather be hugged by a bunny or kissed by a doe?
 Would you rather sleep with someone else or alone?
 X:3 OTPs from 3 different fandoms.
 Xbox or ps3:
@@ -724,6 +715,7 @@ Zinnia:Who was your best friend when you were six years old?
 [ This or That ]
 age and birthday?
 age you get mistaken for?
+are there aliens?
 are you good at hiding your feelings?
 are you listening to music right now?
 are your friends mainly girls or guys?
@@ -774,6 +766,7 @@ tumblr friends
 turn offs
 turn ons
 what are you looking forward to?
+what do you think about abortion?
 what is something you want right now?
 what is your favourite song at the moment?
 what my last text message says
@@ -782,6 +775,8 @@ what would you name your future kids?
 when was the last time someone of the opposite sex hugged you?
 where i want to be right now
 who did you last see in person?
+who is your favourite actor?
+who is your favourite actress?
 why i joined tumblr
 | (• ◡•| (❍ᴥ❍ʋ:favorite tv show?
 ʕ•ᴥ•ʔ:what is your favorite animal?
