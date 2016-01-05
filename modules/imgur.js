@@ -26,7 +26,7 @@ module.exports = {
 				console.log( res.headers.date );
 				nude.scanData( body, function ( err, red ) {
 					if ( err ) {
-						throw err;
+						return;
 					}
 					if ( red ) {
 						bot.shout( to, nick + ': lewd' );
