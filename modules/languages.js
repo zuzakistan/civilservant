@@ -25,6 +25,7 @@ module.exports = {
 			help: 'Looks up an ISO 369-1 language code',
 			usage: [ 'lang' ],
 			command: function ( bot, msg ) {
+				msg.args.lang = msg.args.lang.toLowerCase();
 				if ( langs.isValid( msg.args.lang ) ) {
 					var info = langs.getLanguageInfo( msg.args.lang );
 					return msg.args.lang + ' → ' + info.name + ' · ' + info.nativeName;
