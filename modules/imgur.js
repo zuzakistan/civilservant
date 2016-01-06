@@ -9,9 +9,11 @@ module.exports = {
 			 * The script hangs on large images, so rely on Imgur to play nice.
 			 * Appending "l" to a filename forces it to be a large thumbnail.
 			 */
-			if ( path.length === 12 || path.length === 10 ) {
-				path = url.path.split( '.' );
+			path = url.path.split( '.' );
+			if ( path[1] === 'jpg' || path[1] === 'gif' ) {
 				path = path[0] + 'l.' + path[1];
+			} else {
+				return;
 			}
 			request( {
 				url: url.protocol + '//' + url.host + path,
