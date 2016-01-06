@@ -5,3 +5,4 @@ node_modules
 timezones.json
 stale.json
 data/channel-nicks.json
+data/quotes.json
