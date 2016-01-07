@@ -1,6 +1,4 @@
 "I lose all respect for people who..." what?
-3 OTPs from 3 different fandoms.
-A fandom you’re in but have no ships from?
 Age and birthday?
 Age you get mistaken for?
 Are there aliens?
@@ -16,13 +14,14 @@ Are you a heavy sleeper?
 Are you a hugger?
 Are you a jealous person?
 Are you a people person or a loner?
+Are you a satanist?
 Are you a virgin?
 Are you active?
 Are you an extrovert or an introvert?
 Are you an innie or an outie?
 Are you currently in a relationship?
 Are you good at hiding your feelings?
-Are you good at hiding your feelings?  Are you happy with the person you've become?  Are you listening to music right now?
+Are you happy with the person you've become?
 Are you in college?
 Are you listening to music right now?
 Are you mad at someone right now?
@@ -51,8 +50,8 @@ Can you live a day without TV?
 Can you name all 50 states of America?
 Can you roll your Rs?
 Can you touch your nose with your tongue?
-Choose a song at random, what ship does it remind you of?
 Choose East Coast or West Coast?
+Choose a song at random, what ship does it remind you of?
 Compared to this time last year, are you: (a happier or sadder? (b thinner or fatter? (c richer or poorer?
 Complete the sentence: I'll love you if...
 Could you go for the rest of your life without drinking alcohol?
@@ -73,13 +72,13 @@ Did you keep your new year’s resolutions, and will you make more for next year
 Did you suffer illness or injury?
 Did your family or friends influence you to read when you were younger?
 Did your last kiss take place in/on a bed?
-Do you believe in fate?
-Do you believe in ghosts?
-Do you believe in ghosts? How about aliens?
 Do you believe in God?
 Do you believe in Heaven?
 Do you believe in Hell?
 Do you believe in Horoscopes?
+Do you believe in fate?
+Do you believe in ghosts?
+Do you believe in ghosts? How about aliens?
 Do you believe in karma?
 Do you believe in love?
 Do you believe in luck?
@@ -123,12 +122,12 @@ Do you miss the way things were six months ago?
 Do you plan on moving out within the next year?
 Do you play an instrument?
 Do you prefer Autumn or Spring?
+Do you prefer Coach or Chanel?
 Do you prefer baths or showers?
 Do you prefer being drunk, or high?
 Do you prefer being hot or cold?
 Do you prefer blondes or brunettes?
 Do you prefer chocolate or vanilla?
-Do you prefer Coach or Chanel?
 Do you prefer curly or straight hair?
 Do you prefer night or day?
 Do you prefer real-life TV shows or animated TV shows?
@@ -147,8 +146,8 @@ Do you talk to yourself?
 Do you tend to hold grudges against people who have done you wrong?
 Do you think you can last in a relationship for 6 months?
 Do you think you're important?
-Do you use chap stick?
 Do you use Ebay?
+Do you use chap stick?
 Do you want a boy a girl for a child?
 Do you want a boyfriend or girlfriend?
 Do you want a church wedding?
@@ -180,20 +179,21 @@ Favorite swear word?
 Favorite tv show?
 Favorite villain?
 Favorite web site:
+Favourite Comedian?
+Favourite Flower?
+Favourite Grocery store?
+Favourite Holiday?
+Favourite Yankee candle scent?
 Favourite actor/actress?
 Favourite animal(s)?
 Favourite book(s)?
 Favourite candy?
 Favourite clothing store?
 Favourite comedian(s)?
-Favourite Comedian?
 Favourite fictional character?
 Favourite film(s)?
-Favourite Flower?
 Favourite food(s)?
 Favourite food?
-Favourite Grocery store?
-Favourite Holiday?
 Favourite magazine?
 Favourite memory?
 Favourite movie?
@@ -212,7 +212,6 @@ Favourite subject?
 Favourite talk show host?
 Favourite thing to cook?
 Favourite tv show(s)?
-Favourite Yankee candle scent?
 Fear(s)?
 Finish this: I hate it when...
 First book that had a major influence on you?
@@ -295,13 +294,13 @@ How is your heart lately?
 How late did you stay up last night and why?
 How late did you stay up last night?
 How long does it take for you to get ready?
+How many TRUE friends do you have?
 How many cousins do you have?
 How many kids do you want to have?
 How many pairs of shoes do you own?
 How many piercings do you have?
 How many pillows do you sleep with?
 How many relationships have you had?
-How many TRUE friends do you have?
 How old are you?
 How old were you when you had your first kiss?
 How tall are you?
@@ -325,8 +324,10 @@ Is it hard for you to get over someone?
 Is there anyone who can always make you smile?
 Is there anything pink within 10 feet of you?
 Is there one person in your life that can always make you smile?
+It's your birthday. Someone gives you a calfskin wallet. How do you react?
 I’ll love you if... (complete the sentence)
 Kat McPhee or Taylor Hicks?
+Last YouTube video watched?
 Last book you read?
 Last concert attended?
 Last person you got mad at?
@@ -334,7 +335,6 @@ Last thing you Googled?
 Last time someone said something you were thinking?
 Last time you ate?
 Last time you cried?
-Last YouTube video watched?
 Left or right handed?
 Locust:What was your favorite book as a child?
 Love at first sight -- do you believe in it?
@@ -358,6 +358,7 @@ Name a book you are scared is not going to be all you hoped it would be.
 Name a book's ending you wish you could change.
 Name a character you like but you really, really shouldn't.
 Name a fandom you didn’t care/think about until you saw it all over tumblr.
+Name a fandom you’re in but have no ships from?
 Name a movie or tv show you wish would have been a book.
 Name a pairing you initially didn’t consider but someone changed your mind.
 Name a pairing you wish you shipped, but just can't.
@@ -365,9 +366,11 @@ Name one person that you wish you could see right now?
 Name some TV shows you watch.
 Name someone that makes you happy.
 Name something impending on your calendar.
+Name three OTPs from 3 different fandoms.
 Name three facts about your family.
 Nickname?
 Number of blankets you sleep with?
+OTP or NoTP?
 One book everyone should read?
 One night you wake up because you heard a noise. You turn on the light to find that you are surrounded by MUMMIES. The mummies aren't really doing anything, they're just standing around your bed. What do you do?
 One of your insecurities?
@@ -375,7 +378,6 @@ One thing that makes you feel great is... what?
 Opinion on insecurities?
 Orange Blossom:What's the best dream you've ever had?
 Oranges or Apples?
-OTP or NoTP?
 Oxlip:Would you ever get into a long distance relationship?
 Phone or Online?
 Piggy banks are... what?
@@ -500,9 +502,11 @@ Want any piercings?
 Want any tattoos?
 Were your ancestors royalty?
 Were your last three kisses from the same person?
+What ARE you looking forward to?
 What age do you get mistaken for?
 What are 3 dreams you want to fulfill?
 What are the last four digits in your cell phone number?
+What are you NOT looking forward to?
 What are you allergic to?
 What are you currently reading?
 What are you doing next summer?
@@ -510,8 +514,6 @@ What are you doing next weekend?
 What are you going to do when you grow up?
 What are you listening to right now?
 What are you looking forward to in the next week?
-What ARE you looking forward to?
-What are you NOT looking forward to?
 What are you strengths?
 What are your biggest turn offs?
 What are your biggest turn ons?
@@ -542,12 +544,12 @@ What do you think about abortion?
 What do you think about most?
 What do you think about movie/tv adaptations?
 What do you think is Satan's last name?
-What do you think of backstabbers?
 What do you think of Ebooks?
 What do you think of Gas Prices?
 What do you think of Gay Marriage?
 What do you think of George Bush?
 What do you think of Reality TV?
+What do you think of backstabbers?
 What do you think of the presidential election?
 What do you think of war?
 What do you typically have for breakfast?
@@ -622,8 +624,8 @@ What was the last movie you saw?
 What was the lat movie you saw?
 What was your biggest achievement of the year?
 What was your biggest failure?
-What was your favourite film of this year?
 What was your favourite TV program?
+What was your favourite film of this year?
 What was your first car?
 What was your first fandom?
 What was your first job?
@@ -656,9 +658,10 @@ What's the name of your cush?
 What's the weather like right now?
 What's the worst injury you've ever had?
 What's the worst place you have ever been to?
+What's your Facebook?
+What's your MySpace account?
 What's your biggest "what if"?
 What's your childhood career choice?
-What's your Facebook?
 What's your favorite animal?
 What's your favorite clean word?
 What's your favorite color?
@@ -670,7 +673,6 @@ What's your favourite dog breed?
 What's your height?
 What's your idea of a perfect date?
 What's your lucky number?
-What's your MySpace account?
 What's your relationship status?
 What's your religion?
 What's your ring size?
@@ -740,8 +742,8 @@ Why i joined tumblr
 Will you get married?
 Would you ever become a vegan?
 Would you like to be a big celebrity?
-Would you prefer chocolate or flowers?
 Would you prefer Disneyland or Six Flags?
+Would you prefer chocolate or flowers?
 Would you rather be cold or hot?
 Would you rather be hugged by a bunny or kissed by a doe?
 Would you rather sleep with someone else or alone?
@@ -755,6 +757,9 @@ You can only have one of these things; trust or love.
 You can re-live any point of time in your life. The time-span can only be a half-hour, though. What half-hour of your past would you like to experience again?
 You have the opportunity to sleep with the music-celebrity of your choice. Who would it be?
 You just got a free plane ticket to anywhere. You have to depart right now. Where are you gonna go?
+You're in a desert walking along in the sand when all of a sudden you look down and see a tortoise. It's crawling toward you. You reach down and you flip the tortoise on its back. The tortoise lays on its back, its belly baking in the hot sun, beating its legs trying to turn itself over, but it can't. Not without your help. But you're not helping. Why is that?
+You're reading a magazine. You come across a full-page nude photo of a girl. You show it to your wife. She likes it so much, she hangs it on your bedroom wall. The girl is lying on a bearskin rug.
+You've got a little boy. He shows you his butterfly collection plus the killing jar. What do you do?
 Your biggest pet peeves?
 Your dream vacation?
 Your favorite fanartist/author gives you one request, what do you ask for?
