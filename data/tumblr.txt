@@ -305,8 +305,8 @@ How old are you?
 How old were you when you had your first kiss?
 How tall are you?
 How would you describe your personal fashion concept in 2015?
-How's your relationship with my parent(s)?
-How's your relationship with my sibling(s)?
+How's your relationship with your parent(s)?
+How's your relationship with your sibling(s)?
 How/where do you purchase your books?
 Hugs or Kisses?
 If I handed you a concert ticket right now, who would you want to be the performer?
@@ -557,6 +557,7 @@ What do you want to be when you get older?
 What do you wish you’d done less of?
 What do you wish you’d done more of?
 What do your parents do?
+What does your last text message say?
 What does your latest text message from someone else say?
 What if I told you that you were pretty?
 What is a saying you say a lot?
@@ -602,7 +603,6 @@ What makes you angry?
 What makes you laugh no matter what?
 What makes you nervous?
 What movies did you cry at?
-What my last text message says
 What one thing made your year immeasurably more satisfying?
 What pets do you have?
 What political issue stirred you the most?
@@ -635,7 +635,7 @@ What was your life like last year?
 What were you doing at 12:30 this afternoon?
 What were you doing at midnight last night?
 What were you doing last night at 12 AM?
-What words make me feel the best about myself?
+What words make me feel the best about yourself?
 What words upset me the most?
 What would be a question you'd be afraid to tell the truth on?
 What would you like to have in 2016 that you lacked in 2015?
