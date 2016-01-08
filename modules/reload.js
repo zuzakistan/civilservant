@@ -21,7 +21,7 @@ module.exports = {
 			privileged: true,
 			help: 'Pull code from upstream',
 			command: function ( bot, msg ) {
-				exec( 'git pull', function () {
+				exec( 'git pull --rebase', function () {
 					bot.say( msg.to, msg.nick + ': pulled. Reloading...' );
 					bot.reload();
 					bot.say( msg.to, msg.nick + ':                  ...done.' );
