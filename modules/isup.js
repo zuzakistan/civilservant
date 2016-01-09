@@ -11,9 +11,9 @@ module.exports = {
 					if ( err ) {
 						bot.say( msg.to, msg.nick + ': ' + err.message );
 					} else {
-						var str = 'HTTP/' + res.httpVersion + ' ' + res.req.method;
+						var str = 'HTTP/' + res.httpVersion;
 						str += ' ' + res.req.method + ' ' + res.request.href;
-						str += + ' → ' + res.statusCode;
+						str += ' → ' + res.statusCode;
 
 						var flag = '';
 						try {
@@ -22,7 +22,7 @@ module.exports = {
 								res.headers.server,
 								body.length
 							];
-							str += headers.join( ' · ' );
+							str += ' ' + headers.join( ' · ' );
 						} catch ( e ) {
 							flag = '!';
 						}
