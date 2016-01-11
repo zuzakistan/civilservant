@@ -27,9 +27,8 @@ module.exports = {
 				if ( langs.isValid( msg.args.lang ) ) {
 					var info = langs.getLanguageInfo( msg.args.lang );
 					return msg.args.lang + ' → ' + info.name + ' · ' + info.nativeName;
-				} else {
-					return 'Invalid ISO 639-1 code.';
 				}
+				return 'Invalid ISO 639-1 code.';
 			}
 		},
 		country: {
@@ -39,9 +38,8 @@ module.exports = {
 				var code = msg.args.country.toUpperCase();
 				if ( countries.getName( code, 'en' ) ) {
 					return code + ' → ' + countries.getName( code, 'en' ) + ' · ' + countries.getName( code, 'de' );
-				} else {
-					return 'ISO 3166-alpha2 code not found.';
 				}
+				return 'ISO 3166-alpha2 code not found.';
 			}
 		},
 		state: {
@@ -51,9 +49,8 @@ module.exports = {
 				var code = msg.args.code.toUpperCase();
 				if ( states[code] ) {
 					return code + ' → ' + states[code];
-				} else {
-					return 'USPS code not found';
 				}
+				return 'USPS code not found';
 			}
 		}
 	}

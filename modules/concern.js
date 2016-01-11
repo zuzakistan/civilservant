@@ -17,10 +17,9 @@ module.exports = {
 				if ( !nox ) {
 					nox = true;
 					return 'adopting air of unconcern';
-				} else {
-					nox = false;
-					return 'concerning myself with matters';
 				}
+				nox = false;
+				return 'concerning myself with matters';
 			}
 		}
 	},
