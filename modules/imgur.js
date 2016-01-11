@@ -3,7 +3,7 @@ var nude = require( 'nudity' );
 module.exports = {
 	events: {
 		'url:i.imgur.com': function ( bot, url, nick, to ) {
-			console.log('ok');
+			console.log( 'ok' );
 			var path = url.path;
 			/*
 			 * The script hangs on large images, so rely on Imgur to play nice.

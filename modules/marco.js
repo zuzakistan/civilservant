@@ -1,11 +1,11 @@
-var scrape = require('scrape');
+var scrape = require( 'scrape' );
 module.exports = {
 	commands: {
 		marco: {
 			help: 'Checks current status of local takeaway',
 			command: function ( bot, msg ) {
 				var marco = bot.config.touchtosuccess.url;
-				scrape.request(marco, function ( err, $ ) {
+				scrape.request( marco, function ( err, $ ) {
 					if ( err ) {
 						return;
 					}
@@ -13,8 +13,8 @@ module.exports = {
 					var curr = pre.attribs.src;
 					if ( curr.indexOf( 'current_time' ) !== -1 ) {
 						curr = curr.split( '_' );
-						curr = [curr[3], curr[4].split('.png')[0]];
-						bot.say( msg.to, msg.nick + ': Collection time is ' + curr[0] + ' minutes. Delivery time is ' + curr[1] + ' minutes.');
+						curr = [curr[3], curr[4].split( '.png' )[0]];
+						bot.say( msg.to, msg.nick + ': Collection time is ' + curr[0] + ' minutes. Delivery time is ' + curr[1] + ' minutes.' );
 					}
 				} );
 					$( 'div.alert h2' ).each( function ( h2 ) {

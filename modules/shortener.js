@@ -7,7 +7,7 @@ module.exports = {
 				if ( err ) {
 					return; // fail silently (usually duplicate URL)
 				}
-				if ( res.data.url && res.data.url.length < url.href.length) {
+				if ( res.data.url && res.data.url.length < url.href.length ) {
 					bot.shout( to, res.data.url );
 				}
 			} );

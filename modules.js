@@ -39,7 +39,7 @@ var self = module.exports = {
 			return true;
 		} catch ( e ) {
 			if ( e.code === 'MODULE_NOT_FOUND' ) {
-				var npmModule = e.message.split('\'')[1];
+				var npmModule = e.message.split( '\'' )[1];
 				if ( bot.config.installModules ) {
 					console.log( 'Required module ' + npmModule + ' not found; installing' );
 					self.installNpm( npmModule, function ( e ) {
@@ -49,7 +49,7 @@ var self = module.exports = {
 						self.loadModule( curr );
 					} );
 				} else {
-					console.error( 'Please run `npm install --save ' + npmModule + '`');
+					console.error( 'Please run `npm install --save ' + npmModule + '`' );
 					process.exit( 1 );
 				}
 			} else  {
@@ -93,7 +93,7 @@ var self = module.exports = {
 				throw err;
 			}
 			npm.commands.install( [module], function ( err ) {
-				callback( err  );
+				callback( err );
 			} );
 		} );
 	}

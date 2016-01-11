@@ -25,10 +25,10 @@ module.exports = {
 		}
 	},
 	events: {
-		message: function( bot, nick, to, text ) {
+		message: function ( bot, nick, to, text ) {
 			if ( !nox ) {
 				var x = isEmotional( text );
-				if ( x.emotional) {
+				if ( x.emotional ) {
 					if ( x.winner ) {
 						var adj = {
 							0: '',
@@ -41,7 +41,7 @@ module.exports = {
 							7: 'agonizingly '
 						};
 						x.adj = adj[x.emotional] === undefined ? 'a tad ' : adj[x.emotional];
-						switch (x.winner) {
+						switch ( x.winner ) {
 							case 'anger':
 								x.hwinner = 'angry';
 								break;
@@ -54,7 +54,7 @@ module.exports = {
 								x.hwinner = x.winner;
 						}
 
-						bot.shout( to, nick + ': you seem ' + x.adj + x.hwinner + ' (score: ' + x.emotional + ')');
+						bot.shout( to, nick + ': you seem ' + x.adj + x.hwinner + ' (score: ' + x.emotional + ')' );
 					} else {
 						// danger phrase
 						if ( verbose ) {

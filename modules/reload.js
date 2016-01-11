@@ -1,5 +1,5 @@
 var exec = require( 'child_process' ).exec;
-var githash = require( 'githash');
+var githash = require( 'githash' );
 module.exports = {
 	commands: {
 		reload: {
