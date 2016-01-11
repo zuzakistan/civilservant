@@ -55,11 +55,8 @@ module.exports = {
 						}
 
 						bot.shout( to, nick + ': you seem ' + x.adj + x.hwinner + ' (score: ' + x.emotional + ')' );
-					} else {
-						// danger phrase
-						if ( verbose ) {
-							bot.shout( to, nick + ': that is a worrying thing to say' );
-						}
+					} else if ( verbose ) { // danger phrase
+						bot.shout( to, nick + ': that is a worrying thing to say' );
 					}
 				}
 			}

@@ -11,10 +11,9 @@ module.exports = {
 					dns.reverse( msg.args.host, function ( err, data ) {
 						if ( err ) {
 							return err + ' ' + msg.args.host;
-						} else {
-							for ( var i = 0; i < data.length; i++ ) {
-								return msg.args.host + ' → ' + data[i];
-							}
+						}
+						for ( var i = 0; i < data.length; i++ ) {
+							return msg.args.host + ' → ' + data[i];
 						}
 					} );
 				} catch ( e ) {

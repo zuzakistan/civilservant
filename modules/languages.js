@@ -13,12 +13,10 @@ module.exports = {
 				if ( code ) {
 					if ( code.countries ) {
 						return code.code + ' → ' + code.currency + ' (' + code.countries.join( ', ' ) + ')';
-					} else {
-						return code.code + ' → ' + code.currency;
 					}
-				} else {
-					return 'ISO code not found.';
+					return code.code + ' → ' + code.currency;
 				}
+				return 'ISO code not found.';
 			}
 		},
 		lang: {
