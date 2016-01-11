@@ -1,10 +1,10 @@
-var scrape = require('scrape');
+var scrape = require( 'scrape' );
 module.exports = {
 	commands: {
 		cheese: {
 			help: 'Returns the Cheese of the Day',
 			command: function ( bot, msg ) {
-				scrape.request('http://www.cheese.com', function ( err, $ ) {
+				scrape.request( 'http://www.cheese.com', function ( err, $ ) {
 					if ( err ) {
 						return;
 					}

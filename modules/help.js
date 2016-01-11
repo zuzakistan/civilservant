@@ -30,9 +30,8 @@ module.exports = {
 						attr = '';
 					}
 					return cmd.help + attr;
-				} else {
-					return 'No help for ' + bot.config.irc.controlChar + msg.args.command + ' found.';
 				}
+				return 'No help for ' + bot.config.irc.controlChar + msg.args.command + ' found.';
 			}
 		}
 	}

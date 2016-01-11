@@ -4,7 +4,7 @@
  * Scrapes iso.org's search page to map ISO number (e.g. 9001)
  * to name (e.g. Quality management systems -- Requirements).
  */
-var scrape = require('scrape');
+var scrape = require( 'scrape' );
 module.exports = {
 	commands: {
 		iso: {

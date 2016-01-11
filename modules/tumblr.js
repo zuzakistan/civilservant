@@ -11,9 +11,8 @@ module.exports = {
 				var question = questions[index];
 				if ( question ) {
 					return '[Question ' + index + '] ' + questions[index];
-				} else {
-					return 'Question not found.';
 				}
+				return 'Question not found.';
 			}
 		}
 	}

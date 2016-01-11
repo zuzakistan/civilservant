@@ -36,9 +36,8 @@ module.exports = {
 			command: function ( bot, msg ) {
 				if ( msg.to === bot.config.irc.control ) {
 					return 'this is the control channel';
-				} else {
-					return 'this is not the control channel';
 				}
+				return 'this is not the control channel';
 			}
 		}
 	}
