@@ -12,5 +12,22 @@ module.exports = {
 				}
 			} );
 		}
+	},
+	commands: {
+		shorten: {
+			help: 'Shorten a URL',
+			usage: [ 'url' ],
+			command: function ( bot, msg ) {
+				var bitly = new Bitly( bot.config.bitly.username, bot.config.bitly.password );
+				bitly.shorten( msg.args.url, function ( err, res ) {
+					if ( err ) {
+						bot.say( msg.to, 'Unable to shorten that.' );
+					}
+					if ( res.data.url ) {
+						bot.say( msg.to, res.data.url );
+					}
+				} );
+			}
+		}
 	}
 };
