@@ -35,5 +35,10 @@ module.exports = {
 				return githash();
 			}
 		}
+	},
+	events: {
+		version: function ( bot, from ) {
+			bot.ctcp( from, 'NOTICE', 'VERSION https://github.com/zuzakistan/civilservant/tree/' + githash() );
+		}
 	}
 };

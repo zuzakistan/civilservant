@@ -128,6 +128,7 @@ module.exports = {
 ```
 
 Other events are available:
+* The `version` event runs whenever someone CTCP VERSIONs the bot.
 * The `pm` event runs whenever someone talks in private message to the bot (this also fires
   the `message` event.
 * The `url` and `urls` events run whenever a URL is sent within a message.
