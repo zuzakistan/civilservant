@@ -7,7 +7,7 @@ module.exports = {
 				var item = items[Math.floor( Math.random() * items.length )];
 				item = item.replace( /\$city/g, msg.to );
 				item = item.replace( /\$mayor/g, msg.nick );
-				item = '\u000313LATEST:\u000350 ' + item;
+				item = '\u000313LATEST:\u00036 ' + item;
 				bot.notice( msg.to, item );
 			}
 		}
