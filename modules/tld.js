@@ -3,6 +3,7 @@ module.exports = {
 	commands: {
 		tld: {
 			usage: [ 'tld' ],
+			aliases: [ 'domain' ],
 			help: 'Checks whether a string is a top level domain',
 			command: function ( bot, msg ) {
 				request.get( 'https://data.iana.org/TLD/tlds-alpha-by-domain.txt', function ( e, r, b ) {
