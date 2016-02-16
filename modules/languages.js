@@ -21,6 +21,7 @@ module.exports = {
 		},
 		lang: {
 			help: 'Looks up an ISO 369-1 language code',
+			aliases: [ 'language' ],
 			usage: [ 'lang' ],
 			command: function ( bot, msg ) {
 				msg.args.lang = msg.args.lang.toLowerCase();
