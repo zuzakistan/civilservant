@@ -11,7 +11,7 @@ module.exports = {
 		nick: {
 			help: 'Changes the nickname of the bot',
 			privileged: true,
-			usage: [ 'nick' ],
+			usage: [ 'nickname' ],
 			aliases: [ 'name', 'nickname' ],
 			command: function ( bot, msg ) {
 				bot.send( 'NICK', msg.args.nickname );
