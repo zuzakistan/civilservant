@@ -16,7 +16,7 @@ module.exports = {
 				} );
 
 				rl.on( 'line', function ( line ) {
-					bot.say( msg.to, line );
+					bot.say( msg.to, line + '\u200b' /* zero width space */ );
 				} );
 			}
 		}
