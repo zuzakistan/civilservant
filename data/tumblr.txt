@@ -178,7 +178,7 @@ Favorite song?
 Favorite swear word?
 Favorite tv show?
 Favorite villain?
-Favorite web site:
+Favorite web site?
 Favourite Comedian?
 Favourite Flower?
 Favourite Grocery store?
@@ -216,7 +216,7 @@ Fear(s)?
 Finish this: I hate it when...
 First book that had a major influence on you?
 First books you remember being obsessed with?
-First time you had a crush:
+First time you had a crush?
 Flip flops or high heels?
 For your birthday, what kind of cake do you ask for?
 Gender?
@@ -338,16 +338,16 @@ Last time someone said something you were thinking?
 Last time you ate?
 Last time you cried?
 Left or right handed?
-Locust:What was your favorite book as a child?
+What was your favorite book as a child?
 Love at first sight -- do you believe in it?
 Love or lust?
 Love really is a beautiful thing huh?
 Lucky numbers?
-M:A person who got you into a fandom and what fandom they pulled you in to.
+A person who got you into a fandom and what fandom they pulled you in to.
 Mac or PC?
-Magnolia:Favorite kind of candy?
+Favorite kind of candy?
 Manicure or Pedicure?
-Marigold:Do you listen to what's on the radio?
+Do you listen to what's on the radio?
 Marriage is... what?
 McDonalds or Burger King?
 Most attractive singer of your opposite gender?
@@ -378,29 +378,29 @@ One night you wake up because you heard a noise. You turn on the light to find t
 One of your insecurities?
 One thing that makes you feel great is... what?
 Opinion on insecurities?
-Orange Blossom:What's the best dream you've ever had?
+What's the best dream you've ever had?
 Oranges or Apples?
-Oxlip:Would you ever get into a long distance relationship?
+Would you ever get into a long distance relationship?
 Phone or Online?
 Piggy banks are... what?
-Poinsettia:Favorite holiday dish?
-Poppy:What color was your childhood home?
+Favorite holiday dish?
+What color was your childhood home?
 Post a selfie.
 Post a shelfie.
-Primrose:Favorite kind of soup?
+Favorite kind of soup?
 Public library or personal library?
-Q:A ship you’ve abandoned and why.
-Queen Anne's Lace:Would you rather carve pumpkins or wrap presents?
+A ship you’ve abandoned and why.
+Would you rather carve pumpkins or wrap presents?
 Quick, you're in desperate need of a fake name. What character name do you think of first?
 Quote a song lyric that sums up your year.
-R:A pairing you ship that you don’t think anyone else ships.
+A pairing you ship that you don’t think anyone else ships.
 Rant about anything book related.
 Red heads or Black haired?
 Relationship status?
-Rhododendron:What's the scariest dream you've ever had?
+What's the scariest dream you've ever had?
 Right now I am talking to... who?
-Rose:Are you currently in love with someone?
-S:What's a headcanon you have?
+Are you currently in love with someone?
+What's a headcanon you have?
 Scariest book you ever read?
 Sexiest person that comes to your mind immediately?
 Shoe size?
@@ -494,13 +494,13 @@ To what extend did Ultra intelligence shorten the Second World War?
 To you, what is the meaning of life?
 Turn offs?
 Turn ons
-U:What are your favorite male/female ships?
+What are your favorite male/female ships?
 Ugly and rich OR sweet and poor?
 Unpopular opinions?
-V:Do you have any 3-way ships? If so, what?
-Violet:Do you like where you're from?
+Do you have any 3-way ships? If so, what?
+Do you like where you're from?
 Virgin?
-W:5 favorite characters from 5 different fandoms.
+5 favorite characters from 5 different fandoms.
 Wal-Mart or Target?
 Want any piercings?
 Want any tattoos?
