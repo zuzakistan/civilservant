@@ -67,14 +67,11 @@ Describe the last scene in a book you read in as few words as possible. No chara
 Describe your personality.
 Description of crush?
 Description of your best friend?
-Did anyone close to you die?
-Did anyone close to you give birth?
 Did you answer all these truthfully?
 Did you ever play an instrument? If so what?
 Did you fall in love in 2015?
 Did you go out or stay in last night?
 Did you keep your new year’s resolutions, and will you make more for next year?
-Did you suffer illness or injury?
 Did your family or friends influence you to read when you were younger?
 Did your last kiss take place in/on a bed?
 Do you believe in God?
@@ -348,6 +345,10 @@ Last thing you Googled?
 Last time someone said something you were thinking?
 Last time you ate?
 Last time you cried?
+Last year, did anyone close to you die?
+Last year, did anyone close to you give birth?
+Last year, did you suffer illness or injury?
+Last year, what did you want and get?
 Left or right handed?
 Love at first sight -- do you believe in it?
 Love or lust?
@@ -530,8 +531,7 @@ What dates from 2015 will remain etched upon your memory, and why?
 What did you do in 2015 that you’d never done before?
 What did you do yesterday?
 What did you get really, really, really excited about?
-What did you want and get?
-What did you want and not get?
+What did you want last year and not get?
 What do people call you?
 What do you  hate the most about work/school?
 What do you find attractive in men?
@@ -565,7 +565,7 @@ What is something you currently want right now?
 What is something you want right now?
 What is the color of your bedspread?
 What is the color of your room?
-What is the last thing you said out lot?
+What is the last thing you said out loud?
 What is the most important part of a book, in your opinion?
 What is the single best decision you have made in your life so far?
 What is wrong with you right now?
@@ -600,7 +600,7 @@ What made you decide to get Tumblr?
 What makes you angry?
 What makes you laugh no matter what?
 What makes you nervous?
-What movies did you cry at?
+What movies have you cried at?
 What one thing made your year immeasurably more satisfying?
 What pets do you have?
 What political issue stirred you the most?
@@ -696,7 +696,7 @@ When was the last time someone of the opposite sex hugged you?
 When was the last time you smiled?
 When was the last time you were extremely disappointed?
 Where are you from?
-Where did most of your money go?
+Where did most of your money go last year?
 Where did you get the shirt/sweatshirt you’re wearing?
 Where do you want to be right now?
 Where i want to be right now
@@ -706,13 +706,13 @@ Where were you yesterday?
 Where would you like to be?
 Where would you like to live?
 Where would you like to move to?
-Which celebrity/public figure did you fancy the most?
+Which celebrity/public figure do you fancy the most?
 White Chocolate or Milk Chocolate?
 Who did you last see in person?
 Who did you last share a bed with?
 Who did you last text?
-Who did you miss?
 Who do you feel most comfortable talking to about anything?
+Who do you miss?
 Who do you wish you could be?
 Who is someone you can tell everything to?
 Who is the one person who you can't hide things from?
