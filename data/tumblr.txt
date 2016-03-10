@@ -97,7 +97,6 @@ Do you get butterflies around the person you like?
 Do you hate anyone now that you didn’t hate this time last year?
 Do you have a 5 year plan?
 Do you have a collection of anything?
-Do you have a nickname?
 Do you have a strong accent?
 Do you have any 3-way ships? If so, what?
 Do you have any nicknames?
@@ -107,6 +106,7 @@ Do you have any relatives in jail?
 Do you have any scars?
 Do you have any siblings?
 Do you have any strange phobias?
+Do you have any unpopular opinions?
 Do you have more guy friends or girl friends?
 Do you have much of an ego?
 Do you keep a journal?
@@ -122,7 +122,7 @@ Do you listen to what's on the radio?
 Do you loan your books?
 Do you make wishes at 11:11?
 Do you miss anyone?
-Do you miss how thing were a year ago?
+Do you miss how things were a year ago?
 Do you miss the way things were six months ago?
 Do you plan on moving out within the next year?
 Do you play an instrument?
@@ -153,15 +153,15 @@ Do you think you can last in a relationship for 6 months?
 Do you think you're important?
 Do you use Ebay?
 Do you use chap stick?
-Do you want a boy a girl for a child?
+Do you want a boy or a girl for a child?
 Do you want a boyfriend or girlfriend?
 Do you want a church wedding?
-Do you want children:
 Do you want children?
 Do you want to be buried, or cremated?
 Do you wear the hood on your hoodie?
 Do you wish you were a professional of some kind? Of what?
 Does anyone like you?
+Does it compile?
 Dream job?
 Ever been in love?
 Ever been on a plane?
@@ -195,23 +195,17 @@ Favourite Yankee candle scent?
 Favourite actor/actress?
 Favourite animal(s)?
 Favourite book(s)?
-Favourite candy?
 Favourite clothing store?
-Favourite comedian(s)?
+Favourite country?
 Favourite fictional character?
-Favourite film(s)?
-Favourite food(s)?
-Favourite food?
 Favourite magazine?
 Favourite memory?
-Favourite movie?
 Favourite perfume?
 Favourite picture of your idol?
 Favourite president?
 Favourite radio station?
 Favourite restaurant?
 Favourite singer?
-Favourite song ever?
 Favourite sport to play?
 Favourite sport to watch?
 Favourite sport(s)?
@@ -219,7 +213,6 @@ Favourite state?
 Favourite subject?
 Favourite talk show host?
 Favourite thing to cook?
-Favourite tv show(s)?
 Fear(s)?
 Finish this: I hate it when...
 First book that had a major influence on you?
@@ -262,7 +255,6 @@ Have you ever drank underage?
 Have you ever fallen for your ex’s best friend?
 Have you ever fired a gun?
 Have you ever found it hard to tell someone you like them?
-Have you ever gone skinny dipping?
 Have you ever got in trouble with the law?
 Have you ever gotten a speeding ticket?
 Have you ever had a secret admirer?
@@ -276,14 +268,12 @@ Have you ever thrown up in the car?
 Have you ever told somebody you loved them and not actually meant it?
 Have you ever tried archery?
 Have you ever wanted to tell someone something but didn’t?
-Have you ever wanted to tell someone something but you didn't?
 Have you hugged someone within the last week?
 Have you kissed anyone in the last five days?
 Have you kissed three or more people in one night?
 Have you made a list of things to do before you die?
 Have you pre-named your children?
 Have you pretended to like someone?
-Height?
 Hillary or Obama?
 Hold hands with anyone this week?
 Honestly, has anyone seen you in your underwear in the past 3 months?
@@ -292,17 +282,15 @@ How can I win your heart?
 How can we account for the emergence of permanent intelligence organisations in Britain at the end of the nineteenth century?
 How did you get your name?
 How did you spend Christmas?
-How do you feel about the other people in your current fandom(s.
+How do you feel about the other people in your current fandom(s)?
 How do you feel right now?
 How do you let your anger out?
 How do you like your steak cooked?
-How do you vent your anger?
 How effective have parliamentarians, the press and the courts been in holding the intelligence services to account?
 How fast can you run?
 How fast can you type?
 How is your heart lately?
 How late did you stay up last night and why?
-How late did you stay up last night?
 How long does it take for you to get ready?
 How many TRUE friends do you have?
 How many cousins do you have?
@@ -326,12 +314,12 @@ If you could meet anyone on this earth, who would it be?
 If you could move somewhere else, would you?
 If you could press a button and make anyone in the world instantaneously explode, who would it be?
 If you died right now, what song would you want to play at your funeral?
+If you were to get married next week, who would be your best man?
 If you were to publish a book what (besides your real name would you use for your author name?
 In a relationship?
 In your opinion, what makes a great relationship?
 Invent a random AU for any fandom (we always need more ideas.
 Is it hard for you to get over someone?
-Is there anyone who can always make you smile?
 Is there anything pink within 10 feet of you?
 Is there one person in your life that can always make you smile?
 It's your birthday. Someone gives you a calfskin wallet. How do you react?
@@ -378,7 +366,6 @@ Name someone that makes you happy.
 Name something impending on your calendar.
 Name three OTPs from 3 different fandoms.
 Name three facts about your family.
-Nickname?
 Number of blankets you sleep with?
 OTP or NoTP?
 One book everyone should read?
@@ -402,6 +389,7 @@ Scariest book you ever read?
 Sexiest person that comes to your mind immediately?
 Shoe size?
 Should the 2003 Iraq case be considered an intelligence failure, a policy failure, or neither? Justify your answer.
+Should the United Kingdom remain a member of the European Union or leave the European Union?
 Simple but extremely complex. Favorite band?
 Singing or Dancing?
 Small town or Big city?
@@ -458,13 +446,13 @@ Talk about your first kiss.
 Talk about your future.
 Talk about your guilty pleasures.
 Talk about your worst fear.
+Tell me about your bed.
 Tell me about your best friend.
 Tell me about your family.
 Tell me about your neighbours/housemates.
 Tell me about your school.
-Tell me about yout bed.
 Tell one book story or memory (what you were wearing when you were reading something, someone saw you cry in public, you threw a book across the room and broke a window, etc.).
-Tell us 5 things that make me happy.
+Tell us 5 things that make you happy.
 Tell us a description of the person you dislike the most.
 Tell us a valuable life lesson you learned in 2015.
 Tell us about your crush!
@@ -487,23 +475,12 @@ Think back five months ago, were you single?
 Think of the last person who said I love you, do you think they meant it?
 Three names you go by..
 Time right now?
-To what extend did Ultra intelligence shorten the Second World War?
+To what extent did Ultra intelligence shorten the Second World War?
 To you, what is the meaning of life?
-Turn offs?
-Turn ons
-Ugly and rich OR sweet and poor?
-Unpopular opinions?
-Virgin?
 Wal-Mart or Target?
-Want any piercings?
-Want any tattoos?
 Were your ancestors royalty?
 Were your last three kisses from the same person?
-What ARE you looking forward to?
-What age do you get mistaken for?
-What are 3 dreams you want to fulfill?
 What are the last four digits in your cell phone number?
-What are you NOT looking forward to?
 What are you allergic to?
 What are you currently reading?
 What are you doing next summer?
@@ -511,11 +488,8 @@ What are you doing next weekend?
 What are you going to do when you grow up?
 What are you listening to right now?
 What are you looking forward to in the next week?
-What are you strengths?
-What are your biggest turn offs?
-What are your biggest turn ons?
-What are your favorite band(s/artist(s?
 What are your favorite male/female ships?
+What are your strengths?
 What are your thoughts on school?
 What are your weaknesses?
 What book fandom do you affiliate yourself with the most?
@@ -526,7 +500,7 @@ What color is your hair?
 What color looks best on you?
 What color socks are you wearing?
 What color was your childhood home?
-What countries did you visit?
+What countries did you visit last year?
 What dates from 2015 will remain etched upon your memory, and why?
 What did you do in 2015 that you’d never done before?
 What did you do yesterday?
@@ -586,7 +560,6 @@ What is your favourite song at the moment?
 What is your favourite war?
 What is your greatest weakness; your greatest strength?
 What is your guilty pleasure?
-What is your height?
 What is your heritage?
 What is your most expensive piece of clothing?
 What is your personality type?
@@ -672,7 +645,6 @@ What's your favorite ice cream flavor?
 What's your favourite animal?
 What's your favourite beach?
 What's your favourite dog breed?
-What's your height?
 What's your idea of a perfect date?
 What's your lucky number?
 What's your relationship status?
