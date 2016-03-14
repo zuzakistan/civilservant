@@ -50,7 +50,9 @@ module.exports = {
 						bot.say( msg.to, 'Error ' + JSON.stringify( e ) );
 					} else {
 						var d = b.split( '|' );
-						if ( d[0] === 'Your order is cooking.' ) {
+						if ( d[0] === 'Your order has been accepted.' ) {
+							d[0] = '\u000310Accepted…';
+						} else if ( d[0] === 'Your order is cooking.' ) {
 							d[0] = '\u00039Cooking!\u0003';
 						} else if ( d[0] === '' ) {
 							d[0] = '\u000314Cancelled?\u0003';
