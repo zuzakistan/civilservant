@@ -27,7 +27,6 @@ module.exports = {
 		}
 	},
 	events: {
-		/* TODO: fix dupe bot var */
 		message: function ( bot, nick, to, text ) {
 			var t = Object.keys( triggers );
 			for ( var i = 0; i < t.length; i++ ) {
