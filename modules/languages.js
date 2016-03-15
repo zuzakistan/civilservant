@@ -1,10 +1,24 @@
 var langs = require( 'languages' );
 var countries = require( 'i18n-iso-countries' );
 var states = require( 'us-states' );
+var airports = require( 'airport-lookup' );
 var currencies = require( 'currency-codes' );
 
 module.exports = {
 	commands: {
+		airport: {
+			help: 'Looks up an IATA airport code',
+			usage: [ 'code' ],
+			command: function ( bot, msg ) {
+				var data = airports( msg.args.code );
+				if ( data ) {
+					var datum = [ data.size, countries.getName( data.iso, 'en' ), data.type ];
+					return data.iata + ': ' + data.name + ' (' + datum.join( ' ' ) + ')';
+				} else {
+					return 'Unable to find an airport with IATA code ' + msg.args.code;
+				}
+			}
+		},
 		currency: {
 			help: 'Looks up an ISO 4217 currency code',
 			usage: [ 'currency' ],

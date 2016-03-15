@@ -13,6 +13,7 @@
   },
   "license": "ISC",
   "dependencies": {
+    "airport-lookup": "^1.1.0",
     "bitly": "~1.2.5",
     "currency-codes": "^1.1.2",
     "date-util": "^1.2.1",
