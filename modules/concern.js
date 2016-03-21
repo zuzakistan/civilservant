@@ -7,7 +7,7 @@
  */
 var isEmotional = require( 'emotional_alert' );
 var nox = false;
-var verbose = true; // TODO: cvar
+var verbose = false; // TODO: cvar
 
 module.exports = {
 	commands: {
