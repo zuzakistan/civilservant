@@ -22,7 +22,7 @@ module.exports = {
 							}
 							if ( cmd.privileged ) {
 								if ( bot.config.irc.control !== msg.to ) {
-									bot.say( msg.to, msg.nick + ': Unable.' );
+									bot.say( msg.to, msg.nick + ': We are not in the control channel.' );
 									return;
 								}
 							}
