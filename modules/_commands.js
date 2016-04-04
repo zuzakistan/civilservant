@@ -22,7 +22,8 @@ module.exports = {
 							}
 							if ( cmd.privileged ) {
 								if ( bot.config.irc.control !== msg.to ) {
-									bot.say( msg.to, msg.nick + ': Unable.' );
+									// http://www.imdb.com/title/tt0062622/quotes?item=qt0396921
+									bot.say( msg.to, 'I\'m sorry, ' + msg.nick + '. I\'m afraid I can\'t do that.' );
 									return;
 								}
 							}
