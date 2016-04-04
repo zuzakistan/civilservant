@@ -22,7 +22,7 @@ module.exports = {
 							}
 							if ( cmd.privileged ) {
 								if ( bot.config.irc.control !== msg.to ) {
-									bot.say( msg.to, "I'm sorry, " + msg.nick + "I'm afraid I can't let you do that." );
+									bot.say( msg.to, "I'm sorry, " + msg.nick + " I'm afraid I can't let you do that." );
 									return;
 								}
 							}
