@@ -5,7 +5,20 @@ module.exports = {
 				if ( Math.random() > 0.8 ) { // 1 in 25
 					if ( Math.random() > 0.8 ) { // 1 in 125
 						var interjections = [
-							'hahahaha XD'
+							'LMAO',
+							'ROFL',
+							'doublekek',
+							'doublepluskek',
+							'hahahaha XD',
+							'kek',
+							'keke',
+							'lel',
+							'lmao',
+							'lulz',
+							'psml',
+							'rofl',
+							'roflmao',
+							'rwtsh lol'
 						];
 						return bot.shout( to, interjections[Math.floor( Math.random() * interjections.length )] );
 					}
