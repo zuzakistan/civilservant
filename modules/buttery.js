@@ -14,14 +14,15 @@ module.exports = {
 				if ( !butter ) {
 					return;
 				}
-				var rl = readline.createInterface( {
-					input: fs.createReadStream( __rootdir + '/data/buttery.txt' ),
-					terminal: false
-				} );
-
-				rl.on( 'line', function ( line ) {
-					bot.say( msg.to, line + '\u200b' /* zero width space */ );
-				} );
+				if ( Math.random() > 0.66 ) {
+					var rl = readline.createInterface( {
+						input: fs.createReadStream( __rootdir + '/data/buttery.txt' ),
+						terminal: false
+					} );
+					rl.on( 'line', function ( line ) {
+						bot.say( msg.to, line + '\u200b' /* zero width space */ );
+					} );
+				}
 			}
 		},
 		acid: {
