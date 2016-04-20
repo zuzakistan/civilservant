@@ -43,7 +43,6 @@
     "jshint": "^2.5.4",
     "mocha": "^2.3.4",
     "node-dir": "^0.1.11",
-    "precommit-hook": "^1.0.7",
-    "simple-grep": "0.0.2"
+    "precommit-hook": "^1.0.7"
   }
 }
