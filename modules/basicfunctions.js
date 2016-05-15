@@ -40,6 +40,15 @@ module.exports = {
 				}
 				return 'this is not the control channel';
 			}
+		},
+		shout: {
+			help: 'Checks whether the shout functionality is enabled',
+			command: function ( bot ) {
+				if ( bot.config.irc.quiet ) {
+					return 'bot is quiet';
+				}
+				return 'bot is loud';
+			}
 		}
 	}
 };
