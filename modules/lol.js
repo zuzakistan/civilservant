@@ -18,7 +18,8 @@ module.exports = {
 							'psml',
 							'rofl',
 							'roflmao',
-							'rwtsh lol'
+							'rwtsh lol',
+							'i can\'t believe you\'ve done this'
 						];
 						return bot.shout( to, interjections[Math.floor( Math.random() * interjections.length )] );
 					}
