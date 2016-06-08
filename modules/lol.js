@@ -34,6 +34,8 @@ module.exports = {
 					return bot.shout( to, 'LOL' );
 				}
 				return bot.shout( to, 'lol' );
+			} else if ( text === 'kek' && Math.random() > 0.8 ) {
+				return bot.shout( to, 'kek' );
 			}
 			return false;
 		}
