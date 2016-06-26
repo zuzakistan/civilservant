@@ -1,4 +1,5 @@
 var request = require( 'request' );
+var delta = {};
 module.exports = {
 	commands: {
 		petition: {
@@ -16,18 +17,28 @@ module.exports = {
 						if ( r.statusCode !== 200 ) {
 							return 'problem fetching data (' + r.statusCode + ')';
 						}
-						var data = JSON.parse( b ).data;
-						var ret = [
-							data.type,
-							data.id,
-							'(' + data.attributes.action + ')',
-							'has',
-							data.attributes.signature_count,
-							'signatures',
-							'(' + data.attributes.state + ')',
-							'https://petition.parliament.uk/petitions/' + data.id
-						];
-						bot.say( msg.to, msg.nick + ': ' + ret.join( ' ' ) );
+						try {
+							var data = JSON.parse( b ).data;
+
+							var old = delta[data.id] ? delta[data.id] : data.attributes.signature_count;
+							var change = data.attributes.signature_count - old;
+							delta[data.id] = old + change;
+
+							var ret = [
+								data.attributes.state,
+								data.type,
+								data.id,
+								'"' + data.attributes.action + '"',
+								'has',
+								data.attributes.signature_count,
+								'signatures',
+								'(+' + change + ')',
+								'https://petition.parliament.uk/petitions/' + data.id
+							];
+							return ret.join( ' ' );
+						} catch ( e ) {
+							return 'unable to parse JSON';
+						}
 					} );
 				}
 			}
