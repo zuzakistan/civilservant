@@ -23,6 +23,7 @@
     "get-urls": "^5.0.0",
     "githash": "0.0.4",
     "i18n-iso-countries": "^0.10.0",
+    "intl": "^1.2.4",
     "irc": "^0.4.0",
     "japanese": "^1.1.0",
     "khaan": "^0.1.0",

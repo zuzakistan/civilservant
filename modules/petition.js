@@ -1,5 +1,6 @@
 var request = require( 'request' );
 var delta = {};
+
 module.exports = {
 	commands: {
 		petition: {
@@ -17,28 +18,37 @@ module.exports = {
 						if ( r.statusCode !== 200 ) {
 							return 'problem fetching data (' + r.statusCode + ')';
 						}
-						try {
-							var data = JSON.parse( b ).data;
+						var data = JSON.parse( b ).data;
 
-							var old = delta[data.id] ? delta[data.id] : data.attributes.signature_count;
-							var change = data.attributes.signature_count - old;
-							delta[data.id] = old + change;
+						var old = delta[data.id] ? delta[data.id] : data.attributes.signature_count;
+						var change = data.attributes.signature_count - old;
+						delta[data.id] = old + change;
 
-							var ret = [
-								data.attributes.state,
-								data.type,
-								data.id,
-								'"' + data.attributes.action + '"',
-								'has',
-								data.attributes.signature_count,
-								'signatures',
-								'(+' + change + ')',
-								'https://petition.parliament.uk/petitions/' + data.id
-							];
-							return ret.join( ' ' );
-						} catch ( e ) {
-							return 'unable to parse JSON';
+						var domestic = 0;
+						var foreign = 0;
+						for ( var i = 0; i < data.attributes.signatures_by_country.length; i++ ) {
+							if ( data.attributes.signatures_by_country[i].code === 'GB' ) {
+								domestic += data.attributes.signatures_by_country[i].signature_count;
+							} else {
+								foreign += data.attributes.signatures_by_country[i].signature_count;
+							}
 						}
+						var ret = [
+							data.attributes.state,
+							data.type,
+							data.id,
+							'"' + data.attributes.action + '"',
+							'has',
+							data.attributes.signature_count.toLocaleString('en-GB'),
+							'signatures',
+							'(+' + change + ')',
+							'[' + domestic,
+							foreign,
+							(data.attributes.signature_count - domestic - foreign) + ']',
+
+							'https://petition.parliament.uk/petitions/' + data.id
+						];
+						bot.say(msg.to, ret.join( ' ' ) );
 					} );
 				}
 			}
