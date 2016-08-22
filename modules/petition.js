@@ -39,12 +39,12 @@ module.exports = {
 							data.id,
 							'"' + data.attributes.action + '"',
 							'has',
-							data.attributes.signature_count.toLocaleString('en-GB'),
+							data.attributes.signature_count.toLocaleString( 'en-GB' ),
 							'signatures',
 							'(+' + change + ')',
 							'[' + domestic,
 							foreign,
-							(data.attributes.signature_count - domestic - foreign) + ']',
+							( data.attributes.signature_count - domestic - foreign ) + ']',
 
 							'https://petition.parliament.uk/petitions/' + data.id
 						];

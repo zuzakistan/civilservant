@@ -33,10 +33,9 @@ module.exports = {
 				if ( butter ) {
 					butter = false;
 					return 'disabled base';
-				} else {
-					butter = true;
-					return 'enabled base';
 				}
+				butter = true;
+				return 'enabled base';
 			}
 		}
 	}
