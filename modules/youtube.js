@@ -26,14 +26,13 @@ module.exports = {
 				opts.maxResults = 1;
 				opts.type = 'video,channel';
 				// this is particularly dumb:
-				yt( query.v, opts, function( err, results ) {
+				yt( query.v, opts, function ( err, results ) {
 					if ( err ) {
 						console.log( 'YouTube error', err, err.stack );
 						return;
-					} else {
-						if ( results.length !== 0 ) {
-							bot.say( to, results[0].title );
-						}
+					}
+					if ( results.length !== 0 ) {
+						bot.say( to, results[0].title );
 					}
 				} );
 			}

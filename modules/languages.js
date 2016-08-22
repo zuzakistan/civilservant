@@ -14,9 +14,8 @@ module.exports = {
 				if ( data ) {
 					var datum = [ data.size, countries.getName( data.iso, 'en' ), data.type ];
 					return data.iata + ': ' + data.name + ' (' + datum.join( ' ' ) + ')';
-				} else {
-					return 'Unable to find an airport with IATA code ' + msg.args.code;
 				}
+				return 'Unable to find an airport with IATA code ' + msg.args.code;
 			}
 		},
 		currency: {
