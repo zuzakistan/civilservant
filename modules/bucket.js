@@ -97,6 +97,20 @@ module.exports = {
 				}
 				return 'shan\'t!';
 			}
+		},
+		inventorylimit: {
+			help: 'Sets the inventory limit of the bot',
+			privileged: true,
+			usage: [ 'limit' ],
+			command: function ( bot, msg ) {
+				var old = inventoryLimit;
+				var newLimit = parseInt( msg.args.limit, 10 );
+				if ( typeof newLimit !== 'number' ) {
+					return 'cannae do that cap\'n';
+				}
+				inventoryLimit = newLimit;
+				return 'Changed limit from ' + old + ' to ' + inventoryLimit;
+			}
 		}
 	}
 };
