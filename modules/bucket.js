@@ -1,11 +1,16 @@
 // inspired by xkcd's bucket :)
 var inventory = [];
 var inventoryLimit = 20;
+var write = require( 'fs' ).writeFile;
 
 try {
 	inventory = require( __rootdir + '/data/inventory.json' ) || [];
 } catch ( e ) {
 	//
+}
+
+function saveInventory() {
+	write( __rootdir + '/data/inventory.json', JSON.stringify( inventory ) );
 }
 
 function dropItem() {
@@ -64,6 +69,7 @@ module.exports = {
 				} else {
 					bot.action( to, 'picks up ' + newItem );
 				}
+				saveInventory();
 			}
 		}
 	},
