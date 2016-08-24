@@ -73,6 +73,14 @@ module.exports = {
 			}
 		}
 	},
+	message: function ( bot, nick, to ) {
+		if ( Math.random() < 0.01 ) {
+			var item = dropItem();
+			if ( item ) {
+				bot.action( to, 'drops ' + item );
+			}
+		}
+	},
 	commands: {
 		inventory: {
 			help: 'Displays the inventory of the bot',
