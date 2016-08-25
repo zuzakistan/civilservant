@@ -93,6 +93,9 @@ module.exports = {
 			command: function () {
 				var item = dropItem();
 				if ( item ) {
+					if ( item === 'apple' ) {
+						return 'Core dumped.';
+					}
 					return 'dropped ' + item;
 				}
 				return 'shan\'t!';
