@@ -74,7 +74,7 @@ module.exports = {
 		}
 	},
 	message: function ( bot, nick, to ) {
-		if ( Math.random() < 0.01 ) {
+		if ( Math.random() < 0.05 ) {
 			var item = dropItem();
 			if ( item ) {
 				bot.action( to, 'drops ' + item );
