@@ -71,13 +71,13 @@ module.exports = {
 				}
 				saveInventory();
 			}
-		}
-	},
-	message: function ( bot, nick, to ) {
-		if ( Math.random() < 0.05 ) {
-			var item = dropItem();
-			if ( item ) {
-				bot.action( to, 'drops ' + item );
+		},
+		message: function ( bot, nick, to ) {
+			if ( Math.random() < 0.005 ) {  // 1 in 500
+				var item = dropItem();
+				if ( item ) {
+					bot.action( to, 'drops ' + item );
+				}
 			}
 		}
 	},
