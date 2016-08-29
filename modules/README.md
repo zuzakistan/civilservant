@@ -1,4 +1,6 @@
 # Modules
+Files in this directory are automatically loaded as modules in the bot during runtime.
+
 ## Hello world example
 This is a small module that will reply "Hello, world!" if someone says `!hello` in chat:
 ```js
@@ -54,7 +56,8 @@ module.exports = {
 				// your code here
 			}
 		}
-	}, xyzzy: function () {
+	},
+	xyzzy: function () {
 		// you can also have multiple commands in a module
 	}
 };
@@ -103,6 +106,12 @@ channel prefixed by the requesting nickname. If you don't want this, you can lev
 the `bot` object (which is the running bot). See the `node-irc` documentation for details;
 useful methods include `bot.say()` and `bot.notice()`.
 
+In addition to `bot.say()`, there is also `bot.shout()`.
+These are almost identical in that they both send a message to a channel.
+However, calls to `bot.shout()` can be toggled via a configuration variable: use it any time the bot
+sends an unsolicited message (one that has not been explicitly requested by a user), so that the
+bot can easily be used in more "serious" channels.
+
 The `msg` object contains useful properties:
 ```js
 var msg = {
@@ -131,6 +140,8 @@ Other events are available:
 * The `version` event runs whenever someone CTCP VERSIONs the bot.
 * The `pm` event runs whenever someone talks in private message to the bot (this also fires
   the `message` event.
+* The `action` event runs whenever someone uses a `/me`-style command (including private messages).
+  Note that actions do not fire the `message` or `pm` event.
 * The `url` and `urls` events run whenever a URL is sent within a message.
   The two are different:
 	* The `urls` event fires up to once for each message, and passes an array of strings of the URLs
