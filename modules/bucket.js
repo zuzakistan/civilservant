@@ -35,6 +35,12 @@ module.exports = {
 					'passes',
 					'throws'
 				],
+				'take': [
+					'accepts',
+					'grabs',
+					'picks up',
+					'takes'
+				],
 				'discard': [
 					'discards',
 					'dispenses with',
@@ -67,7 +73,11 @@ module.exports = {
 							oldItem
 						);
 				} else {
-					bot.action( to, 'picks up ' + newItem );
+					bot.action( to,
+							synonyms.take[Math.floor( Math.random() * synonyms.take.length )] +
+							' ' +
+							newItem
+						);
 				}
 				saveInventory();
 			}
