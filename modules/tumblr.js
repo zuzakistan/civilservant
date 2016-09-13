@@ -13,7 +13,7 @@ module.exports = {
 	commands: {
 		tumblr: {
 			help: 'Returns a random question from a selection of viral Tumblr questions.',
-			aliases: [ 'truth', 'question', 'conversationprompt' ],
+			aliases: [ 'q', 'truth', 'question', 'conversationprompt' ],
 			command: function ( bot, msg ) {
 				if ( msg.args[1] === 'clear' ) {
 					id = null;
