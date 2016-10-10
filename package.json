@@ -15,6 +15,7 @@
   "dependencies": {
     "airport-lookup": "^1.1.0",
     "bitly": "~1.2.5",
+    "classify2": "0.0.2",
     "currency-codes": "^1.1.2",
     "date-util": "^1.2.1",
     "emotional_alert": "^1.0.3",
