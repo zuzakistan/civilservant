@@ -21,10 +21,11 @@ module.exports = {
 			privileged: true,
 			help: 'Pull code from upstream',
 			command: function ( bot, msg ) {
+				bot.say( msg.to, msg.nick + ': pulling...' );
 				exec( 'git pull --rebase', function () {
-					bot.say( msg.to, msg.nick + ': pulled. Reloading...' );
+					bot.say( msg.to, msg.nick + ':        ...reloading...' );
 					bot.reload();
-					bot.say( msg.to, msg.nick + ':                  ...done.' );
+					bot.say( msg.to, msg.nick + ':                    ...done.' );
 				} );
 			}
 		},
