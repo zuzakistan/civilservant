@@ -17,14 +17,14 @@ module.exports = {
 				} else {
 					counter = counter.join( ' ' );
 				}
-				if ( !count.hasOwnProperty(counter) ) {
+				if ( !count.hasOwnProperty( counter ) ) {
 					count[counter] = 1;
 				} else {
 					count[counter]++;
 				}
 				fs.writeFile( __rootdir + '/data/count.json', JSON.stringify( count, null, 4 ) );
 				if ( counter === '' ) { // reuse :(
-					return '' + count[counter];
+					return String(count[counter]);
 				}
 				return counter + ' is now ' + count[counter];
 			}

@@ -13,7 +13,7 @@ module.exports = {
 					message: message
 				};
 				msg._cmd = bot.config.irc.controlChar + msg.args[0];
-				if ( bot.commands.hasOwnProperty( msg.args[0] ) ) {
+				if ( bot.commands.hasOwnProperty(msg.args[0]) ) {
 					try {
 						var cmd = bot.commands[msg.args[0]];
 						if ( cmd.command ) {
@@ -41,9 +41,11 @@ module.exports = {
 							}
 							cmd = cmd.command;
 						}
-						var output = cmd( bot, msg );
-						if ( typeof output === 'string' ) {
-							bot.say( msg.to, msg.nick + ': ' + output );
+						if ( typeof cmd === 'function' ) {
+							var output = cmd( bot, msg );
+							if ( typeof output === 'string' ) {
+								bot.say( msg.to, msg.nick + ': ' + output );
+							}
 						}
 					} catch ( e ) {
 						bot.say( bot.config.irc.control,'Error processing `' + msg._cmd + '` in ' + msg.to + ': ' + e );

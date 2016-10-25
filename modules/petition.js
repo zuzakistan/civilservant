@@ -48,7 +48,7 @@ module.exports = {
 
 							'https://petition.parliament.uk/petitions/' + data.id
 						];
-						bot.say(msg.to, ret.join( ' ' ) );
+						bot.say( msg.to, ret.join( ' ' ) );
 					} );
 				}
 			}

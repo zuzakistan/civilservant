@@ -15,7 +15,7 @@ function saveInventory() {
 }
 
 function dropItem() {
-	return inventory.splice( Math.floor( Math.random() * inventory.length ), 1);
+	return inventory.splice( Math.floor( Math.random() * inventory.length ), 1 );
 }
 
 function addToInventory( item ) {
@@ -114,7 +114,7 @@ module.exports = {
 		},
 		droprate: {
 			help: 'Sets the rate at which the bot drops items',
-			usage: [  'rate' ],
+			usage: [ 'rate' ],
 			command: function ( bot, msg ) {
 				var newRate = parseInt( msg.args.rate, 10 );
 				if ( isNaN( newRate ) || newRate < 1 ) {
