@@ -2,10 +2,10 @@ module.exports = {
 	commands: {
 		commands: {
 			help: 'Lists all commands for which the bot will react',
-			command: function ( bot, msg ) {
+			command: function ( bot ) {
 				var commands = Object.keys( bot.commands );
 				commands.sort();
-				bot.say( msg.to, 'Commands loaded: ' + commands.join( ' ' ) );
+				return 'Commands loaded: ' + bot.config.irc.controlChar + commands.join( ' ' + bot.config.irc.controlChar );
 			}
 		},
 		help: {
