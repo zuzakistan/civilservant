@@ -55,8 +55,8 @@ var self = module.exports = {
 			} else {
 				console.log( e );
 				console.log( e.stack );
-				return false;
 			}
+			return false;
 		}
 	},
 	addCommands: function ( bot, commands, clobber ) {
