@@ -1,6 +1,7 @@
 // inspired by xkcd's bucket :)
 var inventory = [];
 var inventoryLimit = 20;
+var dropRate = 500;
 var write = require( 'fs' ).writeFile;
 
 try {
@@ -83,7 +84,7 @@ module.exports = {
 			}
 		},
 		message: function ( bot, nick, to ) {
-			if ( Math.random() < 0.005 ) {  // 1 in 500
+			if ( Math.random() < ( 1 / dropRate ) ) {  // 1 in 500
 				var item = dropItem();
 				if ( item ) {
 					bot.action( to, 'drops ' + item );
@@ -109,6 +110,18 @@ module.exports = {
 					return 'dropped ' + item;
 				}
 				return 'shan\'t!';
+			}
+		},
+		droprate: {
+			help: 'Sets the rate at which the bot drops items',
+			usage: [  'rate' ],
+			command: function ( bot, msg ) {
+				var newRate = parseInt( msg.args.rate, 10 );
+				if ( isNaN( newRate ) || newRate < 1 ) {
+					return 'Usage: !rate <integer>';
+				}
+				dropRate = newRate;
+				return 'Drop rate is now 1 in ' + dropRate;
 			}
 		},
 		inventorylimit: {
