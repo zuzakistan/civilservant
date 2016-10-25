@@ -28,8 +28,10 @@ module.exports = {
 			privileged: true,
 			help: 'Causes the bot to quit',
 			command: function ( bot, msg ) {
-				console.log( 'QUITTING after command by ' + msg.nick + ' in ' + msg.to );
-				process.exit( 0 );
+				if ( msg.args[1] ) {
+					console.log( 'QUITTING after command by ' + msg.nick + ' in ' + msg.to );
+					process.exit( 0 );
+				}
 			},
 		},
 		control: {
