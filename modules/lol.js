@@ -7,6 +7,7 @@ module.exports = {
 						var interjections = [
 							'LMAO',
 							'ROFL',
+							'blol',
 							'doublekek',
 							'doublepluskek',
 							'hahahaha XD',
