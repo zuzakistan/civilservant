@@ -25,6 +25,23 @@ module.exports = {
 				}
 			}
 		},
+		rms: {
+			help: 'Pedantically corrects someone',
+			aliases: [ 'interject' ],
+			privileged: true, // very spammy!
+			command: function ( bot, msg ) {
+				if ( !butter ) {
+					return;
+				}
+				var rl = readline.createInterface( {
+					input: fs.createReadStream( __rootdir + '/data/rms.txt' ),
+					terminal: false
+				} );
+				rl.on( 'line', function ( line ) {
+					bot.say( msg.to, line + '\u200b' /* zero width space */ );
+				} );
+			}
+		},
 		acid: {
 			help: 'Toggles the lovely song',
 			aliases: [ 'nobiscuit', 'nobase', 'nowobble' ],
