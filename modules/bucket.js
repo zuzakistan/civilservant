@@ -71,7 +71,7 @@ module.exports = {
 					bot.action( to,
 							'picks up ' +
 							newItem +
-							' and ' +
+							', and ' +
 							synonyms.discard[Math.floor( Math.random() * synonyms.discard.length )] +
 							' ' +
 							oldItem
@@ -99,7 +99,7 @@ module.exports = {
 		inventory: {
 			help: 'Displays the inventory of the bot',
 			command: function () {
-				return 'I\'m holding ' + inventory.join( ' and ' );
+				return 'I\'m holding ' + inventory.join( ', and ' );
 			}
 		},
 		drop: {
