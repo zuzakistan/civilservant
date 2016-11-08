@@ -64,6 +64,10 @@ module.exports = {
 
 			if ( matches ) {
 				var newItem = matches[2];
+				// maybe put this elsewhere?
+				if ( newItem.substr( '\u0003' ) !== -1 ) {
+					newItem = newItem + '\u000f';
+				}
 				var oldItem = addToInventory( newItem );
 
 				if ( oldItem ) {
