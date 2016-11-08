@@ -33,7 +33,7 @@ module.exports = {
 			help: 'Get hash of the current codebase',
 			aliases: [ 'version' ],
 			command: function () {
-				return githash();
+				return 'https://github.com/zuzakistan/civilservant/commit/' + githash();
 			}
 		}
 	},
