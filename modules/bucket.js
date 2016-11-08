@@ -61,7 +61,6 @@ module.exports = {
 			var regex = new RegExp( '(' + synonyms.give.join( '|' ) + ') ' + bot.nick + ' (.+)' );
 
 			var matches = regex.exec( text );
-			console.log( matches );
 
 			if ( matches ) {
 				var newItem = matches[2];
