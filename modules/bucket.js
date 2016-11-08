@@ -43,6 +43,7 @@ module.exports = {
 					'takes'
 				],
 				'discard': [
+					'abandons',
 					'discards',
 					'dispenses with',
 					'ditches',
@@ -51,8 +52,10 @@ module.exports = {
 					'forsakes',
 					'jettisons',
 					'relinquishes',
+					'scraps',
 					'sheds',
 					'throws away',
+					'tosses'
 				]
 			};
 			var regex = new RegExp( '(' + synonyms.give.join( '|' ) + ') ' + bot.nick + ' (.+)' );
