@@ -16,7 +16,7 @@ module.exports = {
 							'lel',
 							'lmao',
 							'lulz',
-							'psml',
+							'pmsl',
 							'rofl',
 							'roflmao',
 							'rwtsh lol',
