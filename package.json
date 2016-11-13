@@ -34,6 +34,7 @@
     "nudity": "0.0.2",
     "request": "^2.67.0",
     "scrape": "^0.2.3",
+    "shell-escape": "^0.2.0",
     "suncalc": "^1.7.0",
     "underscore": "^1.8.3",
     "urban": "^0.3.0",
