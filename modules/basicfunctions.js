@@ -4,7 +4,6 @@ module.exports = {
 			help: 'Notices the current channel with arbitrary text',
 			command: function ( bot, msg ) {
 				msg.args.shift();
-				console.log( bot.to );
 				bot.notice( msg.to, msg.args.join( ' ' ) );
 			}
 		},

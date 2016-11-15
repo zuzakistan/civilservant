@@ -24,7 +24,7 @@ module.exports = {
 				}
 				fs.writeFile( __rootdir + '/data/count.json', JSON.stringify( count, null, 4 ) );
 				if ( counter === '' ) { // reuse :(
-					return String(count[counter]);
+					return String( count[counter] );
 				}
 				return counter + ' is now ' + count[counter];
 			}
