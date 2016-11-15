@@ -19,7 +19,6 @@ module.exports = {
 					query[curr[0]] = curr[1];
 				}
 			}
-			console.log( JSON.stringify( query.v ) );
 			if ( query.v ) {
 				// TODO: remove this code duplication
 				var opts = bot.config.youtube || {};
