@@ -18,7 +18,7 @@ module.exports = {
 				}
 				if ( LOG[res.data.hash] ) {
 					bot.shout( to, res.data.url + ' (ofn ×' + LOG[res.data.hash] + ')' );
-					return LOG[res.data.hash]++;
+					LOG[res.data.hash]++;
 				} else {
 					LOG[res.data.hash] = 1;
 					if ( res.data.url && res.data.url.length < url.href.length ) {
