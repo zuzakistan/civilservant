@@ -1,4 +1,13 @@
 var Bitly = require( 'bitly' );
+var fs = require( 'fs' );
+var LOG = {};
+
+var LOGFILE = __rootdir + '/data/ofn.json';
+try {
+	LOG = require( LOGFILE );
+} catch ( e ) {
+	//
+}
 module.exports = {
 	events: {
 		url: function ( bot, url, nick, to ) {
@@ -7,9 +16,16 @@ module.exports = {
 				if ( err ) {
 					return; // fail silently (usually duplicate URL)
 				}
-				if ( res.data.url && res.data.url.length < url.href.length ) {
-					bot.shout( to, res.data.url );
+				if ( LOG[res.data.hash] ) {
+					bot.shout( to, res.data.url + ' (ofn ×' + LOG[res.data.hash] + ')' );
+					return LOG[res.data.hash]++;
+				} else {
+					LOG[res.data.hash] = 1;
+					if ( res.data.url && res.data.url.length < url.href.length ) {
+						bot.shout( to, res.data.url );
+					}
 				}
+				fs.writeFile( LOGFILE, JSON.stringify( LOG, null, 4 ) );
 			} );
 		}
 	},
