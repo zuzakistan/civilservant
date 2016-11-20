@@ -22,9 +22,13 @@ module.exports = {
 							}
 							if ( cmd.privileged ) {
 								if ( bot.config.irc.control !== msg.to ) {
-									// http://www.imdb.com/title/tt0062622/quotes?item=qt0396921
-									bot.say( msg.to, 'I\'m sorry, ' + msg.nick + '. I\'m afraid I can\'t do that.' );
-									return;
+									if ( bot.config.irc.insecure === true ) {
+										// pass
+									} else {
+										// http://www.imdb.com/title/tt0062622/quotes?item=qt0396921
+										bot.say( msg.to, 'I\'m sorry, ' + msg.nick + '. I\'m afraid I can\'t do that.' );
+										return;
+									}
 								}
 							}
 							if ( cmd.usage ) {

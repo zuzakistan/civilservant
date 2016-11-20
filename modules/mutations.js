@@ -1,3 +1,6 @@
+/**
+ * Applies a Welsh soft mutation to a given string.
+ */
 module.exports = {
 	commands: {
 		soft: {
@@ -5,6 +8,7 @@ module.exports = {
 			help: 'Softly mutates a given word',
 			usage: [ 'noun' ],
 			command: function ( bot, msg ) {
+				/* TODO: uppercase */
 				var initial = msg.args.noun.charAt( 0 );
 				var rest = msg.args.noun.substr( 1 );
 				switch ( initial ) {

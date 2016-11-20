@@ -16,7 +16,8 @@ Here is a minimal `config.json` to get started. The IRC object is passed straigh
 		],
 		"controlChar": "!"
 		"control": "##zuzakistan-lab",
-		"quiet": false
+		"quiet": false,
+		"insecure": false,
 	},
 	"bitly": {
 		"username": "",
@@ -35,7 +36,8 @@ Some explanation of the not-obvious options:
   This is useful for lessening collisions when you have lots of bots in a channel.
 * `control`: the "admin" channel for the bot. It's recommended that you have
   this as a separate, `+i` channel with trusted people in -- anyone in the control
-  channel can perform potentially dangerous commands.
+  channel can perform potentially dangerous commands. Set `insecure` to `true` to
+  allow other channels access to these commands.
 * `installModules`: whether to attempt(!) to install missing NPM modules.
   If set to `false`, it'll just quit and ask you to install manually.
 * `quiet` toggles unsolicited pronouncements. If you like your bots to speak
