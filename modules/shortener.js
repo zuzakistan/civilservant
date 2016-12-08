@@ -17,7 +17,11 @@ module.exports = {
 					return; // fail silently (usually duplicate URL)
 				}
 				if ( LOG[res.data.hash] ) {
-					bot.shout( to, res.data.url + ' (ofn ×' + LOG[res.data.hash] + ')' );
+					if ( LOG[res.data.hash] ) {
+						bot.shout( to, res.data.url + ' (ofn)' );
+					} else {
+						bot.shout( to, res.data.url + ' (ofn ×' + LOG[res.data.hash] + ')' );
+					}
 					LOG[res.data.hash]++;
 				} else {
 					LOG[res.data.hash] = 1;
