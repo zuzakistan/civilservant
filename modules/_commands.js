@@ -49,6 +49,13 @@ module.exports = {
 							var output = cmd( bot, msg );
 							if ( typeof output === 'string' ) {
 								bot.say( msg.to, msg.nick + ': ' + output );
+							} else if ( output.constructor === Array ) {
+								console.log('a');
+								for ( var k = 0; k < output.length; k++ ) {
+									if ( typeof output[k] === 'string' ) {
+										bot.say( msg.to, msg.nick + ': ' + output[k] );
+									}
+								}
 							}
 						}
 					} catch ( e ) {
