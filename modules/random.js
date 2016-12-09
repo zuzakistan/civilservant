@@ -1,10 +1,18 @@
 module.exports = {
 	commands: {
 		random: {
-			usage: [ 'number' ],
 			help: 'Selects a random integer from 0 to a specified number',
 			command: function ( bot, msg ) {
-				return String( Math.floor( Math.random() * Math.floor(msg.args.number) ) );
+				if ( msg.args.length > 2 ) {
+					msg.args.shift();
+					return msg.args[Math.floor(Math.random() * msg.args.length)];
+				} else if ( msg.args.length === 2 ) {
+					var res = Math.floor( Math.random() * Math.floor(msg.args[1]) );
+					if ( !isNaN( res ) ) {
+						return res;
+					}
+				}
+				return 'Usage: (<number>|<choice 1> … <choice n>)';
 			}
 		}
 	}
