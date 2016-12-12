@@ -22,6 +22,7 @@ function addToInventory( item ) {
 	if ( inventory.push( item ) > inventoryLimit ) {
 		return dropItem();
 	}
+	return null;
 }
 
 module.exports = {
