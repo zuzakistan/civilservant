@@ -90,7 +90,7 @@ module.exports = {
 			}
 		},
 		message: function ( bot, nick, to ) {
-			if ( Math.random() < ( 1 / dropRate ) ) {  // 1 in 500
+			if ( Math.random() < 1 / dropRate ) {  // 1 in 500
 				var item = dropItem();
 				if ( item ) {
 					bot.action( to, 'drops ' + item );
