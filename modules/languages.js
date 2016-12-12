@@ -48,6 +48,7 @@ module.exports = {
 		country: {
 			help: 'Looks up an ISO 3166 alpha2 country code',
 			usage: [ 'country' ],
+			aliases: [ 'cc' ],
 			command: function ( bot, msg ) {
 				var code = msg.args.country.toUpperCase();
 				if ( countries.getName( code, 'en' ) ) {
