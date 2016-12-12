@@ -13,7 +13,7 @@ module.exports = {
 					message: message
 				};
 				msg._cmd = bot.config.irc.controlChar + msg.args[0];
-				if ( bot.commands.hasOwnProperty(msg.args[0]) ) {
+				if ( bot.commands.hasOwnProperty( msg.args[0] ) ) {
 					try {
 						var cmd = bot.commands[msg.args[0]];
 						if ( cmd.command ) {
@@ -52,7 +52,6 @@ module.exports = {
 							} else if ( typeof output === 'string' ) {
 								bot.say( msg.to, msg.nick + ': ' + output );
 							} else if ( output.constructor === Array ) {
-								console.log('a');
 								for ( var k = 0; k < output.length; k++ ) {
 									if ( typeof output[k] === 'string' ) {
 										bot.say( msg.to, msg.nick + ': ' + output[k] );

@@ -1,6 +1,6 @@
 var bot = require( '..' );
 
-/**
+/*
  * Same as .say but for unprompted messages.
  * Checks a config variable to make sure it only does this in channels that want it.
  */

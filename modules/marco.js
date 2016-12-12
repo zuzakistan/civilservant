@@ -58,7 +58,7 @@ module.exports = {
 							d[0] = '\u000314Cancelled?\u0003';
 						}
 						var str = msg.nick + ': ' + d[0] + ' ';
-						if ( (parseInt(d[4], 10) + parseInt(d[6], 10)) === 0 ) {
+						if ( (parseInt( d[4], 10 ) + parseInt( d[6], 10 ) ) === 0 ) {
 							str += '(\u00034overdue!\u0003)';
 						} else {
 							str += '(ETA ' + d[4] + 'm' + d[6] + 's)';
