@@ -6,10 +6,10 @@ module.exports = {
 			command: function ( bot, msg ) {
 				request.get( 'http://www.howmanypeopleareinspacerightnow.com/peopleinspace.json', function ( e, r, b ) {
 						if ( e ) {
-							return 'problem fetching data';
+							bot.say( msg.to, 'problem fetching data' );
 						}
 						if ( r.statusCode !== 200 ) {
-							return 'problem fetching data (' + r.statusCode + ')';
+							bot.say( msg.to, 'problem fetching data (' + r.statusCode + ')' );
 						}
 						var data = JSON.parse( b );
 						var ret = [];

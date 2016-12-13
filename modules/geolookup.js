@@ -8,7 +8,7 @@ module.exports = {
 			command: function ( bot, msg ) {
 				request( 'https://freegeoip.net/json/' + msg.args.ip, function ( e, r, b ) {
 					if ( e ) {
-						return 'unable to reach GeoIP service';
+						bot.say( msg.to, 'unable to reach GeoIP service' );
 					}
 					var dat = JSON.parse( b );
 					bot.say( msg.to, dat.ip + ' → ' + dat.country_code );

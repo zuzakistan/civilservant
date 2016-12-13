@@ -32,14 +32,15 @@ module.exports = {
 				var marco = bot.config.touchtosuccess.url[0];
 				scrape.request( marco, function ( err, $ ) {
 					if ( err ) {
-						return console.error( err );
+						console.error( err );
+					} else {
+						var pizzas = [];
+						$( 'div.subcat_name a' ).each( function ( a ) {
+							pizzas.push( a.text );
+							}
+						);
+						bot.say( msg.to, msg.nick + ': ' + pizzas[Math.floor( Math.random() * pizzas.length )] );
 					}
-					var pizzas = [];
-					$( 'div.subcat_name a' ).each( function ( a ) {
-						pizzas.push( a.text );
-						}
-					);
-					bot.say( msg.to, msg.nick + ': ' + pizzas[Math.floor( Math.random() * pizzas.length )] );
 				} );
 			}
 		},

@@ -49,10 +49,11 @@ module.exports = {
 				opts.type = 'video,channel';
 				yt( query, opts, function ( err, results ) {
 					if ( err ) {
-						return bot.say( msg.to, msg.nick + ': ' + err );
+						bot.say( msg.to, msg.nick + ': ' + err );
+					} else {
+						var result = results[0];
+						bot.say( msg.to, msg.nick + ': ' + result.link + ' ' + result.title );
 					}
-					var result = results[0];
-					bot.say( msg.to, msg.nick + ': ' + result.link + ' ' + result.title );
 				} );
 			}
 		}
