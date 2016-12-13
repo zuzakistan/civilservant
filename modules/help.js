@@ -24,6 +24,9 @@ module.exports = {
 					if ( cmd.privileged ) {
 						attr.push( 'control channel only' );
 					}
+					if ( cmd.deprecated ) {
+						attr.push( 'deprecated' );
+					}
 					if ( attr.length !== 0 ) {
 						attr = ' (' + attr.join( ' · ' ) + ')';
 					} else {

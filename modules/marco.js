@@ -4,6 +4,7 @@ module.exports = {
 	commands: {
 		marco: {
 			help: 'Checks current status of local takeaway',
+			deprecated: true, // website's been refactored so probably won't work
 			command: function ( bot, msg ) {
 				var marco = bot.config.touchtosuccess.url[0];
 				scrape.request( marco, function ( err, $ ) {
@@ -26,6 +27,7 @@ module.exports = {
 		},
 		pizza: {
 			help: 'Returns a random pizza from the local takeaway',
+			deprecated: true,
 			command: function ( bot, msg ) {
 				var marco = bot.config.touchtosuccess.url[0];
 				scrape.request( marco, function ( err, $ ) {
@@ -43,6 +45,7 @@ module.exports = {
 		},
 		order: {
 			help: 'Checks the status of an order at Marco',
+			deprecated: true,
 			usage: [ 'id' ],
 			command: function ( bot, msg ) {
 				request.get( 'http://newmarco.co.uk/data.php?do=track&track=' + msg.args.id , function ( e, r, b ) {
@@ -72,6 +75,7 @@ module.exports = {
 		},
 		lush: {
 			help: 'Checks current status of local takeaway',
+			deprecated: true,
 			command: function ( bot, msg ) {
 				var marco = bot.config.touchtosuccess.url[1];
 				scrape.request( marco, function ( err, $ ) {

@@ -99,6 +99,8 @@ module.exports = {
 
 ### Disabling commands
 If the `disabled` key is truthy, the command handler will return before the command itself is processed.
+Similarly, the `deprecated` key will display warnings at appropriate junctures, but won't actually
+prevent the command from running.
 
 ## Additional methods
 By default, if a string is returned in a command's function it will be output to the
