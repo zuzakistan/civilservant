@@ -1,8 +1,10 @@
-config.json
-node_modules
 *.log
 *.swp
-timezones.json
-stale.json
+config.json
 data/channel-nicks.json
+data/count.json
+data/inventory.json
+data/ofn.json
 data/quotes.json
+data/stale.json
+node_modules
