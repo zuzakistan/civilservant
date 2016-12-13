@@ -26,8 +26,7 @@ module.exports = {
 										// pass
 									} else {
 										// http://www.imdb.com/title/tt0062622/quotes?item=qt0396921
-										bot.say( msg.to, 'I\'m sorry, ' + msg.nick + '. I\'m afraid I can\'t do that.' );
-										return;
+										return bot.say( msg.to, 'I\'m sorry, ' + msg.nick + '. I\'m afraid I can\'t do that.' );
 									}
 								}
 							}
@@ -50,11 +49,11 @@ module.exports = {
 							if ( !output ) {
 								console.log( 'No return for ' + cmd );
 							} else if ( typeof output === 'string' ) {
-								bot.say( msg.to, msg.nick + ': ' + output );
+								return bot.say( msg.to, msg.nick + ': ' + output );
 							} else if ( output.constructor === Array ) {
 								for ( var k = 0; k < output.length; k++ ) {
 									if ( typeof output[k] === 'string' ) {
-										bot.say( msg.to, msg.nick + ': ' + output[k] );
+										return bot.say( msg.to, msg.nick + ': ' + output[k] );
 									}
 								}
 							}
