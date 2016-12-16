@@ -94,7 +94,15 @@ module.exports = {
 			if ( Math.random() < 1 / dropRate ) {  // 1 in 500
 				var item = dropItem();
 				if ( item ) {
-					bot.action( to, 'drops ' + item );
+					if ( Math.random() < 1 / 5 ) {
+						bot.action( to, [
+								Math.random() < 0.5 ? 'gives' : 'passes', // TODO: synonyms from above
+								nick,
+								item
+							].join( ' ' ) );
+					} else {
+						bot.action( to, 'drops ' + item );
+					}
 				}
 			}
 		}
