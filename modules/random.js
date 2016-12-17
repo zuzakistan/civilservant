@@ -1,7 +1,7 @@
 module.exports = {
 	commands: {
 		random: {
-			help: 'Selects a random integer from 0 to a specified number',
+			help: 'Selects a random choice or number',
 			command: function ( bot, msg ) {
 				if ( msg.args.length > 2 ) {
 					msg.args.shift();
