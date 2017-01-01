@@ -50,3 +50,6 @@ On CentOS, you apparently need `cairo` and `cairo-devel`.
 
 If you are having problems installing these, just delete the `modules/imgur.js` file.
 We won't mind.
+
+Sometimes the UDP server doesn't shut down properly.
+Do `netstat -tulpn` and grep for the PID to kill manually.
