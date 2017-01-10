@@ -29,6 +29,30 @@ module.exports = {
 	events: {
 		action: function ( bot, nick, to, text ) {
 			var synonyms = {
+				'adverb': [
+					'absentmindedly',
+					'agreeably',
+					'anxiously',
+					'awkwardly',
+					'bitterly',
+					'blithely',
+					'coyly',
+					'dramatically',
+					'enthusiastically',
+					'foolishly',
+					'grudgingly',
+					'hungrily',
+					'innocently',
+					'nervously',
+					'obediently',
+					'passionately',
+					'reproachfully',
+					'vivaciously',
+
+					// in lieu of actually putting a Math.random in:
+					'', '', '', '', '', '', '', '', '', '', '', '', '',
+					'', '', '', '', '', '', '', '', '', '', '', '', ''
+				],
 				'give': [
 					'awards',
 					'gives',
@@ -73,15 +97,22 @@ module.exports = {
 
 				if ( oldItem ) {
 					bot.action( to,
-							'picks up ' +
+							synonyms.adverb[Math.floor( Math.random() * synonyms.discard.length )] +
+							' ' +
+							synonyms.take[Math.floor( Math.random() * synonyms.discard.length )] +
+							' ' +
 							newItem +
 							', and ' +
+							synonyms.adverb[Math.floor( Math.random() * synonyms.discard.length )] +
+							' ' +
 							synonyms.discard[Math.floor( Math.random() * synonyms.discard.length )] +
 							' ' +
 							oldItem
 						);
 				} else {
 					bot.action( to,
+							synonyms.adverb[Math.floor( Math.random() * synonyms.discard.length )] +
+							' ' +
 							synonyms.take[Math.floor( Math.random() * synonyms.take.length )] +
 							' ' +
 							newItem
