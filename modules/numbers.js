@@ -26,8 +26,9 @@ module.exports = {
 						}
 						if ( r.statusCode !== 200 ) {
 							bot.say( msg.to, 'problem fetching data (' + r.statusCode + ')' );
+						} else {
+							bot.say( msg.to, msg.nick + ': ' + b );
 						}
-						bot.say( msg.to, msg.nick + ': ' + b );
 					} );
 				}
 			}
