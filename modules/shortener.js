@@ -34,6 +34,19 @@ module.exports = {
 		}
 	},
 	commands: {
+		randurl: {
+			help: 'Output a random URL from the channel history',
+			command: function () {
+				var keys = Object.keys( LOG );
+				return 'https://bit.ly/' + keys[Math.floor( Math.random() * keys.length )];
+			}
+		},
+		urlcount: {
+			help: 'Count the number of URLs stored in channel history',
+			command: function () {
+				return Object.keys( LOG ).length + ' URLs stored';
+			}
+		},
 		shorten: {
 			help: 'Shorten a URL',
 			usage: [ 'url' ],
