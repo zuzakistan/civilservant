@@ -13,7 +13,7 @@ module.exports = {
 		url: function ( bot, url, nick, to ) {
 			var bitly = new Bitly( bot.config.bitly.username, bot.config.bitly.password );
 			bitly.shorten( url.href, function ( err, res ) {
-				if ( err ) {
+				if ( err || !res.data.url ) {
 					return; // fail silently (usually duplicate URL)
 				}
 				if ( LOG[res.data.hash] ) {
