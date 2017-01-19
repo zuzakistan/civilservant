@@ -11,6 +11,10 @@
  */
 var regexpesc = require( 'escape-string-regexp' );
 var triggers = {};
+var COUNT = 0;
+
+// adjust this to change the bot's tolerance to botstorms
+var MAX_COUNT = 5;
 try {
 	triggers = require( __rootdir + '/data/triggers.json' );
 } catch ( e ) {
@@ -31,17 +35,22 @@ module.exports = {
 			var t = Object.keys( triggers );
 			for ( var i = 0; i < t.length; i++ ) {
 				if ( text.toLowerCase().indexOf( t[i] ) !== -1 ) {
-					if ( typeof triggers[t[i]] === 'string' ) {
+					if ( typeof triggers[t[i]] === 'string' && COUNT < MAX_COUNT ) {
 						bot.shout( to, triggers[t[i]] );
+						COUNT += 2;
 					} else {
 						var w = regexpesc( t[i] );
 						var r = new RegExp( w, 'gi' );
 						var m = text.match( r );
-						if ( m && m.length !== 0 ) {
+						if ( m && m.length !== 0 && COUNT < MAX_COUNT ) {
 							bot.shout( to, m.join( ' ' ) );
+							COUNT += 1;
 						}
 					}
 				}
+			}
+			if ( COUNT > 0 ) {
+				COUNT = COUNT - 1;
 			}
 		}
 	}
