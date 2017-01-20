@@ -30,6 +30,7 @@
     "japanese": "^1.1.0",
     "khaan": "^0.1.0",
     "languages": "^0.1.3",
+    "node-ddg-api": "^0.1.4",
     "node-schedule": "^0.6.0",
     "npm": "^3.5.2",
     "nudity": "0.0.2",
