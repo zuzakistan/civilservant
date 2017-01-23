@@ -18,7 +18,7 @@ var self = module.exports = {
 						bot.modules.push( files[i] );
 					} else {
 						console.log( 'Failed ' + files[i] );
-						bot.msg( bot.config.irc.control, 'Failed to load ' + files[i] );
+						bot.say( bot.config.irc.control, 'Failed to load ' + files[i] );
 					}
 				}
 			}
@@ -36,6 +36,9 @@ var self = module.exports = {
 			}
 			if ( curr.events ) {
 				self.addEvents( bot, curr.events );
+			}
+			if ( curr.i18n ) {
+				self.addI18n( bot, curr.i18n );
 			}
 			return true;
 		} catch ( e ) {
@@ -76,6 +79,23 @@ var self = module.exports = {
 					// console.log( 'Aliased ' + cmd.aliases[j] + ' to ' + keys[i] );
 				}
 			}
+		}
+	},
+	addI18n: function ( bot, i18n ) {
+		var FALLBACK = 'en';
+		var keys = Object.keys( i18n );
+		if (!bot.i18n) {
+			bot.i18n = {};
+		}
+		for ( var i = 0; i < keys.length; i++ ) {
+			var entry = i18n[keys[i]];
+			var output = '«' + keys[i] + '»';
+			if ( entry[bot.config.language] ) {
+				output = entry[bot.config.language];
+			} else if ( entry[FALLBACK] ) {
+				output = entry[FALLBACK];
+			}
+			bot.i18n[keys[i]] = output;
 		}
 	},
 	addEvents: function ( bot, events ) {

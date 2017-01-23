@@ -152,6 +152,24 @@ Other events are available:
 	  followed by the usual `message` arguments. Use `url.href` to get the raw URL.
 	* The `url` event accepts arguments: `url:github.com` will only fire on URLs to that host.
 
+## Internationalization
+Civilservant includes rudimentary internationalization support, toggleable with `bot.config.language`.
+For example:
+```js
+module.exports = {
+	i18n: {
+		foo: {
+			en: 'Test 123'
+		}
+	},
+	commands: {
+		bar: function ( bot ) {
+			return bot.i18n.foo;
+		}
+	}
+}
+```
+
 ## General notes
 * Messages sent to channels after an explicit request should use `bot.say()`.
   Messages that are not doing so should use `bot.shout()`.
