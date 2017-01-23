@@ -20,7 +20,7 @@ module.exports = {
 					];
 				}
 				for ( var i = 1 /* ! */; i < msg.args.length; i++ ) {
-					output.push( moment( + new Date() ).tz( msg.args[i] ).format( 'h[h]mma z' ) );
+					output.push( moment( + new Date() ).tz( msg.args[i] ).format( 'ha z' ) );
 				}
 				return output.join( ' · ' );
 			}
