@@ -51,7 +51,7 @@ var self = module.exports = {
 					} );
 				} else {
 					console.error( 'Please run `npm install --save ' + npmModule + '`' );
-					process.exit( 1 );
+					throw(e);
 				}
 			} else {
 				console.log( e );
