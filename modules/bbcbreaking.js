@@ -17,6 +17,8 @@
  * Purges the cache of stale news stories.
  * This may cause a large number of stories to be retransmitted.
  * [Control channel only.]
+ *
+ * @deprecated
  */
 var client = require( '../server.js' );
 var schedule = require( 'node-schedule' );
@@ -39,6 +41,9 @@ var pulserule= new schedule.RecurrenceRule();
 pulserule.second = [0,30];
 var nox = false;
 
+/**
+ * Returns a synonym of "article pending"
+ */
 function articlePending() {
 	var article = [
 		'article',
@@ -65,6 +70,9 @@ function articlePending() {
 	];
 }
 
+/**
+ * Builds a hackish way of storing unique entries in the database.
+ */
 function constructStorage( item ) {
 	var ret = item.headline + '%' + item.url + '%' + item.isBreaking.toString();
 	return ret + '%' + item.prompt;

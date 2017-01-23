@@ -10,14 +10,25 @@ try {
 	//
 }
 
+/**
+ * Save current inventory to disk
+ */
 function saveInventory() {
 	write( __rootdir + '/data/inventory.json', JSON.stringify( inventory ) );
 }
 
+/**
+ * Drop a random item.
+ * Returns a string containing the dropped item.
+ */
 function dropItem() {
 	return inventory.splice( Math.floor( Math.random() * inventory.length ), 1 );
 }
 
+/**
+ * Adds given item to inventory.
+ * Returns dropped item, if any.
+ */
 function addToInventory( item ) {
 	if ( inventory.push( item ) > inventoryLimit ) {
 		return dropItem();
