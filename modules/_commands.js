@@ -31,7 +31,7 @@ module.exports = {
 									}
 								}
 							}
-							if ( cmd.usage ) {
+							if ( Array.isArray( cmd.usage ) ) {
 								if ( msg.args.length !== cmd.usage.length + 1 ) {
 									return bot.say( msg.to, msg.nick + ': Usage: ' + msg._cmd + ' <' + cmd.usage.join( '> <' ) + '>' );
 								}
