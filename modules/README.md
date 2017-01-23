@@ -26,6 +26,11 @@ module.exports = {
 };
 ```
 
+You can access all arguments, excluding the command itself, using `msg.body`.
+
+See also: `commands.usage`, below.
+
+
 ## Metadata
 "Metadata" for commands can be stored by adding an object level.
 Put the main logic under "command".

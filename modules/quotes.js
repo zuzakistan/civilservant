@@ -13,8 +13,7 @@ module.exports = {
 		qadd: {
 			help: 'Add a quote',
 			command: function ( bot, msg ) {
-				msg.args.shift();
-				var body = msg.args.join( ' ' ).split( '=' );
+				var body = msg.body.split( '=' );
 				var key = body.shift();
 				body = body.join( '=' ); // so clunky
 				if ( !body || !key ) {

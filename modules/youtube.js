@@ -42,12 +42,10 @@ module.exports = {
 			help: 'Searches YouTube for a query string',
 			aliases: [ 'youtube' ],
 			command: function ( bot, msg ) {
-				msg.args.shift();
-				var query = msg.args.join( ' ' );
 				var opts = bot.config.youtube || {};
 				opts.maxResults = 1;
 				opts.type = 'video,channel';
-				yt( query, opts, function ( err, results ) {
+				yt( msg.body, opts, function ( err, results ) {
 					if ( err ) {
 						bot.say( msg.to, msg.nick + ': ' + err );
 					} else {

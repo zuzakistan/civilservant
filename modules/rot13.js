@@ -4,8 +4,7 @@ module.exports = {
 		rot13: {
 			help: 'Rotational letter substitution.',
 			command: function ( bot, msg ) {
-				msg.args.shift();
-				return rot( msg.args.join( ' ' ) );
+				return rot( msg.body );
 			}
 		},
 		rot: {

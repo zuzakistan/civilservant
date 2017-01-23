@@ -5,10 +5,8 @@ module.exports = {
 		ddg: {
 			help: 'Look things up via the Duck Duc Go API.',
 			command: function ( bot, msg ) {
-				// remove first two elements
-				msg.args.shift();
 				ddg.instantAnswer(
-						msg.args.join( ' ' ),
+						msg.body,
 						{ skip_disambig: '1', no_html: '1' },
 						function ( e, r ) {
 							if ( e ) {

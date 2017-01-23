@@ -3,8 +3,7 @@ module.exports = {
 		say: {
 			help: 'Notices the current channel with arbitrary text',
 			command: function ( bot, msg ) {
-				msg.args.shift();
-				bot.notice( msg.to, msg.args.join( ' ' ) );
+				bot.notice( msg.to, msg.body );
 			}
 		},
 		nick: {

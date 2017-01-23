@@ -6,6 +6,7 @@ module.exports = {
 		message: function ( bot, nick, to, text, message ) {
 			if ( text.substr( 0, 1 ) === bot.config.irc.controlChar ) {
 				var msg = {
+					body: text.substr( text.indexOf( ' ' ) + 1 ),
 					args: text.substr( 1 ).split( ' ' ),
 					nick: nick,
 					to: to,
