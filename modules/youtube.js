@@ -48,6 +48,8 @@ module.exports = {
 				yt( msg.body, opts, function ( err, results ) {
 					if ( err ) {
 						bot.say( msg.to, msg.nick + ': ' + err );
+					} else if ( results.length < 1 ) {
+						bot.say( msg.to, msg.nick + ': no results found' );
 					} else {
 						var result = results[0];
 						bot.say( msg.to, msg.nick + ': ' + result.link + ' ' + result.title );
