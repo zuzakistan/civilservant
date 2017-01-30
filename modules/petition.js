@@ -1,12 +1,12 @@
 var request = require( 'request' );
 var delta = {};
+var id = null;
 
 module.exports = {
 	commands: {
 		petition: {
 			help: 'Displays information about United Kingdom Parliamentary e-petitions',
 			command: function ( bot, msg ) {
-				var id = '131215'; // Brexit referendum re-run
 				if ( msg.args[1] ) {
 					id = msg.args[1];
 				}
