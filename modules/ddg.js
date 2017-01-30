@@ -3,7 +3,7 @@ var ddg = new DDG( 'civilservant' );
 module.exports = {
 	commands: {
 		ddg: {
-			help: 'Look things up via the Duck Duc Go API.',
+			help: 'Look things up via the Duck Duck Go API.',
 			command: function ( bot, msg ) {
 				ddg.instantAnswer(
 						msg.body,
