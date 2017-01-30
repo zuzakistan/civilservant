@@ -18,7 +18,7 @@ var self = module.exports = {
 						bot.modules.push( files[i] );
 					} else {
 						console.log( 'Failed ' + files[i] );
-						bot.msg( bot.config.irc.control, 'Failed to load ' + files[i] );
+						bot.say( bot.config.irc.control, 'Failed to load ' + files[i] );
 					}
 				}
 			}
