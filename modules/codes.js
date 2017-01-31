@@ -58,7 +58,7 @@ module.exports = {
 			}
 		},
 		state: {
-			help: 'Looks up the postal abbbreviation for a US state',
+			help: 'Looks up a US state from its postal abbbreviation',
 			usage: [ 'code' ],
 			command: function ( bot, msg ) {
 				var code = msg.args.code.toUpperCase();
