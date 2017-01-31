@@ -27,7 +27,7 @@ module.exports = {
 		},
 		rms: {
 			help: 'Pedantically corrects someone',
-			aliases: [ 'interject' ],
+			aliases: [ 'interject', 'rms' ],
 			privileged: true, // very spammy!
 			command: function ( bot, msg ) {
 				if ( !butter ) {
