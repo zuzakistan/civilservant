@@ -153,7 +153,10 @@ module.exports = {
 		inventory: {
 			help: 'Displays the inventory of the bot',
 			command: function () {
-				return 'I\'m holding ' + inventory.join( ', and ' );
+				if ( inventory.length > 0 ) {
+					return 'I\'m holding ' + inventory.join( ', and ' );
+				}
+				return 'I\'m holding nowt';
 			}
 		},
 		drop: {
