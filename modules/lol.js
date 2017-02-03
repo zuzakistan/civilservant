@@ -11,6 +11,7 @@ module.exports = {
 							'doublekek',
 							'doublepluskek',
 							'hahahaha XD',
+							'i can\'t believe you\'ve done this',
 							'kek',
 							'keke',
 							'lel',
@@ -19,8 +20,7 @@ module.exports = {
 							'pmsl',
 							'rofl',
 							'roflmao',
-							'rwtsh lol',
-							'i can\'t believe you\'ve done this'
+							'rwtsh lol'
 						];
 						return bot.shout( to, interjections[Math.floor( Math.random() * interjections.length )] );
 					}
