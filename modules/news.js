@@ -1,8 +1,11 @@
 var parse5 = require( 'parse5' );
 var oldnews = {};
 
+/**
+ * JavaScript thinks that {a:1} doesn't equal {a:1},
+ * so this function is a work-around to get that to work.
+ */
 function isEqualObj( a, b ) {
-	// hack because two identical objects aren't
 	return JSON.stringify( a ) === JSON.stringify( b );
 }
 
