@@ -14,6 +14,7 @@
   "license": "ISC",
   "dependencies": {
     "airport-lookup": "^1.1.0",
+    "asciify": "^1.3.5",
     "bitly": "~1.2.5",
     "classify2": "0.0.2",
     "currency-codes": "^1.1.2",
