@@ -20,7 +20,8 @@ module.exports = {
 							'rofl',
 							'roflmao',
 							'rwtsh lol',
-							'i can\'t believe you\'ve done this'
+							'i can\'t believe you\'ve done this',
+							'5'
 						];
 						return bot.shout( to, interjections[Math.floor( Math.random() * interjections.length )] );
 					}
