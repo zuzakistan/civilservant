@@ -16,11 +16,11 @@ module.exports = {
 		 * of the BBC News API. Here, we extract useable data from the rather idiosyncratic API
 		 * and send it to the news event.
 		 */
-		rawnews: function ( bot, html, audience ) {
+		rawnews: function ( bot, html ) {
 			// The BBC sends a JSON file with strings of HTML; we need to drill down
 			// two levels to the important bit (this is terrible)
 			var nodes = parse5.parseFragment( html ).childNodes[0].childNodes[1].childNodes;
-			var news = {audience: audience};
+			var news = {};
 			var body = null;
 
 			for ( var i = 0; i < nodes.length; i++ ) {
@@ -51,7 +51,7 @@ module.exports = {
 		news: function ( bot, news ) {
 			if ( !oldnews[news.id] || !isEqualObj( oldnews[news.id], news ) ) {
 				var str = '\u000305' + news.prompt + ':\x0F ' + news.text;
-				str += '\u000314 http://bbc.co.uk' + news.url + ' \u00036(' + news.audience.toLowerCase() + ')';
+				str += '\u000314 http://bbc.co.uk' + news.url;
 
 				bot.notice( bot.config.irc.control, str );
 				oldnews[news.id] = news;
