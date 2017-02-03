@@ -14,6 +14,10 @@ module.exports = {
 		 * and send it to the news event.
 		 */
 		rawnews: function ( bot, html ) {
+			if ( html === '' ) { // sometimes there isn't any news
+				return;
+			}
+
 			// The BBC sends a JSON file with strings of HTML; we need to drill down
 			// two levels to the important bit (this is terrible)
 			var nodes = parse5.parseFragment( html ).childNodes[0].childNodes[1].childNodes;
