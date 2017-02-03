@@ -156,6 +156,7 @@ Other events are available:
 	* The `url` event fires on every individual URL, and passes a URL object
 	  followed by the usual `message` arguments. Use `url.href` to get the raw URL.
 	* The `url` event accepts arguments: `url:github.com` will only fire on URLs to that host.
+* The `news` and `rawnews` events (see `news.js`).
 
 ## General notes
 * Messages sent to channels after an explicit request should use `bot.say()`.
