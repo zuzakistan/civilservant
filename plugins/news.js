@@ -6,7 +6,9 @@ var bot = require( '..' );
 var poll = function () {
 	request( NEWS_URL, function ( err, res, body ) {
 		var data = JSON.parse( body );
-		bot.fireEvents( 'rawnews', data.html );
+		if ( data.html !== '' ) {
+			bot.fireEvents( 'rawnews', data.html );
+		}
 		setTimeout( poll, data.pollPeriod );
 	} );
 };
