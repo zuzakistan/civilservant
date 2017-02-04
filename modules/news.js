@@ -1,4 +1,6 @@
 var parse5 = require( 'parse5' );
+var write = require( 'fs' ).writeFile;
+
 var oldnews = {};
 
 /**
@@ -10,6 +12,9 @@ function isEqualObj( a, b ) {
 }
 
 module.exports = {
+	onload: function () {
+		oldnews = require( __rootdir + '/data/news.json' ) || {};
+	},
 	events: {
 		/**
 		 * The rawnews event is defined in plugins/news.js, and triggers on each poll
@@ -55,6 +60,7 @@ module.exports = {
 
 				bot.notice( bot.config.irc.control, str );
 				oldnews[news.id] = news;
+				write( __rootdir + '/data/news.json', JSON.stringify( oldnews ) );
 			}
 
 		}
