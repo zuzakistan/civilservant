@@ -158,6 +158,17 @@ Other events are available:
 	* The `url` event accepts arguments: `url:github.com` will only fire on URLs to that host.
 * The `news` and `rawnews` events (see `news.js`).
 
+## Onload
+The `onload` method is called on module load.
+
+```js
+module.exports = {
+	onload: function () {
+		// code here will run on (re)load of method
+	}
+}
+```
+
 ## General notes
 * Messages sent to channels after an explicit request should use `bot.say()`.
   Messages that are not doing so should use `bot.shout()`.

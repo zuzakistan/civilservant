@@ -37,6 +37,9 @@ var self = module.exports = {
 			if ( curr.events ) {
 				self.addEvents( bot, curr.events );
 			}
+			if ( curr.onload ) {
+				curr.onload();
+			}
 			return true;
 		} catch ( e ) {
 			if ( e.code === 'MODULE_NOT_FOUND' ) {
