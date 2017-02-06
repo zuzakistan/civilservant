@@ -1,5 +1,7 @@
 var parse5 = require( 'parse5' );
 var write = require( 'fs' ).writeFile;
+var colors = require( 'irc' ).colors;
+var Bitly = require( 'bitly' );
 
 var oldnews = {};
 
@@ -21,11 +23,11 @@ module.exports = {
 		 * of the BBC News API. Here, we extract useable data from the rather idiosyncratic API
 		 * and send it to the news event.
 		 */
-		rawnews: function ( bot, html ) {
+		'rawnews:bbc': function ( bot, html ) {
 			// The BBC sends a JSON file with strings of HTML; we need to drill down
 			// two levels to the important bit (this is terrible)
 			var nodes = parse5.parseFragment( html ).childNodes[0].childNodes[1].childNodes;
-			var news = {};
+			var news = { color: 'red' };
 			var body = null;
 
 			for ( var i = 0; i < nodes.length; i++ ) {
@@ -33,7 +35,10 @@ module.exports = {
 				if ( curr.tagName === 'a' ) {
 					for ( var j = 0; j < curr.attrs.length; j++ ) {
 						if ( curr.attrs[j].name === 'href' ) {
-							news.url = curr.attrs[j].value;
+							news.url = 'http://bbc.co.uk/news' + curr.attrs[j].value;
+							if ( news.url.startsWith( '/sport' ) === true ) {
+								news.url.color = 'yellow';
+							}
 						} else if ( curr.attrs[j].name === 'data-asset-id' ) {
 							news.id = curr.attrs[j].value;
 						}
@@ -53,16 +58,39 @@ module.exports = {
 
 			bot.fireEvents( 'news', news );
 		},
+		'rawnews:gdn': function ( bot, stories ) {
+			for ( var i = 0; i < stories.length; i++ ) {
+				// at least the Guardian has a decent API
+				var curr = stories[i];
+				var GUARDIAN_THEATRES = [ 'uk', 'international' ];
+				for ( var j = 0; j < curr.content.length; j++ ) {
+					if ( GUARDIAN_THEATRES.indexOf( curr.href ) !== -1 ) {
+						bot.fireEvents( 'news', {
+							color: 'dark_blue',
+							id: curr.content[j].uid,
+							text: curr.content[j].headline,
+							prompt: 'Guardian',
+							tail: curr.href,
+							url: curr.content[j].shortUrl
+						} );
+					}
+				}
+			}
+		},
 		news: function ( bot, news ) {
 			if ( !oldnews[news.id] || !isEqualObj( oldnews[news.id], news ) ) {
-				var str = '\u000304';
-				if ( news.url.startsWith( '/sport' ) ) {
-					str = '\u000308';
-				}
-				str += news.prompt + ':\x0F ' + news.text;
-				str += '\u000314 http://bbc.co.uk' + news.url;
+				var bitly = new Bitly( bot.config.bitly.username, bot.config.bitly.password );
+				bitly.shorten( news.url, function ( err, res ) {
+					console.log( 'NEWS', news );
+					var str = colors.wrap( news.color,  news.prompt + ':' );
+					str += ' ' + news.text;
+					str += ' ' + colors.wrap( 'gray', res.data.url );
+					if ( news.tail ) {
+						str += ' ' + colors.wrap( 'magenta', '(' + news.tail + ')' );
+					}
 
-				bot.notice( bot.config.irc.control, str );
+					bot.notice( bot.config.irc.control, str );
+				} );
 				oldnews[news.id] = news;
 				write( __rootdir + '/data/news.json', JSON.stringify( oldnews ) );
 			}
