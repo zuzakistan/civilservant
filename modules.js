@@ -73,12 +73,12 @@ var self = module.exports = {
 			}
 			bot.commands[keys[i]] = cmd;
 			// console.log( 'Added command: ' + keys[i] );
-			if ( cmd.aliases ) {
+			/*if ( cmd.aliases ) {
 				for ( var j = 0; j < cmd.aliases.length; j++ ) {
 					bot.commands[cmd.aliases[j]] = commands[keys[i]];
 					// console.log( 'Aliased ' + cmd.aliases[j] + ' to ' + keys[i] );
 				}
-			}
+			}*/
 		}
 	},
 	addEvents: function ( bot, events ) {
