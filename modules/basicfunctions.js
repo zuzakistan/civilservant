@@ -6,6 +6,13 @@ module.exports = {
 				bot.notice( msg.to, msg.body );
 			}
 		},
+		bcast: {
+			help: 'Notices the current channel with arbitrary text',
+			restricted: true,
+			command: function ( bot, msg ) {
+				bot.broadcast( msg.body );
+			}
+		},
 		nick: {
 			help: 'Changes the nickname of the bot',
 			privileged: true,
