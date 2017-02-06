@@ -89,7 +89,7 @@ module.exports = {
 						str += ' ' + colors.wrap( 'magenta', '(' + news.tail + ')' );
 					}
 
-					bot.notice( bot.config.irc.control, str );
+					bot.broadcast( str );
 				} );
 				oldnews[news.id] = news;
 				write( __rootdir + '/data/news.json', JSON.stringify( oldnews ) );
