@@ -55,7 +55,11 @@ module.exports = {
 		},
 		news: function ( bot, news ) {
 			if ( !oldnews[news.id] || !isEqualObj( oldnews[news.id], news ) ) {
-				var str = '\u000305' + news.prompt + ':\x0F ' + news.text;
+				var str = '\u000304';
+				if ( news.url.startsWith( '/sport' ) ) {
+					str = '\u000308';
+				}
+				str += news.prompt + ':\x0F ' + news.text;
 				str += '\u000314 http://bbc.co.uk' + news.url;
 
 				bot.notice( bot.config.irc.control, str );
