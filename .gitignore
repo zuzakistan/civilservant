@@ -6,5 +6,5 @@ data/count.json
 data/inventory.json
 data/ofn.json
 data/quotes.json
-data/stale.json
+data/news.json
 node_modules
