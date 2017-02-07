@@ -35,6 +35,7 @@
     "npm": "^3.5.2",
     "nudity": "0.0.2",
     "parse5": "^3.0.1",
+    "rainbow-log": "^1.0.1",
     "request": "^2.67.0",
     "rot": "^0.1.0",
     "scrape": "^0.2.3",
@@ -43,6 +44,7 @@
     "underscore": "^1.8.3",
     "urban": "^0.3.0",
     "us-states": "0.0.1",
+    "write-int": "0.0.2",
     "xkcd-37": "^1.1.0",
     "youtube-search": "^1.0.4"
   },

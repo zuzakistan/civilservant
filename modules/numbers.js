@@ -1,36 +1,20 @@
-var request = require( 'request' );
+var writeInt= require( 'write-int' );
 module.exports = {
 	commands: {
-		fact: {
-			help: 'Gets a number fact',
+		num: {
+			help: 'Asks the bot to greet the channel',
+			usage: [ 'lang', 'number' ],
 			command: function ( bot, msg ) {
-				var url = 'http://numbersapi.com/';
-				if ( msg.args.length < 2 ) {
-					return 'Usage: ' + msg.args[0] + ' <number> (year|math|)';
+				if ( msg.args.lang === 'jbo' ) {
+					msg.args.lang = 'jb';
 				}
-				url += msg.args[1];
-				if ( msg.args.length === 3 ) {
-					switch ( msg.args[2] ) {
-						case 'math':
-						case 'year':
-							url += '/' + msg.args[2];
-							break;
-						default:
-							return 'Usage: ' + msg.args[0] + ' <number> (year|math|)';
-					}
-				}
-
-				request.get( url, function ( e, r, b ) {
-						if ( e ) {
-							bot.say( msg.to, 'problem fetching data' );
-						}
-						if ( r.statusCode !== 200 ) {
-							bot.say( msg.to, 'problem fetching data (' + r.statusCode + ')' );
-						} else {
-							bot.say( msg.to, msg.nick + ': ' + b );
-						}
-					} );
+				var attempt = writeInt( msg.args.number, { lang: msg.args.lang } );
+				if ( attempt ) {
+					return attempt;
+				} else {
+					return 'can\'t do that';
 				}
 			}
 		}
+	}
 };
