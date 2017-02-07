@@ -1,8 +1,8 @@
 var urban = require( 'urban' );
 module.exports = {
 	commands: {
-		urban: {
-			aliases: [ 'ud' ],
+		ud: {
+			aliases: [ 'urban' ],
 			help: 'Looks up a headword in Urban Dictionary',
 			command: function ( bot, msg ) {
 				if ( msg.args.length === 1 ) {
