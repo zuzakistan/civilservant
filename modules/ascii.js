@@ -4,8 +4,13 @@ module.exports = {
 		ascii: {
 			help: 'ASCIIifies a phrase',
 			command: function ( bot, msg ) {
-				asciify( msg.body, function ( e, r ) {
-					bot.say( msg.to, r );
+				asciify.getFonts( function ( e, b ) {
+					asciify(
+							msg.body,
+							b[Math.floor( Math.random() * b.length )],
+							function ( err, res ) {
+								bot.say( msg.to, res );
+							} );
 				} );
 			}
 		},
@@ -14,7 +19,6 @@ module.exports = {
 			command: function ( bot, msg ) {
 				msg.args.shift();
 				var font = msg.args.shift();
-				console.log( 'font', font );
 				asciify( msg.args.join( ' ' ), font, function ( e, r ) {
 					bot.say( msg.to, r );
 				} );
