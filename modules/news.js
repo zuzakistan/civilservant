@@ -27,7 +27,7 @@ module.exports = {
 			// The BBC sends a JSON file with strings of HTML; we need to drill down
 			// two levels to the important bit (this is terrible)
 			var nodes = parse5.parseFragment( html ).childNodes[0].childNodes[1].childNodes;
-			var news = { color: 'red' };
+			var news = { color: 'light_red' };
 			var body = null;
 
 			for ( var i = 0; i < nodes.length; i++ ) {
@@ -35,9 +35,9 @@ module.exports = {
 				if ( curr.tagName === 'a' ) {
 					for ( var j = 0; j < curr.attrs.length; j++ ) {
 						if ( curr.attrs[j].name === 'href' ) {
-							news.url = 'http://bbc.co.uk/news' + curr.attrs[j].value;
+							news.url = 'http://bbc.co.uk' + curr.attrs[j].value;
 							if ( news.url.startsWith( '/sport' ) === true ) {
-								news.url.color = 'yellow';
+								news.color = 'yellow';
 							}
 						} else if ( curr.attrs[j].name === 'data-asset-id' ) {
 							news.id = curr.attrs[j].value;
@@ -62,7 +62,7 @@ module.exports = {
 			for ( var i = 0; i < stories.length; i++ ) {
 				// at least the Guardian has a decent API
 				var curr = stories[i];
-				var GUARDIAN_THEATRES = [ 'uk', 'international' ];
+				var GUARDIAN_THEATRES = [ 'uk', 'international', 'sport' ];
 				for ( var j = 0; j < curr.content.length; j++ ) {
 					if ( GUARDIAN_THEATRES.indexOf( curr.href ) !== -1 ) {
 						bot.fireEvents( 'news', {
@@ -81,7 +81,6 @@ module.exports = {
 			if ( !oldnews[news.id] || !isEqualObj( oldnews[news.id], news ) ) {
 				var bitly = new Bitly( bot.config.bitly.username, bot.config.bitly.password );
 				bitly.shorten( news.url, function ( err, res ) {
-					console.log( 'NEWS', news );
 					var str = colors.wrap( news.color,  news.prompt + ':' );
 					str += ' ' + news.text;
 					str += ' ' + colors.wrap( 'gray', res.data.url );
