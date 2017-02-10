@@ -62,7 +62,7 @@ module.exports = {
 			for ( var i = 0; i < stories.length; i++ ) {
 				// at least the Guardian has a decent API
 				var curr = stories[i];
-				var GUARDIAN_THEATRES = [ 'uk', 'international', 'sport' ];
+				var GUARDIAN_THEATRES = [ 'uk' ];
 				for ( var j = 0; j < curr.content.length; j++ ) {
 					if ( GUARDIAN_THEATRES.indexOf( curr.href ) !== -1 ) {
 						bot.fireEvents( 'news', {
