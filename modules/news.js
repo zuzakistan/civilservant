@@ -77,13 +77,28 @@ module.exports = {
 				}
 			}
 		},
+		'rawnews:reuters': function ( bot, story ) {
+			bot.fireEvents( 'news', {
+				color: 'orange',
+				id: story.headline,
+				prompt: story.label,
+				tail: story.url ? null : 'Reuters',
+				text: story.headline,
+				url: story.url ? story.url : null
+			} );
+		},
 		news: function ( bot, news ) {
 			if ( !oldnews[news.id] || !isEqualObj( oldnews[news.id], news ) ) {
 				var bitly = new Bitly( bot.config.bitly.username, bot.config.bitly.password );
 				bitly.shorten( news.url, function ( err, res ) {
-					var str = colors.wrap( news.color,  news.prompt + ':' );
-					str += ' ' + news.text;
-					str += ' ' + colors.wrap( 'gray', res.data.url );
+					var str = '';
+					if ( news.prompt ) {
+						str += colors.wrap( news.color,  news.prompt + ': ' );
+					}
+					str += news.text;
+					if ( res.data.url ) {
+						str += ' ' + colors.wrap( 'gray', res.data.url );
+					}
 					if ( news.tail ) {
 						str += ' ' + colors.wrap( 'magenta', '(' + news.tail + ')' );
 					}
