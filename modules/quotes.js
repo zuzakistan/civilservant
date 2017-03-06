@@ -26,7 +26,29 @@ module.exports = {
 				}
 
 				fs.writeFile( __rootdir + '/data/quotes.json', JSON.stringify( quotes, null, 4 ) );
-				return 'Added quote "' + body + '" to "' + key + '".';
+				return 'Added quote "' + body + '" to "' + key + '" (' + quotes[key].length + ').';
+			}
+		},
+		quote: {
+			help: 'Gets a quote',
+			command: function ( bot, msg ) {
+				try {
+					var q = quotes[msg.body];
+					return q[Math.floor( Math.random()*q.length )];
+				} catch ( e ) {
+					return e;
+				}
+			}
+		},
+		quotel: {
+			help: 'Lists quote categories',
+			command: function () {
+				var str = '';
+				var keys = Object.keys( quotes );
+				for ( var i = 0; i < keys.length; i++ ) {
+					str += ' ' + keys[i] + ' (' +quotes[keys[i]].length + ') ·';
+				}
+				return str.substring( 0, str.length - 1 );
 			}
 		}
 	}
