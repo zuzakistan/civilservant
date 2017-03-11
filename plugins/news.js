@@ -7,20 +7,43 @@ var bot = require( '..' );
 
 var poll = function () {
 	request( BBC_NEWS_URL, function ( err, res, body ) {
+		if ( err ) { throw err; }
 		console.log('bbc');
-		var data = JSON.parse( body );
+		var data;
+		try {
+			data = JSON.parse( body );
+		} catch ( e ) {
+			if ( e instanceof SyntaxError ) {
+				bot.shout( bot.config.irc.control, 'bbc news feed playing up' );
+				console.log( body, res );
+				return;
+			} else {
+				throw e;
+			}
+		}
 		if ( data.html !== '' ) {
 			bot.fireEvents( 'rawnews:bbc', data.html );
 		}
-		setTimeout( poll, data.pollPeriod );
-	} );
-	request( GDN_NEWS_URL, function ( err, res, body ) {
-		console.log('gdn');
-		var data = JSON.parse( body );
+		setTimeout( poll, data.pollPeriod ? data.pollPeriod : 30000 );
+	} ); request( GDN_NEWS_URL, function ( err, res, body ) { console.log('gdn');
+		if ( err ) { throw err; }
+		var data;
+		try {
+			data = JSON.parse( body );
+		} catch ( e ) {
+			if ( e instanceof SyntaxError ) {
+				bot.shout( bot.config.irc.control, 'guardian feed playing up' );
+				console.log( body, res );
+				return;
+			} else {
+				throw e;
+			}
+		}
 		if ( err ) { throw err; }
 		bot.fireEvents( 'rawnews:gdn', data.collections );
 	} );
 	request( REU_NEWS_URL, function ( err, res, body ) {
+		if ( err ) { throw err; }
 		console.log('reu');
 		var data;
 		try {
