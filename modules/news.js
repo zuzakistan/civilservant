@@ -93,7 +93,7 @@ module.exports = {
 				bitly.shorten( news.url, function ( err, res ) {
 					var str = '';
 					if ( news.prompt ) {
-						str += colors.wrap( news.color,  news.prompt + ': ' );
+						str += colors.wrap( news.color, news.prompt + ': ' );
 					}
 					str += news.text;
 					if ( res.data.url ) {
