@@ -7,25 +7,27 @@ var bot = require( '..' );
 
 var poll = function () {
 	request( BBC_NEWS_URL, function ( err, res, body ) {
-		if ( err ) { throw err; }
-		console.log('bbc');
-		var data;
-		try {
-			data = JSON.parse( body );
-		} catch ( e ) {
-			if ( e instanceof SyntaxError ) {
-				bot.shout( bot.config.irc.control, 'bbc news feed playing up' );
-				console.log( body, res );
-				return;
-			} else {
+		if ( !err ) {
+			var data;
+			try {
+				data = JSON.parse( body );
+			} catch ( e ) {
+				if ( e instanceof SyntaxError ) {
+					bot.shout( bot.config.irc.control, 'bbc news feed playing up' );
+					console.log( body, res );
+					return;
+				}
 				throw e;
 			}
+			if ( data.html !== '' ) {
+				bot.fireEvents( 'rawnews:bbc', data.html );
+			}
+			setTimeout( poll, data.pollPeriod ? data.pollPeriod : 30000 );
+		} else {
+			setTimeout( poll, 30000 );
 		}
-		if ( data.html !== '' ) {
-			bot.fireEvents( 'rawnews:bbc', data.html );
-		}
-		setTimeout( poll, data.pollPeriod ? data.pollPeriod : 30000 );
-	} ); request( GDN_NEWS_URL, function ( err, res, body ) { console.log('gdn');
+	} );
+	request( GDN_NEWS_URL, function ( err, res, body ) {
 		if ( !err ) {
 			var data;
 			try {
@@ -33,7 +35,6 @@ var poll = function () {
 			} catch ( e ) {
 				if ( e instanceof SyntaxError ) {
 					bot.shout( bot.config.irc.control, 'guardian feed playing up' );
-					console.log( body, res );
 					return;
 				} else {
 					bot.shout( bot.config.irc.control, 'guardian feed really playing up' );
@@ -45,7 +46,6 @@ var poll = function () {
 	} );
 	request( REU_NEWS_URL, function ( err, res, body ) {
 		if ( !err ) {
-			console.log('reu');
 			var data;
 			try {
 				data = JSON.parse( body );
@@ -57,7 +57,6 @@ var poll = function () {
 				throw e;
 			}
 			bot.fireEvents( 'rawnews:reuters', data );
-			console.log( 'REU', data );
 		}
 	} );
 };

@@ -11,9 +11,8 @@ module.exports = {
 				var attempt = writeInt( msg.args.number, { lang: msg.args.lang } );
 				if ( attempt ) {
 					return attempt;
-				} else {
-					return 'can\'t do that';
 				}
+				return 'can\'t do that';
 			}
 		}
 	}
