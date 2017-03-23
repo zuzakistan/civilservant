@@ -27,8 +27,9 @@ function get_sym(symbol, cb) {
 
 module.exports = {
 	commands: {
-		yhoo: {
+		stock: {
 			help: 'Displays information about a ticker symbol via yahoo',
+			aliases: [ 'yhoo' ],
 			usage: [ 'symbol' ],
 			command: function ( bot, msg ) {
 				get_sym( msg.args.symbol, function( e, r ) {
