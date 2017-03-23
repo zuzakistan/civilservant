@@ -26,38 +26,39 @@ var poll = function () {
 		}
 		setTimeout( poll, data.pollPeriod ? data.pollPeriod : 30000 );
 	} ); request( GDN_NEWS_URL, function ( err, res, body ) { console.log('gdn');
-		if ( err ) { throw err; }
-		var data;
-		try {
-			data = JSON.parse( body );
-		} catch ( e ) {
-			if ( e instanceof SyntaxError ) {
-				bot.shout( bot.config.irc.control, 'guardian feed playing up' );
-				console.log( body, res );
-				return;
-			} else {
-				throw e;
+		if ( !err ) {
+			var data;
+			try {
+				data = JSON.parse( body );
+			} catch ( e ) {
+				if ( e instanceof SyntaxError ) {
+					bot.shout( bot.config.irc.control, 'guardian feed playing up' );
+					console.log( body, res );
+					return;
+				} else {
+					bot.shout( bot.config.irc.control, 'guardian feed really playing up' );
+					// throw e;
+				}
 			}
+			bot.fireEvents( 'rawnews:gdn', data.collections );
 		}
-		if ( err ) { throw err; }
-		bot.fireEvents( 'rawnews:gdn', data.collections );
 	} );
 	request( REU_NEWS_URL, function ( err, res, body ) {
-		if ( err ) { throw err; }
-		console.log('reu');
-		var data;
-		try {
-			data = JSON.parse( body );
-		} catch ( e ) {
-			// reuters send "" not "{}" on no-news
-			if ( e instanceof SyntaxError ) {
-				return false;
+		if ( !err ) {
+			console.log('reu');
+			var data;
+			try {
+				data = JSON.parse( body );
+			} catch ( e ) {
+				// reuters send "" not "{}" on no-news
+				if ( e instanceof SyntaxError ) {
+					return false;
+				}
+				throw e;
 			}
-			throw e;
+			bot.fireEvents( 'rawnews:reuters', data );
+			console.log( 'REU', data );
 		}
-		if ( err ) { throw err; }
-		bot.fireEvents( 'rawnews:reuters', data );
-		console.log( 'REU', data );
 	} );
 };
 
