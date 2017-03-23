@@ -36,9 +36,7 @@ module.exports = {
 						bot.say( msg.to, 'Problem fetching symbol' );
 					}
 
-					bot.say( msg.to,
-							util.format( RESULT_FMT, r.symbol, r.Name, r.Ask, r.Change_PercentChange )
-					);
+					bot.say( msg.to, util.format( RESULT_FMT, r.symbol, r.Name, r.Ask, r.Change_PercentChange ) );
 				} );
 			}
 		}
