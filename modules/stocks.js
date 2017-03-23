@@ -2,7 +2,7 @@ var request = require( 'request' );
 var util = require('util');
 
 var SYMBOL_API_FMT = 'https://query.yahooapis.com/v1/public/yql?q=select%%20*%%20from%%20yahoo.finance.quotes%%20where%%20symbol%%20in%%20(%%22%s%%22)&format=json&env=store%%3A%%2F%%2Fdatatables.org%%2Falltableswithkeys&callback=';
-var RESULT_FMT = '%s (%s): %s (%s)';
+var RESULT_FMT = '%s (%s): %s %s (%s)';
 
 function get_sym(symbol, cb) {
 	/* cb should accept e, r { value, delta, % delta } */
@@ -34,9 +34,11 @@ module.exports = {
 				get_sym( msg.args.symbol, function( e, r ) {
 					if ( e ) {
 						bot.say( msg.to, 'Problem fetching symbol: ' + e );
+					} else if ( r.Currency ) { // probably always exists
+						bot.say( msg.to, util.format( RESULT_FMT, r.symbol, r.Name, r.Ask, r.Currency, r.Change_PercentChange ) );
+					} else {
+						bot.say( msg.to, 'Problem parsing symbol' );
 					}
-
-					bot.say( msg.to, util.format( RESULT_FMT, r.symbol, r.Name, r.Ask, r.Change_PercentChange ) );
 				} );
 			}
 		}
