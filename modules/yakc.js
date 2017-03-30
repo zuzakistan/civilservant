@@ -32,6 +32,7 @@ module.exports = {
 							str.push( '×' + actions[action] );
 						}
 						str.push( '·' );
+						break; // for now only want initial sysadmin comment
 					}
 					str.push( 'currently ' + data.queue );
 					bot.say( to, str.join( ' ' ) );
