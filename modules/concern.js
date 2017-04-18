@@ -55,7 +55,7 @@ module.exports = {
 
 						bot.shout( to, nick + ': you seem ' + x.adj + x.hwinner + ' (score: ' + x.emotional + ')' );
 					} else if ( verbose ) { // danger phrase
-						bot.shout( to, nick + ': that is a worrying thing to say' );
+						bot.shout( to, nick + ': that is a treasonous thing to say' );
 					}
 				}
 			}
