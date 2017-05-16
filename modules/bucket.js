@@ -110,11 +110,11 @@ module.exports = {
 					bot.action( to,
 							synonyms.adverb[Math.floor( Math.random() * synonyms.discard.length )] +
 							' ' +
-							synonyms.take[Math.floor( Math.random() * synonyms.discard.length )] +
+							synonyms.take[Math.floor( Math.random() * synonyms.take.length )] +
 							' ' +
 							newItem +
 							', and ' +
-							synonyms.adverb[Math.floor( Math.random() * synonyms.discard.length )] +
+							synonyms.adverb[Math.floor( Math.random() * synonyms.adverb.length )] +
 							' ' +
 							synonyms.discard[Math.floor( Math.random() * synonyms.discard.length )] +
 							' ' +
