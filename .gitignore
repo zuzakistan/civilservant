@@ -4,7 +4,8 @@ config.json
 data/channel-nicks.json
 data/count.json
 data/inventory.json
+data/news.json
+data/notes.txt
 data/ofn.json
 data/quotes.json
-data/news.json
 node_modules
