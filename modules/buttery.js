@@ -4,6 +4,7 @@
 var readline = require( 'readline' );
 var fs = require( 'fs' );
 var butter = true;
+var count = 0;
 module.exports = {
 	commands: {
 		buttery: {
@@ -11,10 +12,11 @@ module.exports = {
 			aliases: [ 'biscuit', 'base', 'wobble' ],
 			privileged: true, // very spammy!
 			command: function ( bot, msg ) {
+				count++;
 				if ( !butter ) {
 					return;
 				}
-				if ( Math.random() > 0.66 ) {
+				if ( Math.random() > 2/3 ) {
 					var rl = readline.createInterface( {
 						input: fs.createReadStream( __rootdir + '/data/buttery.txt' ),
 						terminal: false
@@ -53,6 +55,12 @@ module.exports = {
 				}
 				butter = true;
 				return 'enabled base';
+			}
+		},
+		bcount: {
+			help: 'Counts the number of buttery invocations',
+			command: function () {
+				return 'Count since last reload: ' + count;
 			}
 		}
 	}
