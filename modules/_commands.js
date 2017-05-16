@@ -18,6 +18,12 @@ module.exports = {
 					try {
 						var cmd = bot.commands[msg.args[0]];
 						if ( cmd.command ) {
+							// stats hook
+							if ( bot.commandcount ) {
+								bot.commandcount++;
+							} else {
+								bot.commandcount = 1;
+							}
 							if ( cmd.disabled ) {
 								return;
 							}
