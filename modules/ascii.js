@@ -4,6 +4,9 @@ module.exports = {
 		ascii: {
 			help: 'ASCIIifies a phrase',
 			command: function ( bot, msg ) {
+				if ( msg.args.indexOf( 'interject' ) !== -1 ) {
+					return 'get a job hippie';
+				}
 				asciify.getFonts( function ( e, b ) {
 					asciify(
 							msg.body,
