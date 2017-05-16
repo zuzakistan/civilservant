@@ -40,7 +40,8 @@ module.exports = {
 				}
 			}
 		},
-		quotel: {
+		quotes: {
+			aliases: [ 'quotel'],
 			help: 'Lists quote categories',
 			command: function () {
 				var str = '';
