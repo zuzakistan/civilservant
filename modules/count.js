@@ -26,7 +26,7 @@ module.exports = {
 				if ( counter === '' ) { // reuse :(
 					return String( count[counter] );
 				}
-				return counter + ' is now ' + count[counter];
+				return counter + ' is now\u0003' + (count[counter]%16) + ' ' + count[counter];
 			}
 		}
 	}
