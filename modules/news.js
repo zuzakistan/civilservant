@@ -58,6 +58,15 @@ module.exports = {
 
 			bot.fireEvents( 'news', news );
 		},
+		'rawnews:bbc2': function ( bot, story) {
+			bot.fireEvents( 'news', {
+				color: 'dark_red',
+				id: 'BBC' + story.assetId,
+				text: story.headline,
+				url: 'https://bbc.co.uk' + story.assetUri,
+				prompt: 'BREAKING'
+			} );
+		},
 		'rawnews:gdn': function ( bot, stories ) {
 			for ( var i = 0; i < stories.length; i++ ) {
 				// at least the Guardian has a decent API
@@ -75,6 +84,56 @@ module.exports = {
 						} );
 					}
 				}
+			}
+		},
+		'rawnews:telegraph': function ( bot, stories ) {
+			for ( var i = 0; i < stories.length; i++ ) {
+				var story = stories[i];
+				bot.fireEvents( 'news', {
+					color: 'light_blue',
+					id: story.title,
+					text: story.title,
+					prompt: 'Telegraph ' + story.section,
+					tail: story.author,
+					url: story.url
+				} );
+			}
+		},
+		'rawnews:ind': function ( bot, stories ) {
+			for ( var i = 0; i < stories.length; i++ ) {
+				var story = stories[i];
+				bot.fireEvents( 'news', {
+					color: 'dark_green',
+					id: 'ind' + story.id,
+					text: story.title,
+					prompt: 'Independent',
+					tail: story.link.indexOf('/voices/') !==-1 ? 'opinion piece' : null,
+					url: 'https://www.independent.co.uk' + story.link
+				} );
+			}
+		},
+		'rawnews:reuwire': function ( bot, stories ) {
+			for ( var i = 0; i < stories.length; i++ ) {
+				var story = stories[i];
+				bot.fireEvents( 'news', {
+					color: 'yellow',
+					id: story.id,
+					text: story.headline,
+					prompt: 'Reuters',
+					url: 'http://www.reuters.com' + story.url
+				} );
+			}
+		},
+		'rawnews:ind100': function ( bot, stories ) {
+			for ( var i = 0; i < stories.length; i++ ) {
+				var story = stories[i];
+				bot.fireEvents( 'news', {
+					color: 'light_green',
+					id: story.id,
+					text: story.headline,
+					prompt: 'i100 ' + story.category,
+					url: story.displayURL
+				} );
 			}
 		},
 		'rawnews:reuters': function ( bot, story ) {
