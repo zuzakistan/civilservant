@@ -31,6 +31,7 @@ module.exports = {
 						return;
 					}
 					if ( results.length !== 0 ) {
+						console.log(results[0])
 						bot.say( to, results[0].title );
 					}
 				} );

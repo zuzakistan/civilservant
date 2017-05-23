@@ -8,13 +8,22 @@ var oldnews = {};
 
 /**
  * JavaScript thinks that {a:1} doesn't equal {a:1},
- * so this function is a work-around to get that to work.
+e* so this function is a work-around to get that to work.
  */
 function isEqualObj( a, b ) {
 	return JSON.stringify( a ) === JSON.stringify( b );
 }
 
 module.exports = {
+  commands: {
+    clearnews: {
+      help: 'Clears the news cache',
+      command: function ( bot, msg ) {
+        oldnews = {}
+        return 'News cache cleared. Take cover :)'
+      }
+    }
+  },
 	onload: function () {
 		oldnews = require( __rootdir + '/data/news.json' ) || {};
 	},
@@ -60,13 +69,15 @@ module.exports = {
 			bot.fireEvents( 'news', news );
 		},
 		'rawnews:bbc2': function ( bot, story) {
-			bot.fireEvents( 'news', {
-				color: 'dark_red',
-				id: 'BBC' + story.assetId,
-				text: story.headline,
-				url: 'https://bbc.co.uk' + story.assetUri,
-				prompt: 'BREAKING'
-			} );
+      if (story) {
+        bot.fireEvents( 'news', {
+          color: 'dark_red',
+          id: 'BBC' + story.assetId,
+          text: story.headline,
+          url: 'https://bbc.co.uk' + story.assetUri,
+          prompt: 'BREAKING'
+        } );
+      }
 		},
 		'rawnews:gdn': function ( bot, stories ) {
 			for ( var i = 0; i < stories.length; i++ ) {
@@ -74,8 +85,7 @@ module.exports = {
 				var curr = stories[i];
 				var GUARDIAN_THEATRES = [ 'uk' ];
 				for ( var j = 0; j < curr.content.length; j++ ) {
-					if ( GUARDIAN_THEATRES.indexOf( curr.href ) !== -1 ) {
-						bot.fireEvents( 'news', {
+					if ( GUARDIAN_THEATRES.indexOf( curr.href ) !== -1 ) { bot.fireEvents( 'news', {
 							color: 'dark_blue',
 							id: curr.content[j].uid,
 							text: curr.content[j].headline,
@@ -116,13 +126,13 @@ module.exports = {
 		'rawnews:reuwire': function ( bot, stories ) {
 			for ( var i = 0; i < stories.length; i++ ) {
 				var story = stories[i];
-				bot.fireEvents( 'news', {
+				/*bot.fireEvents( 'news', {
 					color: 'yellow',
 					id: story.id,
 					text: story.headline,
 					prompt: 'Reuters',
 					url: 'http://www.reuters.com' + story.url
-				} );
+				} );*/
 			}
 		},
 		'rawnews:ind100': function ( bot, stories ) {
@@ -138,16 +148,31 @@ module.exports = {
 			}
 		},
 		'rawnews:reuters': function ( bot, story ) {
-			bot.fireEvents( 'news', {
+      bot.fireEvents( 'news', {
 				color: 'orange',
-				id: story.headline,
+				id: story.tag + story.headline,
 				prompt: story.label,
-				tail: story.url ? null : 'Reuters',
+				tail: story.tag ? story.tag : null,
 				text: story.headline,
 				url: story.url ? story.url : null
 			} );
 		},
+		'rawnews:aljaz': function ( bot, story ) {
+      if (story.Alert) {
+        for ( var i = 0; i > story.AlertText.length; i++ ) {
+          var curr = story.AlertText[0];
+          bot.fireEvents( 'news', {
+            color: 'orange',
+            id: curr.GUID,
+            prompt: 'Al Jazeera ' + curr.Type,
+            text: curr.Text,
+            url: curr.Url
+          } );
+        }
+      }
+		},
 		news: function ( bot, news ) {
+      console.log(news)
 			if ( !oldnews[news.id] || !isEqualObj( oldnews[news.id], news ) ) {
 				var bitly = new Bitly( bot.config.bitly.username, bot.config.bitly.password );
 				bitly.shorten( news.url, function ( err, res ) {
@@ -156,17 +181,21 @@ module.exports = {
 						str += colors.wrap( news.color, news.prompt + ': ' );
 					}
 					// news transform
-					if ( bot.config.news && bot.config.news.replace ) {
-						var substitutions = JSON.parse( read( __rootdir + '/data/substitutions.json', { encoding: 'utf-8' } ) );
-						var stringsToReplace = Object.keys(substitutions);
-						var newstr = news.text;
-						for ( var i = 0; i < stringsToReplace.length; i++ ) {
-							newstr = newstr.replace( stringsToReplace[i], '\x1f' + substitutions[stringsToReplace[i]] + '\x0f');
-						}
-						str += newstr;
-					} else {
-						str += news.text;
-					}
+          try {
+            if ( bot.config.news && bot.config.news.replace ) {
+              var substitutions = JSON.parse( read( __rootdir + '/data/substitutions.json', { encoding: 'utf-8' } ) );
+              var stringsToReplace = Object.keys(substitutions);
+              var newstr = news.text;
+              for ( var i = 0; i < stringsToReplace.length; i++ ) {
+                newstr = newstr.replace( stringsToReplace[i], '\x1f' + substitutions[stringsToReplace[i]] + '\x0f');
+              }
+              str += newstr;
+            } else {
+              str += news.text;
+            }
+          } catch (e) {
+            str += news.text + '(err)'
+          }
 					if ( res.data.url ) {
 						str += ' ' + colors.wrap( 'gray', res.data.url );
 					}

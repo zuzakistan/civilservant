@@ -1,11 +1,13 @@
 var BBC_NEWS_URL = 'http://polling.bbc.co.uk/news/latest_breaking_news?audience=Domestic';
 var BBC2_NEWS_URL = 'https://polling.bbc.co.uk/news/latest_breaking_news_waf';
 var GDN_NEWS_URL = 'https://api.nextgen.guardianapps.co.uk/news-alert/alerts';
+var REU_UK_NEWS_URL = 'http://uk.reuters.com/assets/breakingNews?view=json';
 var REU_NEWS_URL = 'http://uk.reuters.com/assets/breakingNews?view=json';
 var IND_NEWS_URL = 'https://www.independent.co.uk/layout_component/api-mmm';
 var I100_NEWS_URL= 'https://www.independent.co.uk/layout_component/api-i100';
 var TGRAPH_NEWS_URL='http://s3.eip.telegraph.co.uk/assets/_data/All.json';
 var REUWIRE_URL = 'http://uk.reuters.com/assets/jsonWireNews';
+var ALJAZ_ALERT = 'http://www.aljazeera.com/addons/alert.ashx';
 var request = require( 'request' );
 
 var bot = require( '..' );
@@ -30,6 +32,23 @@ var poll = function () {
 			setTimeout( poll, data.pollPeriod ? data.pollPeriod : 30000 );
 		} else {
 			setTimeout( poll, 30000 );
+		}
+	} );
+	request( ALJAZ_ALERT, function ( err, res, body ) {
+		if ( !err ) {
+			var data;
+			try {
+				data = JSON.parse( body );
+			} catch ( e ) {
+				if ( e instanceof SyntaxError ) {
+					bot.shout( bot.config.irc.control, 'AJ feed playing up' );
+					return;
+				} else {
+					bot.shout( bot.config.irc.control, 'AJ really playing up' );
+					// throw e;
+				}
+			}
+			bot.fireEvents( 'rawnews:aljaz', data );
 		}
 	} );
 	request( BBC2_NEWS_URL, function ( err, res, body ) {
@@ -66,6 +85,22 @@ var poll = function () {
 			bot.fireEvents( 'rawnews:gdn', data.collections );
 		}
 	} );
+	request( REU_UK_NEWS_URL, function ( err, res, body ) {
+		if ( !err ) {
+			var data;
+			try {
+				data = JSON.parse( body );
+			} catch ( e ) {
+				// reuters send "" not "{}" on no-news
+				if ( e instanceof SyntaxError ) {
+					return false;
+				}
+				throw e;
+			}
+      data.tag = 'UK'
+			bot.fireEvents( 'rawnews:reuters', data );
+		}
+	} );
 	request( REU_NEWS_URL, function ( err, res, body ) {
 		if ( !err ) {
 			var data;
@@ -78,6 +113,7 @@ var poll = function () {
 				}
 				throw e;
 			}
+      data.tag = 'US'
 			bot.fireEvents( 'rawnews:reuters', data );
 		}
 	} );
@@ -110,7 +146,9 @@ var poll = function () {
 					// throw e;
 				}
 			}
-			bot.fireEvents( 'rawnews:ind', data.articles );
+      if ( data && data.articles ) {
+        bot.fireEvents( 'rawnews:ind', data.articles );
+      }
 		}
 	} );
 	request( TGRAPH_NEWS_URL, function ( err, res, body ) {
