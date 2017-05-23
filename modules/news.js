@@ -1,5 +1,6 @@
 var parse5 = require( 'parse5' );
 var write = require( 'fs' ).writeFile;
+var read = require( 'fs' ).readFileSync;
 var colors = require( 'irc' ).colors;
 var Bitly = require( 'bitly' );
 
@@ -154,7 +155,18 @@ module.exports = {
 					if ( news.prompt ) {
 						str += colors.wrap( news.color, news.prompt + ': ' );
 					}
-					str += news.text;
+					// news transform
+					if ( bot.config.news && bot.config.news.replace ) {
+						var substitutions = JSON.parse( read( __rootdir + '/data/substitutions.json', { encoding: 'utf-8' } ) );
+						var stringsToReplace = Object.keys(substitutions);
+						var newstr = news.text;
+						for ( var i = 0; i < stringsToReplace.length; i++ ) {
+							newstr = newstr.replace( stringsToReplace[i], '\x1f' + substitutions[stringsToReplace[i]] + '\x0f');
+						}
+						str += newstr;
+					} else {
+						str += news.text;
+					}
 					if ( res.data.url ) {
 						str += ' ' + colors.wrap( 'gray', res.data.url );
 					}
