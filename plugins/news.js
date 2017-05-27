@@ -9,6 +9,15 @@ var TGRAPH_NEWS_URL='http://s3.eip.telegraph.co.uk/assets/_data/All.json';
 var REUWIRE_URL = 'http://uk.reuters.com/assets/jsonWireNews';
 var ALJAZ_ALERT = 'http://www.aljazeera.com/addons/alert.ashx';
 var request = require( 'request' );
+var BLOOMBERG_ALERTS = [
+  'https://www.bloomberg.com/api/modules/id/europe_breaking_news',
+  'https://www.bloomberg.com/api/modules/id/us_breaking_news',
+  'https://www.bloomberg.com/api/modules/id/canada_breaking_news',
+  'https://www.bloomberg.com/api/modules/id/breaking_news',
+  'https://www.bloomberg.com/api/modules/id/africa_breaking_news'
+]
+
+
 
 var bot = require( '..' );
 
@@ -51,6 +60,25 @@ var poll = function () {
 			bot.fireEvents( 'rawnews:aljaz', data );
 		}
 	} );
+  for ( var i = 0; i > BLOOMBERG_ALERTS.length; i++ ) {
+    request( BLOOMBERG_ALERT[i], function ( err, res, body ) {
+      if ( !err ) {
+        var data;
+        try {
+          data = JSON.parse( body );
+        } catch ( e ) {
+          if ( e instanceof SyntaxError ) {
+            bot.shout( bot.config.irc.control, 'bloomberg feed playing up' );
+            return;
+          } else {
+            bot.shout( bot.config.irc.control, 'bloomberg really playing up' );
+            // throw e;
+          }
+        }
+        bot.fireEvents( 'rawnews:bloomberg', data);
+      }
+    } );
+  }
 	request( BBC2_NEWS_URL, function ( err, res, body ) {
 		if ( !err ) {
 			var data;
