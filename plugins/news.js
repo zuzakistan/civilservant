@@ -160,6 +160,7 @@ var poll = function () {
 			bot.fireEvents( 'rawnews:reuwire', data.headlines );
 		}
 	} );
+  /*
 	request( IND_NEWS_URL, function ( err, res, body ) {
 		if ( !err ) {
 			var data;
@@ -179,6 +180,7 @@ var poll = function () {
       }
 		}
 	} );
+  */
 	request( TGRAPH_NEWS_URL, function ( err, res, body ) {
 		if ( !err ) {
 			var data;
@@ -196,6 +198,7 @@ var poll = function () {
 			bot.fireEvents( 'rawnews:telegraph', data);
 		}
 	} );
+  /*
 	request( I100_NEWS_URL, function ( err, res, body ) {
 		if ( !err ) {
 			var data;
@@ -213,6 +216,7 @@ var poll = function () {
 			bot.fireEvents( 'rawnews:ind100', data.articles );
 		}
 	} );
+  */
 };
 
 poll();
