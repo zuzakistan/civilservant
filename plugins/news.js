@@ -60,8 +60,8 @@ var poll = function () {
 			bot.fireEvents( 'rawnews:aljaz', data );
 		}
 	} );
-  for ( var i = 0; i > BLOOMBERG_ALERTS.length; i++ ) {
-    request( BLOOMBERG_ALERT[i], function ( err, res, body ) {
+  for ( var i = 0; i < BLOOMBERG_ALERTS.length; i++ ) {
+    request( BLOOMBERG_ALERTS[i], function ( err, res, body ) {
       if ( !err ) {
         var data;
         try {
