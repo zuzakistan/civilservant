@@ -4,25 +4,25 @@
  * Scrapes iso.org's search page to map ISO number (e.g. 9001)
  * to name (e.g. Quality management systems -- Requirements).
  */
-var scrape = require( 'scrape' );
+var scrape = require('scrape')
 module.exports = {
-	commands: {
-		iso: {
-			help: 'Looks up an ISO specification from number',
-			usage: [ 'number' ],
-			command: function ( bot, msg ) {
-				var url = 'http://www.iso.org/iso/home/search/extendedsearchstandards.htm?type=adv&published=on&formStage_code=&formDate_stage=0&formISO_number=';
-				scrape.request( url + msg.args.number, function ( err, $ ) {
-					if ( err ) {
-						return;
-					}
-					$( 'div.result' ).each( function ( result ) {
-						var number = result.find( 'h4 a' ).first().text;
-						var title = result.find( 'p' ).first().text;
-						bot.say( msg.to, msg.nick + ': ' + number + ': ' + title );
-					} );
-				} );
-			}
-		}
-	}
-};
+  commands: {
+    iso: {
+      help: 'Looks up an ISO specification from number',
+      usage: [ 'number' ],
+      command: function (bot, msg) {
+        var url = 'http://www.iso.org/iso/home/search/extendedsearchstandards.htm?type=adv&published=on&formStage_code=&formDate_stage=0&formISO_number='
+        scrape.request(url + msg.args.number, function (err, $) {
+          if (err) {
+            return
+          }
+          $('div.result').each(function (result) {
+            var number = result.find('h4 a').first().text
+            var title = result.find('p').first().text
+            bot.say(msg.to, msg.nick + ': ' + number + ': ' + title)
+          })
+        })
+      }
+    }
+  }
+}
