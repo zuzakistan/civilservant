@@ -2,7 +2,7 @@ var BBC_NEWS_URL = 'http://polling.bbc.co.uk/news/latest_breaking_news?audience=
 var BBC2_NEWS_URL = 'https://polling.bbc.co.uk/news/latest_breaking_news_waf';
 var GDN_NEWS_URL = 'https://api.nextgen.guardianapps.co.uk/news-alert/alerts';
 var REU_UK_NEWS_URL = 'http://uk.reuters.com/assets/breakingNews?view=json';
-var REU_NEWS_URL = 'http://uk.reuters.com/assets/breakingNews?view=json';
+var REU_NEWS_URL = 'http://us.reuters.com/assets/breakingNews?view=json';
 var IND_NEWS_URL = 'https://www.independent.co.uk/layout_component/api-mmm';
 var I100_NEWS_URL= 'https://www.independent.co.uk/layout_component/api-i100';
 var TGRAPH_NEWS_URL='http://s3.eip.telegraph.co.uk/assets/_data/All.json';
