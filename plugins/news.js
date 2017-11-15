@@ -68,10 +68,10 @@ var poll = function () {
           data = JSON.parse( body );
         } catch ( e ) {
           if ( e instanceof SyntaxError ) {
-            bot.shout( bot.config.irc.control, 'bloomberg feed playing up' );
+            // bot.shout( bot.config.irc.control, 'bloomberg feed playing up' );
             return;
           } else {
-            bot.shout( bot.config.irc.control, 'bloomberg really playing up' );
+            // bot.shout( bot.config.irc.control, 'bloomberg really playing up' );
             // throw e;
           }
         }

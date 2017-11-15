@@ -79,6 +79,21 @@ module.exports = {
         } );
       }
 		},
+    'rawnews:bloomberg': function ( bot, stories ) {
+			for ( var i = 0; i < stories.length; i++ ) {
+        var story = stories[i]
+        if (story) {
+          bot.fireEvents( 'news', {
+            color: 'purple',
+            id: 'bbrg' + story.toString(),
+            text: JSON.stringify(story),
+            url: null,
+            prompt: stories.editorialTitle,
+            tail: 'Bloomberg (test)'
+          })
+        }
+      }
+    },
 		'rawnews:gdn': function ( bot, stories ) {
 			for ( var i = 0; i < stories.length; i++ ) {
 				// at least the Guardian has a decent API
