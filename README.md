@@ -1,5 +1,5 @@
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/d1dc4c396c12434d9302d68c6e45a6f8)](https://www.codacy.com/app/douglas/civilservant?utm_source=github.com&utm_medium=referral&utm_content=zuzakistan/civilservant&utm_campaign=badger)
-[![Build Status](https://travis-ci.org/zuzakistan/civilservant.svg)](https://travis-ci.org/zuzakistan/civilservant) (*n.b.* actually just a lint)
+[![Build Status](https://travis-ci.org/zuzakistan/civilservant.svg)](https://travis-ci.org/zuzakistan/civilservant)
 
 This is an IRC bot written in NodeJS.
 
