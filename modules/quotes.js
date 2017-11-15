@@ -41,7 +41,7 @@ module.exports = {
       }
     },
     quotes: {
-      aliases: [ 'quotel'],
+      aliases: [ 'quotel' ],
       help: 'Lists quote categories',
       command: function () {
         var str = ''
