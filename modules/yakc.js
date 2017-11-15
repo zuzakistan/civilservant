@@ -2,9 +2,9 @@ var request = require('request')
 module.exports = {
   events: {
     'url:webm.website': function (bot, url, nick, to) {
-      var api_url = 'http://api.' + url.host + url.pathname + '.json'
+      var apiUrl = 'http://api.' + url.host + url.pathname + '.json'
 
-      request.get(api_url, function (e, r, b) {
+      request.get(apiUrl, function (e, r, b) {
         if (r.statusCode !== 200) {
           bot.say(to, 'problem: ' + r.responseCode)
         }
