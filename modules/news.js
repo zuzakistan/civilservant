@@ -94,24 +94,6 @@ module.exports = {
         }
       }
     },
-		'rawnews:gdn': function ( bot, stories ) {
-			for ( var i = 0; i < stories.length; i++ ) {
-				// at least the Guardian has a decent API
-				var curr = stories[i];
-				var GUARDIAN_THEATRES = [ 'uk' ];
-				for ( var j = 0; j < curr.content.length; j++ ) {
-					if ( GUARDIAN_THEATRES.indexOf( curr.href ) !== -1 ) { bot.fireEvents( 'news', {
-							color: 'dark_blue',
-							id: curr.content[j].uid,
-							text: curr.content[j].headline,
-							prompt: 'Guardian',
-							tail: curr.href,
-							url: curr.content[j].shortUrl
-						} );
-					}
-				}
-			}
-		},
 		'rawnews:telegraph': function ( bot, stories ) {
 			for ( var i = 0; i < stories.length; i++ ) {
 				var story = stories[i];

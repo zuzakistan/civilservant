@@ -1,6 +1,5 @@
 var BBC_NEWS_URL = 'http://polling.bbc.co.uk/news/latest_breaking_news?audience=Domestic';
 var BBC2_NEWS_URL = 'https://polling.bbc.co.uk/news/latest_breaking_news_waf';
-var GDN_NEWS_URL = 'https://api.nextgen.guardianapps.co.uk/news-alert/alerts';
 var REU_UK_NEWS_URL = 'http://uk.reuters.com/assets/breakingNews?view=json';
 var REU_NEWS_URL = 'http://us.reuters.com/assets/breakingNews?view=json';
 var IND_NEWS_URL = 'https://www.independent.co.uk/layout_component/api-mmm';
@@ -94,23 +93,6 @@ var poll = function () {
 				}
 			}
 			bot.fireEvents( 'rawnews:bbc2', data.asset );
-		}
-	} );
-	request( GDN_NEWS_URL, function ( err, res, body ) {
-		if ( !err ) {
-			var data;
-			try {
-				data = JSON.parse( body );
-			} catch ( e ) {
-				if ( e instanceof SyntaxError ) {
-					bot.shout( bot.config.irc.control, 'guardian feed playing up' );
-					return;
-				} else {
-					bot.shout( bot.config.irc.control, 'guardian feed really playing up' );
-					// throw e;
-				}
-			}
-			bot.fireEvents( 'rawnews:gdn', data.collections );
 		}
 	} );
 	request( REU_UK_NEWS_URL, function ( err, res, body ) {
