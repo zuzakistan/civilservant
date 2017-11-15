@@ -8,7 +8,7 @@ var oldnews = {}
 
 /**
  * JavaScript thinks that {a:1} doesn't equal {a:1},
-e* so this function is a work-around to get that to work.
+ * so this function is a work-around to get that to work.
  */
 function isEqualObj (a, b) {
   return JSON.stringify(a) === JSON.stringify(b)
@@ -158,7 +158,83 @@ module.exports = {
         url: story.url ? story.url : null
       })
     },
-    'rawnews:aljaz': function (bot, story) {
+    'rawnews:bloomberg': function ( bot, stories ) {
+			for ( var i = 0; i < stories.length; i++ ) {
+        var story = stories[i]
+        if (story) {
+          bot.fireEvents( 'news', {
+            color: 'purple',
+            id: 'bbrg' + story.toString(),
+            text: JSON.stringify(story),
+            url: null,
+            prompt: stories.editorialTitle,
+            tail: 'Bloomberg (test)'
+          })
+        }
+      }
+    },
+		'rawnews:telegraph': function ( bot, stories ) {
+			for ( var i = 0; i < stories.length; i++ ) {
+				var story = stories[i];
+				bot.fireEvents( 'news', {
+					color: 'light_blue',
+					id: story.title,
+					text: story.title,
+					prompt: 'Telegraph ' + story.section,
+					tail: story.author,
+					url: story.url
+				} );
+			}
+		},
+		'rawnews:ind': function ( bot, stories ) {
+			for ( var i = 0; i < stories.length; i++ ) {
+				var story = stories[i];
+				bot.fireEvents( 'news', {
+					color: 'dark_green',
+					id: 'ind' + story.id,
+					text: story.title,
+					prompt: 'Independent',
+					tail: story.link.indexOf('/voices/') !==-1 ? 'opinion piece' : null,
+					url: 'https://www.independent.co.uk' + story.link
+				} );
+			}
+		},
+		'rawnews:reuwire': function ( bot, stories ) {
+			for ( var i = 0; i < stories.length; i++ ) {
+				var story = stories[i];
+				/*bot.fireEvents( 'news', {
+					color: 'yellow',
+					id: story.id,
+					text: story.headline,
+					prompt: 'Reuters',
+					url: 'http://www.reuters.com' + story.url
+				} );*/
+			}
+		},
+		'rawnews:ind100': function ( bot, stories ) {
+			for ( var i = 0; i < stories.length; i++ ) {
+				var story = stories[i];
+				bot.fireEvents( 'news', {
+					color: 'light_green',
+					id: story.id,
+					text: story.headline,
+					prompt: 'i100 ' + story.category,
+					url: story.displayURL
+				} );
+			}
+		},
+		'rawnews:reuters': function ( bot, story ) {
+      bot.fireEvents( 'news', {
+				color: 'orange',
+				id: story.tag + story.headline,
+				prompt: story.label,
+				tail: story.tag ? story.tag : null,
+				text: story.headline,
+				url: story.url ? story.url : null
+			} );
+		},
+		'rawnews:aljaz': function ( bot, story ) {
+>>>>>>> master
       if (story.Alert) {
         for (var i = 0; i > story.AlertText.length; i++) {
           var curr = story.AlertText[0]
