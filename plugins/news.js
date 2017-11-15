@@ -121,6 +121,8 @@ var poll = function () {
         }
         throw e
       }
+    }
+  }
 	request( BBC2_NEWS_URL, function ( err, res, body ) {
 		if ( !err ) {
 			var data;
