@@ -4,7 +4,7 @@ var util = require('util')
 var SYMBOL_API_FMT = 'https://query.yahooapis.com/v1/public/yql?q=select%%20*%%20from%%20yahoo.finance.quotes%%20where%%20symbol%%20in%%20(%%22%s%%22)&format=json&env=store%%3A%%2F%%2Fdatatables.org%%2Falltableswithkeys&callback='
 var RESULT_FMT = '%s (%s): %s %s (%s)'
 
-function get_sym (symbol, cb) {
+function getSymbol (symbol, cb) {
   /* cb should accept e, r { value, delta, % delta } */
   var req = util.format(SYMBOL_API_FMT, symbol)
 
@@ -14,7 +14,7 @@ function get_sym (symbol, cb) {
       return 'problem fetching data'
     }
     if (r.statusCode !== 200) {
-      cb('bad status code', r, b)
+      cb(new Error('bad status code'), r, b)
       return 'problem fetching data (' + r.statusCode + ')'
     }
 
@@ -32,7 +32,7 @@ module.exports = {
       aliases: [ 'yhoo' ],
       usage: [ 'symbol' ],
       command: function (bot, msg) {
-        get_sym(msg.args.symbol, function (e, r) {
+        getSymbol(msg.args.symbol, function (e, r) {
           if (e) {
             bot.say(msg.to, 'Problem fetching symbol: ' + e)
           } else if (r.Currency) { // probably always exists

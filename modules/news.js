@@ -124,18 +124,6 @@ module.exports = {
         })
       }
     },
-    'rawnews:reuwire': function (bot, stories) {
-      for (var i = 0; i < stories.length; i++) {
-        var story = stories[i]
-        /* bot.fireEvents( 'news', {
-          color: 'yellow',
-          id: story.id,
-          text: story.headline,
-          prompt: 'Reuters',
-          url: 'http://www.reuters.com' + story.url
-        } ); */
-      }
-    },
     'rawnews:ind100': function (bot, stories) {
       for (var i = 0; i < stories.length; i++) {
         var story = stories[i]
@@ -158,11 +146,11 @@ module.exports = {
         url: story.url ? story.url : null
       })
     },
-    'rawnews:bloomberg': function ( bot, stories ) {
-			for ( var i = 0; i < stories.length; i++ ) {
+    'rawnews:bloomberg': function (bot, stories) {
+      for (var i = 0; i < stories.length; i++) {
         var story = stories[i]
         if (story) {
-          bot.fireEvents( 'news', {
+          bot.fireEvents('news', {
             color: 'purple',
             id: 'bbrg' + story.toString(),
             text: JSON.stringify(story),
@@ -173,68 +161,19 @@ module.exports = {
         }
       }
     },
-		'rawnews:telegraph': function ( bot, stories ) {
-			for ( var i = 0; i < stories.length; i++ ) {
-				var story = stories[i];
-				bot.fireEvents( 'news', {
-					color: 'light_blue',
-					id: story.title,
-					text: story.title,
-					prompt: 'Telegraph ' + story.section,
-					tail: story.author,
-					url: story.url
-				} );
-			}
-		},
-		'rawnews:ind': function ( bot, stories ) {
-			for ( var i = 0; i < stories.length; i++ ) {
-				var story = stories[i];
-				bot.fireEvents( 'news', {
-					color: 'dark_green',
-					id: 'ind' + story.id,
-					text: story.title,
-					prompt: 'Independent',
-					tail: story.link.indexOf('/voices/') !==-1 ? 'opinion piece' : null,
-					url: 'https://www.independent.co.uk' + story.link
-				} );
-			}
-		},
-		'rawnews:reuwire': function ( bot, stories ) {
-			for ( var i = 0; i < stories.length; i++ ) {
-				var story = stories[i];
-				/*bot.fireEvents( 'news', {
-					color: 'yellow',
-					id: story.id,
-					text: story.headline,
-					prompt: 'Reuters',
-					url: 'http://www.reuters.com' + story.url
-				} );*/
-			}
-		},
-		'rawnews:ind100': function ( bot, stories ) {
-			for ( var i = 0; i < stories.length; i++ ) {
-				var story = stories[i];
-				bot.fireEvents( 'news', {
-					color: 'light_green',
-					id: story.id,
-					text: story.headline,
-					prompt: 'i100 ' + story.category,
-					url: story.displayURL
-				} );
-			}
-		},
-		'rawnews:reuters': function ( bot, story ) {
-      bot.fireEvents( 'news', {
-				color: 'orange',
-				id: story.tag + story.headline,
-				prompt: story.label,
-				tail: story.tag ? story.tag : null,
-				text: story.headline,
-				url: story.url ? story.url : null
-			} );
-		},
-		'rawnews:aljaz': function ( bot, story ) {
->>>>>>> master
+    'rawnews:reuwire': function (bot, stories) {
+      for (var i = 0; i < stories.length; i++) {
+        var story = stories[i]
+        bot.fireEvents('news', {
+          color: 'yellow',
+          id: story.id,
+          text: story.headline,
+          prompt: 'Reuters',
+          url: 'http://www.reuters.com' + story.url
+        })
+      }
+    },
+    'rawnews:aljaz': function (bot, story) {
       if (story.Alert) {
         for (var i = 0; i > story.AlertText.length; i++) {
           var curr = story.AlertText[0]
@@ -253,6 +192,7 @@ module.exports = {
       if (!oldnews[news.id] || !isEqualObj(oldnews[news.id], news)) {
         var bitly = new Bitly(bot.config.bitly.username, bot.config.bitly.password)
         bitly.shorten(news.url, function (err, res) {
+          if (err) res = {data: {url: news.url}}
           var str = ''
           if (news.prompt) {
             str += colors.wrap(news.color, news.prompt + ': ')
