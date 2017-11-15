@@ -9,7 +9,7 @@
     "danharibo <danharibo@gmail.com>"
   ],
   "scripts": {
-    "test": "node_modules/jshint/bin/jshint *.js modules/*.js plugins/*.js"
+    "lint": "node_modules/standard/bin/cmd.js"
   },
   "license": "ISC",
   "dependencies": {
@@ -56,6 +56,7 @@
     "jshint": "^2.5.4",
     "mocha": "^2.3.4",
     "node-dir": "^0.1.11",
-    "precommit-hook": "^1.0.7"
+    "precommit-hook": "^1.0.7",
+    "standard": "^10.0.3"
   }
 }
