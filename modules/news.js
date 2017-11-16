@@ -163,14 +163,14 @@ module.exports = {
     },
     'rawnews:reuwire': function (bot, stories) {
       for (var i = 0; i < stories.length; i++) {
-        var story = stories[i]
+        /* var story = stories[i]
         bot.fireEvents('news', {
           color: 'yellow',
           id: story.id,
           text: story.headline,
           prompt: 'Reuters',
           url: 'http://www.reuters.com' + story.url
-        })
+        }) */
       }
     },
     'rawnews:aljaz': function (bot, story) {
