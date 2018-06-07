@@ -22,6 +22,12 @@ module.exports = {
         oldnews = {}
         return 'News cache cleared. Take cover :)'
       }
+    },
+    corrections: {
+      help: 'Sends link to BBC News corrections',
+      command: function () {
+        return 'http://www.bbc.co.uk/faqs/bbcnews_editorial'
+      }
     }
   },
   onload: function () {
