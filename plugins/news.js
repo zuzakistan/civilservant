@@ -23,7 +23,7 @@ var poll = function () {
         data = JSON.parse(body)
       } catch (e) {
         if (e instanceof SyntaxError) {
-          bot.shout(bot.config.irc.control, 'bbc news feed playing up')
+          // bot.shout(bot.config.irc.control, 'bbc news feed playing up')
           console.log(body, res)
           return
         }
@@ -44,10 +44,10 @@ var poll = function () {
         data = JSON.parse(body)
       } catch (e) {
         if (e instanceof SyntaxError) {
-          bot.shout(bot.config.irc.control, 'AJ feed playing up')
+          // bot.shout(bot.config.irc.control, 'AJ feed playing up')
           return
         } else {
-          bot.shout(bot.config.irc.control, 'AJ really playing up')
+          // bot.shout(bot.config.irc.control, 'AJ really playing up')
           // throw e;
         }
       }
@@ -79,10 +79,10 @@ var poll = function () {
         data = JSON.parse(body)
       } catch (e) {
         if (e instanceof SyntaxError) {
-          bot.shout(bot.config.irc.control, 'bbc2 feed playing up')
+          // bot.shout(bot.config.irc.control, 'bbc2 feed playing up')
           return
         } else {
-          bot.shout(bot.config.irc.control, 'bbc2 really playing up')
+          // bot.shout(bot.config.irc.control, 'bbc2 really playing up')
           // throw e;
         }
       }
