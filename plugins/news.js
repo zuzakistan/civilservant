@@ -2,7 +2,6 @@ var BBC_NEWS_URL = 'http://polling.bbc.co.uk/news/latest_breaking_news?audience=
 var BBC2_NEWS_URL = 'https://polling.bbc.co.uk/news/latest_breaking_news_waf'
 var REU_UK_NEWS_URL = 'http://uk.reuters.com/assets/breakingNews?view=json'
 var REU_NEWS_URL = 'http://us.reuters.com/assets/breakingNews?view=json'
-var TGRAPH_NEWS_URL = 'http://s3.eip.telegraph.co.uk/assets/_data/All.json'
 var REUWIRE_URL = 'http://uk.reuters.com/assets/jsonWireNews'
 var ALJAZ_ALERT = 'http://www.aljazeera.com/addons/alert.ashx'
 var request = require('request')
@@ -166,23 +165,6 @@ var poll = function () {
         throw e
       }
       bot.fireEvents('rawnews:reuwire', data.headlines)
-    }
-  })
-  request(TGRAPH_NEWS_URL, function (err, res, body) {
-    if (!err) {
-      var data
-      try {
-        data = JSON.parse(body)
-      } catch (e) {
-        if (e instanceof SyntaxError) {
-          bot.shout(bot.config.irc.control, 'telegraph feed playing up')
-          return
-        } else {
-          bot.shout(bot.config.irc.control, 'telegraph feed really playing up')
-          // throw e;
-        }
-      }
-      bot.fireEvents('rawnews:telegraph', data)
     }
   })
 }

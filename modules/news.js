@@ -104,19 +104,6 @@ module.exports = {
         }
       }
     },
-    'rawnews:telegraph': function (bot, stories) {
-      for (var i = 0; i < stories.length; i++) {
-        var story = stories[i]
-        bot.fireEvents('news', {
-          color: 'light_blue',
-          id: story.title,
-          text: story.title,
-          prompt: 'Telegraph ' + story.section,
-          tail: story.author,
-          url: story.url
-        })
-      }
-    },
     'rawnews:ind': function (bot, stories) {
       for (var i = 0; i < stories.length; i++) {
         var story = stories[i]
