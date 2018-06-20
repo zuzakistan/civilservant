@@ -115,17 +115,20 @@ module.exports = {
 
         if (oldItem) {
           bot.action(to,
-              synonyms.adverb[Math.floor(Math.random() * synonyms.discard.length)] +
+              (
+              synonyms.adverb[Math.floor(Math.random() * synonyms.discard.length)].trim() +
               ' ' +
               synonyms.take[Math.floor(Math.random() * synonyms.take.length)] +
               ' ' +
-              newItem +
-              ', and ' +
-              synonyms.adverb[Math.floor(Math.random() * synonyms.adverb.length)] +
-              ' ' +
+              newItem.trim() +
+              ', and' +
+                (' ' +
+              synonyms.adverb[Math.floor(Math.random() * synonyms.adverb.length)].trim() +
+              ' ').trim() +
               synonyms.discard[Math.floor(Math.random() * synonyms.discard.length)] +
               ' ' +
               oldItem
+              ).trim()
             )
         } else {
           bot.action(to,
