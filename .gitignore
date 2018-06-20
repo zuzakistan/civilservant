@@ -9,3 +9,4 @@ data/notes.txt
 data/ofn.json
 data/quotes.json
 node_modules
+data/stale.json
