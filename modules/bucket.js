@@ -114,22 +114,15 @@ module.exports = {
         var oldItem = addToInventory(newItem)
 
         if (oldItem) {
-          bot.action(to,
-              (
-              synonyms.adverb[Math.floor(Math.random() * synonyms.discard.length)].trim() +
-              ' ' +
-              synonyms.take[Math.floor(Math.random() * synonyms.take.length)] +
-              ' ' +
-              newItem.trim() +
-              ', and' +
-                (' ' +
-              synonyms.adverb[Math.floor(Math.random() * synonyms.adverb.length)].trim() +
-              ' ').trim() +
-              synonyms.discard[Math.floor(Math.random() * synonyms.discard.length)] +
-              ' ' +
-              oldItem
-              ).trim()
-            )
+          bot.action(to, [
+            synonyms.adverb[Math.floor(Math.random() * synonyms.discard.length)].trim(),
+            synonyms.take[Math.floor(Math.random() * synonyms.take.length)],
+            newItem.trim() + ',',
+            'and',
+            synonyms.adverb[Math.floor(Math.random() * synonyms.adverb.length)].trim(),
+            synonyms.discard[Math.floor(Math.random() * synonyms.discard.length)],
+            oldItem
+          ].join(' '))
         } else {
           bot.action(to,
               synonyms.adverb[Math.floor(Math.random() * synonyms.discard.length)] +
