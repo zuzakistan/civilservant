@@ -45,13 +45,6 @@ Some explanation of the not-obvious options:
 * `quiet` toggles unsolicited pronouncements. If you like your bots to speak
   only when spoken to, set this to `true`.
 
-# Installation
-Some modules require the `canvas` module, which depends on Cairo.
-You may need to install `libcairo2-dev` and `libpango1.0-dev` on Ubuntu.
-On CentOS, you apparently need `cairo` and `cairo-devel`.
-
-If you are having problems installing these, just delete the `modules/imgur.js` file.
-We won't mind.
-
+## Known issues
 Sometimes the UDP server doesn't shut down properly.
 Do `netstat -tulpn` and grep for the PID to kill manually.
