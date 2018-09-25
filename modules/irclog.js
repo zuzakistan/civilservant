@@ -1,6 +1,6 @@
 var exec = require('child_process').exec
 var esc = require('shell-escape')
-const colors = require('irc').colors.codes;
+const colors = require('irc').colors.codes
 module.exports = {
   commands: {
     irclog: {
@@ -18,8 +18,8 @@ module.exports = {
           stdout += data.toString()
         })
         c.on('close', function () {
-          stdout = stdout.replace('[30;43m', colors.yellow)
-          stdout = stdout.replace('[K', colors.reset)
+          stdout = stdout.replace(/\[30;43m/g, colors.yellow)
+          stdout = stdout.replace(/\[K/g, colors.reset)
           bot.say(msg.to, stdout)
         })
       }
