@@ -9,6 +9,7 @@
     "danharibo <danharibo@gmail.com>"
   ],
   "scripts": {
+    "test": "npm run lint",
     "lint": "node_modules/standard/bin/cmd.js"
   },
   "license": "ISC",
