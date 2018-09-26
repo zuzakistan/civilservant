@@ -1,6 +1,16 @@
 var exec = require('child_process').exec
 var esc = require('shell-escape')
 const colors = require('irc').colors.codes
+
+function ConvertAgSeqToIRC (str) {
+  /* eslint-disable no-control-regex */
+  return str
+    .replace(/\x1b\[K/g, '')
+    .replace(/\x1b\[30;43m/g, colors.yellow)
+    .replace(/\x1b\[0m/g, colors.reset)
+  /* eslint-enable no-control-regex */
+}
+
 module.exports = {
   commands: {
     irclog: {
@@ -10,7 +20,7 @@ module.exports = {
         if (msg.args.length === 1) {
           return 'Usage: !irclog <search phrase>'
         }
-        var c = exec(esc(['/home/zuzak/git/civilservant/irclog.sh', msg.body]))
+        var c = exec(esc([__rootdir + '/irclog.sh', msg.body]))
         var stdout = ''
         c.stdout.on('data', function (data) {
           stdout += data.toString()
@@ -19,9 +29,7 @@ module.exports = {
           stdout += data.toString()
         })
         c.on('close', function () {
-          stdout = stdout.replace(/\[30;43m/g, colors.yellow)
-          stdout = stdout.replace(/\[K/g, colors.reset)
-          bot.say(msg.to, stdout)
+          bot.say(msg.to, ConvertAgSeqToIRC(stdout))
         })
       }
     },
