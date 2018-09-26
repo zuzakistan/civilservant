@@ -2,7 +2,7 @@ var exec = require('child_process').exec
 var esc = require('shell-escape')
 const colors = require('irc').colors.codes
 
-function ConvertAgToIRC (str) {
+function convertAgToIRC (str) {
   /* eslint-disable no-control-regex */
   return str
     .replace(/\x1b\[K/g, '')
@@ -11,13 +11,13 @@ function ConvertAgToIRC (str) {
   /* eslint-enable no-control-regex */
 }
 
-function PreventHilight (str) {
+function preventHilight (str) {
   return str
     .replace(/< ([a-zA-Z0-9_])([a-zA-Z0-9_]+)>/, '< $1\u200b$2>')
 }
 
-function ProcessAg (str) {
-  return PreventHilight(ConvertAgToIRC(str))
+function processAg (str) {
+  return preventHilight(convertAgToIRC(str))
 }
 
 module.exports = {
@@ -38,7 +38,7 @@ module.exports = {
           stdout += data.toString()
         })
         c.on('close', function () {
-          bot.say(msg.to, ProcessAg(stdout))
+          bot.say(msg.to, processAg(stdout))
         })
       }
     },
