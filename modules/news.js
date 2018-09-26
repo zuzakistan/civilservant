@@ -31,7 +31,11 @@ module.exports = {
     }
   },
   onload: function () {
-    oldnews = require(__rootdir + '/data/news.json') || {}
+    try {
+      oldnews = require(__rootdir + '/data/news.json') || {}
+    } catch (e) {
+      oldnews = {}
+    }
   },
   events: {
     /**
