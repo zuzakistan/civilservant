@@ -17,7 +17,7 @@ function preventHilight (str) {
 }
 
 function processAg (str) {
-  return preventHilight(convertAgToIRC(str))
+  return convertAgToIRC(preventHilight(str))
 }
 
 module.exports = {
