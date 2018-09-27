@@ -7,5 +7,5 @@
 #
  
 ag --nonumbers --color -- "${@}" ~/irclogs/freenode/\##zuzakistan.log | \
-ag --nonumbers --color -v "civilservant" | \
+ag --nonumbers --color -v "civilservant|!(ag|irclog)" | \
 perl -e 'while (<>) { push(@_,$_); } print @_[rand()*@_];'
