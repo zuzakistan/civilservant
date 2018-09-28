@@ -131,7 +131,7 @@ var msg = {
 ```
 
 ## Events
-By default commands begin with `!`, but this can be configured in `config.json`.
+By default commands begin with `!`, but this can be configured.
 If you need something  to run on every message, you can add a (single) event:
 ```js
 module.exports = {

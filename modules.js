@@ -18,7 +18,7 @@ var self = module.exports = {
             bot.modules.push(files[i])
           } else {
             console.log('Failed ' + files[i])
-            bot.say(bot.config.irc.control, 'Failed to load ' + files[i])
+            bot.say(bot.config.get('irc.control'), 'Failed to load ' + files[i])
           }
         }
       }
@@ -44,7 +44,7 @@ var self = module.exports = {
     } catch (e) {
       if (e.code === 'MODULE_NOT_FOUND') {
         var npmModule = e.message.split('\'')[1]
-        if (bot.config.installModules) {
+        if (bot.config.get('installModules')) {
           console.log('Required module ' + npmModule + ' not found; installing')
           self.installNpm(npmModule, function (e) {
             if (e) {

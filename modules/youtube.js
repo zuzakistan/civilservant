@@ -21,7 +21,7 @@ module.exports = {
       }
       if (query.v) {
         // TODO: remove this code duplication
-        var opts = bot.config.youtube || {}
+        var opts = bot.config.get('youtube') || {}
         opts.maxResults = 1
         opts.type = 'video,channel'
         // this is particularly dumb:
@@ -43,7 +43,7 @@ module.exports = {
       help: 'Searches YouTube for a query string',
       aliases: [ 'youtube' ],
       command: function (bot, msg) {
-        var opts = bot.config.youtube || {}
+        var opts = bot.config.get('youtube') || {}
         opts.maxResults = 1
         opts.type = 'video,channel'
         yt(msg.body, opts, function (err, results) {
