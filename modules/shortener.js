@@ -11,7 +11,7 @@ try {
 module.exports = {
   events: {
     url: function (bot, url, nick, to) {
-      var bitly = new Bitly(bot.config.bitly.username, bot.config.bitly.password)
+      var bitly = new Bitly(bot.config.get('bitly.username'), bot.config.get('bitly.password'))
       bitly.shorten(url.href, function (err, res) {
         if (err || !res.data.url) {
           return // fail silently (usually duplicate URL)
@@ -51,7 +51,7 @@ module.exports = {
       help: 'Shorten a URL',
       usage: [ 'url' ],
       command: function (bot, msg) {
-        var bitly = new Bitly(bot.config.bitly.username, bot.config.bitly.password)
+        var bitly = new Bitly(bot.config.get('bitly.username'), bot.config.get('bitly.password'))
         bitly.shorten(msg.args.url, function (err, res) {
           if (err) {
             bot.say(msg.to, 'Unable to shorten that.')

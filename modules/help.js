@@ -5,7 +5,8 @@ module.exports = {
       command: function (bot) {
         var commands = Object.keys(bot.commands)
         commands.sort()
-        return 'Commands loaded: ' + bot.config.irc.controlChar + commands.join(' ' + bot.config.irc.controlChar)
+        let controlChar = bot.config.get('irc.controlChar')
+        return 'Commands loaded: ' + controlChar + commands.join(' ' + controlChar)
       }
     },
     help: {
@@ -18,7 +19,7 @@ module.exports = {
         if (typeof bot.commands[msg.args.command] === 'object') {
           var cmd = bot.commands[msg.args.command]
           if (!cmd.help) {
-            cmd.help = 'No help for ' + bot.config.irc.controlChar + msg.args.command
+            cmd.help = 'No help for ' + bot.config.get('irc.controlChar') + msg.args.command
           }
           var attr = []
           if (cmd.privileged) {
@@ -34,7 +35,7 @@ module.exports = {
           }
           return cmd.help + attr
         }
-        return 'No help for ' + bot.config.irc.controlChar + msg.args.command + ' found.'
+        return 'No help for ' + bot.config.get('irc.controlChar') + msg.args.command + ' found.'
       }
     }
   }

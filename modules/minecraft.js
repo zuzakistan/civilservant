@@ -11,7 +11,7 @@ module.exports = {
     minecraft: {
       help: 'Lists current players on a Minecraft server',
       command: function (bot, msg) {
-        request.get(bot.config.minecraft.map + '/up/world/world/0', function (e, r, b) {
+        request.get(bot.config.get('minecraft.map') + '/up/world/world/0', function (e, r, b) {
           if (e) {
             bot.say(msg.to, 'problem fetching data')
           }

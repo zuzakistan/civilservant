@@ -6,7 +6,7 @@ module.exports = {
       help: 'Checks current status of local takeaway',
       deprecated: true, // website's been refactored so probably won't work
       command: function (bot, msg) {
-        var marco = bot.config.touchtosuccess.url[0]
+        var marco = bot.config.get('touchtosuccess.url')[0]
         scrape.request(marco, function (err, $) {
           if (err) {
             return
@@ -29,7 +29,7 @@ module.exports = {
       help: 'Returns a random pizza from the local takeaway',
       deprecated: true,
       command: function (bot, msg) {
-        var marco = bot.config.touchtosuccess.url[0]
+        var marco = bot.config.get('touchtosuccess.url')[0]
         scrape.request(marco, function (err, $) {
           if (err) {
             console.error(err)
@@ -78,7 +78,7 @@ module.exports = {
       help: 'Checks current status of local takeaway',
       deprecated: true,
       command: function (bot, msg) {
-        var marco = bot.config.touchtosuccess.url[1]
+        var marco = bot.config.get('touchtosuccess.url')[1]
         scrape.request(marco, function (err, $) {
           if (err) {
             return

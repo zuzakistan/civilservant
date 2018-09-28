@@ -9,7 +9,7 @@ module.exports = {
           bot.say(msg.to,
               msg.nick +
               ': Usage: ' +
-              bot.config.irc.controlChar +
+              bot.config.get('irc.controlChar') +
               msg.args.command +
               ' <' + cmd.usage.join('> <') + '>'
           )
@@ -17,7 +17,7 @@ module.exports = {
           bot.say(msg.to,
               msg.nick +
               ': Usage: ' +
-              bot.config.irc.controlChar +
+              bot.config.get('irc.controlChar') +
               msg.args.command +
               ' ' +
               cmd.usage
