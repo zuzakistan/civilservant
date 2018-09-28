@@ -122,14 +122,13 @@ module.exports = {
             synonyms.adverb[Math.floor(Math.random() * synonyms.adverb.length)].trim(),
             synonyms.discard[Math.floor(Math.random() * synonyms.discard.length)],
             oldItem
-          ].join(' '))
+          ].join(' ').replace(/\s+/g, ' ').trim())
         } else {
-          bot.action(to,
-              synonyms.adverb[Math.floor(Math.random() * synonyms.discard.length)] +
-              ' ' +
-              synonyms.take[Math.floor(Math.random() * synonyms.take.length)] +
-              ' ' +
-              newItem
+          bot.action(to, [
+            synonyms.adverb[Math.floor(Math.random() * synonyms.discard.length)],
+            synonyms.take[Math.floor(Math.random() * synonyms.take.length)],
+            newItem
+          ].join(' ').replace(/\s+/g, ' ').trim()
             )
         }
         saveInventory()
