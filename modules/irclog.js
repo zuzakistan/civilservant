@@ -20,7 +20,33 @@ function processAg (str) {
   return convertAgToIRC(preventHilight(str))
 }
 
+function randomMessage () {
+  return new Promise((resolve, reject) => {
+    var c = exec(esc([__rootdir + '/ircspeak.sh']))
+    var stdout = ''
+    c.stdout.on('data', function (data) {
+      stdout += data.toString()
+    })
+    c.stderr.on('data', function (data) {
+      stdout += data.toString()
+    })
+    c.on('close', function () {
+      stdout = stdout.replace(/^.+?> +/, '')
+      resolve(stdout)
+    })
+  })
+}
+
 module.exports = {
+  events: {
+    message: async function (bot, nick, to) {
+      const speakRate = 250
+      if (Math.random() < 1 / speakRate) {
+        const botOpinion = await randomMessage()
+        bot.shout(to, preventHilight(botOpinion))
+      }
+    }
+  },
   commands: {
     irclog: {
       help: 'get a random irc log for a given search term',
