@@ -10,7 +10,9 @@
   ],
   "scripts": {
     "test": "npm run lint",
-    "lint": "node_modules/standard/bin/cmd.js"
+    "lint": "node_modules/standard/bin/cmd.js",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "license": "ISC",
   "dependencies": {
@@ -37,7 +39,7 @@
     "moment-countdown": "0.0.3",
     "moment-timezone": "^0.5.11",
     "node-ddg-api": "^0.1.4",
-    "npm": "^3.5.2",
+    "npm": "^5.10.0",
     "parse5": "^3.0.1",
     "rainbow-log": "^1.0.1",
     "request": "^2.67.0",
@@ -50,7 +52,8 @@
     "us-states": "0.0.1",
     "write-int": "0.0.2",
     "xkcd-37": "^1.1.0",
-    "youtube-search": "^1.0.4"
+    "youtube-search": "^1.0.4",
+    "snyk": "^1.99.1"
   },
   "devDependencies": {
     "extract-comments": "^0.8.6",
@@ -64,5 +67,6 @@
     "globals": [
       "__rootdir"
     ]
-  }
+  },
+  "snyk": true
 }
