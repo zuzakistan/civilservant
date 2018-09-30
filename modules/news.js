@@ -85,7 +85,8 @@ module.exports = {
           id: 'BBC' + story.assetId,
           text: story.headline,
           url: 'https://bbc.co.uk' + story.assetUri,
-          prompt: 'BREAKING'
+          prompt: 'BREAKING',
+          tail: story.tail ? story.tail : undefined
         })
       }
     },
