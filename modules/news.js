@@ -172,7 +172,7 @@ module.exports = {
     },
     'rawnews:aljaz': function (bot, story) {
       if (story.Alert) {
-        for (var i = 0; i > story.AlertText.length; i++) {
+        for (var i = 0; i < story.AlertText.length; i++) {
           var curr = story.AlertText[0]
           bot.fireEvents('news', {
             color: 'orange',
