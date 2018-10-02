@@ -35,7 +35,7 @@ module.exports = {
     control: {
       help: 'Checks whether the current channel is able to execute privileged commands',
       command: function (bot, msg) {
-        if (msg.to === bot.get('irc.control')) {
+        if (msg.to === bot.config.get('irc.control')) {
           return 'this is the control channel'
         }
         return 'this is not the control channel'
@@ -44,7 +44,7 @@ module.exports = {
     shout: {
       help: 'Checks whether the shout functionality is enabled',
       command: function (bot) {
-        if (bot.get('irc.quiet')) {
+        if (bot.config.get('irc.quiet')) {
           return 'bot is quiet'
         }
         return 'bot is loud'
