@@ -86,6 +86,12 @@ module.exports = config = convict({
       format: String,
       default: '!',
       env: 'CONTROL_CHAR'
+    },
+    quiet: {
+      doc: 'whether the bot should suppress unsolicited messages',
+      format: Boolean,
+      default: false,
+      env: 'QUIET'
     }
   },
   irclogs: {
