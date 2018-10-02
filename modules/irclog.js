@@ -13,7 +13,7 @@ function convertAgToIRC (str) {
 
 function preventHilight (str) {
   return str
-    .replace(/(\b|[+%@&~])([a-zA-Z0-9_])([a-zA-Z0-9_]+)/g, '$1\u200b$2')
+    .replace(/(\b|[+%@&~])([a-zA-Z0-9_])([a-zA-Z0-9_]+)/g, '$1$2\u200b$3')
 }
 
 function processAg (str) {
