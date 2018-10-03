@@ -80,9 +80,6 @@ module.exports = {
         c.stdout.on('data', function (data) {
           stdout += data.toString()
         })
-        c.stderr.on('data', function (data) {
-          stdout += data.toString()
-        })
         c.on('close', function () {
           bot.say(msg.to, stdout)
         })
