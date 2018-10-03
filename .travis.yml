@@ -5,11 +5,3 @@ node_js:
 before_install:
     - sudo apt-get update -qq
     - sudo apt-get install -y libcairo2-dev libpango1.0-dev libjpeg-dev libgif-dev
-notifications:
-    irc:
-        channels:
-            - "chat.freenode.net##zuzakistan"
-        use_notice: true
-        skip_join: true
-        on_success: change
-        on_failure: change
