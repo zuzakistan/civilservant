@@ -9,9 +9,6 @@ module.exports = {
         var args = [ msg.args.page ]
         var c = exec('man -f ' + esc(args))
         var stdout = ''
-        c.stdout.on('data', function (data) {
-          stdout += data.toString()
-        })
         c.stderr.on('data', function (data) {
           stdout += data.toString()
         })
