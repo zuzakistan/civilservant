@@ -7,7 +7,7 @@ module.exports = {
         var cmd = bot.commands[msg.args.command]
         if (Array.isArray(cmd.usage)) {
           bot.say(msg.to,
-              msg.nick +
+            msg.nick +
               ': Usage: ' +
               bot.config.get('irc.controlChar') +
               msg.args.command +
@@ -15,7 +15,7 @@ module.exports = {
           )
         } else {
           bot.say(msg.to,
-              msg.nick +
+            msg.nick +
               ': Usage: ' +
               bot.config.get('irc.controlChar') +
               msg.args.command +

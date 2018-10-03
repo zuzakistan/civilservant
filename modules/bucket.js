@@ -129,13 +129,13 @@ module.exports = {
             synonyms.take[Math.floor(Math.random() * synonyms.take.length)],
             newItem
           ].join(' ').replace(/\s+/g, ' ').trim()
-            )
+          )
         }
         saveInventory()
       }
     },
     message: function (bot, nick, to) {
-      if (Math.random() < 1 / dropRate) {  // 1 in 500
+      if (Math.random() < 1 / dropRate) { // 1 in 500
         var item = dropItem()
         if (item) {
           if (Math.random() < 1 / 5) {

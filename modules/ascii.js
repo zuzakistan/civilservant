@@ -9,12 +9,12 @@ module.exports = {
         }
         asciify.getFonts(function (e, b) {
           asciify(
-              msg.body,
-              b[Math.floor(Math.random() * b.length)],
-              function (err, res) {
-                if (err) return bot.say(msg.to, err)
-                bot.say(msg.to, res)
-              })
+            msg.body,
+            b[Math.floor(Math.random() * b.length)],
+            function (err, res) {
+              if (err) return bot.say(msg.to, err)
+              bot.say(msg.to, res)
+            })
         })
       }
     },

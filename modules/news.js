@@ -189,7 +189,7 @@ module.exports = {
       if (!oldnews[news.id] || !isEqualObj(oldnews[news.id], news)) {
         var bitly = new Bitly(bot.config.get('bitly.username'), bot.config.get('bitly.password'))
         bitly.shorten(news.url, function (err, res) {
-          if (err) res = {data: {url: news.url}}
+          if (err) res = { data: { url: news.url } }
           var str = ''
           if (news.prompt) {
             str += colors.wrap(news.color, news.prompt + ': ')
