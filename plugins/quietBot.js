@@ -5,7 +5,7 @@ var bot = require('..')
  * Checks a config variable to make sure it only does this in channels that want it.
  */
 bot.shout = function (target, message) {
-  if (!bot.config.irc.quiet) {
+  if (!bot.config.get('irc.quiet')) {
     bot.say(target, message)
   }
 }
