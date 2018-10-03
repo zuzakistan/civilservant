@@ -53,7 +53,7 @@
     "write-int": "0.0.2",
     "xkcd-37": "^1.1.0",
     "youtube-search": "^1.0.4",
-    "snyk": "^1.99.1"
+    "snyk": "^1.100.0"
   },
   "devDependencies": {
     "extract-comments": "^0.8.6",
