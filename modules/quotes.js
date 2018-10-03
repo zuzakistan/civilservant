@@ -17,7 +17,7 @@ module.exports = {
         var key = body.shift()
         body = body.join('=') // so clunky
         if (!body || !key) {
-          return 'Usage: ' + bot.config.irc.controlChar + 'qadd foo=bar'
+          return 'Usage: ' + bot.config.get('irc.controlChar') + 'qadd foo=bar'
         }
         if (!quotes[key]) {
           quotes[key] = [ body ]

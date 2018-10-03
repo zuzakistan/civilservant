@@ -172,7 +172,7 @@ module.exports = {
     },
     'rawnews:aljaz': function (bot, story) {
       if (story.Alert) {
-        for (var i = 0; i > story.AlertText.length; i++) {
+        for (var i = 0; i < story.AlertText.length; i++) {
           var curr = story.AlertText[0]
           bot.fireEvents('news', {
             color: 'orange',
@@ -187,7 +187,7 @@ module.exports = {
     news: function (bot, news) {
       console.log(news)
       if (!oldnews[news.id] || !isEqualObj(oldnews[news.id], news)) {
-        var bitly = new Bitly(bot.config.bitly.username, bot.config.bitly.password)
+        var bitly = new Bitly(bot.config.get('bitly.username'), bot.config.get('bitly.password'))
         bitly.shorten(news.url, function (err, res) {
           if (err) res = {data: {url: news.url}}
           var str = ''
@@ -196,7 +196,7 @@ module.exports = {
           }
           // news transform
           try {
-            if (bot.config.news && bot.config.news.replace) {
+            if (bot.config.get('news.replace')) {
               var substitutions = JSON.parse(read(__rootdir + '/data/substitutions.json', { encoding: 'utf-8' }))
               var stringsToReplace = Object.keys(substitutions)
               var newstr = news.text

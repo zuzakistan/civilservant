@@ -28,7 +28,7 @@ module.exports = {
           break
         }
       }
-      bot.notice(bot.config.yakc.channel, msg)
+      bot.notice(bot.config.get('yakc.channel'), msg)
     }
   }
 }

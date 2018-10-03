@@ -4,7 +4,8 @@
 module.exports = {
   events: {
     message: function (bot, nick, to, text, message) {
-      if (text.substr(0, 1) === bot.config.irc.controlChar) {
+      let controlChar = bot.config.get('irc.controlChar')
+      if (text.substr(0, 1) === controlChar) {
         var msg = {
           body: text.substr(text.indexOf(' ') + 1),
           args: text.substr(1).split(' '),
@@ -13,7 +14,7 @@ module.exports = {
           text: text,
           message: message
         }
-        msg._cmd = bot.config.irc.controlChar + msg.args[0]
+        msg._cmd = controlChar + msg.args[0]
         if (bot.commands.hasOwnProperty(msg.args[0])) {
           try {
             var cmd = bot.commands[msg.args[0]]
@@ -28,8 +29,8 @@ module.exports = {
                 return
               }
               if (cmd.privileged) {
-                if (bot.config.irc.control !== msg.to) {
-                  if (bot.config.irc.insecure === true) {
+                if (bot.config.get('irc.control') !== msg.to) {
+                  if (bot.config.get('irc.insecure') === true) {
                     // pass
                   } else {
                     // http://www.imdb.com/title/tt0062622/quotes?item=qt0396921
@@ -66,7 +67,7 @@ module.exports = {
               }
             }
           } catch (e) {
-            bot.say(bot.config.irc.control, 'Error processing `' + msg._cmd + '` in ' + msg.to + ': ' + e)
+            bot.say(bot.config.get('irc.control'), 'Error processing `' + msg._cmd + '` in ' + msg.to + ': ' + e)
             console.error(e.message)
             console.error(e.stack)
           }
