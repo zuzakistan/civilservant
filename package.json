@@ -52,7 +52,6 @@
     "youtube-search": "^1.0.4"
   },
   "devDependencies": {
-    "extract-comments": "^0.8.6",
     "jshint": "^2.5.4",
     "mocha": "^2.3.4",
     "node-dir": "^0.1.11",
