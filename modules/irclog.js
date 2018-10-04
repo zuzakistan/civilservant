@@ -20,20 +20,13 @@ function processAg (str) {
   return convertAgToIRC(preventHilight(str))
 }
 
-function randomMessage () {
+function logExec (forExec) {
   return new Promise((resolve, reject) => {
-    var c = exec(esc([__rootdir + '/ircspeak.sh']))
+    var c = exec(esc(forExec))
     var stdout = ''
-    c.stdout.on('data', function (data) {
-      stdout += data.toString()
-    })
-    c.stderr.on('data', function (data) {
-      stdout += data.toString()
-    })
-    c.on('close', function () {
-      stdout = stdout.replace(/^.+?> +/, '')
-      resolve(stdout)
-    })
+    c.stdout.on('data', (d) => { stdout += d.toString() })
+    c.stderr.on('data', (d) => { stdout += d.toString() })
+    c.on('close', () => resolve(stdout))
   })
 }
 
@@ -42,8 +35,8 @@ module.exports = {
     message: async function (bot, nick, to) {
       const speakRate = 250
       if (Math.random() < 1 / speakRate) {
-        const botOpinion = await randomMessage()
-        bot.shout(to, preventHilight(botOpinion))
+        const res = await logExec([__rootdir + '/ircspeak.sh'])
+        bot.shout(to, preventHilight(res.replace(/^.+?> +/, '')))
       }
     }
   },
@@ -52,40 +45,25 @@ module.exports = {
       help: 'get a random irc log for a given search term',
       privileged: true,
       aliases: ['ag'],
-      command: function (bot, msg) {
+      command: async function (bot, msg) {
         if (msg.args.length === 1) {
           return 'Usage: !irclog <search phrase>'
         }
-        var c = exec(esc([__rootdir + '/irclog.sh', msg.body]))
-        var stdout = ''
-        c.stdout.on('data', function (data) {
-          stdout += data.toString()
-        })
-        c.stderr.on('data', function (data) {
-          stdout += data.toString()
-        })
-        c.on('close', function () {
-          bot.say(msg.to, processAg(stdout))
-        })
+        const res = await logExec([__rootdir + '/irclog.sh', msg.body])
+        bot.say(msg.to, processAg(res))
       }
     },
     irccount: {
       help: 'count the occurences of a string in the irc logs',
       privileged: true,
       aliases: [ 'agc', 'ircc', 'irclogc' ],
-      command: function (bot, msg) {
+      command: async function (bot, msg) {
         if (msg.args.length === 1) {
           return 'Usage: !irclog <search phrase>'
         }
         if (!bot.config.has('irclogs')) return 'Error: No logfile specified'
-        let c = exec(esc(['ag', '-c', '--', msg.body, bot.config.get('irclogs')]))
-        var stdout = ''
-        c.stdout.on('data', function (data) {
-          stdout += data.toString()
-        })
-        c.on('close', function () {
-          bot.say(msg.to, stdout)
-        })
+        const res = await logExec(['ag', '-c', '--', msg.body, bot.config.get('irclogs')])
+        bot.say(msg.to, processAg(res))
       }
     }
   }
