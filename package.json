@@ -9,7 +9,8 @@
     "danharibo <danharibo@gmail.com>"
   ],
   "scripts": {
-    "test": "npm run lint",
+    "test": "npm run lint && npm run mocha",
+    "mocha": "mocha tests/modules",
     "lint": "node_modules/standard/bin/cmd.js",
     "snyk-protect": "snyk protect",
     "prepare": "npm run snyk-protect"
