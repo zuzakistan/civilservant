@@ -50,6 +50,7 @@ module.exports = {
   commands: {
     irclog: {
       help: 'get a random irc log for a given search term',
+      privileged: true,
       aliases: ['ag'],
       command: function (bot, msg) {
         if (msg.args.length === 1) {
@@ -70,6 +71,7 @@ module.exports = {
     },
     irccount: {
       help: 'count the occurences of a string in the irc logs',
+      privileged: true,
       aliases: [ 'agc', 'ircc', 'irclogc' ],
       command: function (bot, msg) {
         if (msg.args.length === 1) {
