@@ -1,5 +1,5 @@
-var BBC_NEWS_URL = 'http://polling.bbc.co.uk/news/latest_breaking_news?audience=Domestic'
-var BBC2_NEWS_URL = 'http://polling.bbc.co.uk/news/latest_breaking_news?audience=US'
+var BBC_NEWS_UK_URL = 'http://polling.bbc.co.uk/news/latest_breaking_news?audience=Domestic'
+var BBC_NEWS_US_AND_CANADA_URL = 'http://polling.bbc.co.uk/news/latest_breaking_news?audience=US'
 var REU_UK_NEWS_URL = 'http://uk.reuters.com/assets/breakingNews?view=json'
 var REU_NEWS_URL = 'http://us.reuters.com/assets/breakingNews?view=json'
 var REUWIRE_URL = 'http://uk.reuters.com/assets/jsonWireNews'
@@ -16,26 +16,27 @@ var BLOOMBERG_ALERTS = [
 var bot = require('..')
 
 var poll = function () {
-  request(BBC_NEWS_URL, function (err, res, body) {
-    if (!err) {
-      var data
-      try {
-        data = JSON.parse(body)
-      } catch (e) {
-        if (e instanceof SyntaxError) {
-          // bot.shout(bot.config.irc.control, 'bbc news feed playing up')
-          console.log(body, res)
-          return
-        }
-        throw e
-      }
-      if (data.html !== '') {
-        bot.fireEvents('rawnews:bbc', data.html)
-      }
-      setTimeout(poll, data.pollPeriod ? data.pollPeriod : 30000)
-    } else {
-      setTimeout(poll, 30000)
+  request(BBC_NEWS_UK_URL, function (err, res, body) {
+    if (err) return
+    let data
+    try {
+      data = JSON.parse(body)
+    } catch (e) {
+      return e
     }
+    data.asset.tail = 'UK'
+    bot.fireEvents('news:bbc2', data.asset)
+  })
+  request(BBC_NEWS_US_AND_CANADA_URL, function (err, res, body) {
+    if (err) return
+    let data
+    try {
+      data = JSON.parse(body)
+    } catch (e) {
+      return e
+    }
+    data.asset.tail = 'US'
+    bot.fireEvents('news:bbc2', data.asset)
   })
   request(ALJAZ_ALERT, function (err, res, body) {
     if (!err) {
@@ -72,24 +73,6 @@ var poll = function () {
       }
     })
   }
-  request(BBC2_NEWS_URL, function (err, res, body) {
-    if (!err) {
-      var data
-      try {
-        data = JSON.parse(body)
-      } catch (e) {
-        if (e instanceof SyntaxError) {
-          // bot.shout(bot.config.irc.control, 'bbc2 feed playing up')
-          return
-        } else {
-          // bot.shout(bot.config.irc.control, 'bbc2 really playing up')
-          // throw e;
-        }
-      }
-      data.asset.tag = 'US'
-      bot.fireEvents('rawnews:bbc', data.asset)
-    }
-  })
   request(REU_UK_NEWS_URL, function (err, res, body) {
     if (!err) {
       var data
