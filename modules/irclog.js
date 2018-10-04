@@ -75,7 +75,8 @@ module.exports = {
         if (msg.args.length === 1) {
           return 'Usage: !irclog <search phrase>'
         }
-        var c = exec(esc(['ag', '-c', '--', msg.body, bot.config.logfile]))
+        if (!bot.config.has('irclogs')) return 'Error: No logfile specified'
+        let c = exec(esc(['ag', '-c', '--', msg.body, bot.config.get('irclogs')]))
         var stdout = ''
         c.stdout.on('data', function (data) {
           stdout += data.toString()
