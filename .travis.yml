@@ -2,11 +2,3 @@ language: node_js
 node_js:
       - node
       - "8.11.1"
-notifications:
-    irc:
-        channels:
-            - "chat.freenode.net##zuzakistan"
-        use_notice: true
-        skip_join: true
-        on_success: change
-        on_failure: change
