@@ -17,7 +17,7 @@ describe('fullwidthmodule', function () {
   let i = 1
   for (const word in tests) {
     it(`be aesthetic ${i++}`, function () {
-      assert.strictEqual(mockBot.runCommand('!fullwidth', { word }), tests[word])
+      assert.strictEqual(mockBot.runCommand(`!fullwidth ${word}`), tests[word])
     })
   }
 })
