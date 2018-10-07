@@ -99,6 +99,11 @@ module.exports = config = convict({
     format: String
   },
   news: {
+    poll: {
+      doc: 'Whether to automatically poll for news',
+      format: Boolean,
+      default: true
+    },
     replace: {
       doc: 'Whether to enable xkcd style substitutions',
       format: Boolean,

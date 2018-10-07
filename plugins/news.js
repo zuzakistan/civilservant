@@ -1,143 +1,99 @@
-var BBC_NEWS_URL = 'http://polling.bbc.co.uk/news/latest_breaking_news?audience=Domestic'
-var BBC2_NEWS_URL = 'http://polling.bbc.co.uk/news/latest_breaking_news?audience=US'
-var REU_UK_NEWS_URL = 'http://uk.reuters.com/assets/breakingNews?view=json'
-var REU_NEWS_URL = 'http://us.reuters.com/assets/breakingNews?view=json'
-var REUWIRE_URL = 'http://uk.reuters.com/assets/jsonWireNews'
-var ALJAZ_ALERT = 'http://www.aljazeera.com/addons/alert.ashx'
-var request = require('request')
-var BLOOMBERG_ALERTS = [
-  'https://www.bloomberg.com/api/modules/id/europe_breaking_news',
-  'https://www.bloomberg.com/api/modules/id/us_breaking_news',
-  'https://www.bloomberg.com/api/modules/id/canada_breaking_news',
-  'https://www.bloomberg.com/api/modules/id/breaking_news',
-  'https://www.bloomberg.com/api/modules/id/africa_breaking_news'
+const bot = require('..')
+const request = require('request')
+
+const POLL_TIMEOUT = 30 * 1000
+
+const APIS = [
+  {
+    url: 'http://www.aljazeera.com/addons/alert.ashx',
+    eventName: 'aljaz'
+  },
+  /* { // Bloomberg seems blocked by CAPTCHAs
+    url: 'https://www.bloomberg.com/api/modules/id/africa_breaking_news',
+    eventName: 'bloomberg',
+    payload: {tag: 'Africa'}
+  },
+  {
+    url: 'https://www.bloomberg.com/api/modules/id/canada_breaking_news',
+    eventName: 'bloomberg',
+    payload: {tag: 'Canada'}
+  },
+  {
+    url: 'https://www.bloomberg.com/api/modules/id/europe_breaking_news',
+    eventName: 'bloomberg',
+    payload: {tag: 'Europe'}
+  },
+  {
+    url: 'https://www.bloomberg.com/api/modules/id/us_breaking_news',
+    eventname: 'bloomberg',
+    payload: {tag: 'us'}
+  },
+  {
+    url: 'https://www.bloomberg.com/api/modules/id/breaking_news',
+    eventname: 'bloomberg'
+  }, */
+  {
+    url: 'http://polling.bbc.co.uk/news/latest_breaking_news_waf?audience=Domestic',
+    eventName: 'bbc',
+    payload: { tag: 'domestic' },
+    customDecoder: (data) => data.asset
+  },
+  {
+    url: 'http://polling.bbc.co.uk/news/latest_breaking_news_waf?audience=US',
+    eventName: 'bbc2',
+    payload: { tag: 'US & Canada' },
+    customDecoder: (data) => data.asset
+  },
+  {
+    url: 'http://uk.reuters.com/assets/breakingNews?view=json',
+    eventName: 'reuters',
+    payload: { tag: 'UK' }
+  },
+  {
+    url: 'http://reuters.com/assets/breakingNews?view=json',
+    eventName: 'reuters',
+    payload: { tag: 'US?' }
+  },
+  { // this one is very loud
+    url: 'http://uk.reuters.com/assets/jsonWireNews',
+    eventName: 'reuwire',
+    customDecoder: (data) => data.headlines
+  }
 ]
 
-let pollPeriod = 30 * 1000
-
-var bot = require('..')
-
-var poll = function () {
-  request(ALJAZ_ALERT, function (err, res, body) {
-    if (!err) {
-      var data
-      try {
-        data = JSON.parse(body)
-      } catch (e) {
-        if (e instanceof SyntaxError) {
-          // bot.shout(bot.config.irc.control, 'AJ feed playing up')
-          return
-        } else {
-          // bot.shout(bot.config.irc.control, 'AJ really playing up')
-          // throw e;
-        }
-      }
-      bot.fireEvents('rawnews:aljaz', data)
+const requestApi = (api) => {
+  request(api.url, (err, res, body) => {
+    if (err) throw err
+    let payload
+    try {
+      if (res.body.trim() === '') res.body = '{}' // reuters sends empty on no news
+      payload = JSON.parse(res.body)
+    } catch (e) {
+      if (!(e instanceof SyntaxError)) throw e
+      return console.log(`Syntax error decoding ${api.url}: ${payload} ${res.body}`)
     }
-  })
-  for (var i = 0; i < BLOOMBERG_ALERTS.length; i++) {
-    request(BLOOMBERG_ALERTS[i], function (err, res, body) {
-      if (!err) {
-        var data
-        try {
-          data = JSON.parse(body)
-        } catch (e) {
-          if (e instanceof SyntaxError) {
-            // bot.shout( bot.config.irc.control, 'bloomberg feed playing up' );
-            return
-          } else {
-            // bot.shout( bot.config.irc.control, 'bloomberg really playing up' );
-          }
-        }
-        bot.fireEvents('rawnews:bloomberg', data)
-      }
-    })
-  }
-  request(BBC_NEWS_URL, function (err, res, body) {
-    if (!err) {
-      var data
-      try {
-        data = JSON.parse(body)
-      } catch (e) {
-        if (e instanceof SyntaxError) {
-          // bot.shout(bot.config.irc.control, 'bbc2 feed playing up')
-          return
-        } else {
-          // bot.shout(bot.config.irc.control, 'bbc2 really playing up')
-          // throw e;
-        }
-      }
-      data.asset.tag = 'Domestic'
-      bot.fireEvents('rawnews:bbc2', data.asset)
-      pollPeriod = data.pollPeriod ? data.pollPeriod : 30000
+    if (api.customDecoder) {
+      payload = api.customDecoder(payload)
     }
-  })
-  request(BBC2_NEWS_URL, function (err, res, body) {
-    if (!err) {
-      var data
-      try {
-        data = JSON.parse(body)
-      } catch (e) {
-        if (e instanceof SyntaxError) {
-          // bot.shout(bot.config.irc.control, 'bbc2 feed playing up')
-          return
-        } else {
-          // bot.shout(bot.config.irc.control, 'bbc2 really playing up')
-          // throw e;
-        }
-      }
-      data.asset.tag = 'US'
-      bot.fireEvents('rawnews:bbc2', data.asset)
+    if (api.payload) {
+      Object.assign(api.payload, payload)
     }
-  })
-  request(REU_UK_NEWS_URL, function (err, res, body) {
-    if (!err) {
-      var data
-      try {
-        data = JSON.parse(body)
-      } catch (e) {
-        // reuters send "" not "{}" on no-news
-        if (e instanceof SyntaxError) {
-          return false
-        }
-        throw e
-      }
-      data.tag = 'UK'
-      bot.fireEvents('rawnews:reuters', data)
-    }
-  })
-  request(REU_NEWS_URL, function (err, res, body) {
-    if (!err) {
-      var data
-      try {
-        data = JSON.parse(body)
-      } catch (e) {
-        // reuters send "" not "{}" on no-news
-        if (e instanceof SyntaxError) {
-          return false
-        }
-        throw e
-      }
-      data.tag = 'US'
-      bot.fireEvents('rawnews:reuters', data)
-    }
-  })
-  request(REUWIRE_URL, function (err, res, body) {
-    if (!err) {
-      var data
-      try {
-        data = JSON.parse(body)
-      } catch (e) {
-        // reuters send "" not "{}" on no-news
-        if (e instanceof SyntaxError) {
-          return false
-        }
-        throw e
-      }
-      bot.fireEvents('rawnews:reuwire', data.headlines)
-    }
+    bot.fireEvents(`rawnews:${api.eventName}`, payload)
   })
   setTimeout(poll, pollPeriod)
 }
 
-poll()
+const pollApis = (skip) => {
+  APIS.map(requestApi)
+  if (!skip && bot.config.get('news.poll')) {
+    setTimeout(pollApis, POLL_TIMEOUT)
+  }
+}
+
+module.exports = { pollApis }
+
+if (bot.config.get('news.poll')) {
+  pollApis()
+} else {
+  console.log('Automatic polling of news disabled')
+}

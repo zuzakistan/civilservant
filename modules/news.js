@@ -1,8 +1,9 @@
-var parse5 = require('parse5')
 var write = require('fs').writeFile
 var read = require('fs').readFileSync
 var colors = require('irc').colors
 var Bitly = require('bitly')
+
+const plugin = require('../plugins/news')
 
 var oldnews = {}
 
@@ -16,6 +17,14 @@ function isEqualObj (a, b) {
 
 module.exports = {
   commands: {
+    poll: {
+      help: 'poll for news',
+      privileged: true,
+      command: function (bot, msg) {
+        plugin.pollApis(true)
+        return 'ok'
+      }
+    },
     clearnews: {
       help: 'Clears the news cache',
       command: function (bot, msg) {
@@ -43,42 +52,7 @@ module.exports = {
      * of the BBC News API. Here, we extract useable data from the rather idiosyncratic API
      * and send it to the news event.
      */
-    'rawnews:bbc': function (bot, html) {
-      // The BBC sends a JSON file with strings of HTML; we need to drill down
-      // two levels to the important bit (this is terrible)
-      var nodes = parse5.parseFragment(html).childNodes[0].childNodes[1].childNodes
-      var news = { color: 'light_red' }
-      var body = null
-
-      for (var i = 0; i < nodes.length; i++) {
-        var curr = nodes[i]
-        if (curr.tagName === 'a') {
-          for (var j = 0; j < curr.attrs.length; j++) {
-            if (curr.attrs[j].name === 'href') {
-              news.url = 'http://bbc.co.uk' + curr.attrs[j].value
-              if (news.url.startsWith('/sport') === true) {
-                news.color = 'yellow'
-              }
-            } else if (curr.attrs[j].name === 'data-asset-id') {
-              news.id = curr.attrs[j].value
-            }
-          }
-          body = curr.childNodes
-          continue
-        }
-      }
-
-      for (i = 0; i < body.length; i++) {
-        if (body[i].tagName === 'h2') {
-          news.prompt = body[i].childNodes[0].value
-        } else if (body[i].tagName === 'p') {
-          news.text = body[i].childNodes[0].value
-        }
-      }
-
-      bot.fireEvents('news', news)
-    },
-    'rawnews:bbc2': function (bot, story) {
+    'rawnews:bbc': function (bot, story) {
       if (story) {
         bot.fireEvents('news', {
           color: 'dark_red',
@@ -86,50 +60,6 @@ module.exports = {
           text: story.headline,
           url: 'https://bbc.co.uk' + story.assetUri,
           prompt: 'BREAKING'
-        })
-      }
-    },
-    'rawnews:gdn': function (bot, stories) {
-      for (var i = 0; i < stories.length; i++) {
-        // at least the Guardian has a decent API
-        var curr = stories[i]
-        var GUARDIAN_THEATRES = [ 'uk' ]
-        for (var j = 0; j < curr.content.length; j++) {
-          if (GUARDIAN_THEATRES.indexOf(curr.href) !== -1) {
-            bot.fireEvents('news', {
-              color: 'dark_blue',
-              id: curr.content[j].uid,
-              text: curr.content[j].headline,
-              prompt: 'Guardian',
-              tail: curr.href,
-              url: curr.content[j].shortUrl
-            })
-          }
-        }
-      }
-    },
-    'rawnews:ind': function (bot, stories) {
-      for (var i = 0; i < stories.length; i++) {
-        var story = stories[i]
-        bot.fireEvents('news', {
-          color: 'dark_green',
-          id: 'ind' + story.id,
-          text: story.title,
-          prompt: 'Independent',
-          tail: story.link.indexOf('/voices/') !== -1 ? 'opinion piece' : null,
-          url: 'https://www.independent.co.uk' + story.link
-        })
-      }
-    },
-    'rawnews:ind100': function (bot, stories) {
-      for (var i = 0; i < stories.length; i++) {
-        var story = stories[i]
-        bot.fireEvents('news', {
-          color: 'light_green',
-          id: story.id,
-          text: story.headline,
-          prompt: 'i100 ' + story.category,
-          url: story.displayURL
         })
       }
     },
@@ -159,15 +89,15 @@ module.exports = {
       }
     },
     'rawnews:reuwire': function (bot, stories) {
-      for (var i = 0; i < stories.length; i++) {
-        /* var story = stories[i]
+      for (let i = 0; i < stories.length; i++) {
+        let story = stories[i]
         bot.fireEvents('news', {
           color: 'yellow',
           id: story.id,
           text: story.headline,
           prompt: 'Reuters',
           url: 'http://www.reuters.com' + story.url
-        }) */
+        })
       }
     },
     'rawnews:aljaz': function (bot, story) {
@@ -185,7 +115,7 @@ module.exports = {
       }
     },
     news: function (bot, news) {
-      console.log(news)
+      console.log('NEWSNEWSNEWS', news)
       if (!oldnews[news.id] || !isEqualObj(oldnews[news.id], news)) {
         var bitly = new Bitly(bot.config.get('bitly.username'), bot.config.get('bitly.password'))
         bitly.shorten(news.url, function (err, res) {
