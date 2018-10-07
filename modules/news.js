@@ -20,14 +20,14 @@ module.exports = {
     poll: {
       help: 'poll for news',
       privileged: true,
-      command: function (bot, msg) {
+      command: function () {
         plugin.pollApis(true)
         return 'ok'
       }
     },
     clearnews: {
       help: 'Clears the news cache',
-      command: function (bot, msg) {
+      command: function (bot) {
         oldnews = {}
         return 'News cache cleared. Take cover :)'
       }

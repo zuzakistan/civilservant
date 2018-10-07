@@ -66,11 +66,11 @@ const requestApi = (api) => {
     if (err) throw err
     let payload
     try {
-      if (res.body.trim() === '') res.body = '{}' // reuters sends empty on no news
-      payload = JSON.parse(res.body)
+      if (res.body.trim() === '') body = '{}' // reuters sends empty on no news
+      payload = JSON.parse(body)
     } catch (e) {
       if (!(e instanceof SyntaxError)) throw e
-      return console.log(`Syntax error decoding ${api.url}: ${payload} ${res.body}`)
+      return console.log(`Syntax error decoding ${api.url}: ${payload} ${body}`)
     }
     if (api.customDecoder) {
       payload = api.customDecoder(payload)
@@ -80,7 +80,6 @@ const requestApi = (api) => {
     }
     bot.fireEvents(`rawnews:${api.eventName}`, payload)
   })
-  setTimeout(poll, pollPeriod)
 }
 
 const pollApis = (skip) => {
