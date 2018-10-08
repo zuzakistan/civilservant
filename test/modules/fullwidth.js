@@ -7,7 +7,9 @@ describe('fullwidthmodule', function () {
     'abcdefghijklmnopqrstuvwxyz': 'ａｂｃｄｅｆｇｈｉｊｋｌｍｎｏｐｑｒｓｔｕｖｗｘｙｚ',
     'ABCDEFGHIJKLMNOPQRSTUVWYXZ': 'ＡＢＣＤＥＦＧＨＩＪＫＬＭＮＯＰＱＲＳＴＵＶＷＹＸＺ',
     '0123456789': '０１２３４５６７８９',
-    '!"#$%&\'()*+,-./': '！＂＃＄％＆＇（）＊＋，－．／'
+    '!"#$%&\'()*+,-./': '！＂＃＄％＆＇（）＊＋，－．／',
+    '¢£¥¦¬¯₩': '￠￡￥￤￢￣￦',
+    '¡aBc¥': '¡ａｂｃ￥'
   }
 
   before(function () {
