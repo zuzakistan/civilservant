@@ -7,8 +7,8 @@ module.exports = {
         let codePoints = Array.prototype.map.call(msg.body, (c) => c.codePointAt(0))
         codePoints = codePoints.map((c) => {
           if (c >= 33 && c <= 126) return c - 33 + 0xFF01
-          let nonAscii = {
-             32: 0x3000, // Space
+          const nonAscii = {
+            32: 0x3000, // Space
             162: 0xFFE0, // ￠
             163: 0xFFE1, // ￡
             165: 0xFFE5, // ￥
