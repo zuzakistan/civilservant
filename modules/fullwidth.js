@@ -1,5 +1,5 @@
 function toFullwidth (str) {
-  let codePoints = Array.prototype.map.call(msg.body, (c) => c.codePointAt(0))
+  let codePoints = Array.prototype.map.call(str, (c) => c.codePointAt(0))
   codePoints = codePoints.map((c) => {
     if (c >= 33 && c <= 126) return c - 33 + 0xFF01
     const nonAscii = {
