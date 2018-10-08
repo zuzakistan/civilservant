@@ -24,7 +24,7 @@ module.exports = {
       help: 'Ｃｒｅａｔｅｓ　ａｎ　ａｅｓｔｈｅｔｉｃ',
       aliases: [ 'vw', 'fw' ],
       command: function (bot, msg) {
-        return toFullwidth(msg)
+        return toFullwidth(msg.body)
       }
     }
   },
