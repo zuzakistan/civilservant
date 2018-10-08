@@ -23,7 +23,7 @@ module.exports = {
         return String.fromCodePoint(...codePoints)
       }
     }
-  }
+  },
   events: {
     message: function (bot, nick, to, text) {
       if (text.match(/^(. )+.?$/)) return bot.shout(to, fullwidth(text.replace(/(.) (.)/g,$1$2)))
