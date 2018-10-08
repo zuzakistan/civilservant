@@ -53,21 +53,22 @@ module.exports = {
      * and send it to the news event.
      */
     'rawnews:bbc': function (bot, story) {
-      if (story) {
+      if (story && story.headline) {
         bot.fireEvents('news', {
           color: 'dark_red',
           id: 'BBC' + story.assetId,
           text: story.headline,
           url: 'https://bbc.co.uk' + story.assetUri,
-          prompt: 'BREAKING'
+          prompt: 'BBC BREAKING'
         })
       }
     },
     'rawnews:reuters': function (bot, story) {
+      if (!story.headline) return
       bot.fireEvents('news', {
         color: 'orange',
         id: story.tag + story.headline,
-        prompt: story.label,
+        prompt: story.label ? story.label : 'Reuters',
         tail: story.tag ? story.tag : null,
         text: story.headline,
         url: story.url ? story.url : null

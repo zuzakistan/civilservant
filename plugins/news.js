@@ -63,7 +63,7 @@ const APIS = [
 
 const requestApi = (api) => {
   request(api.url, (err, res, body) => {
-    if (err) throw err
+    if (err) return console.log(`Error polling ${api.url}: ${err}`)
     let payload
     try {
       if (res.body.trim() === '') body = '{}' // reuters sends empty on no news
