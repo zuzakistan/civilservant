@@ -108,6 +108,11 @@ module.exports = config = convict({
       doc: 'Whether to enable xkcd style substitutions',
       format: Boolean,
       default: true
+    },
+    loud: {
+      doc: 'Whether to allow more noisy news feeds',
+      format: Boolean,
+      default: false
     }
   },
   bitly: {
