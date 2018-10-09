@@ -57,11 +57,13 @@ const APIS = [
   { // this one is very loud
     url: 'http://uk.reuters.com/assets/jsonWireNews',
     eventName: 'reuwire',
+    disabled: !bot.config.get('news.loud'),
     customDecoder: (data) => data.headlines
   }
 ]
 
 const requestApi = (api) => {
+  if (api.disabled) return
   request(api.url, (err, res, body) => {
     if (err) return console.log(`Error polling ${api.url}: ${err}`)
     let payload
