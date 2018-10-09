@@ -1,4 +1,3 @@
-var npm = require('npm')
 var fs = require('fs')
 const MODULE_DIR = './modules'
 
@@ -43,19 +42,9 @@ var self = module.exports = {
       return true
     } catch (e) {
       if (e.code === 'MODULE_NOT_FOUND') {
-        var npmModule = e.message.split('\'')[1]
-        if (bot.config.get('installModules')) {
-          console.log('Required module ' + npmModule + ' not found; installing')
-          self.installNpm(npmModule, function (e) {
-            if (e) {
-              throw e
-            }
-            self.loadModule(curr)
-          })
-        } else {
-          console.error('Please run `npm install --save ' + npmModule + '`')
-          throw (e)
-        }
+        let npmModule = e.message.split('\'')[1]
+        console.error(`Dependency missing: run \`npm install --save ${npmModule}\``)
+        throw e
       } else {
         console.log(e)
         console.log(e.stack)
@@ -90,16 +79,5 @@ var self = module.exports = {
       }
       bot.events[x].push(events[x])
     }
-  },
-  installNpm: function (module, callback) {
-    npm.load(function (err) {
-      if (err) {
-        throw err
-      }
-      npm.commands.install([module], function (err) {
-        callback(err)
-      })
-    })
   }
-
 }
