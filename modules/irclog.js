@@ -14,7 +14,7 @@ function convertAgToIRC (str) {
 function preventHilight (str) {
   return str
     .replace(/([ <+%@&~][a-zA-Z0-9_])([a-zA-Z0-9_]+)/g, '$1\u034f$2')
-    .replace(/(.)\u{034f}(tt?ps?|ailto):/ug, '$1$2:')
+    .replace(/(.)\u{034f}(tt?ps?|ailto|sh):/ug, '$1$2:')
 }
 
 function processAg (str) {
