@@ -29,7 +29,7 @@
     "escape-string-regexp": "^1.0.5",
     "get-urls": "^8.0.0",
     "githash": "0.0.4",
-    "i18n-iso-countries": "^0.10.0",
+    "i18n-iso-countries": "^3.7.8",
     "imdb-api": "^4.0.2",
     "intl": "^1.2.4",
     "irc": "^0.5.2",
