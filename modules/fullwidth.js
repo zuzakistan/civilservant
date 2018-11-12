@@ -30,8 +30,8 @@ module.exports = {
   },
   events: {
     message: function (bot, nick, to, text) {
-      if (text.match(/^(. )+.?$/)) {
-        bot.shout(to, toFullwidth(text.replace(/(.) (.) ?/g, '$1$2')))
+      if (text.match(/\b. . (. )+.?\b/)) {
+        bot.shout(to, toFullwidth(text.match(/\b. . (. )+.?\b/)[0].replace(/(.) (.) ?/g, '$1$2')))
       }
     }
   }
