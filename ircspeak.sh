@@ -1,2 +1,2 @@
 #! /bin/sh
-ag --no-numbers -v '[0-9-]+T[0-9:+]+.*-.*:.*-' ~/irclogs/freenode/\##zuzakistan.log | shuf -n 1
+shuf -n 1 ~/irclogs/freenode/\##zuzakistan.log | sed -r 's/^[0-9-]+T[0-9:+].*-[A-Za-z0-9]*:#*[A-Za-z0-9]*- (.*)/\1/'
