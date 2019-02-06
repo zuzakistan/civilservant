@@ -37,7 +37,7 @@ module.exports = {
       const speakRate = 250
       if (Math.random() < 1 / speakRate) {
         const res = await logExec([__rootdir + '/ircspeak.sh'])
-        bot.shout(to, preventHilight(res.replace(/^.+?> +/, '')))
+        bot.shout(to, preventHilight(res.replace(/^.+?> +|^[0-9-]+T[0-9:+].*-[A-Za-z0-9]*:#*[A-Za-z0-9]*- /, '')))
       }
     }
   },
