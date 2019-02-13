@@ -1,2 +1,2 @@
 #! /bin/sh
-shuf ~/irclogs/freenode/\##zuzakistan.log -n 1
+shuf -n 1 ~/irclogs/freenode/\##zuzakistan.log
