@@ -163,7 +163,6 @@ module.exports = {
     },
     drop: {
       help: 'Drop an item from inventory',
-      disabled: true,
       command: function () {
         var item = dropItem()
         if (item) {
