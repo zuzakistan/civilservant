@@ -14,6 +14,13 @@ module.exports = {
         }
         return 'Usage: (<number>|<choice 1> … <choice n>)'
       }
+    },
+    coin: {
+      help: 'Flips a coin',
+      command: function () {
+        var faces = ['Heads!', 'Tails!']
+        return faces[Math.floor(Math.random() * faces.length)]
+      }
     }
   }
 }
