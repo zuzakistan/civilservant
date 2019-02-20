@@ -19,7 +19,7 @@ module.exports = {
       help: 'Flips a coin',
       command: function (bot, msg) {
         var faces = ["Heads!", "Tails!"]
-        return faces[Math.floor(Math.random() * 2)]
+        return faces[Math.floor(Math.random() * faces.length)]
       }
     }
   }
