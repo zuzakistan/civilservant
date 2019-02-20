@@ -14,7 +14,7 @@ module.exports = {
         }
         return 'Usage: (<number>|<choice 1> … <choice n>)'
       }
-    }
+    },
     coin: {
       help: 'Flips a coin',
       command: function (bot, msg) {
