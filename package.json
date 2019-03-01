@@ -27,7 +27,7 @@
     "date-util": "^1.2.1",
     "emotional_alert": "^1.0.3",
     "escape-string-regexp": "^1.0.5",
-    "get-urls": "^8.0.0",
+    "get-urls": "^9.0.0",
     "githash": "0.0.4",
     "i18n-iso-countries": "^3.7.8",
     "imdb-api": "^4.0.2",
