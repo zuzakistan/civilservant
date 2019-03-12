@@ -20,7 +20,7 @@ module.exports = {
       function autoCount (bot, lastTick) {
         var thisTick = moment('2019-03-29T23:00:00Z').countdown().toString().split(/, | and /)[0]
         if (thisTick !== lastTick) {
-          bot.say('Article 50 expires in ' + thisTick)
+          bot.broadcast('Article 50 expires in ' + thisTick)
         }
         setTimeout(autoCount, 1000, bot, thisTick)
       }
