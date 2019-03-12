@@ -22,7 +22,7 @@ module.exports = {
         if (thisTick !== lastTick) {
           bot.say('Article 50 expires in ' + thisTick)
         }
-        setTimeout(autoCount(bot, thisTick), 1000)
+        setTimeout(autoCount, 1000, bot, thisTick)
       }
       autoCount(bot, '')
     }
