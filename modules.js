@@ -37,7 +37,7 @@ var self = module.exports = {
         self.addEvents(bot, curr.events)
       }
       if (curr.onload) {
-        curr.onload(bot)
+        curr.onload()
       }
       return true
     } catch (e) {
