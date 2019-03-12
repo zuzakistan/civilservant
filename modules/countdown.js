@@ -14,5 +14,17 @@ module.exports = {
         return 'Python 2.7 support ends in ' + moment('2020-01-01T00:00:00Z').countdown().toString()
       }
     }
+  },
+  onload: {
+    function (bot) {
+      function autoCount (bot, lastTick) {
+        var thisTick = moment('2019-03-29T23:00:00Z').countdown().toString().split(/, | and /)[0]
+        if (thisTick !== lastTick) {
+          bot.say('Article 50 expires in ' + thisTick)
+        }
+        setTimeout(autoCount(bot, thisTick), 1000)
+      }
+      autoCount(bot, '')
+    }
   }
 }
