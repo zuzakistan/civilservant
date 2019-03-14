@@ -12,14 +12,14 @@ module.exports = {
 
         switch (dayOfWeek) {
           case 1: // Mon
-            timeOfInterruption = {hour: 20, minute: 0}
+            timeOfInterruption = { hour: 20, minute: 0 }
             break
           case 2: // Tue
           case 3: // Wed
-            timeOfInterruption = {hour: 19, minute: 0}
+            timeOfInterruption = { hour: 19, minute: 0 }
             break
           case 4: // Thurs
-            timeOfInterruption = {hour: 17, minute: 0}
+            timeOfInterruption = { hour: 17, minute: 0 }
         }
 
         if (!timeOfInterruption) return 'no moment of interruption on ' + now.format('dddd')
