@@ -17,6 +17,7 @@
   },
   "license": "ISC",
   "dependencies": {
+    "@zuzak/owo": "^1.0.0",
     "airport-lookup": "^1.1.0",
     "asciify": "^1.3.5",
     "bitly": "~1.2.5",

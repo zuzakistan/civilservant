@@ -2,6 +2,7 @@ var write = require('fs').writeFile
 var read = require('fs').readFileSync
 var colors = require('irc').colors
 var Bitly = require('bitly')
+const owo = require('@zuzak/owo')
 
 const plugin = require('../plugins/news')
 
@@ -127,6 +128,9 @@ module.exports = {
           }
           // news transform
           try {
+            if (bot.config.get('news.owo')) {
+              news.text = owo(news.text)
+            }
             if (bot.config.get('news.replace')) {
               var substitutions = JSON.parse(read(__rootdir + '/data/substitutions.json', { encoding: 'utf-8' }))
               var stringsToReplace = Object.keys(substitutions)
