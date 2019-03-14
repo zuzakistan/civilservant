@@ -128,9 +128,6 @@ module.exports = {
           }
           // news transform
           try {
-            if (bot.config.get('news.owo')) {
-              news.text = owo(news.text)
-            }
             if (bot.config.get('news.replace')) {
               var substitutions = JSON.parse(read(__rootdir + '/data/substitutions.json', { encoding: 'utf-8' }))
               var stringsToReplace = Object.keys(substitutions)
@@ -141,6 +138,9 @@ module.exports = {
               str += newstr
             } else {
               str += news.text
+            }
+            if (bot.config.get('news.owo')) {
+              str = owo(str)
             }
           } catch (e) {
             str += news.text + '(err)'
