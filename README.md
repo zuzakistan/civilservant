@@ -44,7 +44,3 @@ Some explanation of the not-obvious options:
   If set to `false`, it'll just quit and ask you to install manually.
 * `quiet` toggles unsolicited pronouncements. If you like your bots to speak
   only when spoken to, set this to `true`.
-
-## Known issues
-Sometimes the UDP server doesn't shut down properly.
-Do `netstat -tulpn` and grep for the PID to kill manually.
