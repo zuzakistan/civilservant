@@ -4,7 +4,7 @@
 const applyCommands = function (bot, msg) {
   let controlChar = bot.config.get('irc.controlChar')
   msg._cmd = controlChar + msg.cmds[0]
-  console.log(msg.cmds)
+  console.log(msg)
   if (bot.commands.hasOwnProperty(msg.cmds[0])) {
     try {
       var cmd = bot.commands[msg.cmds[0]]
@@ -29,7 +29,7 @@ const applyCommands = function (bot, msg) {
           }
         }
         if (Array.isArray(cmd.usage)) {
-          if (msg.args.length !== cmd.usage.length) {
+          if (msg.args.length !== cmd.usage.length + msg.cmds.length) {
             return bot.say(msg.to, msg.nick + ': Usage: ' + msg._cmd + ' <' + cmd.usage.join('> <') + '>')
           }
           msg.args = msg.args.reduce(function (o, p, k) {
@@ -37,8 +37,10 @@ const applyCommands = function (bot, msg) {
             return o
           }, {})
           for (var i = 0; i < cmd.usage.length; i++) {
-            msg.args[cmd.usage[i]] = msg.args[i]
+            console.log(cmd.usage[i], msg.args[i + msg.cmds.length])
+            msg.args[cmd.usage[i]] = msg.args[i + msg.cmds.length]
           }
+          console.log(msg.args)
         }
         cmd = cmd.command
       }
@@ -51,6 +53,13 @@ const applyCommands = function (bot, msg) {
             return bot.say(msg.to, msg.nick + ': ' + output)
           } else {
             msg.cmds = msg.cmds.slice(1)
+            try {
+              msg.args = msg.args.slice(1)
+            } catch (e) {
+              if (e instanceof TypeError) {
+                delete msg.args['0']
+              }
+            }
             msg.body = output
             return applyCommands(bot, msg)
           }
@@ -58,10 +67,11 @@ const applyCommands = function (bot, msg) {
           for (var k = 0; k < output.length; k++) {
             if (typeof output[k] === 'string') {
               if (msg.cmds.length === 1) {
-                return bot.say(msg.to, msg.nick + ': ' + output)
+                return bot.say(msg.to, msg.nick + ': ' + output[k])
               } else {
                 msg.cmds = msg.cmds.slice(1)
-                msg.body = output
+                msg.args = msg.args.slice(1)
+                msg.body = output[k]
                 return applyCommands(bot, msg)
               }
             }
@@ -84,7 +94,7 @@ module.exports = {
       if (text.substr(0, 1) === controlChar) {
         var msg = {
           body: text.substr(text.search(/ [^!]/) + 1),
-          args: text.substr(1, text.search(/ [^!]/) + 1).split(/ !?/),
+          args: text.substr(1).split(/ !?/),
           cmds: text.substr(1, text.search(/ [^!]/) - 1).split(' !').reverse(),
           nick: nick,
           to: to,
