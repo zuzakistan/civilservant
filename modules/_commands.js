@@ -99,7 +99,7 @@ module.exports = {
           message: message
         }
         if (msg.cmds[0].length === 0) {
-          msg.cmds = msg.args
+          msg.cmds = msg.args.reverse()
         }
         return applyCommands(bot, msg)
       }
