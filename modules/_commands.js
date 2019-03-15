@@ -4,7 +4,6 @@
 const applyCommands = function (bot, msg) {
   let controlChar = bot.config.get('irc.controlChar')
   msg._cmd = controlChar + msg.cmds[0]
-  console.log(msg)
   if (bot.commands.hasOwnProperty(msg.cmds[0])) {
     try {
       var cmd = bot.commands[msg.cmds[0]]
@@ -37,10 +36,8 @@ const applyCommands = function (bot, msg) {
             return o
           }, {})
           for (var i = 0; i < cmd.usage.length; i++) {
-            console.log(cmd.usage[i], msg.args[i + msg.cmds.length])
             msg.args[cmd.usage[i]] = msg.args[i + msg.cmds.length]
           }
-          console.log(msg.args)
         }
         cmd = cmd.command
       }
@@ -100,6 +97,9 @@ module.exports = {
           to: to,
           text: text,
           message: message
+        }
+        if (msg.cmds[0].length === 0) {
+          msg.cmds = msg.args
         }
         return applyCommands(bot, msg)
       }
