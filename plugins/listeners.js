@@ -18,7 +18,7 @@ bot.addListener('action', function (from, to, text, message) {
 
 bot.addListener('join', function (channel, nick, message) {
   bot.fireEvents('join', channel, nick, message)
-  if (nick == bot.nick) {
+  if (nick === bot.nick) {
     bot.fireEvents('selfjoin', channel, message)
   }
 })
