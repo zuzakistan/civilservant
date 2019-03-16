@@ -13,7 +13,7 @@ module.exports = self = {
     self.channel = channel
   },
   commands: {},
-  events: [],
+  events: {},
   loadModule: function (module) {
     moduleLoader.loadModule(self, './modules/' + module)
   },
