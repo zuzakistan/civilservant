@@ -58,7 +58,14 @@ var self = module.exports = {
     if (filename in require.cache) {
       const alreadyLoadedModule = require(file)
       if (alreadyLoadedModule.onunload) {
-        alreadyLoadedModule.onunload(bot)
+        try {
+          alreadyLoadedModule.onunload(bot)
+        } catch (e) {
+          // output error, but carry on anyway
+          console.error(`Error running ${file} onunload hook`)
+          console.error(e)
+          console.error(e.stack)
+        }
       }
     } else {
       // no module loaded -- don't bother unloading
