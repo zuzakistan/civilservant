@@ -7,6 +7,6 @@ describe('owo module', function () {
     mockBot.loadModule('owo')
   })
   it('should output something vaguely sensible', function () {
-    assert.strictEqual(mockBot.runCommand('!owo rrrllleee').includes(' wwwwwweee '), true)
+    assert.strictEqual(mockBot.runCommand('!owo rrrllleee').includes(' wwwwwweee'), true)
   })
 })
