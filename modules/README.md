@@ -157,6 +157,8 @@ Other events are available:
     followed by the usual `message` arguments. Use `url.href` to get the raw URL.
   * The `url` event accepts arguments: `url:github.com` will only fire on URLs to that host.
 * The `news` and `rawnews` events (see `news.js`).
+* The `join` event runs whenever a user joins a channel (include the bot).
+* The `selfjoin` event runs whenever the bot joins a channel.
 
 ## Onload
 The `onload` method is called on module load.
