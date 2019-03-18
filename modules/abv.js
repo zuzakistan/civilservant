@@ -26,7 +26,7 @@ module.exports = {
           return 'can\'t compute that'
         }
 
-        return msg.args.volume + 'ml at ' + msg.args.abv + '% ABV is ' + msg.args.abv * msg.args.volume / 1000 + ' units'
+        return msg.args.volume + 'ml at ' + msg.args.abv + '% ABV is ' + msg.args.abv * msg.args.volume / 1000 + ' unit(s)'
       }
     }
   }
