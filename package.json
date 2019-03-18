@@ -2,7 +2,7 @@
   "name": "civilservant",
   "version": "0.1.0",
   "description": "ERROR: No README.md file found!",
-  "main": "server.js",
+  "main": "src/server.js",
   "private": true,
   "author": "Douglas Gardner <douglas@chippy.ch>",
   "contributors": [
