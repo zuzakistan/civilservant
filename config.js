@@ -166,6 +166,22 @@ module.exports = config = convict({
       doc: 'Channel to output github.com/zuzak/yakc messages to',
       format: String
     }
+  },
+  github: {
+    webhook: {
+      port: {
+        doc: 'Port to listen on for GitHub webhooks',
+        format: 'port',
+        env: 'GITHUB_PORT',
+        default: 3211
+      },
+      secret: {
+        doc: 'Secret for GitHub webhook',
+        format: String,
+        env: 'GITHUB_SECRET',
+        default: 'e6T8p32gL9TuZYLYTgqVBUfALShtsEfts6hb4mqDcz3XTQe9J86d3cqegfDMME4PMmAnj5eZezVG'
+      }
+    }
   }
 })
 
