@@ -1,15 +1,16 @@
 var fs = require('fs')
-const MODULE_DIR = './modules'
+const MODULE_DIR = 'modules'
 
 var self = module.exports = {
   loadAllModules: function (bot, dir) {
-    dir = dir || MODULE_DIR // default param
+    dir = dir || __rootdir + '/' + MODULE_DIR // default param
     // clear existing:
     bot.events = {}
     bot.modules = [] // informational only
     bot.commands = []
 
-    return fs.readdir(dir, function (err, files) {
+    fs.readdir(dir, function (err, files) {
+      if (err) throw err;
       for (var i = 0; i < files.length; i++) {
         if (files[i].substr(-3) === '.js') {
           if (self.loadModule(bot, dir + '/' + files[i])) {
@@ -21,7 +22,6 @@ var self = module.exports = {
           }
         }
       }
-      return err
     })
   },
   loadModule: function (bot, file) {

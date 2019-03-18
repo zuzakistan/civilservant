@@ -21,5 +21,5 @@ if (!bot.config.quiet) {
   console.log('civilservant ' + bot.githash())
 }
 
-modules.loadAllModules(bot, './plugins')
+modules.loadAllModules(bot,  __rootdir + '/plugins')
 bot.reload()
