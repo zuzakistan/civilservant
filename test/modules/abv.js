@@ -14,10 +14,10 @@ describe('abv module', function () {
   })
 
   it('should do fixed volumes fine', function () {
-    assert.strictEqual(mockBot.runCommand('!abv', { volume: 'shot', abv: '40' }), '25ml at 40% ABV is 1 units')
+    assert.strictEqual(mockBot.runCommand('!abv', { volume: 'shot', abv: '40' }), '25ml at 40% ABV is 1 unit(s)')
   })
 
   it('should do arbitrary volumes fine', function () {
-    assert.strictEqual(mockBot.runCommand('!abv', { volume: '25', abv: '40' }), '25ml at 40% ABV is 1 units')
+    assert.strictEqual(mockBot.runCommand('!abv', { volume: '25', abv: '40' }), '25ml at 40% ABV is 1 unit(s)')
   })
 })
