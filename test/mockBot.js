@@ -31,16 +31,12 @@ module.exports = self = {
       chans: { '#test': null }
     }
 
-    var msg = {
-      body: text.substr(text.search(/ [^!]/) + 1),
-      args: text.substr(1).split(/ !?/),
-      cmds: text.substr(1, text.search(/ [^!]/) - 1).split(' !').reverse(),
+    const msg = {
+      body: text.substr(text.indexOf(' ') + 1),
+      args: text.substr(1).split(' '),
       nick: 'test',
       to: self.channel,
       message: null // normally the raw event from IRC
-    }
-    if (msg.cmds[0].length === 0) {
-      msg.cmds = msg.args.reverse()
     }
 
     if (args) {
