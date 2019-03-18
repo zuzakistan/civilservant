@@ -2,7 +2,6 @@ const path = require('path') // core
 
 const config = require('../config')
 const moduleLoader = require('../modules.js')
-const moduleCommands = require('../modules/_commands.js')
 
 global.__rootdir = path.resolve(path.join(__dirname, '..'))
 
@@ -32,7 +31,7 @@ module.exports = self = {
       chans: { '#test': null }
     }
 
-    const msg = {
+    var msg = {
       body: text.substr(text.search(/ [^!]/) + 1),
       args: text.substr(1).split(/ !?/),
       cmds: text.substr(1, text.search(/ [^!]/) - 1).split(' !').reverse(),
@@ -48,7 +47,7 @@ module.exports = self = {
       Object.assign(msg.args, args)
     }
 
-    reply += moduleCommands.applyCommands(bot, msg)
+    reply += self.commands[msg.args[0]].command(bot, msg)
     return reply
   }
 }
