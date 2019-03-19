@@ -24,7 +24,17 @@ module.exports = {
     server.close(()=>console.log('gh server closed'))
   },
   events: {
-    github: (bot, ghEvent) => announce(bot, `github ${ghEvent.name}`),
-    'github:status': (bot, ghEvent) => announce(bot, `github ${ghEvent.name}: ${ghEvent.payload.name} is now ${ghEvent.payload.state} ${ghEvent.payload.description}`)
+    github: (bot, ghEvent) => {
+      switch (ghEvent.name) {
+        case 'status':
+        case 'issues':
+          return
+      }
+      announce(bot, `github ${ghEvent.name}`)
+    },
+    'github:status': (bot, ghEvent) => announce(bot, `github ${ghEvent.name}: ${ghEvent.payload.name} is now ${ghEvent.payload.state} ${ghEvent.payload.description}`),
+    'github:issues': (bot, ghEvent) => {
+      return announce(bot, `${ghEvent.sender.login} ${ghEvent.action} ${ghEvent.issue.html_url}`)
+    }
   }
 }
