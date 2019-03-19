@@ -30,25 +30,27 @@ module.exports = {
     github: (bot, ghEvent) => {
       switch (ghEvent.name) {
         case 'status':
-        case 'issues':
           return
       }
-      announce(bot, `github ${ghEvent.name}`)
+      announce(bot, `${ghEvent.name}. keys: ${Object.keys(ghEvent.payload)}`)
     },
     'github:issues': (bot, ghEvent) => {
-      return announce(bot, `${ghEvent.sender.login} ${ghEvent.action} ${ghEvent.issue.html_url}`)
+      return announce(bot, `${ghEvent.payload.sender.login} ${ghEvent.payload.action} ${ghEvent.payload.issue.html_url}`)
     },
     'github:pull_request': (bot, ghEvent) => {
-      return announce(bot, `${Object.keys(ghEvent)}| ${ghEvent.action} ${ghEvent.pull_request.html_url}`)
+      return announce(bot, `${ghEvent.payload.sender.login} ${ghEvent.payload.action} ${ghEvent.payload.pull_request.html_url}`)
     },
     'github:issue_comment': (bot, ghEvent) => {
-      let verb = ghEvent.action
+      let verb = ghEvent.payload.action
       if (verb === 'created') verb = 'added'
       verb += ' comment on '
-      return announce(bot, verb + ghEvent.issue.html_url)
+      return announce(bot, verb + ghEvent.payload.issue.html_url)
     },
     'github:push': (bot, ghEvent) => {
-      return announce(bot, `${ghEvent.pusher.name} pushed ${ghEvent.commits.length} commits to ${ghEvent.ref} ${ghEvent.compare}`)
+      return announce(bot, `${ghEvent.payload.pusher.name} pushed ${ghEvent.payload.commits.length} commits to ${ghEvent.payload.ref} ${ghEvent.payload.compare}`)
+    },
+    'github:pull_request_review': (bot, ghEvent) => {
+      return announce(bot, `${ghEvent.payload.sender} ${ghEvent.payload.action} code review: ${ghEvent.payload.review.state} ${ghEvent.payload.review.html_url}`)
     }
   }
 }
