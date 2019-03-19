@@ -1,5 +1,4 @@
 var exec = require('child_process').exec
-var githash = require('githash')
 module.exports = {
   commands: {
     reload: {
@@ -32,14 +31,14 @@ module.exports = {
     hash: {
       help: 'Get hash of the current codebase',
       aliases: [ 'version' ],
-      command: function () {
-        return 'https://github.com/zuzakistan/civilservant/commit/' + githash()
+      command: function (bot) {
+        return 'https://github.com/zuzakistan/civilservant/commit/' + bot.githash()
       }
     }
   },
   events: {
     version: function (bot, from) {
-      bot.ctcp(from, 'NOTICE', 'VERSION https://github.com/zuzakistan/civilservant/tree/' + githash())
+      bot.ctcp(from, 'NOTICE', 'VERSION https://github.com/zuzakistan/civilservant/tree/' + bot.githash())
     }
   }
 }
