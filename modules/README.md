@@ -160,13 +160,17 @@ Other events are available:
 * The `join` event runs whenever a user joins a channel (include the bot).
 * The `selfjoin` event runs whenever the bot joins a channel.
 
-## Onload
+## Onload and onunload
 The `onload` method is called on module load.
+The `onunload` method is called shortly before the module is reloaded.
 
 ```js
 module.exports = {
   onload: function () {
-    // code here will run on (re)load of method
+    // code here will run after (re)load of method
+  },
+  onunload: function () {
+    // code here will run immediately prior to reload of module
   }
 }
 ```

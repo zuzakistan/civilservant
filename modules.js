@@ -26,8 +26,7 @@ var self = module.exports = {
   },
   loadModule: function (bot, file) {
     try {
-      var filename = require.resolve(file)
-      delete require.cache[filename]
+      this.unloadModule(bot, file)
 
       var curr = require(file)
       if (curr.commands) {
@@ -51,6 +50,30 @@ var self = module.exports = {
       }
       return false
     }
+  },
+  unloadModule: function (bot, file) {
+    // check if module already loaded:
+    const filename = require.resolve(file)
+
+    if (filename in require.cache) {
+      const alreadyLoadedModule = require(file)
+      if (alreadyLoadedModule.onunload) {
+        try {
+          alreadyLoadedModule.onunload(bot)
+        } catch (e) {
+          // output error, but carry on anyway
+          console.error(`Error running ${file} onunload hook`)
+          console.error(e)
+          console.error(e.stack)
+        }
+      }
+    } else {
+      // no module loaded -- don't bother unloading
+      return
+    }
+
+    // delete the the module from cache:
+    delete require.cache[filename]
   },
   addCommands: function (bot, commands, clobber) {
     var keys = Object.keys(commands)
