@@ -24,7 +24,7 @@ module.exports = {
   },
   onunload: (bot) => {
     webhook.removeListener(listener)
-    server.close(()=>console.log('gh server closed'))
+    server.close(() => console.log('gh server closed'))
   },
   events: {
     github: (bot, ghEvent) => {
