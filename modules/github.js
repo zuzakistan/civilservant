@@ -35,7 +35,6 @@ module.exports = {
       }
       announce(bot, `github ${ghEvent.name}`)
     },
-    'github:status': (bot, ghEvent) => announce(bot, `github ${ghEvent.name}: ${ghEvent.payload.name} is now ${ghEvent.payload.state} ${ghEvent.payload.description}`),
     'github:issues': (bot, ghEvent) => {
       return announce(bot, `${ghEvent.sender.login} ${ghEvent.action} ${ghEvent.issue.html_url}`)
     },
