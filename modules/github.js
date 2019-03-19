@@ -1,11 +1,14 @@
 const WebhooksApi = require('@octokit/webhooks')
 const http = require('http') // core
+const colors = require('irc').colors
 
 let server
 let webhook
 let listener
 
-const announce = (bot, msg) => bot.notice(bot.config.get('irc.control'), msg)
+const announce = (bot, msg) => {
+  return bot.notice(bot.config.get('irc.control'), colors.wrap('green', '[github]') + msg)
+}
 
 module.exports = {
   onload: (bot) => {
