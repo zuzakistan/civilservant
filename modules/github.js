@@ -40,7 +40,7 @@ module.exports = {
       return announce(bot, `${ghEvent.sender.login} ${ghEvent.action} ${ghEvent.issue.html_url}`)
     },
     'github:pull_request': (bot, ghEvent) => {
-      return announce(bot, `${ghEvent.pull_request.user.login} ${ghEvent.action} ${ghEvent.pull_request.html_url}`)
+      return announce(bot, `${Object.keys(ghEvent)}| ${ghEvent.action} ${ghEvent.pull_request.html_url}`)
     },
     'github:issue_comment': (bot, ghEvent) => {
       let verb = ghEvent.action
