@@ -5,9 +5,17 @@ const colors = require('irc').colors
 const radio = async (station) => {
   const url = 'https://polling.bbc.co.uk/modules/onairpanel/include/' + station + '.json'
   let str
+  let data
   try {
     const response = await request.get(url)
-    const data = JSON.parse(response)
+    try {
+      data = JSON.parse(response)
+    } catch (e) {
+      if (e instanceof SyntaxError) {
+        return response
+      }
+      throw e
+    }
     str = [
       'Now:',
       colors.wrap('white', data.nowTitle),
@@ -52,6 +60,11 @@ module.exports = {
     r4lw: {
       help: 'Displays the current BBC Radio 4 long-wave schedule',
       command: async (bot, msg) => radio('bbc_radio_fourlw')
+    },
+    radio: {
+      help: 'Displays the schedule for an arbitary BBC Radio station',
+      usage: [ 'station' ],
+      command: async (bot, msg) => radio(msg.args.station)
     }
   }
 }
