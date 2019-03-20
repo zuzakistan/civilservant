@@ -1,6 +1,7 @@
 [![Build Status](https://travis-ci.org/zuzakistan/civilservant.svg)](https://travis-ci.org/zuzakistan/civilservant)
 [![Script Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 [![Known Vulnerabilities](https://snyk.io/test/github/zuzakistan/civilservant/master/badge.svg)](https://snyk.io/test/github/zuzakistan/civilservant)
+[![Coverage Status](https://coveralls.io/repos/github/zuzakistan/civilservant/badge.svg?branch=master)](https://coveralls.io/github/zuzakistan/civilservant?branch=master)
 
 This is an IRC bot written in NodeJS.
 
