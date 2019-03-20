@@ -19,11 +19,6 @@ module.exports = self = {
   },
   runCommand: function (text, args) {
     const bot = {
-      say: function (to, sayMsg) {
-        // these don't actually work yet
-      },
-      notice: function (to, sayMsg) {
-      },
       config: this.config,
       chans: { '#test': null }
     }
