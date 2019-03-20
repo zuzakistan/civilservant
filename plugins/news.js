@@ -5,6 +5,10 @@ const POLL_TIMEOUT = 30 * 1000
 function APIs (loud) {
   return [
     {
+      url: 'https://api.rss2json.com/v1/api.json?rss_url=https://www.mi5.gov.uk/UKThreatLevel/UKThreatLevel.xml',
+      eventName: 'mi5'
+    },
+    {
       url: 'http://www.aljazeera.com/addons/alert.ashx',
       eventName: 'aljaz'
     },

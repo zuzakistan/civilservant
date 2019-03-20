@@ -74,6 +74,16 @@ module.exports = {
         url: story.url ? story.url : null
       })
     },
+    'rawnews:mi5': function (bot, feed) {
+      const item = feed.items[0]
+      bot.fireEvents('news', {
+        color: 'light_cyan',
+        id: item.guid,
+        prompt: feed.feed.title,
+        text: item.content,
+        url: item.link
+      })
+    },
     'rawnews:bloomberg': function (bot, stories) {
       for (var i = 0; i < stories.length; i++) {
         var story = stories[i]
