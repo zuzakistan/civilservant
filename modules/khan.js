@@ -4,13 +4,12 @@ module.exports = {
     khan: {
       help: 'Elongates an arbitrary string dramatically',
       command: function (bot, msg) {
-        msg.args.shift()
-        if (typeof msg.args[0] === 'undefined') {
-          msg.args = [ 'khan' ]
+        if (typeof msg.body === 'undefined') {
+          msg.body = [ 'khan' ]
         }
-        var limit = bot.maxLineLength - msg.args.length
+        var limit = bot.maxLineLength - msg.body.length
         var length = Math.floor(Math.random() * limit) - 1
-        var words = msg.args.map(function (word) {
+        var words = msg.body.split(' ').map(function (word) {
           return khan.khan(word, length)
         })
         return words.join(' ')
