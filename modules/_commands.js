@@ -103,6 +103,9 @@ module.exports = {
         if (msg.cmds[0].length === 0) {
           msg.cmds = msg.args.reverse()
         }
+        if (msg.body.charAt(0) === controlChar) {
+          msg.body = undefined
+        }
         return applyCommands(bot, msg)
       }
     }

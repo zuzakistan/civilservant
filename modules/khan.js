@@ -5,7 +5,7 @@ module.exports = {
       help: 'Elongates an arbitrary string dramatically',
       command: function (bot, msg) {
         if (typeof msg.body === 'undefined') {
-          msg.body = [ 'khan' ]
+          msg.body = 'khan'
         }
         var limit = bot.maxLineLength - msg.body.length
         var length = Math.floor(Math.random() * limit) - 1
