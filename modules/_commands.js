@@ -88,8 +88,8 @@ module.exports = {
   events: {
     message: function (bot, nick, to, text, message) {
       let controlChar = bot.config.get('irc.controlChar')
-      const spaceNotControl = new RegExp(' [^' + controlChar + ']')
-      const spaceMaybeControl = new RegExp(' ' + controlChar + '?')
+      const spaceNotControl = new RegExp(' [^\\' + controlChar + ']')
+      const spaceMaybeControl = new RegExp(' \\' + controlChar + '?')
       if (text.substr(0, 1) === controlChar) {
         var msg = {
           body: text.substr(text.search(spaceNotControl) + 1),
