@@ -1,6 +1,19 @@
 /**
  * Main logic for the other commands live here.
  */
+const processOutput = (bot, msg, output) => {
+  if (typeof output === 'string') {
+    return bot.say(msg.to, msg.nick + ': ' + output)
+  } else if (output.constructor === Array) {
+    for (var k = 0; k < output.length; k++) {
+      if (typeof output[k] === 'string') {
+        return bot.say(msg.to, msg.nick + ': ' + output[k])
+      }
+    }
+  } else {
+    console.error('output is strange type: ' + typeof output)
+  }
+}
 module.exports = {
   events: {
     message: function (bot, nick, to, text, message) {
@@ -53,18 +66,10 @@ module.exports = {
               cmd = cmd.command
             }
             if (typeof cmd === 'function') {
-              var output = cmd(bot, msg)
-              if (!output) {
-                console.log('No return for ' + cmd)
-              } else if (typeof output === 'string') {
-                return bot.say(msg.to, msg.nick + ': ' + output)
-              } else if (output.constructor === Array) {
-                for (var k = 0; k < output.length; k++) {
-                  if (typeof output[k] === 'string') {
-                    return bot.say(msg.to, msg.nick + ': ' + output[k])
-                  }
-                }
+              if (cmd.constructor.name === 'AsyncFunction') {
+                return cmd(bot, msg).then(output => processOutput(bot, msg, output))
               }
+              return processOutput(bot, msg, cmd(bot, msg))
             }
           } catch (e) {
             bot.say(bot.config.get('irc.control'), 'Error processing `' + msg._cmd + '` in ' + msg.to + ': ' + e)

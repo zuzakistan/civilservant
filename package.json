@@ -44,6 +44,7 @@
     "parse5": "^3.0.1",
     "rainbow-log": "^1.0.1",
     "request": "^2.67.0",
+    "request-promise": "^4.2.4",
     "rot": "^0.1.0",
     "scrape": "^0.2.3",
     "shell-escape": "^0.2.0",
@@ -60,9 +61,11 @@
     "coveralls": "^3.0.3",
     "jshint": "^2.5.4",
     "mocha": "^2.3.4",
+    "mockery": "^2.1.0",
     "node-dir": "^0.1.11",
     "nyc": "^13.3.0",
     "precommit-hook": "^3.0.0",
+    "sinon": "^7.2.7",
     "standard": "^12.0.1"
   },
   "standard": {
