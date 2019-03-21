@@ -21,4 +21,8 @@ describe('unicodemodule', function () {
       assert.strictEqual(promise, tests[word])
     })
   }
+
+  after(function (done) {
+    done()
+  })
 })
