@@ -66,10 +66,7 @@ module.exports = {
               cmd = cmd.command
             }
             if (typeof cmd === 'function') {
-              if (cmd.constructor.name === 'AsyncFunction') {
-                return cmd(bot, msg).then(output => processOutput(bot, msg, output))
-              }
-              return processOutput(bot, msg, cmd(bot, msg))
+              return Promise.resolve(cmd(bot, msg)).then(output => processOutput(bot, msg, output))
             }
           } catch (e) {
             bot.say(bot.config.get('irc.control'), 'Error processing `' + msg._cmd + '` in ' + msg.to + ': ' + e)
