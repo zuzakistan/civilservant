@@ -5,9 +5,9 @@ module.exports = {
     reload: {
       privileged: true,
       help: 'Reloads all modules to pick up code changes',
-      command: function (bot) {
-        bot.reload()
-        return 'Reloaded.'
+      command: async function (bot, msg) {
+        await bot.reload()
+        return 'Reloaded'
       }
     },
     modules: {
