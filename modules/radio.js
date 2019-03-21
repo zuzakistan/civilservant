@@ -3,7 +3,7 @@ const moment = require('moment')
 const colors = require('irc').colors
 
 const radio = async (station) => {
-  const url = 'https://polling.bbc.co.uk/modules/onairpanel/include/' + station + '.json'
+  const url = `https://polling.bbc.co.uk/modules/onairpanel/include/${station}.json`
   let str
   let data
   try {
