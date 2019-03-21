@@ -11,12 +11,13 @@ module.exports = {
         }
         try {
           const response = await request.get('https://unicode.org/Public/UNIDATA/UnicodeData.txt')
-          const data = response.split('\n').slice(33)
+          const data = response.split('\n')
           const regex = new RegExp(msg.body, 'i')
-          const matches = data.filter(codepoint => codepoint.match(regex))
+          const matches = data.filter(codepoint => codepoint.match(regex) &&
+            codepoint.match(/;(L[lmtuo]|M[cen]|N[dlo]|P[cdifseo]|S[ckmo]|Zs);/))
           if (matches.length) {
             const thisMatch = matches[Math.floor(Math.random() * matches.length)].split(';')
-            return String.fromCodePoint('0x' + thisMatch[0]) + ' ' + thisMatch[1] + ' ' + thisMatch[0]
+            return String.fromCodePoint('0x' + thisMatch[0]) + ' ' + thisMatch[1] + ' U+' + thisMatch[0]
           } else {
             return 'No Unicode characters match /' + msg.body + '/'
           }
