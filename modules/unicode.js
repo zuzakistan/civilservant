@@ -11,7 +11,7 @@ module.exports = {
         }
         try {
           const response = await request.get('https://unicode.org/Public/UNIDATA/UnicodeData.txt')
-          const data = response.split('\n')
+          const data = response.split('\n').slice(33)
           const regex = new RegExp(msg.body, 'i')
           const matches = data.filter(codepoint => codepoint.match(regex))
           if (matches.length) {
