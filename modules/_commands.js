@@ -5,11 +5,7 @@ const processOutput = (bot, msg, output) => {
   if (typeof output === 'string') {
     return bot.say(msg.to, msg.nick + ': ' + output)
   } else if (output.constructor === Array) {
-    for (var k = 0; k < output.length; k++) {
-      if (typeof output[k] === 'string') {
-        return bot.say(msg.to, msg.nick + ': ' + output[k])
-      }
-    }
+    output.forEach(line => processOutput(bot, msg, line))
   } else {
     console.error('output is strange type: ' + typeof output)
   }
