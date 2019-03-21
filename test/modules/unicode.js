@@ -16,8 +16,9 @@ describe('unicodemodule', function () {
 
   let i = 1
   for (const word in tests) {
-    it(`look up Unicode characters ${i++}`, function () {
-      assert.strictEqual(mockBot.runCommand(`!unicode ${word}`), tests[word])
+    it(`look up Unicode characters ${i++}`, async function () {
+      let promise = await mockBot.runCommand(`!unicode ${word}`)
+      assert.strictEqual(promise, tests[word])
     })
   }
 })
