@@ -1,13 +1,16 @@
 /**
  * Main logic for the other commands live here.
  */
-const processOutput = (bot, msg, output) => {
+const colors = require('irc').colors
+
+const processOutput = (bot, msg, output, customFormatter) => {
+  const outputFormatter = customFormatter || ((str) => msg.nick + ': ' + str)
   if (typeof output === 'string') {
-    return bot.say(msg.to, msg.nick + ': ' + output)
+    return bot.say(msg.to, outputFormatter(output))
   } else if (output.constructor === Array) {
     output.forEach(line => processOutput(bot, msg, line))
   } else {
-    console.error('output is strange type: ' + typeof output)
+    console.error('output is strange type: ' + output)
   }
 }
 module.exports = {
@@ -62,7 +65,9 @@ module.exports = {
               cmd = cmd.command
             }
             if (typeof cmd === 'function') {
-              return Promise.resolve(cmd(bot, msg)).then(output => processOutput(bot, msg, output))
+              return Promise.resolve(cmd(bot, msg))
+                .then(output => processOutput(bot, msg, output))
+                .catch(output => processOutput(bot, msg, output.toString(), (str) => colors.wrap('red', 'Error: ') + str))
             }
           } catch (e) {
             bot.say(bot.config.get('irc.control'), 'Error processing `' + msg._cmd + '` in ' + msg.to + ': ' + e)
