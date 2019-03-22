@@ -59,6 +59,8 @@ module.exports = {
                 '(+' + change.toLocaleString('en-GB') + ')',
                 '·',
                 percentageOfElectorate,
+                'of electorate',
+                '(' + domestic.toLocaleString('en-GB') + ')',
                 'plus',
                 foreign.toLocaleString('en-GB'),
                 'foreign',
