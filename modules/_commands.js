@@ -47,13 +47,13 @@ module.exports = {
                     // pass
                   } else {
                     // http://www.imdb.com/title/tt0062622/quotes?item=qt0396921
-                    return bot.say(msg.to, 'I\'m sorry, ' + msg.nick + '. I\'m afraid I can\'t do that.')
+                    return processOutput('I\'m sorry, ' + msg.nick + '. I\'m afraid I can\'t do that.')
                   }
                 }
               }
               if (Array.isArray(cmd.usage)) {
                 if (msg.args.length !== cmd.usage.length + 1) {
-                  return bot.say(msg.to, msg.nick + ': Usage: ' + msg._cmd + ' <' + cmd.usage.join('> <') + '>')
+                  return processOutput('Usage: ' + msg._cmd + ' <' + cmd.usage.join('> <') + '>')
                 }
                 msg.args = msg.args.reduce(function (o, p, k) {
                   o[k] = p
