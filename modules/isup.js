@@ -1,4 +1,4 @@
-var request = require('request')
+const request = require('request-promise')
 module.exports = {
   commands: {
     isup: {
@@ -6,29 +6,28 @@ module.exports = {
       privileged: true,
       help: 'Performs a HTTP(S) request to an arbitrary host.',
       usage: [ 'host' ],
-      command: function (bot, msg) {
-        request(msg.args.host, function (err, res, body) {
-          if (err) {
-            bot.say(msg.to, msg.nick + ': ' + err.message)
-          } else {
-            var str = 'HTTP/' + res.httpVersion
-            str += ' ' + res.req.method + ' ' + res.request.href
-            str += ' → ' + res.statusCode
+      command: async function (bot, msg) {
+        try {
+          const res = await request({ url: msg.args.host, resolveWithFullResponse: true })
+          let str = 'HTTP/' + res.httpVersion
+          str += ' ' + res.req.method + ' ' + res.request.href
+          str += ' → ' + res.statusCode
 
-            var flag = ''
-            try {
-              var headers = [
-                res.headers['content-type'],
-                res.headers.server,
-                body.length
-              ]
-              str += ' ' + headers.join(' · ')
-            } catch (e) {
-              flag = '!'
-            }
-            bot.say(msg.to, msg.nick + ': ' + str + flag)
+          let flag = ''
+          try {
+            let headers = [
+              res.headers['content-type'],
+              res.headers.server,
+              res.body.length + 'B'
+            ]
+            str += ' ' + headers.join(' · ')
+          } catch (e) {
+            flag = '!'
           }
-        })
+          return str + flag
+        } catch (e) {
+          return 'err: ' + e
+        }
       }
     }
   }
