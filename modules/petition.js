@@ -62,7 +62,7 @@ module.exports = {
                 'plus',
                 foreign.toLocaleString('en-GB'),
                 'foreign',
-                surplusSignatures > 0 ? 'and ' + surplusSignatures + ' unaccounted for' : null,
+                surplusSignatures > 0 ? 'and ' + surplusSignatures.toLocaleString('en-GB') + ' unaccounted for' : null,
 
                 'https://petition.parliament.uk/petitions/' + data.id
               ]
