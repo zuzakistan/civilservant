@@ -7,7 +7,7 @@ module.exports = {
         const b = await request.get('http://www.howmanypeopleareinspacerightnow.com/peopleinspace.json')
         const data = JSON.parse(b)
         let ret = data.people.map((person) => {
-          if (person.country === 'England') person.country = 'United Kingdom' // pet peeve
+          if (person.country === 'england') person.country = 'united kingdom' // pet peeve
           return `${person.name} (${person.country})`
         })
         return ret.join('; ')
