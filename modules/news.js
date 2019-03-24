@@ -2,6 +2,7 @@ var write = require('fs').writeFile
 var read = require('fs').readFileSync
 var colors = require('irc').colors
 var Bitly = require('bitly')
+const owo = require('@zuzak/owo')
 
 const plugin = require('../plugins/news')
 
@@ -137,6 +138,9 @@ module.exports = {
               str += newstr
             } else {
               str += news.text
+            }
+            if (bot.config.get('news.owo')) {
+              str = owo(str)
             }
           } catch (e) {
             str += news.text + '(err)'

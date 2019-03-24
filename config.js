@@ -113,6 +113,11 @@ module.exports = config = convict({
       doc: 'Whether to allow more noisy news feeds',
       format: Boolean,
       default: false
+    },
+    owo: {
+      doc: 'Whether to enable cursed furry transformation on headlines',
+      format: Boolean,
+      default: false
     }
   },
   bitly: {
