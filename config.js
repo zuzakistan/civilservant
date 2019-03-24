@@ -115,9 +115,9 @@ module.exports = config = convict({
       default: false
     },
     owo: {
-      doc: 'Whether to enable cursed furry transformation on headlines',
-      format: Boolean,
-      default: false
+      doc: 'Probability (between 0 and 1) a cursed furry transformation is applied to each headline',
+      format: Number,
+      default: 0.05
     }
   },
   bitly: {

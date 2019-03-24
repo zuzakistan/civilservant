@@ -139,7 +139,7 @@ module.exports = {
             } else {
               str += news.text
             }
-            if (bot.config.get('news.owo')) {
+            if (Math.random() >= bot.config.get('news.owo')) {
               str = owo(str)
             }
           } catch (e) {
