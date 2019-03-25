@@ -12,13 +12,13 @@ describe('division module', function () {
     mockBot.loadModule('division')
   })
 
-  it('should say 8pm on Mondays', function () {
+  it('should say 10pm on Mondays', function () {
     sandbox.stub(momentProto, 'day')
     sandbox.stub(momentProto, 'isBefore')
     momentProto.day.returns(1)
     momentProto.isBefore.returns(false)
 
-    assert.ok(mockBot.runCommand('!division').match(/8:00 pm/))
+    assert.ok(mockBot.runCommand('!division').match(/10:00 pm/))
 
     sandbox.restore()
   })

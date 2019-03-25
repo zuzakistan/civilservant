@@ -12,7 +12,7 @@ module.exports = {
 
         switch (dayOfWeek) {
           case 1: // Mon
-            timeOfInterruption = { hour: 20, minute: 0 }
+            timeOfInterruption = { hour: 22, minute: 0 }
             break
           case 2: // Tue
           case 3: // Wed
