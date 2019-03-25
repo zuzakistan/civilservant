@@ -23,9 +23,7 @@ describe('unicode module', function () {
   before(function () {
     // Mock up the HTTP request
     mockery.enable()
-    mockery.registerMock('request-promise', {
-      get: () => Promise.resolve(data)
-    })
+    mockery.registerMock('request-promise-cache', function () { return data })
 
     mockBot.loadModule('unicode')
   })

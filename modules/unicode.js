@@ -1,4 +1,4 @@
-var request = require('request-promise')
+var request = require('request-promise-cache')
 module.exports = {
   commands: {
     unicode: {
@@ -11,8 +11,12 @@ module.exports = {
           msg.body = '.*'
         }
         try {
-          // Get data from Unicode
-          const response = await request.get('https://unicode.org/Public/UNIDATA/UnicodeData.txt')
+          // Get data from Unicode, cached for ~1 month
+          const response = await request({
+            url: 'https://unicode.org/Public/UNIDATA/UnicodeData.txt',
+            cacheKey: 'https://unicode.org/Public/UNIDATA/UnicodeData.txt',
+            cacheTTL: 3.0E9
+          })
           const data = response.split('\n')
           // Find matching characters
           const regex = new RegExp(msg.body, 'i')
