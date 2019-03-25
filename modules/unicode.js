@@ -1,4 +1,4 @@
-var request = require('request-promise-cache')
+const request = require('request-promise-cache')
 module.exports = {
   commands: {
     unicode: {
