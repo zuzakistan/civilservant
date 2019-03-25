@@ -3,12 +3,13 @@ const mockBot = require('../mockBot')
 const assert = require('assert')
 const mockery = require('mockery')
 
-const data = '1F46F;WOMAN WITH BUNNY EARS;So;0;ON;;;;;N;;;;;\n0391;GREEK CAPITAL LETTER ALPHA;Lu;0;L;;;;;N;;;;03B1;\n03B1;GREEK SMALL LETTER ALPHA;Ll;0;L;;;;;N;;;0391;;0391'
+const data = '0000;<control>;Cc;0;BN;;;;;N;NULL;;;;\n1F46F;WOMAN WITH BUNNY EARS;So;0;ON;;;;;N;;;;;\n0391;GREEK CAPITAL LETTER ALPHA;Lu;0;L;;;;;N;;;;03B1;\n03B1;GREEK SMALL LETTER ALPHA;Ll;0;L;;;;;N;;;0391;;0391'
 const tests = {
   'BUNNY': '👯 WOMAN WITH BUNNY EARS U+1F46F',
   'bunny': '👯 WOMAN WITH BUNNY EARS U+1F46F',
   'greek small': 'α GREEK SMALL LETTER ALPHA U+03B1',
   '1F46F': '👯 WOMAN WITH BUNNY EARS U+1F46F',
+  'null': '<control> U+0000',
   'Not a bunny': 'No Unicode characters match /Not a bunny/'
 }
 describe('unicode module', function () {
