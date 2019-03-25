@@ -37,7 +37,6 @@ module.exports = {
       privileged: true,
       help: 'Tweets a tweet',
       command: async (bot, msg) => {
-        if (msg.nick !== 'zuzak') return 'm8 no'
         let user = bot.config.get('twitter.tweetUser')
         if (!user) return 'tweeting disabled'
         let client = new Tweeter({
