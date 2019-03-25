@@ -16,10 +16,8 @@ module.exports = {
           const matches = data.filter(codepoint => codepoint.match(regex))
           if (matches.length) {
             const thisMatch = matches[Math.floor(Math.random() * matches.length)].split(';')
-            let theChar
-            if (thisMatch[2].match(/(C.|Z[lp])/)) {
-              theChar = ''
-            } else {
+            let theChar = ''
+            if (!thisMatch[2].match(/(C.|Z[lp])/)) {
               theChar = String.fromCodePoint('0x' + thisMatch[0]) + ' '
             }
             return theChar + thisMatch[1] + ' U+' + thisMatch[0]
