@@ -68,7 +68,12 @@ module.exports = {
             if (typeof cmd === 'function') {
               return Promise.resolve(cmd(bot, msg))
                 .then(output => processOutput(bot, msg, output))
-                .catch(output => processOutput(bot, msg, output.toString(), (str) => colors.wrap('red', 'Error: ') + str))
+                .catch(e => {
+                  console.error(e.message)
+                  console.error(e.stack)
+
+                  return processOutput(bot, msg, e.toString(), (str) => colors.wrap('red', 'Error: ') + str)
+                })
             }
           } catch (e) {
             bot.say(bot.config.get('irc.control'), 'Error processing `' + msg._cmd + '` in ' + msg.to + ': ' + e)
