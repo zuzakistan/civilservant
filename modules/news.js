@@ -129,44 +129,47 @@ module.exports = {
     news: function (bot, news) {
       console.log('NEWSNEWSNEWS', news)
       if (!oldnews[news.id] || !isEqualObj(oldnews[news.id], news)) {
-        var bitly = new Bitly(bot.config.get('bitly.username'), bot.config.get('bitly.password'))
-        bitly.shorten(news.url, function (err, res) {
-          if (err) res = { data: { url: news.url } }
-          var str = ''
-          if (news.prompt) {
-            str += colors.wrap(news.color, news.prompt + ': ')
-          }
-          // news transform
-          try {
-            if (bot.config.get('news.replace')) {
-              var substitutions = JSON.parse(read(__rootdir + '/data/substitutions.json', { encoding: 'utf-8' }))
-              var stringsToReplace = Object.keys(substitutions)
-              var newstr = news.text
-              for (var i = 0; i < stringsToReplace.length; i++) {
-                newstr = newstr.replace(stringsToReplace[i], '\x1f' + substitutions[stringsToReplace[i]] + '\x0f')
-              }
-              str += newstr
-            } else {
-              str += news.text
-            }
-            if (Math.random() <= bot.config.get('news.owo')) {
-              str = owo(str)
-            }
-          } catch (e) {
-            str += news.text + '(err)'
-          }
-          if (res.data.url) {
-            str += ' ' + colors.wrap('gray', res.data.url)
-          }
-          if (news.tail) {
-            str += ' ' + colors.wrap('magenta', '(' + news.tail + ')')
-          }
-
-          bot.broadcast(str)
-        })
-        oldnews[news.id] = news
-        write(__rootdir + '/data/news.json', JSON.stringify(oldnews))
+        bot.fireEvents('newNews', news)
       }
+    },
+    newNews: (bot, news) => {
+      var bitly = new Bitly(bot.config.get('bitly.username'), bot.config.get('bitly.password'))
+      bitly.shorten(news.url, function (err, res) {
+        if (err) res = { data: { url: news.url } }
+        var str = ''
+        if (news.prompt) {
+          str += colors.wrap(news.color, news.prompt + ': ')
+        }
+        // news transform
+        try {
+          if (bot.config.get('news.replace')) {
+            var substitutions = JSON.parse(read(__rootdir + '/data/substitutions.json', { encoding: 'utf-8' }))
+            var stringsToReplace = Object.keys(substitutions)
+            var newstr = news.text
+            for (var i = 0; i < stringsToReplace.length; i++) {
+              newstr = newstr.replace(stringsToReplace[i], '\x1f' + substitutions[stringsToReplace[i]] + '\x0f')
+            }
+            str += newstr
+          } else {
+            str += news.text
+          }
+          if (Math.random() <= bot.config.get('news.owo')) {
+            str = owo(str)
+          }
+        } catch (e) {
+          str += news.text + '(err)'
+        }
+        if (res.data.url) {
+          str += ' ' + colors.wrap('gray', res.data.url)
+        }
+        if (news.tail) {
+          str += ' ' + colors.wrap('magenta', '(' + news.tail + ')')
+        }
+
+        bot.broadcast(str)
+      })
+      oldnews[news.id] = news
+      write(__rootdir + '/data/news.json', JSON.stringify(oldnews))
     }
   }
 }
