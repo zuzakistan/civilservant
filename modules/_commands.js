@@ -72,7 +72,7 @@ module.exports = {
                   console.error(e.message)
                   console.error(e.stack)
 
-                  return processOutput(bot, msg, e.toString(), (str) => colors.wrap('red', 'Error: ') + str)
+                  return processOutput(bot, msg, e.toString(), (str) => colors.wrap('dark_red', 'Error: ') + str)
                 })
             }
           } catch (e) {
