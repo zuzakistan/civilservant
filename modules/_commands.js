@@ -5,6 +5,7 @@ const colors = require('irc').colors
 
 const processOutput = (bot, msg, output, customFormatter) => {
   const outputFormatter = customFormatter || ((str) => msg.nick + ': ' + str)
+  if (!output) return null
   if (typeof output === 'string') {
     return bot.say(msg.to, outputFormatter(output))
   } else if (output.constructor === Array) {
