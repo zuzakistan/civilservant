@@ -3,7 +3,7 @@ require('moment-countdown')
 
 let timeout = null
 
-const ARTICLE_50 = '2019-04-19T23:00:00Z'
+const ARTICLE_50 = '2019-04-12T23:00:00Z'
 
 function autoCount (bot, lastTick) {
   const thisTick = moment(ARTICLE_50).countdown().toString().split(/, | and /)[0]
