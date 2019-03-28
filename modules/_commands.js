@@ -8,8 +8,9 @@ const processOutput = (bot, msg, output, customFormatter) => {
   if (typeof output === 'string') {
     return bot.say(msg.to, outputFormatter(output))
   } else if (output.constructor === Array) {
-    output.forEach(line => processOutput(bot, msg, line))
+    output.forEach(line => processOutput(bot, msg, line, customFormatter))
   } else {
+    if (output.message) return processOutput(bot, msg, output.message, customFormatter)
     console.error('output is strange type: ' + output)
   }
 }
@@ -67,7 +68,9 @@ module.exports = {
             if (typeof cmd === 'function') {
               return Promise.resolve(cmd(bot, msg))
                 .then(output => processOutput(bot, msg, output))
-                .catch(output => processOutput(bot, msg, output.toString(), (str) => colors.wrap('red', 'Error: ') + str))
+                .catch(e => {
+                  return processOutput(bot, msg, e, (str) => colors.wrap('dark_red', 'Error: ') + str)
+                })
             }
           } catch (e) {
             bot.say(bot.config.get('irc.control'), 'Error processing `' + msg._cmd + '` in ' + msg.to + ': ' + e)
