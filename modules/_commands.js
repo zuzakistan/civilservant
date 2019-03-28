@@ -9,8 +9,9 @@ const processOutput = (bot, msg, output, customFormatter) => {
   if (typeof output === 'string') {
     return bot.say(msg.to, outputFormatter(output))
   } else if (output.constructor === Array) {
-    output.forEach(line => processOutput(bot, msg, line))
+    output.forEach(line => processOutput(bot, msg, line, customFormatter))
   } else {
+    if (output.message) return processOutput(bot, msg, output.message, customFormatter)
     console.error('output is strange type: ' + output)
   }
 }
@@ -71,8 +72,7 @@ module.exports = {
                 .catch(e => {
                   console.error(e.message)
                   console.error(e.stack)
-
-                  return processOutput(bot, msg, e.toString(), (str) => colors.wrap('dark_red', 'Error: ') + str)
+                  return processOutput(bot, msg, e, (str) => colors.wrap('dark_red', 'Error: ') + str)
                 })
             }
           } catch (e) {
