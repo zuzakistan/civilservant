@@ -34,7 +34,7 @@ module.exports = {
     },
     // these following are only valid for the 2017 to 2019 Parliamentary session:
     orderpaper: {
-      aliases: [ 'op' ],
+      aliases: [ 'op', 'cop', 'corderpaper' ],
       help: 'generates link to today\'s Commons order paper',
       command: () => {
         const ts = moment().format('YYMMDD') // e.g. OP190321.pdf
@@ -43,6 +43,7 @@ module.exports = {
     },
     business: {
       help: 'generates link to today\'s Commons business',
+      aliases: [ 'cbusiness' ],
       command: () => {
         const ts = moment().format('YYMMDD')
         return `https://publications.parliament.uk/pa/cm201719/cmagenda/ob${ts}.htm`
@@ -58,7 +59,6 @@ module.exports = {
     },
     lbusiness: {
       help: 'generates link to today\'s Lords business',
-      aliases: [ 'futurebusiness' ],
       command: () => {
         const ts = moment().format('YYYY-MM-DD')
         return 'https://lordsbusiness.parliament.uk/?businessPaperDate=' + ts
