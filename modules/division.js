@@ -34,7 +34,7 @@ module.exports = {
     },
     // these two are only valid for the 2017 to 2019 Commons session:
     orderpaper: {
-      alias: [ 'op' ],
+      aliases: [ 'op' ],
       help: 'generates link to today\'s Commons order paper',
       command: () => {
         const ts = moment().format('YYMMDD') // e.g. OP190321.pdf
