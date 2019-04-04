@@ -32,9 +32,9 @@ module.exports = {
         return `moment of interruption is ${dateOfInterruption.fromNow()} (${dateOfInterruption.format('h:mm a')})`
       }
     },
-    // these two are only valid for the 2017 to 2019 Commons session:
+    // the following are only valid for the 2017 to 2019 Parliamentary session:
     orderpaper: {
-      alias: [ 'op' ],
+      aliases: [ 'op', 'cop', 'corderpaper' ],
       help: 'generates link to today\'s Commons order paper',
       command: () => {
         const ts = moment().format('YYMMDD') // e.g. OP190321.pdf
@@ -43,9 +43,25 @@ module.exports = {
     },
     business: {
       help: 'generates link to today\'s Commons business',
+      aliases: [ 'cbusiness' ],
       command: () => {
         const ts = moment().format('YYMMDD')
         return `https://publications.parliament.uk/pa/cm201719/cmagenda/ob${ts}.htm`
+      }
+    },
+    future: {
+      help: 'generates link to Commons future business',
+      aliases: [ 'futurebusiness' ],
+      command: () => {
+        const ts = moment().format('YYMMDD')
+        return `https://publications.parliament.uk/pa/cm201719/cmagenda/fb${ts}.htm`
+      }
+    },
+    lbusiness: {
+      help: 'generates link to today\'s Lords business',
+      command: () => {
+        const ts = moment().format('YYYY-MM-DD')
+        return 'https://lordsbusiness.parliament.uk/?businessPaperDate=' + ts
       }
     }
   }
