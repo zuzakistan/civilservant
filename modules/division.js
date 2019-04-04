@@ -55,6 +55,14 @@ module.exports = {
         const ts = moment().format('YYMMDD')
         return `https://publications.parliament.uk/pa/cm201719/cmagenda/fb${ts}.htm`
       }
+    },
+    lbusiness: {
+      help: 'generates link to today\'s Lords business',
+      aliases: [ 'futurebusiness' ],
+      command: () => {
+        const ts = moment().format('YYYY-MM-DD')
+        return 'https://lordsbusiness.parliament.uk/?businessPaperDate=' + ts
+      }
     }
   }
 }
