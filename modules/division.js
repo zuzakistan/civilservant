@@ -32,7 +32,7 @@ module.exports = {
         return `moment of interruption is ${dateOfInterruption.fromNow()} (${dateOfInterruption.format('h:mm a')})`
       }
     },
-    // these following are only valid for the 2017 to 2019 Parliamentary session:
+    // the following are only valid for the 2017 to 2019 Parliamentary session:
     orderpaper: {
       aliases: [ 'op', 'cop', 'corderpaper' ],
       help: 'generates link to today\'s Commons order paper',
