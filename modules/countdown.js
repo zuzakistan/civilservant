@@ -3,7 +3,7 @@ require('moment-countdown')
 
 let timeout = null
 
-const ARTICLE_50 = '2019-04-13T00:00:00+02:00'
+const ARTICLE_50 = '2019-10-31T00:00:00+01:00'
 
 function autoCount (bot, lastTick) {
   const thisTick = moment(ARTICLE_50).countdown().toString().split(/, | and /)[0]
@@ -20,10 +20,6 @@ module.exports = {
       command: function () {
         return 'Article 50 expires in ' + moment(ARTICLE_50).countdown().toString()
       }
-    },
-    a50e: {
-      help: 'Gets the time until the UK Article 50 procedure expires',
-      command: () => 'Article 50, as extended, expires in ' + moment('2019-05-23T00:00:00+0200').countdown().toString()
     },
     ge: {
       help: 'Gets the time until the next General Election under FTPA',
