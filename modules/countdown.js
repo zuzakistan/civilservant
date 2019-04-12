@@ -8,7 +8,7 @@ const ARTICLE_50 = '2019-10-31T00:00:00+01:00'
 function autoCount (bot, lastTick) {
   const thisTick = moment(ARTICLE_50).countdown().toString().split(/, | and /)[0]
   if (lastTick != null && thisTick !== lastTick) {
-    bot.broadcast('Article 50 expires in ' + thisTick)
+    bot.broadcast('Article 50 expires in ' + lastTick)
   }
   timeout = setTimeout(autoCount, 1000, bot, thisTick)
 }
