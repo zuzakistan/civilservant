@@ -51,7 +51,7 @@ module.exports = {
           return 'Usage: !irclog <search phrase>'
         }
         const res = await logExec([__rootdir + '/irclog.sh', msg.body])
-        bot.say(msg.to, processAg(res))
+        return processAg(res)
       }
     },
     irccount: {
@@ -64,7 +64,7 @@ module.exports = {
         }
         if (!bot.config.has('irclogs')) return 'Error: No logfile specified'
         const res = await logExec(['ag', '-c', '--', msg.body, bot.config.get('irclogs')])
-        bot.say(msg.to, processAg(res))
+        return processAg(res)
       }
     }
   }

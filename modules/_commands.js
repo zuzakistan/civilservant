@@ -1,13 +1,18 @@
 /**
  * Main logic for the other commands live here.
  */
-const processOutput = (bot, msg, output) => {
+const colors = require('irc').colors
+
+const processOutput = (bot, msg, output, customFormatter) => {
+  const outputFormatter = customFormatter || ((str) => msg.nick + ': ' + str)
+  if (!output) return null
   if (typeof output === 'string') {
-    return bot.say(msg.to, msg.nick + ': ' + output)
+    return bot.say(msg.to, outputFormatter(output))
   } else if (output.constructor === Array) {
-    output.forEach(line => processOutput(bot, msg, line))
+    output.forEach(line => processOutput(bot, msg, line, customFormatter))
   } else {
-    console.error('output is strange type: ' + typeof output)
+    if (output.message) return processOutput(bot, msg, output.message, customFormatter)
+    console.error('output is strange type: ' + output)
   }
 }
 module.exports = {
@@ -43,13 +48,13 @@ module.exports = {
                     // pass
                   } else {
                     // http://www.imdb.com/title/tt0062622/quotes?item=qt0396921
-                    return bot.say(msg.to, 'I\'m sorry, ' + msg.nick + '. I\'m afraid I can\'t do that.')
+                    return processOutput('I\'m sorry, ' + msg.nick + '. I\'m afraid I can\'t do that.')
                   }
                 }
               }
               if (Array.isArray(cmd.usage)) {
                 if (msg.args.length !== cmd.usage.length + 1) {
-                  return bot.say(msg.to, msg.nick + ': Usage: ' + msg._cmd + ' <' + cmd.usage.join('> <') + '>')
+                  return processOutput('Usage: ' + msg._cmd + ' <' + cmd.usage.join('> <') + '>')
                 }
                 msg.args = msg.args.reduce(function (o, p, k) {
                   o[k] = p
@@ -62,7 +67,13 @@ module.exports = {
               cmd = cmd.command
             }
             if (typeof cmd === 'function') {
-              return Promise.resolve(cmd(bot, msg)).then(output => processOutput(bot, msg, output))
+              return Promise.resolve(cmd(bot, msg))
+                .then(output => processOutput(bot, msg, output))
+                .catch(e => {
+                  console.error(e.message)
+                  console.error(e.stack)
+                  return processOutput(bot, msg, e, (str) => colors.wrap('dark_red', 'Error: ') + str)
+                })
             }
           } catch (e) {
             bot.say(bot.config.get('irc.control'), 'Error processing `' + msg._cmd + '` in ' + msg.to + ': ' + e)

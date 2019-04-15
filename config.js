@@ -171,6 +171,16 @@ module.exports = config = convict({
       doc: 'Channel to output github.com/zuzak/yakc messages to',
       format: String
     }
+  },
+  twitter: {
+    consumerKey: {
+      doc: 'Twitter consumer key',
+      format: String
+    },
+    consumerSecret: {
+      doc: 'Twitter consumer secret',
+      format: String
+    }
   }
 })
 
