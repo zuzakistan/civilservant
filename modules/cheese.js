@@ -8,9 +8,10 @@ module.exports = {
           if (err) {
             return
           }
-          $('div.top-offer').each(function (div) {
+          $('#cheese-of-day').each(function (div) {
             var a = div.find('a').first()
-            bot.say(msg.to, msg.nick + ': ' + a.text + ' http://www.cheese.com' + a.attribs.href)
+            var h4 = div.find('h4').first()
+            bot.say(msg.to, msg.nick + ': the cheese of the day is ' + h4.text + ' https://www.cheese.com' + a.attribs.href)
           })
         })
       }
