@@ -1,5 +1,5 @@
 # Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
-version: v1.12.0
+version: v1.13.3
 ignore: {}
 # patches apply the minimum changes required to fix a vulnerability
 patch:
@@ -26,3 +26,6 @@ patch:
   'npm:qs:20140806':
     - classify2 > request > qs:
         patched: '2018-10-03T10:38:49.633Z'
+  SNYK-JS-AXIOS-174505:
+    - youtube-search > axios:
+        patched: '2019-05-06T05:49:01.429Z'
