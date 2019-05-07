@@ -1,68 +1,74 @@
-const bot = require('..')
 const request = require('request')
 
 const POLL_TIMEOUT = 30 * 1000
 
-const APIS = [
-  {
-    url: 'http://www.aljazeera.com/addons/alert.ashx',
-    eventName: 'aljaz'
-  },
-  /* { // Bloomberg seems blocked by CAPTCHAs
-    url: 'https://www.bloomberg.com/api/modules/id/africa_breaking_news',
-    eventName: 'bloomberg',
-    payload: {tag: 'Africa'}
-  },
-  {
-    url: 'https://www.bloomberg.com/api/modules/id/canada_breaking_news',
-    eventName: 'bloomberg',
-    payload: {tag: 'Canada'}
-  },
-  {
-    url: 'https://www.bloomberg.com/api/modules/id/europe_breaking_news',
-    eventName: 'bloomberg',
-    payload: {tag: 'Europe'}
-  },
-  {
-    url: 'https://www.bloomberg.com/api/modules/id/us_breaking_news',
-    eventname: 'bloomberg',
-    payload: {tag: 'us'}
-  },
-  {
-    url: 'https://www.bloomberg.com/api/modules/id/breaking_news',
-    eventname: 'bloomberg'
-  }, */
-  {
-    url: 'http://polling.bbc.co.uk/news/latest_breaking_news_waf?audience=Domestic',
-    eventName: 'bbc',
-    payload: { tag: 'domestic' },
-    customDecoder: (data) => data.asset
-  },
-  {
-    url: 'http://polling.bbc.co.uk/news/latest_breaking_news_waf?audience=US',
-    eventName: 'bbc2',
-    payload: { tag: 'US & Canada' },
-    customDecoder: (data) => data.asset
-  },
-  {
-    url: 'http://uk.reuters.com/assets/breakingNews?view=json',
-    eventName: 'reuters',
-    payload: { tag: 'UK' }
-  },
-  {
-    url: 'http://reuters.com/assets/breakingNews?view=json',
-    eventName: 'reuters',
-    payload: { tag: 'US?' }
-  },
-  { // this one is very loud
-    url: 'http://uk.reuters.com/assets/jsonWireNews',
-    eventName: 'reuwire',
-    disabled: !bot.config.get('news.loud'),
-    customDecoder: (data) => data.headlines
-  }
-]
+function APIs (loud) {
+  return [
+    {
+      url: 'https://api.rss2json.com/v1/api.json?rss_url=https://www.mi5.gov.uk/UKThreatLevel/UKThreatLevel.xml',
+      eventName: 'mi5',
+      disabled: true
+    },
+    {
+      url: 'http://www.aljazeera.com/addons/alert.ashx',
+      eventName: 'aljaz'
+    },
+    /* { // Bloomberg seems blocked by CAPTCHAs
+      url: 'https://www.bloomberg.com/api/modules/id/africa_breaking_news',
+      eventName: 'bloomberg',
+      payload: {tag: 'Africa'}
+    },
+    {
+      url: 'https://www.bloomberg.com/api/modules/id/canada_breaking_news',
+      eventName: 'bloomberg',
+      payload: {tag: 'Canada'}
+    },
+    {
+      url: 'https://www.bloomberg.com/api/modules/id/europe_breaking_news',
+      eventName: 'bloomberg',
+      payload: {tag: 'Europe'}
+    },
+    {
+      url: 'https://www.bloomberg.com/api/modules/id/us_breaking_news',
+      eventname: 'bloomberg',
+      payload: {tag: 'us'}
+    },
+    {
+      url: 'https://www.bloomberg.com/api/modules/id/breaking_news',
+      eventname: 'bloomberg'
+    }, */
+    {
+      url: 'http://polling.bbc.co.uk/news/latest_breaking_news_waf?audience=Domestic',
+      eventName: 'bbc',
+      payload: { tag: 'domestic' },
+      customDecoder: (data) => data.asset
+    },
+    {
+      url: 'http://polling.bbc.co.uk/news/latest_breaking_news_waf?audience=US',
+      eventName: 'bbc2',
+      payload: { tag: 'US & Canada' },
+      customDecoder: (data) => data.asset
+    },
+    {
+      url: 'http://uk.reuters.com/assets/breakingNews?view=json',
+      eventName: 'reuters',
+      payload: { tag: 'UK' }
+    },
+    {
+      url: 'http://reuters.com/assets/breakingNews?view=json',
+      eventName: 'reuters',
+      payload: { tag: 'US?' }
+    },
+    { // this one is very loud
+      url: 'http://uk.reuters.com/assets/jsonWireNews',
+      eventName: 'reuwire',
+      disabled: !loud,
+      customDecoder: (data) => data.headlines
+    }
+  ]
+}
 
-const requestApi = (api) => {
+const requestApi = (bot, api) => {
   if (api.disabled) return
   request(api.url, (err, res, body) => {
     if (err) return console.log(`Error polling ${api.url}: ${err}`)
@@ -84,17 +90,20 @@ const requestApi = (api) => {
   })
 }
 
-const pollApis = (skip) => {
-  APIS.map(requestApi)
+const pollApis = (bot, skip) => {
+  APIs(bot.config.get('news.loud')).map(a => requestApi(bot, a))
   if (!skip && bot.config.get('news.poll')) {
-    setTimeout(pollApis, POLL_TIMEOUT)
+    setTimeout(pollApis, POLL_TIMEOUT, bot)
   }
 }
 
-module.exports = { pollApis }
-
-if (bot.config.get('news.poll')) {
-  pollApis()
-} else {
-  console.log('Automatic polling of news disabled')
+module.exports = {
+  pollApis: pollApis,
+  onload: (bot) => {
+    if (bot.config.get('news.poll')) {
+      pollApis(bot)
+    } else {
+      console.log('Automatic polling of news disabled')
+    }
+  }
 }

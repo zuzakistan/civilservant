@@ -13,20 +13,12 @@ module.exports = self = {
     self.channel = channel
   },
   commands: {},
-  events: [],
+  events: {},
   loadModule: function (module) {
     moduleLoader.loadModule(self, './modules/' + module)
   },
   runCommand: function (text, args) {
-    let reply = ''
     const bot = {
-      say: function (to, sayMsg) {
-        // these don't actually work yet
-        reply += sayMsg
-      },
-      notice: function (to, sayMsg) {
-        reply += sayMsg
-      },
       config: this.config,
       chans: { '#test': null }
     }
@@ -43,7 +35,8 @@ module.exports = self = {
       Object.assign(msg.args, args)
     }
 
-    reply += self.commands[msg.args[0]].command(bot, msg)
-    return reply
+    const command = self.commands[msg.args[0]].command
+
+    return command(bot, msg)
   }
 }
