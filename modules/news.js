@@ -8,14 +8,6 @@ const plugin = require('../plugins/news')
 
 var oldnews = {}
 
-/**
- * JavaScript thinks that {a:1} doesn't equal {a:1},
- * so this function is a work-around to get that to work.
- */
-function isEqualObj (a, b) {
-  return JSON.stringify(a) === JSON.stringify(b)
-}
-
 module.exports = {
   commands: {
     poll: {
@@ -68,7 +60,7 @@ module.exports = {
       if (!story.headline) return
       bot.fireEvents('news', {
         color: 'orange',
-        id: story.tag + story.headline,
+        id: story.headline,
         prompt: story.label ? story.label : 'Reuters',
         tail: story.tag ? story.tag : null,
         text: story.headline,
@@ -128,7 +120,7 @@ module.exports = {
     },
     news: function (bot, news) {
       console.log('NEWSNEWSNEWS', news)
-      if (!oldnews[news.id] || !isEqualObj(oldnews[news.id], news)) {
+      if (!oldnews[news.id]) {
         bot.fireEvents('newNews', news)
       }
     },
