@@ -1,52 +1,54 @@
+function scoreLetter (letter, str) {
+  const bag = {
+    'a': { count: 9, score: 1 },
+    'b': { count: 2, score: 3 },
+    'c': { count: 2, score: 3 },
+    'd': { count: 4, score: 2 },
+    'e': { count: 12, score: 1 },
+    'f': { count: 2, score: 4 },
+    'g': { count: 3, score: 2 },
+    'h': { count: 2, score: 4 },
+    'i': { count: 9, score: 1 },
+    'j': { count: 1, score: 8 },
+    'k': { count: 1, score: 5 },
+    'l': { count: 4, score: 1 },
+    'm': { count: 2, score: 3 },
+    'n': { count: 6, score: 1 },
+    'o': { count: 8, score: 1 },
+    'p': { count: 2, score: 3 },
+    'q': { count: 1, score: 10 },
+    'r': { count: 6, score: 1 },
+    's': { count: 4, score: 1 },
+    't': { count: 6, score: 1 },
+    'u': { count: 4, score: 1 },
+    'v': { count: 2, score: 4 },
+    'w': { count: 2, score: 4 },
+    'x': { count: 1, score: 8 },
+    'y': { count: 2, score: 4 },
+    'z': { count: 1, score: 10 }
+  }
+  let occurences = (str.match(new RegExp(letter, 'gi')) || []).length
+  let newBlanks = Math.max(occurences - bag[letter]['count'], 0)
+  return {
+    score: bag[letter]['score'] * (occurences - newBlanks),
+    usedBlanks: newBlanks
+  }
+}
 function scrabbleScore (str) {
-  let letterCounts = {
-    'a': 9,
-    'b': 2,
-    'c': 2,
-    'd': 4,
-    'e': 12,
-    'f': 2,
-    'g': 3,
-    'h': 2,
-    'i': 9,
-    'j': 1,
-    'k': 1,
-    'l': 4,
-    'm': 2,
-    'n': 6,
-    'o': 8,
-    'p': 2,
-    'q': 1,
-    'r': 6,
-    's': 4,
-    't': 6,
-    'u': 4,
-    'v': 2,
-    'w': 2,
-    'x': 1,
-    'y': 2,
-    'z': 1
-  }
-  var usedBlanks = ''
-  for (var letter in letterCounts) {
-    let pattern = new RegExp(letter, 'gi')
-    usedBlanks += letter.repeat(
-      Math.max((str.match(pattern) || []).length - letterCounts[letter], 0))
-  }
-  if (str.length > 15 || usedBlanks.length > 2 || /[^a-zA-Z]/.test(str)) {
+  if (str.length > 15 || str.length < 2 || /[^a-zA-Z]/.test(str)) {
     return null
   }
-  for (var i = 0; i < usedBlanks.length; i++) {
-    let pattern = new RegExp(usedBlanks.charAt(i), 'i')
-    str = str.replace(pattern, '')
+  const uniqueChars = [...new Set(str.toLowerCase())]
+  const result = uniqueChars
+    .map(c => scoreLetter(c, str))
+    .reduce((a, b) => ({
+      'score': a['score'] + b['score'],
+      'usedBlanks': a['usedBlanks'] + b['usedBlanks']
+    }))
+  if (result['usedBlanks'] > 2) {
+    return null
   }
-  return (str.match(/[eaionrtlsu]/gi) || []).length +
-    2 * (str.match(/[dg]/gi) || []).length +
-    3 * (str.match(/[bcmp]/gi) || []).length +
-    4 * (str.match(/[fhvwy]/gi) || []).length +
-    5 * (str.match(/k/gi) || []).length +
-    8 * (str.match(/[jx]/gi) || []).length +
-    10 * (str.match(/[qz]/gi) || []).length
+  return result['score']
 }
 module.exports = {
   commands: {

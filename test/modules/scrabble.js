@@ -4,11 +4,18 @@ const assert = require('assert')
 
 describe('Scrabble module', function () {
   const tests = {
-    'owo': '6',
-    'OwO': '6',
-    'jjj': '8',
+    'hello world': 'Not a valid word',
+    'a': 'Not a valid word',
+    'abcdefghijklmnop': 'Not a valid word',
     'jjjj': 'Not a valid word',
-    'hello world': 'Not a valid word'
+    'jj': '8',
+    'jumping': '19',
+    'hay': '9',
+    'dwarves': '14',
+    'flock': '14',
+    'quartz': '24',
+    'box': '12',
+    'OwO': '6'
   }
 
   before(function () {
