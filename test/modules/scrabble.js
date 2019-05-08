@@ -4,7 +4,6 @@ const assert = require('assert')
 
 describe('Scrabble module', function () {
   const tests = {
-    'hello world': 'Not a valid word',
     'a': 'Not a valid word',
     'abcdefghijklmnop': 'Not a valid word',
     'jjjj': 'Not a valid word',
@@ -23,8 +22,9 @@ describe('Scrabble module', function () {
   })
 
   for (const word in tests) {
-    it(`score Scrabble words correctly`, function () {
-      assert.strictEqual(mockBot.runCommand(`!scrabble ${word}`), tests[word])
+    it('should score Scrabble words correctly', function () {
+      assert.strictEqual(mockBot.runCommand('!scrabble', { 'word': word }),
+        tests[word])
     })
   }
 })

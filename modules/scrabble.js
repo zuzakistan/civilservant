@@ -54,8 +54,9 @@ module.exports = {
   commands: {
     scrabble: {
       help: 'Scores a word in Scrabble',
+      usage: [ 'word' ],
       command: function (bot, msg) {
-        return String(scrabbleScore(msg.body) || 'Not a valid word')
+        return String(scrabbleScore(msg.args.word) || 'Not a valid word')
       }
     }
   }
