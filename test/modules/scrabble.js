@@ -22,7 +22,7 @@ describe('Scrabble module', function () {
   })
 
   for (const word in tests) {
-    it('should score Scrabble words correctly', function () {
+    it(`should score '${word}' correctly`, function () {
       assert.strictEqual(mockBot.runCommand('!scrabble', { 'word': word }),
         tests[word])
     })
