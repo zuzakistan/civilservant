@@ -27,10 +27,10 @@ function scoreLetter (letter, str) {
     'y': { count: 2, score: 4 },
     'z': { count: 1, score: 10 }
   }
-  let occurences = (str.match(new RegExp(letter, 'gi')) || []).length
-  let newBlanks = Math.max(occurences - bag[letter]['count'], 0)
+  let occurrences = (str.match(new RegExp(letter, 'gi')) || []).length
+  let newBlanks = Math.max(occurrences - bag[letter]['count'], 0)
   return {
-    score: bag[letter]['score'] * (occurences - newBlanks),
+    score: bag[letter]['score'] * (occurrences - newBlanks),
     usedBlanks: newBlanks
   }
 }
@@ -38,8 +38,7 @@ function scrabbleScore (str) {
   if (str.length > 15 || str.length < 2 || /[^a-zA-Z]/.test(str)) {
     return null
   }
-  const uniqueChars = [...new Set(str.toLowerCase())]
-  const result = uniqueChars
+  const result = [...new Set(str.toLowerCase())]
     .map(c => scoreLetter(c, str))
     .reduce((a, b) => ({
       'score': a['score'] + b['score'],
