@@ -64,9 +64,10 @@ module.exports = {
       }
       const bestWord = Object.keys(wordScores)
         .reduce((a, b) => wordScores[a] > wordScores[b] ? a : b)
-      if (wordScores[bestWord] > 20 && !text.match('!scrabble')) {
-        bot.shout(to, nick + ': ' + bestWord + ' scores ' +
-          wordScores[bestWord] + ' points!')
+      if (wordScores[bestWord] >= bot.config.get('scrabble.minScore') &&
+          !text.match('!scrabble')) {
+        bot.shout(to,
+          `${nick}: ${bestWord} scores ${wordScores[bestWord]} points!`)
       }
     }
   }
