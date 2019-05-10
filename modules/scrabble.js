@@ -55,5 +55,20 @@ module.exports = {
         return String(scrabbleScore(msg.args.word) || 'Not a valid word')
       }
     }
+  },
+  events: {
+    message: function (bot, nick, to, text) {
+      var wordScores = {}
+      for (const word of text.split(' ')) {
+        wordScores[word] = scrabbleScore(word)
+      }
+      const bestWord = Object.keys(wordScores)
+        .reduce((a, b) => wordScores[a] > wordScores[b] ? a : b)
+      if (wordScores[bestWord] >= bot.config.get('scrabble.minScore') &&
+          !text.match('!scrabble')) {
+        bot.shout(to,
+          `${nick}: ${bestWord.toUpperCase()} scores ${wordScores[bestWord]} points!`)
+      }
+    }
   }
 }

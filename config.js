@@ -181,6 +181,13 @@ module.exports = config = convict({
       doc: 'Twitter consumer secret',
       format: String
     }
+  },
+  scrabble: {
+    minScore: {
+      doc: 'The minimum Scrabble score worth shouting about',
+      format: Number,
+      default: 21
+    }
   }
 })
 
