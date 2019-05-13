@@ -67,7 +67,7 @@ module.exports = {
       if (wordScores[bestWord] >= bot.config.get('scrabble.minScore') &&
           !text.match('!scrabble')) {
         bot.shout(to,
-          `${nick}: ${bestWord.toUpperCase()} scores ${wordScores[bestWord]} points!`)
+          `${nick}: ${bestWord.toUpperCase()} scores ${wordScores[bestWord]} points${'!'.repeat(Math.floor((wordScores[bestWord] - 20) / 5)) || '.'}`)
       }
     }
   }
