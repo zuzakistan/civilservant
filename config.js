@@ -186,7 +186,12 @@ module.exports = config = convict({
     minScore: {
       doc: 'The minimum Scrabble score worth shouting about',
       format: Number,
-      default: 21
+      default: 20
+    },
+    exclamationThreshold: {
+      doc: 'The number of points above the minScore required to respond with enthusiasm',
+      format: Number,
+      default: 5
     }
   }
 })

@@ -34,6 +34,12 @@ function scoreLetter (letter, str) {
     usedBlanks
   }
 }
+function getPunctuation (bot, score) {
+  const minScore = bot.config.get('scrabble.minScore')
+  const exclThreshold = bot.config.get('scrabble.exclamationThreshold')
+  const numberOfMarks = Math.floor((score - minScore) / exclThreshold)
+  return '!'.repeat(numberOfMarks || '.')
+}
 function scrabbleScore (str) {
   if (str.length > 15 || str.length < 2 || /[^a-zA-Z]/.test(str)) {
     return null
@@ -67,7 +73,7 @@ module.exports = {
       if (wordScores[bestWord] >= bot.config.get('scrabble.minScore') &&
           !text.match('!scrabble')) {
         bot.shout(to,
-          `${nick}: ${bestWord.toUpperCase()} scores ${wordScores[bestWord]} points${'!'.repeat(Math.floor((wordScores[bestWord] - 20) / 5)) || '.'}`)
+          `${nick}: ${bestWord.toUpperCase()} scores ${wordScores[bestWord]} points${getPunctuation(bot, wordScores[bestWord])}`)
       }
     }
   }
