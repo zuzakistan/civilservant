@@ -27,21 +27,31 @@ function scoreLetter (letter, str) {
     'y': { count: 2, score: 4 },
     'z': { count: 1, score: 10 }
   }
-  const occurrences = str.toLowerCase().split(letter).length - 1
-  const usedBlanks = Math.max(occurrences - bag[letter]['count'], 0)
-  return {
-    score: bag[letter]['score'] * (occurrences - usedBlanks),
-    usedBlanks
+  try {
+    const occurrences = str.toLowerCase().split(letter).length - 1
+    const usedBlanks = Math.max(occurrences - bag[letter]['count'], 0)
+    return {
+      score: bag[letter]['score'] * (occurrences - usedBlanks),
+      usedBlanks
+    }
+  } catch (e) {
+    if (e instanceof TypeError) {
+      return {
+        score: 0,
+        usedBlanks: 0
+      }
+    }
   }
 }
 function getPunctuation (bot, score) {
   const minScore = bot.config.get('scrabble.minScore')
   const exclThreshold = bot.config.get('scrabble.exclamationThreshold')
   const numberOfMarks = Math.floor((score - minScore) / exclThreshold)
-  return '!'.repeat(numberOfMarks || '.')
+  return '!'.repeat(numberOfMarks) || '.'
 }
 function scrabbleScore (str) {
-  if (str.length > 15 || str.length < 2 || /[^a-zA-Z]/.test(str)) {
+  if (str.length > 15 || str.length < 2 ||
+      /[^a-zA-Z]/.test(str.substring(0, str.length - 1))) {
     return null
   }
   const result = [...new Set(str.toLowerCase())]
@@ -71,9 +81,10 @@ module.exports = {
       const bestWord = Object.keys(wordScores)
         .reduce((a, b) => wordScores[a] > wordScores[b] ? a : b)
       if (wordScores[bestWord] >= bot.config.get('scrabble.minScore') &&
-          !text.match('!scrabble')) {
-        bot.shout(to,
-          `${nick}: ${bestWord.toUpperCase()} scores ${wordScores[bestWord]} points${getPunctuation(bot, wordScores[bestWord])}`)
+          !text.match(bot.config.get('irc.controlChar') + 'scrabble')) {
+        bot.shout(to, `${nick}: ` +
+          `'${bestWord.toUpperCase().replace(/[^A-Z]/, '')}' scores ` +
+          `${wordScores[bestWord]} points${getPunctuation(bot, wordScores[bestWord])}`)
       }
     }
   }
