@@ -1,3 +1,4 @@
+let wordHistory = []
 function scoreLetter (letter, str) {
   const bag = {
     'a': { count: 9, score: 1 },
@@ -27,12 +28,27 @@ function scoreLetter (letter, str) {
     'y': { count: 2, score: 4 },
     'z': { count: 1, score: 10 }
   }
-  const occurrences = str.toLowerCase().split(letter).length - 1
-  const usedBlanks = Math.max(occurrences - bag[letter]['count'], 0)
-  return {
-    score: bag[letter]['score'] * (occurrences - usedBlanks),
-    usedBlanks
+  try {
+    const occurrences = str.toLowerCase().split(letter).length - 1
+    const usedBlanks = Math.max(occurrences - bag[letter]['count'], 0)
+    return {
+      score: bag[letter]['score'] * (occurrences - usedBlanks),
+      usedBlanks
+    }
+  } catch (e) {
+    if (e instanceof TypeError) {
+      return {
+        score: 0,
+        usedBlanks: 0
+      }
+    }
   }
+}
+function getPunctuation (bot, score) {
+  const minScore = bot.config.get('scrabble.minScore')
+  const exclThreshold = bot.config.get('scrabble.exclamationThreshold')
+  const numberOfMarks = Math.floor((score - minScore) / exclThreshold)
+  return '!'.repeat(numberOfMarks) || '.'
 }
 function scrabbleScore (str) {
   if (str.length > 15 || str.length < 2 || /[^a-zA-Z]/.test(str)) {
@@ -54,20 +70,26 @@ module.exports = {
       command: function (bot, msg) {
         return String(scrabbleScore(msg.args.word) || 'Not a valid word')
       }
+    },
+    words: {
+      help: 'List the recorded high scoring Scrabble words',
+      command: () => wordHistory.join(' ')
     }
   },
   events: {
     message: function (bot, nick, to, text) {
       var wordScores = {}
-      for (const word of text.split(' ')) {
+      for (const word of text.toUpperCase().split(/[^A-Z]/)) {
+        if (wordHistory.includes(word)) continue
         wordScores[word] = scrabbleScore(word)
       }
       const bestWord = Object.keys(wordScores)
-        .reduce((a, b) => wordScores[a] > wordScores[b] ? a : b)
+        .reduce((a, b) => wordScores[a] > wordScores[b] ? a : b, 0)
       if (wordScores[bestWord] >= bot.config.get('scrabble.minScore') &&
-          !text.match('!scrabble')) {
-        bot.shout(to,
-          `${nick}: ${bestWord.toUpperCase()} scores ${wordScores[bestWord]} points${'!'.repeat(Math.floor((wordScores[bestWord] - 20) / 5)) || '.'}`)
+          !text.match(bot.config.get('irc.controlChar') + 'scrabble')) {
+        wordHistory.push(bestWord)
+        bot.shout(to, `${nick}: ${bestWord} scores ${wordScores[bestWord]} ` +
+          `points${getPunctuation(bot, wordScores[bestWord])}`)
       }
     }
   }
