@@ -50,8 +50,7 @@ function getPunctuation (bot, score) {
   return '!'.repeat(numberOfMarks) || '.'
 }
 function scrabbleScore (str) {
-  if (str.length > 15 || str.length < 2 ||
-      /[^a-zA-Z]/.test(str.substring(0, str.length - 1))) {
+  if (str.length > 15 || str.length < 2 || /[^a-zA-Z]/.test(str)) {
     return null
   }
   const result = [...new Set(str.toLowerCase())]
@@ -75,15 +74,15 @@ module.exports = {
   events: {
     message: function (bot, nick, to, text) {
       var wordScores = {}
-      for (const word of text.split(' ')) {
+      const words = text.split(' ').map(w => w.replace(/[^A-Za-z]+$/, ''))
+      for (const word of words) {
         wordScores[word] = scrabbleScore(word)
       }
       const bestWord = Object.keys(wordScores)
         .reduce((a, b) => wordScores[a] > wordScores[b] ? a : b)
       if (wordScores[bestWord] >= bot.config.get('scrabble.minScore') &&
           !text.match(bot.config.get('irc.controlChar') + 'scrabble')) {
-        bot.shout(to, `${nick}: ` +
-          `'${bestWord.toUpperCase().replace(/[^A-Z]/, '')}' scores ` +
+        bot.shout(to, `${nick}: '${bestWord.toUpperCase()}' scores ` +
           `${wordScores[bestWord]} points${getPunctuation(bot, wordScores[bestWord])}`)
       }
     }
