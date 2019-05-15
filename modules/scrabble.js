@@ -89,7 +89,7 @@ module.exports = {
       if (wordScores[bestWord] >= bot.config.get('scrabble.minScore') &&
           !text.match(bot.config.get('irc.controlChar') + 'scrabble')) {
         wordHistory.push(bestWord)
-        bot.shout(to, `${nick}: '${bestWord.toUpperCase()}' scores ` +
+        bot.shout(to, `${nick}: ${bestWord.toUpperCase()} scores ` +
           `${wordScores[bestWord]} points${getPunctuation(bot, wordScores[bestWord])}`)
       }
     }
