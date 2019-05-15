@@ -1,3 +1,4 @@
+let wordHistory = []
 function scoreLetter (letter, str) {
   const bag = {
     'a': { count: 9, score: 1 },
@@ -69,6 +70,10 @@ module.exports = {
       command: function (bot, msg) {
         return String(scrabbleScore(msg.args.word) || 'Not a valid word')
       }
+    },
+    words: {
+      help: 'List the recorded high scoring Scrabble words',
+      command: () => wordHistory.join(' ')
     }
   },
   events: {
@@ -76,12 +81,14 @@ module.exports = {
       var wordScores = {}
       const words = text.split(' ').map(w => w.replace(/[^A-Za-z]+$/, ''))
       for (const word of words) {
+        if (wordHistory.includes(word)) continue
         wordScores[word] = scrabbleScore(word)
       }
       const bestWord = Object.keys(wordScores)
         .reduce((a, b) => wordScores[a] > wordScores[b] ? a : b)
       if (wordScores[bestWord] >= bot.config.get('scrabble.minScore') &&
           !text.match(bot.config.get('irc.controlChar') + 'scrabble')) {
+        wordHistory.push(bestWord)
         bot.shout(to, `${nick}: '${bestWord.toUpperCase()}' scores ` +
           `${wordScores[bestWord]} points${getPunctuation(bot, wordScores[bestWord])}`)
       }
