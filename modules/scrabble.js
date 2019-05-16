@@ -83,15 +83,13 @@ module.exports = {
         if (wordHistory.includes(word)) continue
         wordScores[word] = scrabbleScore(word)
       }
-      if (Object.keys(wordScores).length) {
-        const bestWord = Object.keys(wordScores)
-          .reduce((a, b) => wordScores[a] > wordScores[b] ? a : b)
-        if (wordScores[bestWord] >= bot.config.get('scrabble.minScore') &&
-            !text.match(bot.config.get('irc.controlChar') + 'scrabble')) {
-          wordHistory.push(bestWord)
-          bot.shout(to, `${nick}: ${bestWord} scores ${wordScores[bestWord]} ` +
-            `points${getPunctuation(bot, wordScores[bestWord])}`)
-        }
+      const bestWord = Object.keys(wordScores)
+        .reduce((a, b) => wordScores[a] > wordScores[b] ? a : b, 0)
+      if (wordScores[bestWord] >= bot.config.get('scrabble.minScore') &&
+          !text.match(bot.config.get('irc.controlChar') + 'scrabble')) {
+        wordHistory.push(bestWord)
+        bot.shout(to, `${nick}: ${bestWord} scores ${wordScores[bestWord]} ` +
+          `points${getPunctuation(bot, wordScores[bestWord])}`)
       }
     }
   }
