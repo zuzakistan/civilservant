@@ -79,8 +79,7 @@ module.exports = {
   events: {
     message: function (bot, nick, to, text) {
       var wordScores = {}
-      const words = text.split(' ').map(w => w.replace(/[^A-Za-z]+$/, ''))
-      for (const word of words) {
+      for (const word of text.split(/[^A-Za-z]/)) {
         if (wordHistory.includes(word)) continue
         wordScores[word] = scrabbleScore(word)
       }
