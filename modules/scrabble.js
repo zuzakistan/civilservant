@@ -1,4 +1,4 @@
-var sowpods = require('pf-sowpods')
+const sowpods = require('pf-sowpods')
 
 let wordHistory = []
 const bag = {
@@ -47,9 +47,9 @@ function scoreLetter (letter, str) {
   }
 }
 function scrabbleNotate (str) {
-  var word = str.toLowerCase()
-  for (var letter of [...new Set(word)]) {
-    for (var i = 0; i < bag[letter]['count']; i++) {
+  let word = str.toLowerCase()
+  for (const letter of [...new Set(word)]) {
+    for (let i = 0; i < bag[letter]['count']; i++) {
       word = word.replace(letter, letter.toUpperCase())
     }
   }
