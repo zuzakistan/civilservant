@@ -1,4 +1,4 @@
-var sowpods = require('sowpods')
+var sowpods = require('pf-sowpods')
 
 let wordHistory = []
 const bag = {
@@ -53,7 +53,7 @@ function scrabbleNotate (str) {
       word = word.replace(letter, letter.toUpperCase())
     }
   }
-  return word + (sowpods.includes(word.toUpperCase()) ? '' : '*')
+  return word + (sowpods.verify(word) ? '' : '*')
 }
 function getPunctuation (bot, score) {
   const minScore = bot.config.get('scrabble.minScore')
@@ -73,40 +73,42 @@ function scrabbleScore (str) {
     }))
   return result['usedBlanks'] > 2 ? null : result['score']
 }
+function reportScore (bot, word, score) {
+  if (typeof score === 'undefined') {
+    score = scrabbleScore(word)
+  }
+  return score
+    ? `${scrabbleNotate(word)} scores ${score} points${getPunctuation(bot, score)}`
+    : 'Not a valid word'
+}
 module.exports = {
   commands: {
     scrabble: {
       help: 'Scores a word in Scrabble',
       usage: [ 'word' ],
       command: function (bot, msg) {
-        const score = scrabbleScore(msg.args.word)
-        if (score) {
-          return `${scrabbleNotate(msg.args.word)} scores ${score} ` +
-          `points${getPunctuation(bot, score)}`
-        } else {
-          return 'Not a valid word'
-        }
+        return reportScore(bot, msg.args.word, scrabbleScore(msg.args.word))
       }
     },
     words: {
-      help: 'List the recorded high scoring Scrabble words',
-      command: () => wordHistory.join(' ')
+      help: 'List the recorded high-scoring Scrabble words',
+      command: () => wordHistory.map(scrabbleNotate).join(' ')
     }
   },
   events: {
     message: function (bot, nick, to, text) {
       var wordScores = {}
-      for (const word of text.split(/[^A-Za-z]/).map(scrabbleNotate)) {
+      for (const word of text.toUpperCase().split(/[^A-Z]/)) {
         if (wordHistory.includes(word)) continue
-        wordScores[word] = scrabbleScore(word.replace('*', ''))
+        wordScores[word] = scrabbleScore(word)
       }
       const bestWord = Object.keys(wordScores)
         .reduce((a, b) => wordScores[a] > wordScores[b] ? a : b, 0)
       if (wordScores[bestWord] >= bot.config.get('scrabble.minScore') &&
           !text.match(bot.config.get('irc.controlChar') + 'scrabble')) {
         wordHistory.push(bestWord)
-        bot.shout(to, `${nick}: ${bestWord} scores ${wordScores[bestWord]} ` +
-          `points${getPunctuation(bot, wordScores[bestWord])}`)
+        bot.shout(to, nick + ': ' +
+          reportScore(bot, bestWord, wordScores[bestWord]))
       }
     }
   }
