@@ -52,6 +52,7 @@
     "scrape": "^0.2.3",
     "shell-escape": "^0.2.0",
     "snyk": "^1.161.1",
+    "sowpods": "^1.1.0",
     "suncalc": "^1.7.0",
     "twitter-pin": "^1.0.0",
     "underscore": "^1.8.3",

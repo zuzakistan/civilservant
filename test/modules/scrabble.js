@@ -7,14 +7,15 @@ describe('Scrabble module', function () {
     'a': 'Not a valid word',
     'abcdefghijklmnop': 'Not a valid word',
     'jjjj': 'Not a valid word',
-    'jj': '8',
-    'jumping': '19',
-    'hay': '9',
-    'dwarves': '14',
-    'flock': '14',
-    'quartz': '24',
-    'box': '12',
-    'OwO': '6'
+    'jj': 'Jj* scores 8 points.',
+    'jumping': 'JUMPING scores 19 points.',
+    'hay': 'HAY scores 9 points.',
+    'dwarves': 'DWARVES scores 14 points.',
+    'flock': 'FLOCK scores 14 points.',
+    'quartz': 'QUARTZ scores 24 points.',
+    'box': 'BOX scores 12 points.',
+    'OwO': 'OWO* scores 6 points.',
+    'xyzzy': 'XYZzY* scores 26 points!'
   }
 
   before(function () {
