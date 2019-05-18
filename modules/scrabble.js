@@ -1,33 +1,35 @@
+const sowpods = require('pf-sowpods')
+
 let wordHistory = []
+const bag = {
+  'a': { count: 9, score: 1 },
+  'b': { count: 2, score: 3 },
+  'c': { count: 2, score: 3 },
+  'd': { count: 4, score: 2 },
+  'e': { count: 12, score: 1 },
+  'f': { count: 2, score: 4 },
+  'g': { count: 3, score: 2 },
+  'h': { count: 2, score: 4 },
+  'i': { count: 9, score: 1 },
+  'j': { count: 1, score: 8 },
+  'k': { count: 1, score: 5 },
+  'l': { count: 4, score: 1 },
+  'm': { count: 2, score: 3 },
+  'n': { count: 6, score: 1 },
+  'o': { count: 8, score: 1 },
+  'p': { count: 2, score: 3 },
+  'q': { count: 1, score: 10 },
+  'r': { count: 6, score: 1 },
+  's': { count: 4, score: 1 },
+  't': { count: 6, score: 1 },
+  'u': { count: 4, score: 1 },
+  'v': { count: 2, score: 4 },
+  'w': { count: 2, score: 4 },
+  'x': { count: 1, score: 8 },
+  'y': { count: 2, score: 4 },
+  'z': { count: 1, score: 10 }
+}
 function scoreLetter (letter, str) {
-  const bag = {
-    'a': { count: 9, score: 1 },
-    'b': { count: 2, score: 3 },
-    'c': { count: 2, score: 3 },
-    'd': { count: 4, score: 2 },
-    'e': { count: 12, score: 1 },
-    'f': { count: 2, score: 4 },
-    'g': { count: 3, score: 2 },
-    'h': { count: 2, score: 4 },
-    'i': { count: 9, score: 1 },
-    'j': { count: 1, score: 8 },
-    'k': { count: 1, score: 5 },
-    'l': { count: 4, score: 1 },
-    'm': { count: 2, score: 3 },
-    'n': { count: 6, score: 1 },
-    'o': { count: 8, score: 1 },
-    'p': { count: 2, score: 3 },
-    'q': { count: 1, score: 10 },
-    'r': { count: 6, score: 1 },
-    's': { count: 4, score: 1 },
-    't': { count: 6, score: 1 },
-    'u': { count: 4, score: 1 },
-    'v': { count: 2, score: 4 },
-    'w': { count: 2, score: 4 },
-    'x': { count: 1, score: 8 },
-    'y': { count: 2, score: 4 },
-    'z': { count: 1, score: 10 }
-  }
   try {
     const occurrences = str.toLowerCase().split(letter).length - 1
     const usedBlanks = Math.max(occurrences - bag[letter]['count'], 0)
@@ -44,10 +46,19 @@ function scoreLetter (letter, str) {
     }
   }
 }
+function scrabbleNotate (str) {
+  let word = str.toLowerCase()
+  for (const letter of [...new Set(word)]) {
+    for (let i = 0; i < bag[letter]['count']; i++) {
+      word = word.replace(letter, letter.toUpperCase())
+    }
+  }
+  return word + (sowpods.verify(word) ? '' : '*')
+}
 function getPunctuation (bot, score) {
   const minScore = bot.config.get('scrabble.minScore')
   const exclThreshold = bot.config.get('scrabble.exclamationThreshold')
-  const numberOfMarks = Math.floor((score - minScore) / exclThreshold)
+  const numberOfMarks = Math.max(Math.floor((score - minScore) / exclThreshold), 0)
   return '!'.repeat(numberOfMarks) || '.'
 }
 function scrabbleScore (str) {
@@ -62,18 +73,26 @@ function scrabbleScore (str) {
     }))
   return result['usedBlanks'] > 2 ? null : result['score']
 }
+function reportScore (bot, word, score) {
+  if (typeof score === 'undefined') {
+    score = scrabbleScore(word)
+  }
+  return score
+    ? `${scrabbleNotate(word)} scores ${score} points${getPunctuation(bot, score)}`
+    : 'Not a valid word'
+}
 module.exports = {
   commands: {
     scrabble: {
       help: 'Scores a word in Scrabble',
       usage: [ 'word' ],
       command: function (bot, msg) {
-        return String(scrabbleScore(msg.args.word) || 'Not a valid word')
+        return reportScore(bot, msg.args.word, scrabbleScore(msg.args.word))
       }
     },
     words: {
-      help: 'List the recorded high scoring Scrabble words',
-      command: () => wordHistory.join(' ')
+      help: 'List the recorded high-scoring Scrabble words',
+      command: () => wordHistory.map(scrabbleNotate).join(' ')
     }
   },
   events: {
@@ -88,8 +107,8 @@ module.exports = {
       if (wordScores[bestWord] >= bot.config.get('scrabble.minScore') &&
           !text.match(bot.config.get('irc.controlChar') + 'scrabble')) {
         wordHistory.push(bestWord)
-        bot.shout(to, `${nick}: ${bestWord} scores ${wordScores[bestWord]} ` +
-          `points${getPunctuation(bot, wordScores[bestWord])}`)
+        bot.shout(to, nick + ': ' +
+          reportScore(bot, bestWord, wordScores[bestWord]))
       }
     }
   }
