@@ -48,7 +48,6 @@ module.exports = {
     country: {
       help: 'Looks up an ISO 3166 alpha2 country code',
       usage: [ 'country' ],
-      aliases: [ 'cc' ],
       command: function (bot, msg) {
         var code = msg.args.country.toUpperCase()
         let languages = [ 'en', 'de', 'fr', 'el' ]
@@ -56,6 +55,16 @@ module.exports = {
           return code + ' → ' + languages.map((lang) => countries.getName(code, lang)).join(' · ')
         }
         return 'ISO 3166-alpha2 code not found.'
+      }
+    },
+    cc: {
+      help: 'Looks up an ISO 3166 alpha2 country code',
+      usage: [ 'country', 'language' ],
+      aliases: [ 'cc' ],
+      command: function (bot, msg) {
+        let code = msg.args.country.toUpperCase()
+        let lang = msg.args.language.toLowerCase()
+        return code + ' → ' + (countries.getName(code, lang) || 'not found')
       }
     },
     state: {
