@@ -6,6 +6,15 @@ let twitterPin
 module.exports = {
   onload: (bot) => {
     twitterPin = TwitterPin(bot.config.get('twitter.keys.consumerKey'), bot.config.get('twitter.keys.consumerSecret'))
+    bot.tweet = (user, payload) => {
+      let client = new Tweeter({
+        consumer_key: bot.config.get('twitter.keys.consumerKey'),
+        consumer_secret: bot.config.get('twitter.keys.consumerSecret'),
+        access_token_key: bot.config.get(`twitter.users.${user}.key`),
+        access_token_secret: bot.config.get(`twitter.users.${user}.secret`)
+      })
+      return client.tweet(payload)
+    }
   },
   commands: {
     twitterauth: {
@@ -41,13 +50,7 @@ module.exports = {
       command: async (bot, msg) => {
         let user = bot.config.get('twitter.tweetUser')
         if (!user) return 'tweeting disabled'
-        let client = new Tweeter({
-          consumer_key: bot.config.get('twitter.keys.consumerKey'),
-          consumer_secret: bot.config.get('twitter.keys.consumerSecret'),
-          access_token_key: bot.config.get(`twitter.users.${user}.key`),
-          access_token_secret: bot.config.get(`twitter.users.${user}.secret`)
-        })
-        let tweet = await client.tweet({ status: msg.body })
+        let tweet = await bot.tweet(user, { status: msg.body })
         return 'https://twitter.com/statuses/' + tweet.id_str
       }
     }
@@ -56,14 +59,8 @@ module.exports = {
     newNews: (bot, news) => {
       let user = bot.config.get('twitter.newsUser')
       if (!user) return 'tweeting disabled'
-      let client = new Tweeter({
-        consumer_key: bot.config.get('twitter.keys.consumerKey'),
-        consumer_secret: bot.config.get('twitter.keys.consumerSecret'),
-        access_token_key: bot.config.get(`twitter.users.${user}.key`),
-        access_token_secret: bot.config.get(`twitter.users.${user}.secret`)
-      })
       let url = news.url ? news.url : ''
-      client.tweet({ status: owo(news.text) + '\r\n' + url })
+      bot.tweet(user, { status: owo(news.text) + '\r\n' + url })
     }
   }
 }
