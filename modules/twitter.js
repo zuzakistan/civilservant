@@ -57,6 +57,7 @@ module.exports = {
   },
   events: {
     newNews: (bot, news) => {
+      if (!bot.config.has('twitter.newsUser')) return undefined
       let user = bot.config.get('twitter.newsUser')
       if (!user) return 'tweeting disabled'
       let url = news.url ? news.url : ''
