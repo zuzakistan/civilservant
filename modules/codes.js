@@ -51,8 +51,9 @@ module.exports = {
       aliases: [ 'cc' ],
       command: function (bot, msg) {
         var code = msg.args.country.toUpperCase()
+        let languages = [ 'en', 'de', 'fr', 'el' ]
         if (countries.getName(code, 'en')) {
-          return code + ' → ' + countries.getName(code, 'en') + ' · ' + countries.getName(code, 'de')
+          return code + ' → ' + languages.map((lang) => countries.getName(code, lang)).join(' · ')
         }
         return 'ISO 3166-alpha2 code not found.'
       }
