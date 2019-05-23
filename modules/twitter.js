@@ -1,19 +1,31 @@
 const TwitterPin = require('twitter-pin')
 const Tweeter = require('fast-tweet')
 const owo = require('@zuzak/owo')
+const colors = require('irc').colors
+
 let twitterPin
 
 module.exports = {
   onload: (bot) => {
     twitterPin = TwitterPin(bot.config.get('twitter.keys.consumerKey'), bot.config.get('twitter.keys.consumerSecret'))
-    bot.tweet = (user, payload) => {
+    bot.tweet = async (user, payload) => {
       let client = new Tweeter({
         consumer_key: bot.config.get('twitter.keys.consumerKey'),
         consumer_secret: bot.config.get('twitter.keys.consumerSecret'),
         access_token_key: bot.config.get(`twitter.users.${user}.key`),
         access_token_secret: bot.config.get(`twitter.users.${user}.secret`)
       })
-      return client.tweet(payload)
+      let response = await client.tweet(payload)
+      if (bot.config.has('twitter.reportingChannel')) {
+        bot.notice(bot.config.get('twitter.reportingChannel'), [
+          colors.wrap('light_cyan', '@' + user),
+          ' ',
+          colors.wrap('cyan', response.text),
+          ' ',
+          colors.wrap('light_blue', 'https://twitter.com/' + user + '/statuses/' + response.id_str)
+        ].join(''))
+      }
+      return response
     }
   },
   commands: {
