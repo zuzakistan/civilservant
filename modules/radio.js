@@ -117,8 +117,8 @@ module.exports = {
       command: async (bot, msg) => tv('cbeebies')
     },
     bbcn: {
-      help: 'Displays what\'s on BBC News HD right now',
-      command: async (bot, msg) => tv('bbc_news_channel_hd')
+      help: 'Displays what\'s on the BBC News channel right now',
+      command: async (bot, msg) => tv('bbc_news24')
     },
     worldservice: {
       help: 'Displays the current BBC World Service schedule',
