@@ -88,6 +88,11 @@ const radio = async (station) => {
 module.exports = {
   commands: {
     // https://github.com/MikeRalphson/bbcparse/wiki/BBC-Linear-Services-(SIDs)
+    tv: {
+      help: 'Displays the schedule for an arbitary BBC television channel',
+      usage: [ 'channel' ],
+      command: async (bot, msg) => tv(msg.args.channel)
+    },
     bbc1: {
       aliases: [ 'bbcone' ],
       help: 'Displays the current BBC One schedule',
@@ -120,6 +125,11 @@ module.exports = {
       help: 'Displays what\'s on the BBC News channel right now',
       command: async (bot, msg) => tv('bbc_news24')
     },
+    radio: {
+      help: 'Displays the schedule for an arbitary BBC Radio station',
+      usage: [ 'station' ],
+      command: async (bot, msg) => radio(msg.args.station)
+    },
     worldservice: {
       help: 'Displays the current BBC World Service schedule',
       command: async (bot, msg) => radio('bbc_world_service')
@@ -127,6 +137,10 @@ module.exports = {
     r1: {
       help: 'Displays the current BBC Radio 1 schedule',
       command: async (bot, msg) => radio('bbc_radio_one')
+    },
+    r1x: {
+      help: 'Displays the current BBC 1Xtra schedule',
+      command: async (bot, msg) => radio('bbc_1xtra')
     },
     r2: {
       help: 'Displays the current BBC Radio 2 schedule',
@@ -144,15 +158,53 @@ module.exports = {
       help: 'Displays the current BBC Radio 4 long-wave schedule',
       command: async (bot, msg) => radio('bbc_radio_fourlw')
     },
-    tv: {
-      help: 'Displays the schedule for an arbitary BBC television channel',
-      usage: [ 'channel' ],
-      command: async (bot, msg) => tv(msg.args.channel)
+    r4x: {
+      help: 'Displays the current BBC Radio 4 Extra schedule',
+      command: async (bot, msg) => radio('bbc_radio_four_extra')
     },
-    radio: {
-      help: 'Displays the schedule for an arbitary BBC Radio station',
-      usage: [ 'station' ],
-      command: async (bot, msg) => radio(msg.args.station)
+    r5: {
+      help: 'Displays the current BBC Radio 5 Live schedule',
+      command: async (bot, msg) => radio('bbc_radio_five_live')
+    },
+    r5x: {
+      help: 'Displays the current BBC Radio 5 Live Sports Extra schedule',
+      command: async (bot, msg) => radio('bbc_radio_five_live_sports_extra')
+    },
+    r6: {
+      help: 'Displays the current BBC 6 Music schedule',
+      command: async (bot, msg) => radio('bbc_6music')
+    },
+    ran: {
+      help: 'Displays the current BBC Asian Network schedule',
+      command: async (bot, msg) => radio('bbc_asian_network')
+    },
+    rscotland: {
+      help: 'Displays the current BBC Radio Scotland schedule',
+      command: async (bot, msg) => radio('bbc_radio_scotland_fm')
+    },
+    rnangaidheal: {
+      help: 'Displays the current BBC Radio nan Gàidheal schedule',
+      command: async (bot, msg) => radio('bbc_radio_nan_gaidheal')
+    },
+    rulster: {
+      help: 'Displays the current BBC Radio Ulster schedule',
+      command: async (bot, msg) => radio('bbc_radio_ulster')
+    },
+    rfoyle: {
+      help: 'Displays the current BBC Radio Foyle schedule',
+      command: async (bot, msg) => radio('bbc_radio_foyle')
+    },
+    rwales: {
+      help: 'Displays the current BBC Radio Wales schedule',
+      command: async (bot, msg) => radio('bbc_radio_wales_fm')
+    },
+    rcymru: {
+      help: 'Displays the current BBC Radio Cymru schedule',
+      command: async (bot, msg) => radio('bbc_radio_cymru')
+    },
+    rcymru2: {
+      help: 'Displays the current BBC Radio Cymru schedule',
+      command: async (bot, msg) => radio('bbc_radio_cymru_2')
     }
   }
 }
