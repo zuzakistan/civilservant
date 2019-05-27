@@ -49,7 +49,7 @@ module.exports = {
       if (story && story.headline) {
         bot.fireEvents('news', {
           color: 'dark_red',
-          id: 'BBC' + story.assetId,
+          id: 'BBC' + story.headline + story.assetUri,
           text: story.headline,
           url: 'https://bbc.co.uk' + story.assetUri,
           prompt: 'BBC BREAKING'
