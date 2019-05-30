@@ -46,6 +46,19 @@ function scoreLetter (letter, str) {
     }
   }
 }
+function computeWord (str) {
+  let isPossible = !( str.length > 15 || str.length < 2 || /[^a-zA-Z]/.test(str) )
+  let isAllowable = sowpods.verify(str)
+
+  return {
+    word: str,
+    formatted: scrabbleNotate(str) + (isAllowable ? '' : '*'),
+    isValid: isPossible && isAllowable,
+    score: scrabbleScore(str),
+    isPossible,
+    isAllowable
+  }
+}
 function scrabbleNotate (str) {
   let word = str.toLowerCase()
   for (const letter of [...new Set(word)]) {
@@ -53,7 +66,7 @@ function scrabbleNotate (str) {
       word = word.replace(letter, letter.toUpperCase())
     }
   }
-  return word + (sowpods.verify(word) ? '' : '*')
+  return word
 }
 function getPunctuation (bot, score) {
   const minScore = bot.config.get('scrabble.minScore')
@@ -73,13 +86,12 @@ function scrabbleScore (str) {
     }))
   return result['usedBlanks'] > 2 ? null : result['score']
 }
-function reportScore (bot, word, score) {
-  if (typeof score === 'undefined') {
-    score = scrabbleScore(word)
+function reportScore (bot, word) {
+  if (typeof word === 'string') {
+    word = computeWord(word)
   }
-  return score
-    ? `${scrabbleNotate(word)} scores ${score} points${getPunctuation(bot, score)}`
-    : 'Not a valid word'
+  if (!word.isPossible) return 'Not a valid word'
+  return `${word.formatted} scores ${word.score} points${getPunctuation(bot, word.score)}`
 }
 module.exports = {
   commands: {
@@ -87,7 +99,7 @@ module.exports = {
       help: 'Scores a word in Scrabble',
       usage: [ 'word' ],
       command: function (bot, msg) {
-        return reportScore(bot, msg.args.word, scrabbleScore(msg.args.word))
+        return reportScore(bot, msg.args.word)
       }
     },
     words: {
