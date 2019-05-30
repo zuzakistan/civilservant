@@ -109,18 +109,17 @@ module.exports = {
   },
   events: {
     message: function (bot, nick, to, text) {
-      var wordScores = {}
-      for (const word of text.toUpperCase().split(/[^A-Z]/)) {
-        if (wordHistory.includes(word)) continue
-        wordScores[word] = scrabbleScore(word)
-      }
-      const bestWord = Object.keys(wordScores)
-        .reduce((a, b) => wordScores[a] > wordScores[b] ? a : b, 0)
-      if (wordScores[bestWord] >= bot.config.get('scrabble.minScore') &&
-          !text.match(bot.config.get('irc.controlChar') + 'scrabble')) {
-        wordHistory.push(bestWord)
-        bot.shout(to, nick + ': ' +
-          reportScore(bot, bestWord, wordScores[bestWord]))
+      let phrase = text.toUpperCase().split(/[^A-Z]/)
+      if (text.match(bot.config.get('irc.controlChar') + 'scrabble')) return
+      let words = []
+      phrase.forEach((word) => {
+        if (wordHistory.includes(word)) return
+        words.push(computeWord(word))
+      })
+      const bestWord = words.reduce((a, b) => (a.score > b.score) ? a : b)
+      if (bestWord.score >= bot.config.get('scrabble.minScore')) {
+        wordHistory.push(bestWord.word)
+        bot.shout(to, nick + ': ' + reportScore(bot, bestWord))
       }
     }
   }
