@@ -47,16 +47,17 @@ function scoreLetter (letter, str) {
   }
 }
 function computeWord (str) {
-  let isPossible = !(str.length > 15 || str.length < 2 || /[^a-zA-Z]/.test(str))
+  let score = scrabbleScore(str)
+  let isImpossible = str.length > 15 || str.length < 2 || /[^a-zA-Z]/.test(str) || score === null
   let isAllowable = sowpods.verify(str)
 
   return {
     word: str,
     formatted: scrabbleNotate(str) + (isAllowable ? '' : '*'),
-    isValid: isPossible && isAllowable,
-    score: scrabbleScore(str),
-    isPossible,
-    isAllowable
+    isValid: !isImpossible && isAllowable,
+    isPossible: !isImpossible,
+    isAllowable,
+    score
   }
 }
 function scrabbleNotate (str) {
@@ -75,9 +76,6 @@ function getPunctuation (bot, score) {
   return '!'.repeat(numberOfMarks) || '.'
 }
 function scrabbleScore (str) {
-  if (str.length > 15 || str.length < 2 || /[^a-zA-Z]/.test(str)) {
-    return null
-  }
   const result = [...new Set(str.toLowerCase())]
     .map(c => scoreLetter(c, str))
     .reduce((a, b) => ({
