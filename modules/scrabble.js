@@ -47,7 +47,7 @@ function scoreLetter (letter, str) {
   }
 }
 function computeWord (str) {
-  let isPossible = !( str.length > 15 || str.length < 2 || /[^a-zA-Z]/.test(str) )
+  let isPossible = !(str.length > 15 || str.length < 2 || /[^a-zA-Z]/.test(str))
   let isAllowable = sowpods.verify(str)
 
   return {
