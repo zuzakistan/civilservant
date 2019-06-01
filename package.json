@@ -23,7 +23,7 @@
     "asciify": "^1.3.5",
     "bitly": "~1.2.5",
     "classify2": "0.0.3",
-    "convict": "^4.4.0",
+    "convict": "^5.0.0",
     "currency-codes": "^1.1.2",
     "cyrillic-to-latin": "^2.0.0",
     "date-util": "^1.2.1",
