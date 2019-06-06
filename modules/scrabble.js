@@ -98,7 +98,8 @@ module.exports = {
   events: {
     message: function (bot, nick, to, text) {
       var wordScores = {}
-      for (const word of text.toUpperCase().split(/[^A-Z]/)) {
+      for (const word of text.toUpperCase().replace(/HTTPS?:\/\/[\n\S]+/g, '')
+        .split(/[^A-Z]/)) {
         if (wordHistory.includes(word)) continue
         wordScores[word] = scrabbleScore(word)
       }
