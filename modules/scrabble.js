@@ -107,10 +107,11 @@ module.exports = {
   },
   events: {
     message: function (bot, nick, to, text) {
-      let phrase = text.toUpperCase().replace(/HTTPS?:\/\/[\n\S]+/g, '').split(/[^A-Z]/)
       if (text.match(bot.config.get('irc.controlChar') + 'scrabble')) return
+      let phrase = text.toUpperCase().split(/[ '"]/).filter(Boolean)
       let words = []
       phrase.forEach((word) => {
+        word = word.replace(/[^A-Z]+$/, '')
         if (wordHistory.includes(word)) return
         words.push(computeWord(word))
       })
