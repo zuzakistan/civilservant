@@ -46,6 +46,20 @@ function scoreLetter (letter, str) {
     }
   }
 }
+function computeWord (str) {
+  let score = scrabbleScore(str)
+  let isImpossible = str.length > 15 || str.length < 2 || /[^a-zA-Z]/.test(str) || score === null
+  let isAllowable = sowpods.verify(str)
+
+  return {
+    word: str,
+    formatted: scrabbleNotate(str) + (isAllowable ? '' : '*'),
+    isValid: !isImpossible && isAllowable,
+    isPossible: !isImpossible,
+    isAllowable,
+    score
+  }
+}
 function scrabbleNotate (str) {
   let word = str.toLowerCase()
   for (const letter of [...new Set(word)]) {
@@ -53,7 +67,7 @@ function scrabbleNotate (str) {
       word = word.replace(letter, letter.toUpperCase())
     }
   }
-  return word + (sowpods.verify(word) ? '' : '*')
+  return word
 }
 function getPunctuation (bot, score) {
   const minScore = bot.config.get('scrabble.minScore')
@@ -62,9 +76,6 @@ function getPunctuation (bot, score) {
   return '!'.repeat(numberOfMarks) || '.'
 }
 function scrabbleScore (str) {
-  if (str.length > 15 || str.length < 2 || /[^a-zA-Z]/.test(str)) {
-    return null
-  }
   const result = [...new Set(str.toLowerCase())]
     .map(c => scoreLetter(c, str))
     .reduce((a, b) => ({
@@ -73,13 +84,12 @@ function scrabbleScore (str) {
     }))
   return result['usedBlanks'] > 2 ? null : result['score']
 }
-function reportScore (bot, word, score) {
-  if (typeof score === 'undefined') {
-    score = scrabbleScore(word)
+function reportScore (bot, word) {
+  if (typeof word === 'string') {
+    word = computeWord(word)
   }
-  return score
-    ? `${scrabbleNotate(word)} scores ${score} points${getPunctuation(bot, score)}`
-    : 'Not a valid word'
+  if (!word.isPossible) return 'Not a valid word'
+  return `${word.formatted} scores ${word.score} points${getPunctuation(bot, word.score)}`
 }
 module.exports = {
   commands: {
@@ -87,7 +97,7 @@ module.exports = {
       help: 'Scores a word in Scrabble',
       usage: [ 'word' ],
       command: function (bot, msg) {
-        return reportScore(bot, msg.args.word, scrabbleScore(msg.args.word))
+        return reportScore(bot, msg.args.word)
       }
     },
     words: {
@@ -97,18 +107,17 @@ module.exports = {
   },
   events: {
     message: function (bot, nick, to, text) {
-      var wordScores = {}
-      for (const word of text.toUpperCase().split(/[^A-Z]/)) {
-        if (wordHistory.includes(word)) continue
-        wordScores[word] = scrabbleScore(word)
-      }
-      const bestWord = Object.keys(wordScores)
-        .reduce((a, b) => wordScores[a] > wordScores[b] ? a : b, 0)
-      if (wordScores[bestWord] >= bot.config.get('scrabble.minScore') &&
-          !text.match(bot.config.get('irc.controlChar') + 'scrabble')) {
-        wordHistory.push(bestWord)
-        bot.shout(to, nick + ': ' +
-          reportScore(bot, bestWord, wordScores[bestWord]))
+      let phrase = text.toUpperCase().split(/[^A-Z]/)
+      if (text.match(bot.config.get('irc.controlChar') + 'scrabble')) return
+      let words = []
+      phrase.forEach((word) => {
+        if (wordHistory.includes(word)) return
+        words.push(computeWord(word))
+      })
+      const bestWord = words.reduce((a, b) => (a.score > b.score) ? a : b)
+      if (bestWord.score >= bot.config.get('scrabble.minScore')) {
+        wordHistory.push(bestWord.word)
+        bot.shout(to, nick + ': ' + reportScore(bot, bestWord))
       }
     }
   }
