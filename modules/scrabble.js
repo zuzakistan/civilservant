@@ -112,8 +112,9 @@ module.exports = {
       let words = []
       phrase.forEach((word) => {
         word = word.replace(/[^A-Z]+$/, '')
-        if (wordHistory.includes(word) || word === '') return
-        words.push(computeWord(word))
+        let result = computeWord(word)
+        if (wordHistory.includes(word) || word === '' || !result.isValid) return
+        words.push(result)
       })
       const bestWord = words.reduce((a, b) => (a.score > b.score) ? a : b)
       if (bestWord.score >= bot.config.get('scrabble.minScore')) {
