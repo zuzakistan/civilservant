@@ -81,7 +81,7 @@ function scrabbleScore (str) {
     .reduce((a, b) => ({
       'score': a['score'] + b['score'],
       'usedBlanks': a['usedBlanks'] + b['usedBlanks']
-    }))
+    }), { score: 0, usedBlanks: 0 })
   return result['usedBlanks'] > 2 ? null : result['score']
 }
 function reportScore (bot, word) {
@@ -108,14 +108,15 @@ module.exports = {
   events: {
     message: function (bot, nick, to, text) {
       if (text.match(bot.config.get('irc.controlChar') + 'scrabble')) return
-      let phrase = text.toUpperCase().split(/[ '"]/)
+      let phrase = text.split(/[ '"]/)
       let words = []
       phrase.forEach((word) => {
-        word = word.replace(/[^A-Z]+$/, '')
-        if (wordHistory.includes(word) || word === '') return
-        words.push(computeWord(word))
+        word = word.replace(/[^A-Za-z]+$/, '')
+        let result = computeWord(word)
+        if (wordHistory.includes(result.word) || !result.isPossible) return
+        words.push(result)
       })
-      const bestWord = words.reduce((a, b) => (a.score > b.score) ? a : b)
+      const bestWord = words.reduce((a, b) => (a.score > b.score) ? a : b, 0)
       if (bestWord.score >= bot.config.get('scrabble.minScore')) {
         wordHistory.push(bestWord.word)
         bot.shout(to, nick + ': ' + reportScore(bot, bestWord))
