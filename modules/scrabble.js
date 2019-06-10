@@ -81,7 +81,7 @@ function scrabbleScore (str) {
     .reduce((a, b) => ({
       'score': a['score'] + b['score'],
       'usedBlanks': a['usedBlanks'] + b['usedBlanks']
-    }))
+    }), { 'score': 0, 'usedBlanks': 0 })
   return result['usedBlanks'] > 2 ? null : result['score']
 }
 function reportScore (bot, word) {
@@ -113,10 +113,10 @@ module.exports = {
       phrase.forEach((word) => {
         word = word.replace(/[^A-Z]+$/, '')
         let result = computeWord(word)
-        if (wordHistory.includes(word) || word === '' || !result.isValid) return
+        if (wordHistory.includes(word) || !result.isPossible) return
         words.push(result)
       })
-      const bestWord = words.reduce((a, b) => (a.score > b.score) ? a : b)
+      const bestWord = words.reduce((a, b) => (a.score > b.score) ? a : b, 0)
       if (bestWord.score >= bot.config.get('scrabble.minScore')) {
         wordHistory.push(bestWord.word)
         bot.shout(to, nick + ': ' + reportScore(bot, bestWord))
