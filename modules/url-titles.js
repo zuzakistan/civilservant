@@ -31,7 +31,7 @@ var getTitles = function (bot, to, nick, urls, titles) {
 module.exports = {
   events: {
     urls: function (bot, urls, nick, to, text, msg) {
-      getTitles(bot, to, nick, urls, [])
+      getTitles(bot, to, nick, [...urls], [])
     }
   }
 }
