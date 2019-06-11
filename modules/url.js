@@ -8,7 +8,6 @@ module.exports = {
         bot.fireEvents('urls', urls, nick, to, text, msg)
         for (let url of urls) {
           let curr = parseurl.parse(url)
-          console.log(curr)
           bot.fireEvents('url', curr, nick, to, text, msg)
           bot.fireEvents('url:' + curr.hostname, curr, nick, to, text, msg)
         }
