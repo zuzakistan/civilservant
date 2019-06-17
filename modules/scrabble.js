@@ -63,8 +63,10 @@ function computeWord (str) {
 function scrabbleNotate (str) {
   let word = str.toLowerCase()
   for (const letter of [...new Set(word)]) {
-    for (let i = 0; i < bag[letter]['count']; i++) {
-      word = word.replace(letter, letter.toUpperCase())
+    if (letter in bag) {
+      for (let i = 0; i < bag[letter]['count']; i++) {
+        word = word.replace(letter, letter.toUpperCase())
+      }
     }
   }
   return word
