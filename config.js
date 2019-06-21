@@ -61,12 +61,12 @@ module.exports = config = convict({
     channels: {
       doc: 'the channels to connect to',
       format: Array,
-      default: [ '##dendodge' ]
+      default: [ '##zuzakistan-lab' ]
     },
     control: {
       doc: 'The channel that one is allowed to make privileged commands from',
       format: String,
-      default: '##dendodge',
+      default: '##zuzakistan-lab',
       env: 'CONTROL_CHAN'
     },
     secure: {
@@ -148,7 +148,7 @@ module.exports = config = convict({
     },
     channel: {
       doc: 'IRC channel to parrot UDP messages to',
-      default: '##dendodge'
+      default: '##zuzakistan-lab'
     }
   },
   minecraft: {
@@ -185,7 +185,7 @@ module.exports = config = convict({
       reportingChannel: {
         doc: 'Channel to copy sent tweets to',
         format: String,
-        default: '##dendodge'
+        default: '##zuzakistan-lab'
       }
     }
   },
