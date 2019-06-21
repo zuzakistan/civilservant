@@ -49,11 +49,12 @@ function scoreLetter (letter, str) {
 function computeWord (str) {
   let score = scrabbleScore(str)
   let isImpossible = str.length > 15 || str.length < 2 || /[^a-zA-Z]/.test(str) || score === null
-  let isAllowable = sowpods.verify(str)
+  let formatted = scrabbleNotate(str)
+  let isAllowable = formatted.charAt(formatted.length - 1) === '*'
 
   return {
     word: str,
-    formatted: scrabbleNotate(str) + (isAllowable ? '' : '*'),
+    formatted,
     isValid: !isImpossible && isAllowable,
     isPossible: !isImpossible,
     isAllowable,
@@ -69,7 +70,7 @@ function scrabbleNotate (str) {
       }
     }
   }
-  return word
+  return word + (sowpods.verify(str) ? '' : '*')
 }
 function getPunctuation (bot, score) {
   const minScore = bot.config.get('scrabble.minScore')
@@ -110,7 +111,7 @@ module.exports = {
   events: {
     message: function (bot, nick, to, text) {
       if (text.match(bot.config.get('irc.controlChar') + 'scrabble')) return
-      let phrase = text.split(/[ '"]/)
+      let phrase = text.toUpperCase().split(/[ '"]/)
       let words = []
       phrase.forEach((word) => {
         word = word.replace(/[^A-Za-z]+$/, '')
