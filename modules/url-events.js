@@ -69,8 +69,8 @@ var shorten = function (bot, url) {
 module.exports = {
   events: {
     url: async function (bot, url, nick, to, text, msg) {
-      bot.shout(to, Promise.all(
-        [shorten(bot, url.href), getTitle(url.href)])
+      bot.shout(to, (await Promise.all(
+        [shorten(bot, url.href), getTitle(url.href)]))
         .filter(Boolean).join(' → '))
     }
   },
