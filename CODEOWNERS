@@ -2,9 +2,6 @@
 modules/scrabble.js @georgewatson
 test/modules/scrabble.js @georgewatson
 
-modules/stocks.js @danhedron
-test/modules/stocks.js @danhedron
-
 modules/unicode.js @georgewatson
 test/modules/unicode.js @georgewatson
 
