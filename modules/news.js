@@ -119,7 +119,6 @@ module.exports = {
       }
     },
     news: function (bot, news) {
-      console.log('NEWSNEWSNEWS', news)
       if (!oldnews[news.id]) {
         bot.fireEvents('newNews', news)
       }
