@@ -1,6 +1,7 @@
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/d1dc4c396c12434d9302d68c6e45a6f8)](https://www.codacy.com/app/douglas/civilservant?utm_source=github.com&utm_medium=referral&utm_content=zuzakistan/civilservant&utm_campaign=badger)
 [![Build Status](https://travis-ci.org/zuzakistan/civilservant.svg)](https://travis-ci.org/zuzakistan/civilservant)
 [![Script Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+[![Known Vulnerabilities](https://snyk.io/test/github/zuzakistan/civilservant/master/badge.svg)](https://snyk.io/test/github/zuzakistan/civilservant)
+[![Coverage Status](https://coveralls.io/repos/github/zuzakistan/civilservant/badge.svg?branch=master)](https://coveralls.io/github/zuzakistan/civilservant?branch=master)
 
 This is an IRC bot written in NodeJS.
 
@@ -44,7 +45,3 @@ Some explanation of the not-obvious options:
   If set to `false`, it'll just quit and ask you to install manually.
 * `quiet` toggles unsolicited pronouncements. If you like your bots to speak
   only when spoken to, set this to `true`.
-
-## Known issues
-Sometimes the UDP server doesn't shut down properly.
-Do `netstat -tulpn` and grep for the PID to kill manually.

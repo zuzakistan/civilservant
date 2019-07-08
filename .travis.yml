@@ -2,3 +2,5 @@ language: node_js
 node_js:
       - node
       - "8.11.1"
+after_success:
+      - nyc report --reporter=text-lcov | coveralls

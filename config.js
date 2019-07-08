@@ -113,6 +113,11 @@ module.exports = config = convict({
       doc: 'Whether to allow more noisy news feeds',
       format: Boolean,
       default: false
+    },
+    owo: {
+      doc: 'Probability (between 0 and 1) a cursed furry transformation is applied to each headline',
+      format: Number,
+      default: 0.05
     }
   },
   bitly: {
@@ -181,6 +186,35 @@ module.exports = config = convict({
         env: 'GITHUB_SECRET',
         default: 'e6T8p32gL9TuZYLYTgqVBUfALShtsEfts6hb4mqDcz3XTQe9J86d3cqegfDMME4PMmAnj5eZezVG'
       }
+    },
+  },
+  twitter: {
+    keys: {
+      consumerKey: {
+        doc: 'Twitter consumer key',
+        format: String
+      },
+      consumerSecret: {
+        doc: 'Twitter consumer secret',
+        format: String
+      },
+      reportingChannel: {
+        doc: 'Channel to copy sent tweets to',
+        format: String,
+        default: '##zuzakistan-lab'
+      }
+    }
+  },
+  scrabble: {
+    minScore: {
+      doc: 'The minimum Scrabble score worth shouting about',
+      format: Number,
+      default: 20
+    },
+    exclamationThreshold: {
+      doc: 'The number of points above the minScore required to respond with enthusiasm',
+      format: Number,
+      default: 5
     }
   }
 })
