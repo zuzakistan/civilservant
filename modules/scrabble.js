@@ -1,6 +1,11 @@
 const sowpods = require('pf-sowpods')
-
+const fs = require('fs')
 let wordHistory = []
+try {
+  wordHistory = require(__rootdir + '/data/scrabble.json')
+} catch (e) {
+  //
+}
 const bag = {
   'a': { count: 9, score: 1 },
   'b': { count: 2, score: 3 },
@@ -122,6 +127,7 @@ module.exports = {
       if (bestWord.score >= bot.config.get('scrabble.minScore')) {
         wordHistory.push(bestWord.word)
         bot.shout(to, nick + ': ' + reportScore(bot, bestWord))
+        fs.writeFileSync(__rootdir + '/data/scrabble.json', JSON.stringify(wordHistory, null, 4))
       }
     }
   }
