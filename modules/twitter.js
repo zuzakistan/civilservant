@@ -1,11 +1,32 @@
 const TwitterPin = require('twitter-pin')
 const Tweeter = require('fast-tweet')
 const owo = require('@zuzak/owo')
+const colors = require('irc').colors
+
 let twitterPin
 
 module.exports = {
   onload: (bot) => {
     twitterPin = TwitterPin(bot.config.get('twitter.keys.consumerKey'), bot.config.get('twitter.keys.consumerSecret'))
+    bot.tweet = async (user, payload) => {
+      let client = new Tweeter({
+        consumer_key: bot.config.get('twitter.keys.consumerKey'),
+        consumer_secret: bot.config.get('twitter.keys.consumerSecret'),
+        access_token_key: bot.config.get(`twitter.users.${user}.key`),
+        access_token_secret: bot.config.get(`twitter.users.${user}.secret`)
+      })
+      let response = await client.tweet(payload)
+      if (bot.config.has('twitter.reportingChannel')) {
+        bot.notice(bot.config.get('twitter.reportingChannel'), [
+          colors.wrap('light_cyan', '@' + user),
+          ' ',
+          colors.wrap('cyan', response.text),
+          ' ',
+          colors.wrap('light_blue', 'https://twitter.com/' + user + '/statuses/' + response.id_str)
+        ].join(''))
+      }
+      return response
+    }
   },
   commands: {
     twitterauth: {
@@ -41,29 +62,18 @@ module.exports = {
       command: async (bot, msg) => {
         let user = bot.config.get('twitter.tweetUser')
         if (!user) return 'tweeting disabled'
-        let client = new Tweeter({
-          consumer_key: bot.config.get('twitter.keys.consumerKey'),
-          consumer_secret: bot.config.get('twitter.keys.consumerSecret'),
-          access_token_key: bot.config.get(`twitter.users.${user}.key`),
-          access_token_secret: bot.config.get(`twitter.users.${user}.secret`)
-        })
-        let tweet = await client.tweet({ status: msg.body })
+        let tweet = await bot.tweet(user, { status: msg.body })
         return 'https://twitter.com/statuses/' + tweet.id_str
       }
     }
   },
   events: {
     newNews: (bot, news) => {
+      if (!bot.config.has('twitter.newsUser')) return undefined
       let user = bot.config.get('twitter.newsUser')
       if (!user) return 'tweeting disabled'
-      let client = new Tweeter({
-        consumer_key: bot.config.get('twitter.keys.consumerKey'),
-        consumer_secret: bot.config.get('twitter.keys.consumerSecret'),
-        access_token_key: bot.config.get(`twitter.users.${user}.key`),
-        access_token_secret: bot.config.get(`twitter.users.${user}.secret`)
-      })
       let url = news.url ? news.url : ''
-      client.tweet({ status: owo(news.text) + '\r\n' + url })
+      bot.tweet(user, { status: owo(news.text) + '\r\n' + url })
     }
   }
 }

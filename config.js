@@ -188,13 +188,32 @@ module.exports = config = convict({
     }
   },
   twitter: {
-    consumerKey: {
-      doc: 'Twitter consumer key',
-      format: String
+    keys: {
+      consumerKey: {
+        doc: 'Twitter consumer key',
+        format: String
+      },
+      consumerSecret: {
+        doc: 'Twitter consumer secret',
+        format: String
+      },
+      reportingChannel: {
+        doc: 'Channel to copy sent tweets to',
+        format: String,
+        default: '##zuzakistan-lab'
+      }
+    }
+  },
+  scrabble: {
+    minScore: {
+      doc: 'The minimum Scrabble score worth shouting about',
+      format: Number,
+      default: 20
     },
-    consumerSecret: {
-      doc: 'Twitter consumer secret',
-      format: String
+    exclamationThreshold: {
+      doc: 'The number of points above the minScore required to respond with enthusiasm',
+      format: Number,
+      default: 5
     }
   }
 })
