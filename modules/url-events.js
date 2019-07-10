@@ -70,8 +70,8 @@ module.exports = {
       //
       bot.shout(to,
         (await Promise.all([shorten(bot, url.href), getTitle(url.href)]))
-        .filter(Boolean)
-        .join(' → ')
+          .filter(Boolean)
+          .join(' → ')
       )
     }
   },
