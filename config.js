@@ -121,6 +121,10 @@ module.exports = config = convict({
     }
   },
   bitly: {
+    accesstoken: {
+      doc: 'Bit.ly generic access token for URL shortening',
+      format: String
+    },
     username: {
       doc: 'Bit.ly username for URL shortening',
       format: String

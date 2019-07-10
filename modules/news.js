@@ -1,7 +1,7 @@
-var write = require('fs').writeFile
+var write = require('fs').writeFileSync
 var read = require('fs').readFileSync
 var colors = require('irc').colors
-var Bitly = require('bitly')
+var BitlyClient = require('bitly').BitlyClient
 const owo = require('@zuzak/owo')
 
 const plugin = require('../plugins/news')
@@ -123,10 +123,14 @@ module.exports = {
         bot.fireEvents('newNews', news)
       }
     },
-    newNews: (bot, news) => {
-      var bitly = new Bitly(bot.config.get('bitly.username'), bot.config.get('bitly.password'))
-      bitly.shorten(news.url, function (err, res) {
-        if (err) res = { data: { url: news.url } }
+    newNews: async (bot, news) => {
+      var bitly = new BitlyClient(bot.config.get('bitly.accesstoken'), {})
+      let res 
+      try {
+        let res = await bitly.shorten(news.url)
+      } catch (e) {
+        res = { data: { url: news.url } }
+      }
         var str = ''
         if (news.prompt) {
           str += colors.wrap(news.color, news.prompt + ': ')
@@ -150,15 +154,14 @@ module.exports = {
         } catch (e) {
           str += news.text + '(err)'
         }
-        if (res.data.url) {
-          str += ' ' + colors.wrap('gray', res.data.url)
+        if (res.url) {
+          str += ' ' + colors.wrap('gray', res.url)
         }
         if (news.tail) {
           str += ' ' + colors.wrap('magenta', '(' + news.tail + ')')
         }
 
         bot.broadcast(str)
-      })
       oldnews[news.id] = news
       write(__rootdir + '/data/news.json', JSON.stringify(oldnews))
     }
