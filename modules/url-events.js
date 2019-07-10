@@ -61,7 +61,7 @@ var shorten = function (bot, url) {
             resolve(res.data.url)
           }
         }
-        fs.writeFile(LOGFILE, JSON.stringify(LOG, null, 4))
+        fs.writeFileSync(LOGFILE, JSON.stringify(LOG, null, 4))
       })
     })
 }
