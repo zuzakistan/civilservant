@@ -1,4 +1,4 @@
-const Bitly = require('bitly')
+const BitlyClient = require('bitly').BitlyClient
 const cheerio = require('cheerio')
 const fs = require('fs')
 const request = require('request')
@@ -40,38 +40,39 @@ var getTitle = function (url) {
     })
 }
 
-var shorten = function (bot, url) {
-  var bitly = new Bitly(bot.config.get('bitly.username'), bot.config.get('bitly.password'))
-  return new Promise(
-    (resolve, reject) => {
-      bitly.shorten(url.href, function (err, res) {
-        if (err || !res.data.url) {
-          resolve(null) // fail silently (usually duplicate URL)
-        }
-        if (LOG[res.data.hash]) {
-          LOG[res.data.hash]++
-          if (LOG[res.data.hash] === 1) {
-            resolve(res.data.url + ' (again)')
-          } else {
-            resolve(res.data.url + ' (again ×' + LOG[res.data.hash] + ')')
-          }
-        } else {
-          LOG[res.data.hash] = 1
-          if (res.data.url && res.data.url.length < url.href.length) {
-            resolve(res.data.url)
-          }
-        }
-        fs.writeFileSync(LOGFILE, JSON.stringify(LOG, null, 4))
-      })
-    })
+let ofn = (number) => {
+  if (number === 2) return ' (again)'
+  if (number > 2) return ' (again ×' + (number - 1) + ')'
+  return ''
+}
+
+var shorten = async function (bot, url) {
+  const bitly = new BitlyClient(bot.config.get('bitly.accesstoken'), {})
+  let result = await bitly.shorten(url)
+  if (LOG[result.hash]) {
+    LOG[result.hash]++
+  } else {
+    LOG[result.hash] = 1
+  }
+
+  fs.writeFileSync(LOGFILE, JSON.stringify(LOG, null, 4))
+
+  return result.url + ofn(LOG[result.hash])
 }
 
 module.exports = {
   events: {
     url: async function (bot, url, nick, to, text, msg) {
-      bot.shout(to, (await Promise.all(
-        [shorten(bot, url.href), getTitle(url.href)]))
-        .filter(Boolean).join(' → '))
+      // let shortenedUrl = await shorten(bot, url.href)
+      // let urlTitle = await getTitle(url.href)
+
+      // bot.shout(to, [shortenedUrl, urlTitle].filter(Boolean).join(' → '))
+      //
+      bot.shout(to,
+        (await Promise.all([shorten(bot, url.href), getTitle(url.href)]))
+        .filter(Boolean)
+        .join(' → ')
+      )
     }
   },
   commands: {
@@ -91,16 +92,12 @@ module.exports = {
     shorten: {
       help: 'Shorten a URL',
       usage: [ 'url' ],
-      command: function (bot, msg) {
-        var bitly = new Bitly(bot.config.get('bitly.username'), bot.config.get('bitly.password'))
-        bitly.shorten(msg.args.url, function (err, res) {
-          if (err) {
-            bot.say(msg.to, 'Unable to shorten that.')
-          }
-          if (res.data.url) {
-            bot.say(msg.to, res.data.url)
-          }
-        })
+      command: async function (bot, msg) {
+        let bitly = new BitlyClient(bot.config.get('bitly.accesstoken'))
+        let res = await bitly.shorten(msg.args.url)
+        if (res.url) {
+          return res.url
+        }
       }
     }
   }
