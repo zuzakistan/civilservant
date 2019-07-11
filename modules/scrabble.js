@@ -120,8 +120,6 @@ module.exports = {
       phrase.forEach((word) => {
         word = word.replace(/[^A-Za-z]+$/, '')
         let result = computeWord(word)
-        console.log(wordHistory.map(word => word.toUpperCase()))
-        console.log(word.toUpperCase())
         if (wordHistory.map(word => word.toUpperCase()).includes(word.toUpperCase()) ||
           !result.isPossible) return
         words.push(result)
