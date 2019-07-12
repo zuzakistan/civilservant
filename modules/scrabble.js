@@ -109,7 +109,7 @@ module.exports = {
     },
     words: {
       help: 'List the recorded high-scoring Scrabble words',
-      command: () => wordHistory.map(scrabbleNotate).join(' ')
+      command: () => wordHistory.map(word => computeWord(word).formatted).join(' ')
     }
   },
   events: {
@@ -120,7 +120,8 @@ module.exports = {
       phrase.forEach((word) => {
         word = word.replace(/[^A-Za-z]+$/, '')
         let result = computeWord(word)
-        if (wordHistory.includes(result.word) || !result.isPossible) return
+        if (wordHistory.map(word => word.toUpperCase()).includes(word.toUpperCase()) ||
+          !result.isPossible) return
         words.push(result)
       })
       const bestWord = words.reduce((a, b) => (a.score > b.score) ? a : b, 0)
