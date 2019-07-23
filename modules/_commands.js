@@ -3,11 +3,15 @@
  */
 const colors = require('irc').colors
 
-const processOutput = (bot, msg, output, customFormatter) => {
+const processOutput = (bot, msg, cmd, output, customFormatter) => {
   const outputFormatter = customFormatter || ((str) => msg.nick + ': ' + str)
   if (!output) return null
   if (typeof output === 'string') {
-    return bot.say(msg.to, outputFormatter(output))
+    let say = outputFormatter(output)
+    if (cmd.fireMessageEvent) {
+      bot.fireEvents('message', bot.nick, msg.to, say, null)
+    }
+    return bot.say(msg.to, say)
   } else if (output.constructor === Array) {
     output.forEach(line => processOutput(bot, msg, line, customFormatter))
   } else {
@@ -64,17 +68,14 @@ module.exports = {
                   msg.args[cmd.usage[i]] = msg.args[i + 1]
                 }
               }
-              cmd = cmd.command
             }
-            if (typeof cmd === 'function') {
-              return Promise.resolve(cmd(bot, msg))
-                .then(output => processOutput(bot, msg, output))
-                .catch(e => {
-                  console.error(e.message)
-                  console.error(e.stack)
-                  return processOutput(bot, msg, e, (str) => colors.wrap('dark_red', 'Error: ') + str)
-                })
-            }
+            return Promise.resolve(cmd.command(bot, msg))
+              .then(output => processOutput(bot, msg, cmd, output))
+              .catch(e => {
+                console.error(e.message)
+                console.error(e.stack)
+                return processOutput(bot, msg, e, (str) => colors.wrap('dark_red', 'Error: ') + str)
+              })
           } catch (e) {
             bot.say(bot.config.get('irc.control'), 'Error processing `' + msg._cmd + '` in ' + msg.to + ': ' + e)
             console.error(e.message)
