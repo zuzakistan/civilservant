@@ -102,6 +102,11 @@ module.exports = {
 };
 ```
 
+### Triggering message events
+By default, messages sent by the bot will not trigger its own `message` event.
+You can force the command response to be parsed by the `message` event handler by setting `fireMessageEvent`.
+Events triggered in this way will not contain a `msg` object.
+
 ### Disabling commands
 If the `disabled` key is truthy, the command handler will return before the command itself is processed.
 Similarly, the `deprecated` key will display warnings at appropriate junctures, but won't actually
