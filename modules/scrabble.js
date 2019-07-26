@@ -110,6 +110,11 @@ module.exports = {
     words: {
       help: 'List the recorded high-scoring Scrabble words',
       command: () => wordHistory.map(word => computeWord(word).formatted).join(' ')
+    },
+    belay: {
+      privileged: true,
+      help: 'Removes the most recent Scrabble word from the history',
+      command: () => 'removed ' + wordHistory.pop()
     }
   },
   events: {
