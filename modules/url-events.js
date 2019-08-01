@@ -47,17 +47,27 @@ let ofn = (number) => {
 }
 
 var shorten = async function (bot, url) {
-  const bitly = new BitlyClient(bot.config.get('bitly.accesstoken'), {})
-  let result = await bitly.shorten(url)
-  if (LOG[result.hash]) {
-    LOG[result.hash]++
-  } else {
-    LOG[result.hash] = 1
+  try {
+    const bitly = new BitlyClient(bot.config.get('bitly.accesstoken'), {})
+    let result = await bitly.shorten(url)
+    if (LOG[result.hash]) {
+      LOG[result.hash]++
+    } else {
+      LOG[result.hash] = 1
+    }
+
+    fs.writeFileSync(LOGFILE, JSON.stringify(LOG, null, 4))
+
+    return result.url + ofn(LOG[result.hash])
+  } catch (e) {
+    if (e.statusCode === 500) {
+      if (e.message.includes('ALREADY_A_BITLY_LINK')) {
+        // Don't bother shortening an already short URL
+        return ofn(LOG[url.split('/').pop()])
+      }
+    }
+    throw e
   }
-
-  fs.writeFileSync(LOGFILE, JSON.stringify(LOG, null, 4))
-
-  return result.url + ofn(LOG[result.hash])
 }
 
 module.exports = {
