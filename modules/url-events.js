@@ -87,6 +87,7 @@ module.exports = {
   },
   commands: {
     randurl: {
+      fireMessageEvent: true,
       help: 'Output a random URL from the channel history',
       command: function () {
         var keys = Object.keys(LOG)
