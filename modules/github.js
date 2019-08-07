@@ -7,7 +7,7 @@ let webhook
 let listener
 
 const announce = (bot, msg) => {
-  return bot.notice(bot.config.get('irc.control'), colors.wrap('green', '[github]') + msg)
+  return bot.notice(bot.config.get('irc.control'), colors.wrap('dark_green', '[github] ') + msg)
 }
 
 module.exports = {
