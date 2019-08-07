@@ -29,6 +29,7 @@ module.exports = {
   events: {
     github: (bot, ghEvent) => {
       switch (ghEvent.name) {
+        case: 'check_run':
         case 'status':
           return
       }
