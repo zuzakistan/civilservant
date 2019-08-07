@@ -29,14 +29,38 @@ module.exports = {
   events: {
     github: (bot, ghEvent) => {
       switch (ghEvent.name) {
-        case: 'check_run':
+        case 'check_run':
+        case 'issues':
+        case 'pull_request':
+        case 'issue_comment':
+        case 'push':
+        case 'pull_request_review':
         case 'status':
           return
       }
       announce(bot, `${ghEvent.name}. keys: ${Object.keys(ghEvent.payload)}`)
     },
     'github:issues': (bot, ghEvent) => {
-      return announce(bot, `${ghEvent.payload.sender.login} ${ghEvent.payload.action} ${ghEvent.payload.issue.html_url}`)
+      let actionColors = {
+        'opened': 'light_green',
+        'edited': 'orange',
+        'deleted': 'light_red',
+        'transferred': 'light_gray',
+        'pinned': 'white',
+        'unpinned': 'white',
+        'closed': 'dark_red',
+        'reopened': 'dark_green',
+        'assigned': 'light_cyan',
+        'unassigned': 'cyan',
+        'labeled': 'light_blue',
+        'unlabeled': 'dark_blue',
+        'locked': 'gray',
+        'unlocked': 'light_gray',
+        'milestoned': 'light_magenta',
+        'demilestoned': 'magenta'
+      }
+      let coloredAction = colors.wrap(actionColors[ghEvent.payload.action], ghEvent.payload.action)
+      return announce(bot, `${ghEvent.payload.sender.login} ${coloredAction} ${ghEvent.payload.issue.html_url}`)
     },
     'github:pull_request': (bot, ghEvent) => {
       return announce(bot, `${ghEvent.payload.sender.login} ${ghEvent.payload.action} ${ghEvent.payload.pull_request.html_url}`)
