@@ -2,7 +2,7 @@
 var inventory = []
 var inventoryLimit = 20
 var dropRate = 500
-var write = require('fs').writeFile
+var write = require('fs').writeFileSync
 
 try {
   inventory = require(__rootdir + '/data/inventory.json') || []

@@ -168,6 +168,21 @@ module.exports = config = convict({
       format: String
     }
   },
+  github: {
+    webhook: {
+      port: {
+        doc: 'Port to listen on for GitHub webhooks',
+        format: 'port',
+        env: 'GITHUB_PORT',
+        default: 3211
+      },
+      secret: {
+        doc: 'Secret for GitHub webhook',
+        format: String,
+        env: 'GITHUB_SECRET'
+      }
+    }
+  },
   twitter: {
     keys: {
       consumerKey: {
