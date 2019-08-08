@@ -1,14 +1,9 @@
 // inspired by xkcd's bucket :)
-var inventory = []
+var inventory = {old: [], current: []}
 var inventoryLimit = 20
 var dropRate = 500
-var write = require('fs').writeFile
+var write = require('fs').writeFileSync
 
-try {
-  inventory = require(__rootdir + '/data/inventory.json') || []
-} catch (e) {
-  //
-}
 
 /**
  * Save current inventory to disk
@@ -22,7 +17,12 @@ function saveInventory () {
  * Returns a string containing the dropped item.
  */
 function dropItem () {
-  return inventory.splice(Math.floor(Math.random() * inventory.length), 1)
+  let item = inventory.current.splice(Math.floor(Math.random() * inventory.length), 1)
+  if (item.length > 0) {
+    inventory.old.push(item[0])
+  }
+  saveInventory()
+  return item
 }
 
 /**
@@ -30,7 +30,7 @@ function dropItem () {
  * Returns dropped item, if any.
  */
 function addToInventory (item) {
-  if (inventory.push(item) > inventoryLimit) {
+  if (inventory.current.push(item) > inventoryLimit) {
     return dropItem()
   }
   return null
@@ -38,6 +38,16 @@ function addToInventory (item) {
 
 module.exports = {
   events: {
+    onload: (bot) => {
+      try {
+        inventory = require(__rootdir + '/data/inventory.json')
+        console.log('Loaded bucket inventory')
+      } catch (e) {
+        if (e.code !== 'MODULE_NOT_FOUND') throw e
+        console.log('Bucket inventory non-existent; creating')
+        inventory = {old: [], current: []}
+      }
+    },
     action: function (bot, nick, to, text) {
       var synonyms = {
         'adverb': [
@@ -135,6 +145,7 @@ module.exports = {
       }
     },
     message: function (bot, nick, to) {
+      if (inventory.current.length < 1) return undefined
       if (Math.random() < 1 / dropRate) { // 1 in 500
         var item = dropItem()
         if (item) {
@@ -155,8 +166,8 @@ module.exports = {
     inventory: {
       help: 'Displays the inventory of the bot',
       command: function () {
-        if (inventory.length > 0) {
-          return 'I\'m holding ' + inventory.join(', and ')
+        if (inventory.current.length > 0) {
+          return 'I\'m holding ' + inventory.current.join(', and ')
         }
         return 'I\'m holding nowt'
       }
