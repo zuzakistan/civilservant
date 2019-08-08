@@ -1,5 +1,5 @@
 // inspired by xkcd's bucket :)
-var inventory = {old: [], current: []}
+var inventory = { old: [], current: [] }
 var inventoryLimit = 20
 var dropRate = 500
 var write = require('fs').writeFileSync
@@ -10,7 +10,6 @@ try {
 } catch (e) {
   if (e.code !== 'MODULE_NOT_FOUND') throw e
   console.log('Bucket inventory non-existent; creating')
-  inventory = {old: [], current: []}
 }
 
 /**
