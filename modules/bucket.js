@@ -4,7 +4,6 @@ var inventoryLimit = 20
 var dropRate = 500
 var write = require('fs').writeFileSync
 
-
 /**
  * Save current inventory to disk
  */
