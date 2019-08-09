@@ -120,6 +120,8 @@ module.exports = {
     },
     news: function (bot, news) {
       if (!oldnews[news.id]) {
+        oldnews[news.id] = news
+        write(__rootdir + '/data/news.json', JSON.stringify(news))
         bot.fireEvents('newNews', news)
       }
     },
@@ -162,8 +164,6 @@ module.exports = {
       }
 
       bot.broadcast(str)
-      oldnews[news.id] = news
-      write(__rootdir + '/data/news.json', JSON.stringify(oldnews))
     }
   }
 }
