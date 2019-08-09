@@ -25,7 +25,7 @@ module.exports = {
           quotes[key].push(body)
         }
 
-        fs.writeFile(__rootdir + '/data/quotes.json', JSON.stringify(quotes, null, 4))
+        fs.writeFileSync(__rootdir + '/data/quotes.json', JSON.stringify(quotes, null, 4))
         return 'Added quote "' + body + '" to "' + key + '" (' + quotes[key].length + ').'
       }
     },
