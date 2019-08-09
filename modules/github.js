@@ -66,7 +66,7 @@ module.exports = {
     },
     'github:pull_request': (bot, ghEvent) => {
       if (ghEvent.payload.action === 'synchronize') return
-      if (ghEvent.payload.action = 'ready_for_review') ghEvent.payload.action = 'undrafted'
+      if (ghEvent.payload.action === 'ready_for_review') ghEvent.payload.action = 'undrafted'
       return announce(bot, `${ghEvent.payload.sender.login} ${ghEvent.payload.action} pull request ${ghEvent.payload.pull_request.html_url}`)
     },
     'github:delete': (bot, ghEvent) => {
