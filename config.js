@@ -169,6 +169,10 @@ module.exports = config = convict({
     }
   },
   github: {
+    channel: {
+      doc: 'Channel to announce GitHub webhook events in',
+      format: 'String'
+    },
     webhook: {
       port: {
         doc: 'Port to listen on for GitHub webhooks',
