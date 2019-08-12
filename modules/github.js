@@ -62,7 +62,7 @@ module.exports = {
         'demilestoned': 'magenta'
       }
       let coloredAction = colors.wrap(actionColors[ghEvent.payload.action], ghEvent.payload.action)
-      return announce(bot, `${ghEvent.payload.sender.login} ${coloredAction} issue ${ghEvent.payload.issue.html_url}`)
+      return announce(bot, `${ghEvent.payload.sender.login} ${coloredAction} issue #${ghEvent.payload.issue.number} ${ghEvent.payload.issue.html_url}`)
     },
     'github:pull_request': (bot, ghEvent) => {
       if (ghEvent.payload.action === 'synchronize') return
