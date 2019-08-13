@@ -56,6 +56,7 @@ module.exports = config = convict({
       doc: 'The password used to connect to IRC',
       format: String,
       env: 'IRC_PASSWORD',
+      sensitive: true,
       default: null
     },
     channels: {
@@ -123,13 +124,15 @@ module.exports = config = convict({
   bitly: {
     accesstoken: {
       doc: 'Bit.ly generic access token for URL shortening',
-      format: String
+      format: String,
+      sensitive: true
     }
   },
   youtube: {
     key: {
       doc: 'YouTube API key',
-      format: String
+      format: String,
+      sensitive: true
     }
   },
   verbose: {
@@ -183,7 +186,8 @@ module.exports = config = convict({
       secret: {
         doc: 'Secret for GitHub webhook',
         format: String,
-        env: 'GITHUB_SECRET'
+        env: 'GITHUB_SECRET',
+        sensitive: true
       }
     }
   },
@@ -195,7 +199,8 @@ module.exports = config = convict({
       },
       consumerSecret: {
         doc: 'Twitter consumer secret',
-        format: String
+        format: String,
+        sensitive: true
       },
       reportingChannel: {
         doc: 'Channel to copy sent tweets to',
