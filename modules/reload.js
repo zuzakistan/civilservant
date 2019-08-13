@@ -40,6 +40,28 @@ module.exports = {
   events: {
     version: function (bot, from) {
       bot.ctcp(from, 'NOTICE', 'VERSION https://github.com/zuzakistan/civilservant/tree/' + githash())
+    },
+    'github:push': async (bot, ghEvent) => {
+      console.log('Event fired')
+      if (bot.config.get('github.autoPull.enabled') !== false) {
+        console.log('Autopull enabled')
+        let config = bot.config.get('github.autoPull')
+        if (ghEvent.payload.ref === 'refs/heads/' + config.branch) {
+          console.log('Matching branch')
+          bot.notice(bot.config.get('irc.control'), 'Fetching new changes from GitHub')
+          exec(`git fetch ${config.remote} ${config.branch}`, null, (e, fetchStderr) => {
+            bot.notice(bot.config.get('irc.control'), fetchStderr)
+            if (e) throw e
+            bot.notice(bot.config.get('irc.control'), `Resetting to match ${config.remote} ${config.branch}`)
+            exec(`git reset --hard ${config.remote}/${config.branch}`, null, async (err, resetStderr) => {
+              bot.notice(bot.config.get('irc.control'), resetStderr)
+              if (err) throw err
+              await bot.reload()
+              bot.notice(bot.config.get('irc.control'), 'Reloaded.')
+            })
+          })
+        }
+      }
     }
   }
 }

@@ -172,6 +172,23 @@ module.exports = config = convict({
     }
   },
   github: {
+    autoPull: {
+      enabled: {
+        doc: 'Whether to permit auto-pulling code from GitHub',
+        default: false,
+        format: Boolean
+      },
+      branch: {
+        doc: 'Which branch to auto-reset and pull from',
+        default: 'master',
+        format: String
+      },
+      remote: {
+        doc: 'Which remote to auto-reset and pull from',
+        default: 'origin',
+        format: String
+      }
+    },
     channel: {
       doc: 'Channel to announce GitHub webhook events in',
       format: 'String'
