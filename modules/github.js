@@ -63,8 +63,8 @@ module.exports = {
       }
       let coloredAction = colors.wrap(actionColors[ghEvent.payload.action], ghEvent.payload.action)
       if (ghEvent.payload.action.includes('assigned')) {
-        coloredAction += ' ' + ghEvent.payload.assignee.login
-        coloredAction += ghEvent.payload.action === 'assigned' ? ' to' : 'from'
+        coloredAction += ' ' + ghEvent.payload.assignee.login + ' '
+        coloredAction += ghEvent.payload.action === 'assigned' ? 'to' : 'from'
       }
       return announce(bot, `${ghEvent.payload.sender.login} ${coloredAction} issue #${ghEvent.payload.issue.number} ${ghEvent.payload.issue.html_url}`)
     },
