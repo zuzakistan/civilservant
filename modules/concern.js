@@ -11,6 +11,12 @@ var verbose = false // TODO: cvar
 
 module.exports = {
   commands: {
+    checkconcern: {
+      help: 'Runs a phrase through the emotional alert system',
+      command: (bot, msg) => {
+        return JSON.stringify(isEmotional(msg.body))
+      }
+    },
     concern: {
       help: 'Toggles announcements of concern',
       command: function () {
