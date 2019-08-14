@@ -7,6 +7,7 @@
  */
 var isEmotional = require('emotional_alert')
 var nox = false
+var colors = require('irc').colors
 var verbose = false // TODO: cvar
 
 module.exports = {
@@ -15,7 +16,13 @@ module.exports = {
       help: 'Runs a phrase through very nuanced sentiment analysis',
       command: (bot, msg) => {
         let result = isEmotional(msg.body)
-        if (result.bayes.prediction) return result.bayes.prediction
+        if (result.bayes) {
+          let percentage = (result.bayes.proba * 100).toFixed(2)
+          return [
+            result.bayes.prediction,
+            colors.wrap('light_gray', `(${percentage}%)`)
+          ].join(' ')
+        }
         return 'no sentiment found'
       }
     },
