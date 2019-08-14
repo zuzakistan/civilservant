@@ -15,7 +15,7 @@ module.exports = {
       help: 'Runs a phrase through very nuanced sentiment analysis',
       command: (bot, msg) => {
         let result = isEmotional(msg.body)
-        if (result.bayes.prediction) return result.bayes.prediction
+        if (result.bayes && result.bayes.prediction) return result.bayes.prediction
         return 'no sentiment found'
       }
     },
