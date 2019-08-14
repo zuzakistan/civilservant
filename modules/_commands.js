@@ -52,13 +52,13 @@ module.exports = {
                     // pass
                   } else {
                     // http://www.imdb.com/title/tt0062622/quotes?item=qt0396921
-                    return processOutput('I\'m sorry, ' + msg.nick + '. I\'m afraid I can\'t do that.')
+                    return processOutput(bot, msg, cmd, 'I\'m sorry, ' + msg.nick + '. I\'m afraid I can\'t do that.')
                   }
                 }
               }
               if (Array.isArray(cmd.usage)) {
                 if (msg.args.length !== cmd.usage.length + 1) {
-                  return processOutput('Usage: ' + msg._cmd + ' <' + cmd.usage.join('> <') + '>')
+                  return processOutput(bot, msg, cmd, 'Usage: ' + msg._cmd + ' <' + cmd.usage.join('> <') + '>')
                 }
                 msg.args = msg.args.reduce(function (o, p, k) {
                   o[k] = p
@@ -74,7 +74,7 @@ module.exports = {
               .catch(e => {
                 console.error(e.message)
                 console.error(e.stack)
-                return processOutput(bot, msg, e, (str) => colors.wrap('dark_red', 'Error: ') + str)
+                return processOutput(bot, msg, cmd, e, (str) => colors.wrap('dark_red', 'Error: ') + str)
               })
           } catch (e) {
             bot.say(bot.config.get('irc.control'), 'Error processing `' + msg._cmd + '` in ' + msg.to + ': ' + e)
