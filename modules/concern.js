@@ -17,6 +17,7 @@ module.exports = {
         let result = isEmotional(msg.body)
         if (result.bayes.prediction) return result.bayes.prediction
         return 'no sentiment found'
+      }
     },
     rawconcern: {
       help: 'Runs a phrase through the emotional alert system',
