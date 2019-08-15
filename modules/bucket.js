@@ -134,7 +134,7 @@ module.exports = {
             'and',
             synonyms.adverb[Math.floor(Math.random() * synonyms.adverb.length)].trim(),
             synonyms.discard[Math.floor(Math.random() * synonyms.discard.length)],
-            oldItem
+            oldItem.item
           ].join(' ').replace(/\s+/g, ' ').trim())
         } else {
           bot.action(to, [
