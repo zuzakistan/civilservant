@@ -67,7 +67,6 @@ module.exports = {
         coloredAction += ghEvent.payload.action === 'assigned' ? 'to' : 'from'
       }
       return announce(bot, `${ghEvent.payload.sender.login} ${coloredAction} issue #${ghEvent.payload.issue.number} ${ghEvent.payload.issue.html_url}`)
-
     },
     'github:pull_request': (bot, ghEvent) => {
       if (ghEvent.payload.action === 'synchronize') return
