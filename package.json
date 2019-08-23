@@ -18,8 +18,8 @@
   },
   "license": "ISC",
   "dependencies": {
-    "@zuzak/owo": "^1.1.1",
     "@octokit/webhooks": "^5.3.3",
+    "@zuzak/owo": "^1.1.1",
     "airport-lookup": "^1.1.0",
     "asciify": "^1.3.5",
     "bitly": "~6.1.0",
@@ -29,7 +29,7 @@
     "currency-codes": "^1.1.2",
     "cyrillic-to-latin": "^2.0.0",
     "date-util": "^1.2.1",
-    "emotional_alert": "^1.0.3",
+    "emotional_alert": "^2.0.0",
     "escape-string-regexp": "^2.0.0",
     "fast-tweet": "^1.0.1",
     "get-urls": "^9.0.0",

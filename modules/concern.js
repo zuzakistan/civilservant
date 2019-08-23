@@ -11,6 +11,20 @@ var verbose = false // TODO: cvar
 
 module.exports = {
   commands: {
+    sentiment: {
+      help: 'Runs a phrase through very nuanced sentiment analysis',
+      command: (bot, msg) => {
+        let result = isEmotional(msg.body)
+        if (result.bayes.prediction) return result.bayes.prediction
+        return 'no sentiment found'
+      }
+    },
+    rawconcern: {
+      help: 'Runs a phrase through the emotional alert system',
+      command: (bot, msg) => {
+        return JSON.stringify(isEmotional(msg.body))
+      }
+    },
     concern: {
       help: 'Toggles announcements of concern',
       command: function () {

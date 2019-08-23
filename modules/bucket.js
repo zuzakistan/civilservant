@@ -1,13 +1,15 @@
 // inspired by xkcd's bucket :)
-var inventory = []
+var inventory = { old: [], current: [] }
 var inventoryLimit = 20
 var dropRate = 500
 var write = require('fs').writeFileSync
 
 try {
-  inventory = require(__rootdir + '/data/inventory.json') || []
+  inventory = require(__rootdir + '/data/inventory.json')
+  console.log('Loaded bucket inventory')
 } catch (e) {
-  //
+  if (e.code !== 'MODULE_NOT_FOUND') throw e
+  console.log('Bucket inventory non-existent; creating')
 }
 
 /**
@@ -22,22 +24,33 @@ function saveInventory () {
  * Returns a string containing the dropped item.
  */
 function dropItem () {
-  return inventory.splice(Math.floor(Math.random() * inventory.length), 1)
+  let item = inventory.current.splice(Math.floor(Math.random() * inventory.length), 1)
+  if (item.length > 0) {
+    item = item[0]
+    inventory.old.push(item)
+  }
+  saveInventory()
+  return item
 }
 
 /**
  * Adds given item to inventory.
  * Returns dropped item, if any.
  */
-function addToInventory (item) {
-  if (inventory.push(item) > inventoryLimit) {
-    return dropItem()
+function addToInventory (item, nick) {
+  let representation = { item, nick }
+  let droppedItem = null
+  if (inventory.current.push(representation) > inventoryLimit) {
+    droppedItem = dropItem()
   }
-  return null
+  saveInventory()
+  return droppedItem
 }
 
 module.exports = {
   events: {
+    onload: (bot) => {
+    },
     action: function (bot, nick, to, text) {
       var synonyms = {
         'adverb': [
@@ -108,10 +121,10 @@ module.exports = {
       if (matches) {
         var newItem = matches[2]
         // maybe put this elsewhere?
-        if (newItem.substr('\u0003') !== -1) {
+        if (newItem.includes('\u0003')) {
           newItem = newItem + '\u000f'
         }
-        var oldItem = addToInventory(newItem)
+        var oldItem = addToInventory(newItem, nick)
 
         if (oldItem) {
           bot.action(to, [
@@ -121,7 +134,7 @@ module.exports = {
             'and',
             synonyms.adverb[Math.floor(Math.random() * synonyms.adverb.length)].trim(),
             synonyms.discard[Math.floor(Math.random() * synonyms.discard.length)],
-            oldItem
+            oldItem.item
           ].join(' ').replace(/\s+/g, ' ').trim())
         } else {
           bot.action(to, [
@@ -135,6 +148,7 @@ module.exports = {
       }
     },
     message: function (bot, nick, to) {
+      if (inventory.current.length < 1) return undefined
       if (Math.random() < 1 / dropRate) { // 1 in 500
         var item = dropItem()
         if (item) {
@@ -142,10 +156,10 @@ module.exports = {
             bot.action(to, [
               Math.random() < 0.5 ? 'gives' : 'passes', // TODO: synonyms from above
               nick,
-              item
+              item.item
             ].join(' '))
           } else {
-            bot.action(to, 'drops ' + item)
+            bot.action(to, 'drops ' + item.item)
           }
         }
       }
@@ -155,8 +169,8 @@ module.exports = {
     inventory: {
       help: 'Displays the inventory of the bot',
       command: function () {
-        if (inventory.length > 0) {
-          return 'I\'m holding ' + inventory.join(', and ')
+        if (inventory.current.length !== 0) {
+          return 'I\'m holding ' + inventory.current.map((x) => x.item).join(', and ')
         }
         return 'I\'m holding nowt'
       }
@@ -169,7 +183,7 @@ module.exports = {
           if (item === 'apple') {
             return 'Core dumped.'
           }
-          return 'dropped ' + item
+          return 'dropped ' + item.item
         }
         return 'shan\'t!'
       }
