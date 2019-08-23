@@ -17,7 +17,9 @@ const tests = {
   // Unprintable
   'null': '<control> U+0000',
   // Failed search
-  'Not a bunny': 'No Unicode characters match /Not a bunny/'
+  'Not a bunny': 'No Unicode characters match /Not a bunny/',
+  // Reverse lookup
+  '👯': '👯 WOMAN WITH BUNNY EARS U+1F46F'
 }
 describe('unicode module', function () {
   before(function () {
