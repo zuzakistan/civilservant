@@ -5,11 +5,6 @@ module.exports = {
       aliases: [ 'char' ],
       help: 'Returns a unicode character whose name or codepoint matches a regular expression',
       command: async function (bot, msg) {
-        // Output a random character if no arguments are given
-        if (msg.args.length === 0) {
-          // This will work when (if) #162 is merged
-          msg.body = '.*'
-        }
         try {
           // Get data from Unicode, cached for ~1 month
           const response = await request({
@@ -18,9 +13,19 @@ module.exports = {
             cacheTTL: 3.0E9
           })
           const data = response.split('\n')
-          // Find matching characters
-          const regex = new RegExp(msg.body, 'i')
-          const matches = data.filter(codepoint => codepoint.match(regex))
+          var matches
+          // If more than one character is given, search for a matching
+          // character name or codepoint
+          if (Array.from(msg.body).length > 1) {
+            // Find matching characters
+            const regex = new RegExp(msg.body, 'i')
+            matches = data.filter(character => character.match(regex))
+          // If only one character is given, look up that character
+          } else {
+            const codepoint = msg.body.codePointAt(0).toString(16).toUpperCase()
+            const paddedCodepoint = '0000'.slice(codepoint.length) + codepoint
+            matches = data.filter(character => character.startsWith(paddedCodepoint + ';'))
+          }
           if (matches.length) {
             // Choose a random match
             const thisMatch = matches[Math.floor(Math.random() * matches.length)].split(';')
