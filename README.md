@@ -3,45 +3,32 @@
 [![Known Vulnerabilities](https://snyk.io/test/github/zuzakistan/civilservant/master/badge.svg)](https://snyk.io/test/github/zuzakistan/civilservant)
 [![Coverage Status](https://coveralls.io/repos/github/zuzakistan/civilservant/badge.svg?branch=master)](https://coveralls.io/github/zuzakistan/civilservant?branch=master)
 
+# civilservant
+
 This is an IRC bot written in NodeJS.
 
+## Setup
 
-## config.json
-Here is a minimal `config.json` to get started. The IRC object is passed straight into the `node-irc` module, so you can do SASL and things.
-```js
-{
-	"irc": {
-		"server": "irc.freenode.net",
-		"port": 6667,
-		"nick": "civilservant",
-		"channels": [
-			"##zuzakistan-lab"
-		],
-		"controlChar": "!"
-		"control": "##zuzakistan-lab",
-		"quiet": false,
-		"insecure": false,
-	},
-	"bitly": {
-		"username": "",
-		"password": ""
-	},
-	"touchtosuccess": {
-		"url": "http://newmarco.co.uk/our_menu.php?categoryId=303405"
-	},
-	"installModules": false
-}
+To install, run `npm install`.
+
+We use Mozilla's [Convict](https://github.com/mozilla/node-convict) library for
+configuration, which provides a variety of ways to define settings.
+
+Most important configuration variables can be set via an environment variable.
+Alternatively, you can define them in a JSON file (such as `debug.json` or
+production.json`), and Convict will read those changes in at startup.
+
+For example:
+```sh
+npm install
+NODE_ENV=production npm start
 ```
 
-Some explanation of the not-obvious options:
-* `controlChar`: the prefix for commands, such as `!help`.
-  Changing it to `%` would make commands like `%help`.
-  This is useful for lessening collisions when you have lots of bots in a channel.
-* `control`: the "admin" channel for the bot. It's recommended that you have
-  this as a separate, `+i` channel with trusted people in -- anyone in the control
-  channel can perform potentially dangerous commands. Set `insecure` to `true` to
-  allow other channels access to these commands.
-* `installModules`: whether to attempt(!) to install missing NPM modules.
-  If set to `false`, it'll just quit and ask you to install manually.
-* `quiet` toggles unsolicited pronouncements. If you like your bots to speak
-  only when spoken to, set this to `true`.
+## Contributing
+We welcome contributions to civilservant.
+If you're unsure where to start, we curate a list of [good first issues](https://github.com/zuzakistan/civilservant/labels/good%20first%20issue).
+
+If you have questions, you can contact us via IRC at [##zuzakistan-lab on freenode](irc://chat.freenode.net/##zuzakistan-lab)
+([webchat](https://kiwiirc.com/nextclient/irc.freenode.net/##zuzakistan)).
+
+If you encounter unacceptable behaviour in the community, please email conduct@zuzakistan.com.
