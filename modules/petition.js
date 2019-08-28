@@ -1,4 +1,5 @@
 const request = require('request-promise')
+const colors = require('irc').colors
 var delta = {}
 var id = null
 
@@ -38,25 +39,45 @@ module.exports = {
           switch (data.attributes.state) {
             case 'rejected':
               ret = [
-                data.attributes.rejection.code,
+                colors.wrap('light_red', data.attributes.rejection.code),
                 data.type,
                 data.id,
-                '"' + data.attributes.action + '"',
+                colors.wrap('white', '"' + data.attributes.action + '"'),
+                'https://petition.parliament.uk/petitions/' + data.id
+              ]
+              break
+            case 'closed':
+              ret = [
+                colors.wrap('dark_red', data.attributes.state),
+                data.type,
+                data.id,
+                colors.wrap('white', '"' + data.attributes.action + '"'),
+                'had',
+                data.attributes.signature_count.toLocaleString('en-GB'),
+                'signatures',
+                '·',
+                percentageOfElectorate,
+                'of electorate',
+                '(' + domestic.toLocaleString('en-GB') + ')',
+                'plus',
+                foreign.toLocaleString('en-GB'),
+                'foreign',
+                surplusSignatures > 0 ? 'and ' + surplusSignatures.toLocaleString('en-GB') + ' unaccounted for' : null,
+
                 'https://petition.parliament.uk/petitions/' + data.id
               ]
               break
             case 'open':
-            case 'closed':
             default:
               ret = [
-                data.attributes.state,
+                colors.wrap('light_green', data.attributes.state),
                 data.type,
                 data.id,
-                '"' + data.attributes.action + '"',
+                colors.wrap('white', '"' + data.attributes.action + '"'),
                 'has',
                 data.attributes.signature_count.toLocaleString('en-GB'),
                 'signatures',
-                '(+' + change.toLocaleString('en-GB') + ')',
+                colors.wrap('yellow', '(+' + change.toLocaleString('en-GB') + ')'),
                 '·',
                 percentageOfElectorate,
                 'of electorate',
