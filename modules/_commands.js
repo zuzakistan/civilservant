@@ -15,7 +15,7 @@ const processOutput = (bot, msg, cmd, output, customFormatter) => {
   } else if (output.constructor === Array) {
     output.forEach(line => processOutput(bot, msg, line, customFormatter))
   } else {
-    if (output.message) return processOutput(bot, msg, output.message, customFormatter)
+    if (output.message) return processOutput(bot, msg, cmd, output.message, customFormatter)
     console.error('output is strange type: ' + output)
   }
 }
