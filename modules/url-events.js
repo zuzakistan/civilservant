@@ -29,8 +29,11 @@ var getTitle = function (url) {
         }
       }).on('error', () => {
         // If there was an error, don't bother trying to get the title
-        // But still process the rest of the URLs
         resolve(null)
+      }).on('response', (response) => {
+        if (response.statusCode !== 200) {
+          resolve(null)
+        }
       }).on('end', () => {
         // After aborting (or finishing), parse title
         const $ = cheerio.load(response)
