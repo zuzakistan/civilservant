@@ -12,9 +12,16 @@ module.exports = {
           id = msg.args[1]
         }
 
+        let data
         try {
-          const json = await request.get(`https://petition.parliament.uk/petitions/${id}.json`)
-          const data = JSON.parse(json).data
+          data = await request.get({
+            url: `https://petition.parliament.uk/petitions/${id}.json`,
+            json: true,
+            headers: {
+              'User-Agent': 'https://github.com/zuzakistan/civilservant'
+            }
+          })
+          data = data.data
 
           const old = delta[data.id] ? delta[data.id] : data.attributes.signature_count
           const change = data.attributes.signature_count - old
