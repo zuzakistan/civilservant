@@ -92,7 +92,12 @@ module.exports = {
           }
           return ret.join(' ')
         } catch (e) {
-          return 'err: ' + e
+          // if HTTP error intercept to remove body of response
+          if (e.name === 'StatusCodeError') {
+            e.message = `Received ${e.statusCode} when getting petition data`
+          }
+          // rethrow anyway
+          throw e
         }
       }
     }
