@@ -8,11 +8,11 @@ module.exports = {
   commands: {
     airport: {
       help: 'Looks up an IATA airport code',
-      usage: [ 'code' ],
+      usage: ['code'],
       command: function (bot, msg) {
         var data = airports(msg.args.code)
         if (data) {
-          var datum = [ data.size, countries.getName(data.iso, 'en'), data.type ]
+          var datum = [data.size, countries.getName(data.iso, 'en'), data.type]
           return data.iata + ': ' + data.name + ' (' + datum.join(' ') + ')'
         }
         return 'Unable to find an airport with IATA code ' + msg.args.code
@@ -20,7 +20,7 @@ module.exports = {
     },
     currency: {
       help: 'Looks up an ISO 4217 currency code',
-      usage: [ 'currency' ],
+      usage: ['currency'],
       command: function (bot, msg) {
         var code = currencies.code(msg.args.currency)
         if (code) {
@@ -34,8 +34,8 @@ module.exports = {
     },
     lang: {
       help: 'Looks up an ISO 369-1 language code',
-      aliases: [ 'language' ],
-      usage: [ 'lang' ],
+      aliases: ['language'],
+      usage: ['lang'],
       command: function (bot, msg) {
         msg.args.lang = msg.args.lang.toLowerCase()
         if (langs.isValid(msg.args.lang)) {
@@ -47,10 +47,10 @@ module.exports = {
     },
     country: {
       help: 'Looks up an ISO 3166 alpha2 country code',
-      usage: [ 'country' ],
+      usage: ['country'],
       command: function (bot, msg) {
         var code = msg.args.country.toUpperCase()
-        let languages = [ 'en', 'de', 'fr', 'el' ]
+        const languages = ['en', 'de', 'fr', 'el']
         if (countries.getName(code, 'en')) {
           return code + ' → ' + languages.map((lang) => countries.getName(code, lang)).join(' · ')
         }
@@ -59,17 +59,17 @@ module.exports = {
     },
     cc: {
       help: 'Looks up an ISO 3166 alpha2 country code',
-      usage: [ 'country', 'language' ],
-      aliases: [ 'cc' ],
+      usage: ['country', 'language'],
+      aliases: ['cc'],
       command: function (bot, msg) {
-        let code = msg.args.country.toUpperCase()
-        let lang = msg.args.language.toLowerCase()
+        const code = msg.args.country.toUpperCase()
+        const lang = msg.args.language.toLowerCase()
         return code + ' → ' + (countries.getName(code, lang) || 'not found')
       }
     },
     state: {
       help: 'Looks up a US state from its postal abbbreviation',
-      usage: [ 'code' ],
+      usage: ['code'],
       command: function (bot, msg) {
         var code = msg.args.code.toUpperCase()
         if (states[code]) {

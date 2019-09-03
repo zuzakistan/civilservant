@@ -3,7 +3,7 @@ module.exports = {
   commands: {
     num: {
       help: 'Asks the bot to greet the channel',
-      usage: [ 'lang', 'number' ],
+      usage: ['lang', 'number'],
       command: function (bot, msg) {
         if (msg.args.lang === 'jbo') {
           msg.args.lang = 'jb'

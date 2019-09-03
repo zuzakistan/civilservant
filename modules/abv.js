@@ -2,17 +2,17 @@ module.exports = {
   commands: {
     units: {
       help: 'Get UK alcohol units from ABV and volume (in ml)',
-      aliases: [ 'abv' ],
-      usage: [ 'volume', 'abv' ],
+      aliases: ['abv'],
+      usage: ['volume', 'abv'],
       command: function (bot, msg) {
         // convert human units into ml
         var volumes = {
-          'shot': 25,
-          'double': 50,
-          'can': 330,
-          'glass': 175,
-          'pint': 568,
-          'yard': 1420.65
+          shot: 25,
+          double: 50,
+          can: 330,
+          glass: 175,
+          pint: 568,
+          yard: 1420.65
         }
         if (volumes[msg.args.volume]) {
           msg.args.volume = volumes[msg.args.volume]

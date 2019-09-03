@@ -15,9 +15,9 @@ module.exports = {
     sentiment: {
       help: 'Runs a phrase through very nuanced sentiment analysis',
       command: (bot, msg) => {
-        let result = isEmotional(msg.body)
+        const result = isEmotional(msg.body)
         if (result.bayes) {
-          let percentage = (result.bayes.proba * 100).toFixed(2)
+          const percentage = (result.bayes.proba * 100).toFixed(2)
           return [
             result.bayes.prediction,
             colors.wrap('light_gray', `(${percentage}%)`)

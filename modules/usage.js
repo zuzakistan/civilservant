@@ -2,7 +2,7 @@ module.exports = {
   commands: {
     usage: {
       help: 'Gets usage information about a command',
-      usage: [ 'command' ],
+      usage: ['command'],
       command: function (bot, msg) {
         var cmd = bot.commands[msg.args.command]
         if (Array.isArray(cmd.usage)) {

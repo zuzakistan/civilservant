@@ -4,8 +4,8 @@ const assert = require('assert')
 
 describe('fullwidthmodule', function () {
   const tests = {
-    'abcdefghijklmnopqrstuvwxyz': 'ａｂｃｄｅｆｇｈｉｊｋｌｍｎｏｐｑｒｓｔｕｖｗｘｙｚ',
-    'ABCDEFGHIJKLMNOPQRSTUVWYXZ': 'ＡＢＣＤＥＦＧＨＩＪＫＬＭＮＯＰＱＲＳＴＵＶＷＹＸＺ',
+    abcdefghijklmnopqrstuvwxyz: 'ａｂｃｄｅｆｇｈｉｊｋｌｍｎｏｐｑｒｓｔｕｖｗｘｙｚ',
+    ABCDEFGHIJKLMNOPQRSTUVWYXZ: 'ＡＢＣＤＥＦＧＨＩＪＫＬＭＮＯＰＱＲＳＴＵＶＷＹＸＺ',
     '0123456789': '０１２３４５６７８９',
     '!"#$%&\'()*+,-./': '！＂＃＄％＆＇（）＊＋，－．／',
     '¢£¥¦¬¯₩': '￠￡￥￤￢￣￦',

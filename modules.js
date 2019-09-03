@@ -38,7 +38,7 @@ var self = module.exports = {
           console.error(`Loading ${name} failed`)
           bot.say(bot.config.get('irc.control'), `Failed to load ${name}`)
           if (err.code === 'MODULE_NOT_FOUND') {
-            let npmModule = err.message.split('\'')[1]
+            const npmModule = err.message.split('\'')[1]
             console.error(`Dependency missing: run \`npm install --save ${npmModule}\``)
           } else {
             console.log(err)

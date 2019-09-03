@@ -94,7 +94,7 @@ module.exports = {
     },
     'rawnews:reuwire': function (bot, stories) {
       for (let i = 0; i < stories.length; i++) {
-        let story = stories[i]
+        const story = stories[i]
         bot.fireEvents('news', {
           color: 'yellow',
           id: story.id,

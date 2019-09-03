@@ -31,7 +31,7 @@ module.exports = {
     },
     hash: {
       help: 'Get hash of the current codebase',
-      aliases: [ 'version' ],
+      aliases: ['version'],
       command: function () {
         return 'https://github.com/zuzakistan/civilservant/commit/' + githash()
       }
@@ -45,7 +45,7 @@ module.exports = {
       console.log('Event fired')
       if (bot.config.get('github.autoPull.enabled') !== false) {
         console.log('Autopull enabled')
-        let config = bot.config.get('github.autoPull')
+        const config = bot.config.get('github.autoPull')
         if (ghEvent.payload.ref === 'refs/heads/' + config.branch) {
           console.log('Matching branch')
           bot.notice(bot.config.get('irc.control'), 'Fetching new changes from GitHub')

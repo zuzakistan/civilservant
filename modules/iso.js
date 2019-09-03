@@ -9,7 +9,7 @@ module.exports = {
   commands: {
     iso: {
       help: 'Looks up an ISO specification from number',
-      usage: [ 'number' ],
+      usage: ['number'],
       command: function (bot, msg) {
         var url = 'http://www.iso.org/iso/home/search/extendedsearchstandards.htm?type=adv&published=on&formStage_code=&formDate_stage=0&formISO_number='
         scrape.request(url + msg.args.number, function (err, $) {

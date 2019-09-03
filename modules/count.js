@@ -8,7 +8,7 @@ try {
 module.exports = {
   commands: {
     increment: {
-      aliases: [ 'count', '++' ],
+      aliases: ['count', '++'],
       help: 'Increments a number.',
       command: function (bot, msg) {
         var counter = msg.args.splice(1)
@@ -17,7 +17,7 @@ module.exports = {
         } else {
           counter = counter.join(' ')
         }
-        if (!count.hasOwnProperty(counter)) {
+        if (!Object.prototype.hasOwnProperty.call(count, counter)) {
           count[counter] = 1
         } else {
           count[counter]++
