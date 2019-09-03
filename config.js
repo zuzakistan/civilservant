@@ -62,7 +62,7 @@ module.exports = config = convict({
     channels: {
       doc: 'the channels to connect to',
       format: Array,
-      default: [ '##zuzakistan-lab' ]
+      default: ['##zuzakistan-lab']
     },
     control: {
       doc: 'The channel that one is allowed to make privileged commands from',

@@ -26,7 +26,7 @@ module.exports = {
             console.log(actions)
             var str = []
             for (var action in actions) {
-              if (!actions.hasOwnProperty(action)) {
+              if (!Object.prototype.hasOwnProperty.call(actions, action)) {
                 continue
               }
 

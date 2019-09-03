@@ -22,7 +22,7 @@ module.exports = {
   commands: {
     fullwidth: {
       help: 'Ｃｒｅａｔｅｓ　ａｎ　ａｅｓｔｈｅｔｉｃ',
-      aliases: [ 'vw', 'fw' ],
+      aliases: ['vw', 'fw'],
       command: function (bot, msg) {
         return toFullwidth(msg.body)
       }

@@ -4,22 +4,22 @@ const assert = require('assert')
 
 describe('wikis module', function () {
   const WIKIS = {
-    'wp': 'wikipedia',
-    'wt': 'wiktionary',
-    'wq': 'wikiquote',
-    'wb': 'wikibooks',
-    'ws': 'wikisource',
-    'wn': 'wikinews',
-    'wv': 'wikiversity',
-    'mw': 'mediawiki',
-    'wd': 'wikidata'
+    wp: 'wikipedia',
+    wt: 'wiktionary',
+    wq: 'wikiquote',
+    wb: 'wikibooks',
+    ws: 'wikisource',
+    wn: 'wikinews',
+    wv: 'wikiversity',
+    mw: 'mediawiki',
+    wd: 'wikidata'
   }
 
   before(function () {
     mockBot.loadModule('wikis')
     Object.keys(WIKIS).forEach(function (key) {
       if (key !== 'wp') {
-        mockBot.commands[key] = mockBot.commands['wp']
+        mockBot.commands[key] = mockBot.commands.wp
       }
     })
   })
@@ -33,7 +33,7 @@ describe('wikis module', function () {
   })
 
   Object.keys(WIKIS).forEach(function (key) {
-    let name = WIKIS[key]
+    const name = WIKIS[key]
     it('should link to english ' + name, function () {
       assert.strictEqual(mockBot.runCommand(`!${key}`), `https://en.${name}.org/wiki/`)
     })

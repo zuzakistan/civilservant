@@ -5,7 +5,7 @@ module.exports = {
       help: 'Returns a random GOV.UK page',
       fireMessageEvent: true,
       command: async function () {
-        let res = await request({
+        const res = await request({
           followRedirect: false,
           resolveWithFullResponse: true,
           simple: false,

@@ -24,7 +24,7 @@ module.exports = {
 
         if (!timeOfInterruption) return 'no moment of interruption on ' + now.format('dddd')
 
-        let dateOfInterruption = now
+        const dateOfInterruption = now
         dateOfInterruption.set(timeOfInterruption)
 
         if (dateOfInterruption.isBefore(now)) return 'moment of interruption has passed'
@@ -34,7 +34,7 @@ module.exports = {
     },
     // the following are only valid for the 2017 to 2019 Parliamentary session:
     orderpaper: {
-      aliases: [ 'op', 'cop', 'corderpaper' ],
+      aliases: ['op', 'cop', 'corderpaper'],
       help: 'generates link to today\'s Commons order paper',
       command: () => {
         const ts = moment().format('YYMMDD') // e.g. OP190321.pdf
@@ -43,7 +43,7 @@ module.exports = {
     },
     business: {
       help: 'generates link to today\'s Commons business',
-      aliases: [ 'cbusiness' ],
+      aliases: ['cbusiness'],
       command: () => {
         const ts = moment().format('YYMMDD')
         return `https://publications.parliament.uk/pa/cm201719/cmagenda/ob${ts}.htm`
@@ -51,7 +51,7 @@ module.exports = {
     },
     future: {
       help: 'generates link to Commons future business',
-      aliases: [ 'futurebusiness' ],
+      aliases: ['futurebusiness'],
       command: () => {
         const ts = moment().format('YYMMDD')
         return `https://publications.parliament.uk/pa/cm201719/cmagenda/fb${ts}.htm`

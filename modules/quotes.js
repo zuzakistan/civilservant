@@ -20,7 +20,7 @@ module.exports = {
           return 'Usage: ' + bot.config.get('irc.controlChar') + 'qadd foo=bar'
         }
         if (!quotes[key]) {
-          quotes[key] = [ body ]
+          quotes[key] = [body]
         } else {
           quotes[key].push(body)
         }
@@ -41,7 +41,7 @@ module.exports = {
       }
     },
     quotes: {
-      aliases: [ 'quotel' ],
+      aliases: ['quotel'],
       help: 'Lists quote categories',
       command: function () {
         var str = ''

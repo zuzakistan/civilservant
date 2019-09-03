@@ -7,39 +7,39 @@ try {
   //
 }
 const bag = {
-  'a': { count: 9, score: 1 },
-  'b': { count: 2, score: 3 },
-  'c': { count: 2, score: 3 },
-  'd': { count: 4, score: 2 },
-  'e': { count: 12, score: 1 },
-  'f': { count: 2, score: 4 },
-  'g': { count: 3, score: 2 },
-  'h': { count: 2, score: 4 },
-  'i': { count: 9, score: 1 },
-  'j': { count: 1, score: 8 },
-  'k': { count: 1, score: 5 },
-  'l': { count: 4, score: 1 },
-  'm': { count: 2, score: 3 },
-  'n': { count: 6, score: 1 },
-  'o': { count: 8, score: 1 },
-  'p': { count: 2, score: 3 },
-  'q': { count: 1, score: 10 },
-  'r': { count: 6, score: 1 },
-  's': { count: 4, score: 1 },
-  't': { count: 6, score: 1 },
-  'u': { count: 4, score: 1 },
-  'v': { count: 2, score: 4 },
-  'w': { count: 2, score: 4 },
-  'x': { count: 1, score: 8 },
-  'y': { count: 2, score: 4 },
-  'z': { count: 1, score: 10 }
+  a: { count: 9, score: 1 },
+  b: { count: 2, score: 3 },
+  c: { count: 2, score: 3 },
+  d: { count: 4, score: 2 },
+  e: { count: 12, score: 1 },
+  f: { count: 2, score: 4 },
+  g: { count: 3, score: 2 },
+  h: { count: 2, score: 4 },
+  i: { count: 9, score: 1 },
+  j: { count: 1, score: 8 },
+  k: { count: 1, score: 5 },
+  l: { count: 4, score: 1 },
+  m: { count: 2, score: 3 },
+  n: { count: 6, score: 1 },
+  o: { count: 8, score: 1 },
+  p: { count: 2, score: 3 },
+  q: { count: 1, score: 10 },
+  r: { count: 6, score: 1 },
+  s: { count: 4, score: 1 },
+  t: { count: 6, score: 1 },
+  u: { count: 4, score: 1 },
+  v: { count: 2, score: 4 },
+  w: { count: 2, score: 4 },
+  x: { count: 1, score: 8 },
+  y: { count: 2, score: 4 },
+  z: { count: 1, score: 10 }
 }
 function scoreLetter (letter, str) {
   try {
     const occurrences = str.toLowerCase().split(letter).length - 1
-    const usedBlanks = Math.max(occurrences - bag[letter]['count'], 0)
+    const usedBlanks = Math.max(occurrences - bag[letter].count, 0)
     return {
-      score: bag[letter]['score'] * (occurrences - usedBlanks),
+      score: bag[letter].score * (occurrences - usedBlanks),
       usedBlanks
     }
   } catch (e) {
@@ -52,9 +52,9 @@ function scoreLetter (letter, str) {
   }
 }
 function computeWord (str) {
-  let score = scrabbleScore(str)
-  let isImpossible = str.length > 15 || str.length < 2 || /[^a-zA-Z]/.test(str) || score === null
-  let isAllowable = sowpods.verify(str)
+  const score = scrabbleScore(str)
+  const isImpossible = str.length > 15 || str.length < 2 || /[^a-zA-Z]/.test(str) || score === null
+  const isAllowable = sowpods.verify(str)
 
   return {
     word: str,
@@ -69,7 +69,7 @@ function scrabbleNotate (str) {
   let word = str.toLowerCase()
   for (const letter of [...new Set(word)]) {
     if (letter in bag) {
-      for (let i = 0; i < bag[letter]['count']; i++) {
+      for (let i = 0; i < bag[letter].count; i++) {
         word = word.replace(letter, letter.toUpperCase())
       }
     }
@@ -86,10 +86,10 @@ function scrabbleScore (str) {
   const result = [...new Set(str.toLowerCase())]
     .map(c => scoreLetter(c, str))
     .reduce((a, b) => ({
-      'score': a['score'] + b['score'],
-      'usedBlanks': a['usedBlanks'] + b['usedBlanks']
+      score: a.score + b.score,
+      usedBlanks: a.usedBlanks + b.usedBlanks
     }), { score: 0, usedBlanks: 0 })
-  return result['usedBlanks'] > 2 ? null : result['score']
+  return result.usedBlanks > 2 ? null : result.score
 }
 function reportScore (bot, word) {
   if (typeof word === 'string') {
@@ -102,7 +102,7 @@ module.exports = {
   commands: {
     scrabble: {
       help: 'Scores a word in Scrabble',
-      usage: [ 'word' ],
+      usage: ['word'],
       command: function (bot, msg) {
         return reportScore(bot, msg.args.word)
       }
@@ -120,11 +120,11 @@ module.exports = {
   events: {
     message: function (bot, nick, to, text) {
       if (text.match(bot.config.get('irc.controlChar') + 'scrabble')) return
-      let phrase = text.split(/[ '"]/)
-      let words = []
+      const phrase = text.split(/[ '"]/)
+      const words = []
       phrase.forEach((word) => {
         word = word.replace(/[^A-Za-z]+$/, '')
-        let result = computeWord(word)
+        const result = computeWord(word)
         if (wordHistory.map(word => word.toUpperCase()).includes(word.toUpperCase()) ||
           !result.isPossible) return
         words.push(result)

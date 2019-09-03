@@ -5,12 +5,12 @@ module.exports = {
       command: function (bot) {
         var commands = Object.keys(bot.commands)
         commands.sort()
-        let controlChar = bot.config.get('irc.controlChar')
+        const controlChar = bot.config.get('irc.controlChar')
         return 'Commands loaded: ' + controlChar + commands.join(' ' + controlChar)
       }
     },
     help: {
-      usage: [ 'command' ],
+      usage: ['command'],
       help: 'Returns summary of purpose of command',
       command: function (bot, msg) {
         if (!bot.commands[msg.args.command]) {

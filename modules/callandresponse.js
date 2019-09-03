@@ -23,8 +23,8 @@ try {
 
 module.exports = {
   commands: {
-    'triggers': {
-      'help': 'Lists call and response triggers',
+    triggers: {
+      help: 'Lists call and response triggers',
       command: function () {
         return Object.keys(triggers).join(' · ')
       }

@@ -9,15 +9,15 @@ module.exports = {
     nick: {
       help: 'Changes the nickname of the bot',
       privileged: true,
-      usage: [ 'nickname' ],
-      aliases: [ 'name', 'nickname' ],
+      usage: ['nickname'],
+      aliases: ['name', 'nickname'],
       command: function (bot, msg) {
         bot.send('NICK', msg.args.nickname)
       }
     },
     src: {
       help: 'Returns a link to the bot\'s source code',
-      aliases: [ 'source', 'patchwelcome' ],
+      aliases: ['source', 'patchwelcome'],
       command: function () {
         return 'https://github.com/zuzakistan/civilservant'
       }
