@@ -50,6 +50,8 @@ module.exports = {
         const percentageOfElectorate = (domestic / ELECTORATE_SIZE * 100).toPrecision(3) + '%'
         const surplusSignatures = data.attributes.signature_count - domestic - foreign
 
+        data.attributes.action = data.attributes.action.trim()
+
         let ret
         switch (data.attributes.state) {
           case 'rejected':
