@@ -42,12 +42,12 @@ module.exports = {
       bot.ctcp(from, 'NOTICE', 'VERSION https://github.com/zuzakistan/civilservant/tree/' + githash())
     },
     'github:push': async (bot, ghEvent) => {
-      console.log('Event fired')
+      bot.log('debug', 'Event fired')
       if (bot.config.get('github.autoPull.enabled') !== false) {
-        console.log('Autopull enabled')
+        bot.log('debug', 'Autopull enabled')
         let config = bot.config.get('github.autoPull')
         if (ghEvent.payload.ref === 'refs/heads/' + config.branch) {
-          console.log('Matching branch')
+          bot.log('debug', 'Matching branch')
           bot.notice(bot.config.get('irc.control'), 'Fetching new changes from GitHub')
           exec(`git fetch ${config.remote} ${config.branch}`, null, (e, fetchStderr) => {
             bot.notice(bot.config.get('irc.control'), fetchStderr)

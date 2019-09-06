@@ -16,8 +16,8 @@ function fireEvents () {
       this.events[name][i].apply(this, cargs)
     }
   } catch (e) {
-    console.error('Error processing ' + name + ' event: ')
-    console.error(e.stack)
+    this.log('error', 'Error processing ' + name + ' event: ')
+    this.log('error', e.stack)
   }
 }
 

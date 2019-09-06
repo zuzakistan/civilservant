@@ -27,7 +27,7 @@ module.exports = {
       help: 'Causes the bot to quit',
       command: function (bot, msg) {
         if (msg.args[1]) {
-          console.log('QUITTING after command by ' + msg.nick + ' in ' + msg.to)
+          bot.log('info', 'QUITTING after command by ' + msg.nick + ' in ' + msg.to)
           process.exit(0)
         }
       }
