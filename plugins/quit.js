@@ -1,9 +1,9 @@
 module.exports = {
   onload: (bot) => {
     process.on('SIGINT', function () {
-      console.log('Caught SIGINT...')
+      bot.log('warn', 'Caught SIGINT...')
       bot.disconnect('Caught ^C', function () {
-        console.log('...disconnected.')
+        bot.log('info', '...disconnected.')
         process.exit()
       })
     })

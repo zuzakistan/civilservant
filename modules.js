@@ -35,14 +35,14 @@ var self = module.exports = {
       return self.loadModule(bot, `${dir}/${name}`)
         .then(() => bot.modules.push(name))
         .catch((err) => {
-          console.error(`Loading ${name} failed`)
+          bot.log('error', `Loading ${name} failed`)
           bot.say(bot.config.get('irc.control'), `Failed to load ${name}`)
           if (err.code === 'MODULE_NOT_FOUND') {
             let npmModule = err.message.split('\'')[1]
-            console.error(`Dependency missing: run \`npm install --save ${npmModule}\``)
+            bot.log('error', `Dependency missing: run \`npm install --save ${npmModule}\``)
           } else {
-            console.log(err)
-            console.log(err.stack)
+            bot.log('error', err)
+            bot.log('error', err.stack)
           }
         })
     }))
@@ -51,7 +51,7 @@ var self = module.exports = {
     const loader = () => loadModule(this, bot, file)
     return Promise.resolve(this.unloadModule(bot, file))
       .catch(err => {
-        console.error(`Error in ${file} unload ${err}`)
+        bot.log('error', `Error in ${file} unload ${err}`)
         bot.say(bot.config.get('irc.control'), `Failed to unload ${file}`)
         return loader()
       })
@@ -68,9 +68,9 @@ var self = module.exports = {
           return alreadyLoadedModule.onunload(bot)
         } catch (e) {
           // output error, but carry on anyway
-          console.error(`Error running ${file} onunload hook`)
-          console.error(e)
-          console.error(e.stack)
+          bot.log('error', `Error running ${file} onunload hook`)
+          bot.log('error', e)
+          bot.log('error', e.stack)
         }
       }
     } else {
@@ -86,15 +86,15 @@ var self = module.exports = {
     for (var i = 0; i < keys.length; i++) {
       var cmd = commands[keys[i]]
       if (bot.commands[keys[i]] && clobber) {
-        console.log('Won\'t clobber: ' + keys[i])
+        bot.log('debug', 'Won\'t clobber: ' + keys[i])
         continue
       }
       bot.commands[keys[i]] = cmd
-      // console.log( 'Added command: ' + keys[i] );
+      bot.log('debug', 'Added command: ' + keys[i])
       if (cmd.aliases) {
         for (var j = 0; j < cmd.aliases.length; j++) {
           bot.commands[cmd.aliases[j]] = commands[keys[i]]
-          // console.log( 'Aliased ' + cmd.aliases[j] + ' to ' + keys[i] );
+          bot.log('silly', `Aliased ${cmd.aliases[j]} to ${keys[i]}`)
         }
       }
     }

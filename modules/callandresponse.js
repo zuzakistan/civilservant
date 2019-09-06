@@ -15,13 +15,15 @@ var COUNT = 0
 
 // adjust this to change the bot's tolerance to botstorms
 var MAX_COUNT = 5
-try {
-  triggers = require(__rootdir + '/data/triggers.json')
-} catch (e) {
-  console.error('Cannot load triggers!')
-}
 
 module.exports = {
+  onload: (bot) => {
+    try {
+      triggers = require(__rootdir + '/data/triggers.json')
+    } catch (e) {
+      bot.log('warn', 'Cannot load triggers!')
+    }
+  },
   commands: {
     'triggers': {
       'help': 'Lists call and response triggers',

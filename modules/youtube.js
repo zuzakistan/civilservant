@@ -27,11 +27,11 @@ module.exports = {
         // this is particularly dumb:
         yt(query.v, opts, function (err, results) {
           if (err) {
-            console.log('YouTube error', err, err.stack)
+            bot.log('warn', 'YouTube error', err, err.stack)
             return
           }
           if (results.length !== 0) {
-            console.log(results[0])
+            bot.log('silly', results[0])
             bot.say(to, results[0].title)
           }
         })

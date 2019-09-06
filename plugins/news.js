@@ -71,14 +71,14 @@ function APIs (loud) {
 const requestApi = (bot, api) => {
   if (api.disabled) return
   request(api.url, (err, res, body) => {
-    if (err) return console.log(`Error polling ${api.url}: ${err}`)
+    if (err) return bot.log('warn', `Error polling ${api.url}: ${err}`)
     let payload
     try {
       if (res.body.trim() === '') body = '{}' // reuters sends empty on no news
       payload = JSON.parse(body)
     } catch (e) {
       if (!(e instanceof SyntaxError)) throw e
-      return console.log(`Syntax error decoding ${api.url}: ${payload} ${body}`)
+      return bot.log('error', `Syntax error decoding ${api.url}: ${payload} ${body}`)
     }
     if (api.customDecoder) {
       payload = api.customDecoder(payload)
@@ -103,7 +103,7 @@ module.exports = {
     if (bot.config.get('news.poll')) {
       pollApis(bot)
     } else {
-      console.log('Automatic polling of news disabled')
+      bot.log('info', 'Automatic polling of news disabled')
     }
   }
 }

@@ -16,7 +16,7 @@ const processOutput = (bot, msg, cmd, output, customFormatter) => {
     output.forEach(line => processOutput(bot, msg, line, customFormatter))
   } else {
     if (output.message) return processOutput(bot, msg, cmd, output.message, customFormatter)
-    console.error('output is strange type: ' + output)
+    bot.log('warn', 'output is strange type: ' + output)
   }
 }
 module.exports = {
@@ -72,17 +72,17 @@ module.exports = {
             return Promise.resolve(cmd.command(bot, msg))
               .then(output => processOutput(bot, msg, cmd, output))
               .catch(e => {
-                console.error(e.message)
-                console.error(e.stack)
+                bot.log('error', e.message)
+                bot.log('error', e.stack)
                 return processOutput(bot, msg, cmd, e, (str) => colors.wrap('dark_red', 'Error: ') + str)
               })
           } catch (e) {
             bot.say(bot.config.get('irc.control'), 'Error processing `' + msg._cmd + '` in ' + msg.to + ': ' + e)
-            console.error(e.message)
-            console.error(e.stack)
+            bot.log('error', e.message)
+            bot.log('error', e.stack)
           }
         } else {
-          console.log('Unknown command: ' + text)
+          bot.log('info', 'Unknown command: ' + text)
         }
       }
     }

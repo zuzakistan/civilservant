@@ -60,6 +60,7 @@
     "underscore": "^1.8.3",
     "urban": "^0.3.0",
     "us-states": "0.0.1",
+    "winston": "^3.2.1",
     "write-int": "0.0.2",
     "xkcd-37": "^1.1.0",
     "youtube-search": "^1.0.4"

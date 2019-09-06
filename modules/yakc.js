@@ -23,7 +23,7 @@ module.exports = {
                 actions[history[i].action] += 1
               }
             }
-            console.log(actions)
+            bot.log('silly', actions)
             var str = []
             for (var action in actions) {
               if (!actions.hasOwnProperty(action)) {

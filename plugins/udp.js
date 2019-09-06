@@ -12,7 +12,7 @@ module.exports = {
       })
 
       server.bind(PORT, SERVER, () => {
-        console.log(`Listening for UDP packets on ${SERVER}:${PORT}`)
+        bot.log('info', `Listening for UDP packets on ${SERVER}:${PORT}`)
       })
     }
   }
