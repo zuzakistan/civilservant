@@ -143,7 +143,13 @@ module.exports = config = convict({
   udp: {
     port: {
       doc: 'UDP port to listen for things to repeat',
-      format: 'port'
+      format: 'port',
+      default: 3213
+    },
+    server: {
+      doc: 'IP address to bind UDP port to',
+      format: 'ipaddress',
+      default: '0.0.0.0'
     },
     channel: {
       doc: 'IRC channel to parrot UDP messages to',
