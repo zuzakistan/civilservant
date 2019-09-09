@@ -29,6 +29,6 @@ We welcome contributions to civilservant.
 If you're unsure where to start, we curate a list of [good first issues](https://github.com/zuzakistan/civilservant/labels/good%20first%20issue).
 
 If you have questions, you can contact us via IRC at [##zuzakistan-lab on freenode](irc://chat.freenode.net/##zuzakistan-lab)
-([webchat](https://kiwiirc.com/nextclient/irc.freenode.net/##zuzakistan)).
+([webchat](https://kiwiirc.com/nextclient/irc.freenode.net/##zuzakistan-lab)).
 
 If you encounter unacceptable behaviour in the community, please email conduct@zuzakistan.com.
