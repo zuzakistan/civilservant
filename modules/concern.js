@@ -27,6 +27,7 @@ module.exports = {
       }
     },
     rawconcern: {
+      aliases: [ 'rawsentiment' ],
       help: 'Runs a phrase through the emotional alert system',
       command: (bot, msg) => {
         return JSON.stringify(isEmotional(msg.body))
