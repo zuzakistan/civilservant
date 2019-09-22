@@ -1,4 +1,5 @@
 const moment = require('moment')
+const SESSION = '201719'
 
 module.exports = {
   commands: {
@@ -6,7 +7,7 @@ module.exports = {
       help: 'computes moment of interruption for today\'s House of Commons business',
       command: function () {
         const now = moment()
-        let timeOfInterruption = null // SO9(3) https://publications.parliament.uk/pa/cm201516/cmstords/1154/body.htm#9
+        let timeOfInterruption = null // SO No. 9(3) https://publications.parliament.uk/pa/cm201516/cmstords/1154/body.htm#9
 
         const dayOfWeek = now.day()
 
@@ -38,7 +39,7 @@ module.exports = {
       help: 'generates link to today\'s Commons order paper',
       command: () => {
         const ts = moment().format('YYMMDD') // e.g. OP190321.pdf
-        return `https://publications.parliament.uk/pa/cm201719/cmagenda/OP${ts}.pdf`
+        return `https://publications.parliament.uk/pa/cm${SESSION}/cmagenda/OP${ts}.pdf`
       }
     },
     business: {
@@ -46,7 +47,7 @@ module.exports = {
       aliases: [ 'cbusiness' ],
       command: () => {
         const ts = moment().format('YYMMDD')
-        return `https://publications.parliament.uk/pa/cm201719/cmagenda/ob${ts}.htm`
+        return `https://publications.parliament.uk/pa/cm${SESSION}/cmagenda/ob${ts}.htm`
       }
     },
     future: {
@@ -54,7 +55,7 @@ module.exports = {
       aliases: [ 'futurebusiness' ],
       command: () => {
         const ts = moment().format('YYMMDD')
-        return `https://publications.parliament.uk/pa/cm201719/cmagenda/fb${ts}.htm`
+        return `https://publications.parliament.uk/pa/cm${SESSION}/cmagenda/fb${ts}.htm`
       }
     },
     lbusiness: {
