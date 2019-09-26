@@ -1,4 +1,5 @@
 var urban = require('urban')
+const colors = require('irc').colors
 
 module.exports = {
   commands: {
@@ -15,7 +16,9 @@ module.exports = {
             if (typeof data === 'undefined') {
               reject(new Error('unable to find a definition for ' + msg.body))
             } else {
-              resolve(data.definition)
+              data.definition = data.definition.replace(/\[/g, colors.codes.white)
+              data.definition = data.definition.replace(/\]/g, colors.codes.reset)
+              resolve(colors.wrap('yellow', data.word) + ': ' + data.definition)
             }
           })
         })
