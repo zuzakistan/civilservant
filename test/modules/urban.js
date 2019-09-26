@@ -9,13 +9,15 @@ describe('urban module', function () {
     mockery.enable()
     mockery.registerMock('urban', (headword) => {
       return {
-        first: () => {
+        first: (cb) => {
+          /* eslint-disable standard/no-callback-literal */
           switch (headword) {
             case 'one':
-              return { definition: 'one two three four', link: 'http://example.com' }
+              return cb({ definition: 'one two three four', link: 'http://example.com' })
             default:
-              return undefined
+              return cb(undefined)
           }
+          /* eslint-enable standard/no-callback-literal */
         }
       }
     })
@@ -28,9 +30,8 @@ describe('urban module', function () {
     assert.strictEqual(response, 'one two three four')
   })
 
-  it('should show an error on 404', async function () {
-    let response = await mockBot.runCommand('!ud two')
-    assert.strictEqual(response, 'unable to find a definition for two')
+  it('should reject on 404', function () {
+    assert.rejects(mockBot.runCommand('!ud two'))
   })
 
   after(function (done) {
