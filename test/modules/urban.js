@@ -10,13 +10,19 @@ describe('urban module', function () {
     mockery.registerMock('urban', (headword) => {
       return {
         first: (cb) => {
-          /* eslint-disable standard/no-callback-literal */
-          switch (headword) {
-            case 'one':
-              return cb({ definition: 'one two three four', link: 'http://example.com' })
-            default:
-              return cb(undefined)
+          let defs = {
+            one: 'one two three four',
+            two: 'five [six] seven',
+            three: 'eight [nine] ten [eleven twelve]'
           }
+
+          if (!headword) return undefined
+
+          /* eslint-disable standard/no-callback-literal */
+          return cb({
+            definition: defs[headword],
+            word: headword
+          })
           /* eslint-enable standard/no-callback-literal */
         }
       }
@@ -27,11 +33,21 @@ describe('urban module', function () {
 
   it('should return a definition', async function () {
     let response = await mockBot.runCommand('!ud one')
-    assert.strictEqual(response, 'one two three four')
+    assert.strictEqual(response, '\u000308one\u000f: one two three four')
+  })
+
+  it('should format brackets in definitions', async function () {
+    let response = await mockBot.runCommand('!ud two')
+    assert.strictEqual(response, '\u000308two\u000f: five \u000300six\u000f seven')
+  })
+
+  it('should format multiple brackets in definitions', async function () {
+    let response = await mockBot.runCommand('!ud three')
+    assert.strictEqual(response, '\u000308three\u000f: eight \u000300nine\u000f ten \u000300eleven twelve\u000f')
   })
 
   it('should reject on 404', function () {
-    assert.rejects(mockBot.runCommand('!ud two'))
+    assert.rejects(mockBot.runCommand('!ud zero'))
   })
 
   after(function (done) {
