@@ -243,6 +243,13 @@ module.exports = config = convict({
       format: Number,
       default: 5
     }
+  },
+  transliteration: {
+    cyrillic: {
+      doc: 'Whether to transliterate Cyrillic',
+      format: Boolean,
+      default: true
+    }
   }
 })
 

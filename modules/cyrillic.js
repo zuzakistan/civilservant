@@ -3,6 +3,7 @@ var convert = require('cyrillic-to-latin')
 module.exports = {
   events: {
     message: function (bot, nick, to, text) {
+      if (bot.config.get('transliteration.cyrillic') === false) return
       if (text.match(/[а-я]+/i)) {
         var roman = convert(text)
         if (roman.trim()) {
