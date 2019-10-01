@@ -10,7 +10,7 @@ describe('urban module', function () {
     mockery.registerMock('urban', (headword) => {
       return {
         first: (cb) => {
-          let defs = {
+          const defs = {
             one: 'one two three four',
             two: 'five [six] seven',
             three: 'eight [nine] ten [eleven twelve]'
@@ -32,17 +32,17 @@ describe('urban module', function () {
   })
 
   it('should return a definition', async function () {
-    let response = await mockBot.runCommand('!ud one')
+    const response = await mockBot.runCommand('!ud one')
     assert.strictEqual(response, '\u000308one\u000f: one two three four')
   })
 
   it('should format brackets in definitions', async function () {
-    let response = await mockBot.runCommand('!ud two')
+    const response = await mockBot.runCommand('!ud two')
     assert.strictEqual(response, '\u000308two\u000f: five \u000300six\u000f seven')
   })
 
   it('should format multiple brackets in definitions', async function () {
-    let response = await mockBot.runCommand('!ud three')
+    const response = await mockBot.runCommand('!ud three')
     assert.strictEqual(response, '\u000308three\u000f: eight \u000300nine\u000f ten \u000300eleven twelve\u000f')
   })
 
