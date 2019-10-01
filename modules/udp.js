@@ -1,7 +1,6 @@
 module.exports = {
   events: {
     udp: function (bot, msg, rinfo) {
-      console.log(msg, rinfo)
       if (rinfo.address === bot.config.get('yakc.ip')) {
         bot.fireEvents('yakc', msg.toString(), rinfo)
       } else {
