@@ -16,6 +16,10 @@ module.exports = {
       bot.fireEvents('action', from, to, text, message)
     })
 
+    bot.addListener('raw', function (message) {
+      bot.fireEvents('raw', message)
+    })
+
     bot.addListener('join', function (channel, nick, message) {
       bot.fireEvents('join', channel, nick, message)
       if (nick === bot.nick) {

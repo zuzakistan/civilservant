@@ -135,11 +135,6 @@ module.exports = config = convict({
       sensitive: true
     }
   },
-  verbose: {
-    doc: 'whether to log raw IRC events to console',
-    format: Boolean,
-    default: false
-  },
   udp: {
     port: {
       doc: 'UDP port to listen for things to repeat',
