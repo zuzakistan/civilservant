@@ -14,6 +14,7 @@ module.exports = self = {
   },
   commands: {},
   events: {},
+  log: () => null, // dummy function
   loadModule: function (module) {
     moduleLoader.loadModule(self, './modules/' + module)
   },
