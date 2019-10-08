@@ -18,7 +18,7 @@ module.exports = {
             } else {
               data.definition = data.definition.replace(/\[/g, colors.codes.white)
               data.definition = data.definition.replace(/\]/g, colors.codes.reset)
-              resolve(colors.wrap('yellow', data.word) + ': ' + data.definition)
+              resolve(colors.wrap('yellow', data.word) + ': ' + data.definition + ' ' + data.permalink)
             }
           })
         })

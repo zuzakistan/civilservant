@@ -21,6 +21,7 @@ describe('urban module', function () {
           /* eslint-disable standard/no-callback-literal */
           return cb({
             definition: defs[headword],
+            permalink: 'https://example.com',
             word: headword
           })
           /* eslint-enable standard/no-callback-literal */
@@ -33,17 +34,17 @@ describe('urban module', function () {
 
   it('should return a definition', async function () {
     let response = await mockBot.runCommand('!ud one')
-    assert.strictEqual(response, '\u000308one\u000f: one two three four')
+    assert.strictEqual(response, '\u000308one\u000f: one two three four https://example.com')
   })
 
   it('should format brackets in definitions', async function () {
     let response = await mockBot.runCommand('!ud two')
-    assert.strictEqual(response, '\u000308two\u000f: five \u000300six\u000f seven')
+    assert.strictEqual(response, '\u000308two\u000f: five \u000300six\u000f seven https://example.com')
   })
 
   it('should format multiple brackets in definitions', async function () {
     let response = await mockBot.runCommand('!ud three')
-    assert.strictEqual(response, '\u000308three\u000f: eight \u000300nine\u000f ten \u000300eleven twelve\u000f')
+    assert.strictEqual(response, '\u000308three\u000f: eight \u000300nine\u000f ten \u000300eleven twelve\u000f https://example.com')
   })
 
   it('should reject on 404', function () {
