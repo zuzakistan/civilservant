@@ -18,7 +18,9 @@ module.exports = {
             } else {
               data.definition = data.definition.replace(/\[/g, colors.codes.white)
               data.definition = data.definition.replace(/\]/g, colors.codes.reset)
-              resolve(colors.wrap('yellow', data.word) + ': ' + data.definition + ' ' + data.permalink)
+              const ts = new Date(data.written_on).toLocaleDateString('en-GB', { year: 'numeric' })
+              const headwordColor = msg.body.toLowerCase() === data.word.toLowerCase() ? 'orange' : 'yellow'
+              resolve(`${colors.wrap(headwordColor, data.word)} (${ts}): ${data.definition} ${colors.wrap('gray', data.permalink)}`)
             }
           })
         })
