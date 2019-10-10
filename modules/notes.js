@@ -4,8 +4,12 @@ module.exports = {
     note: {
       help: 'Adds a note',
       command: function (bot, msg) {
-        fs.appendFile(__rootdir + '/data/notes.txt', '\n' + msg.body)
-        return 'Noted!'
+        return new Promise((resolve, reject) => {
+          fs.appendFile(__rootdir + '/data/notes.txt', '\n' + msg.body, (e) => {
+            if (e) reject(e)
+            return resolve('Noted!')
+          })
+        })
       }
     }
   }
