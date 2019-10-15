@@ -237,6 +237,11 @@ module.exports = config = convict({
       doc: 'The number of points above the minScore required to respond with enthusiasm',
       format: Number,
       default: 5
+    },
+    sowpodsOnly: {
+      doc: 'Only shout about words in Sowpods',
+      format: Boolean,
+      default: true
     }
   },
   transliteration: {
