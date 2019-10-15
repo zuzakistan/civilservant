@@ -125,8 +125,9 @@ module.exports = {
       phrase.forEach((word) => {
         word = word.replace(/[^A-Za-z]+$/, '')
         let result = computeWord(word)
-        if (wordHistory.map(word => word.toUpperCase()).includes(word.toUpperCase()) ||
-          !result.isPossible) return
+        if (wordHistory.map(word => word.toUpperCase()).includes(word.toUpperCase())) return
+        if (!result.isPossible) return
+        if (bot.config.get('scrabble.sowpodsOnly') && !result.isAllowable) return
         words.push(result)
       })
       const bestWord = words.reduce((a, b) => (a.score > b.score) ? a : b, 0)
