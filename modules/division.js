@@ -1,5 +1,5 @@
 const moment = require('moment')
-const SESSION = '201719'
+const SESSION = '201920'
 
 module.exports = {
   commands: {
