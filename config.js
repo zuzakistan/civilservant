@@ -99,6 +99,13 @@ module.exports = config = convict({
     doc: 'IRC log location',
     format: String
   },
+  ircspeak: {
+    speakRate: {
+      doc: 'How often to say an old log line in chat',
+      format: Number,
+      default: 250
+    }
+  },
   news: {
     poll: {
       doc: 'Whether to automatically poll for news',

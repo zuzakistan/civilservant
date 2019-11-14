@@ -23,7 +23,7 @@ function processAg (str) {
 
 function logExec (forExec) {
   return new Promise((resolve, reject) => {
-    var c = exec(esc(forExec))
+    var c = exec(forExec)
     var stdout = ''
     c.stdout.on('data', (d) => { stdout += d.toString() })
     c.stderr.on('data', (d) => { stdout += d.toString() })
@@ -34,9 +34,9 @@ function logExec (forExec) {
 module.exports = {
   events: {
     message: async function (bot, nick, to) {
-      const speakRate = 250
+      const speakRate = bot.config('ircspeak.speakRate')
       if (Math.random() < 1 / speakRate) {
-        const res = await logExec([__rootdir + '/ircspeak.sh'])
+        const res = await logExec(`${__rootdir}/ircspeak.sh '${esc([to])}'`)
         bot.shout(to, preventHilight(res.replace(/^.+?> +/, '').replace(/^[0-9-]+T[0-9:+].*-[A-Za-z0-9]*:#*[A-Za-z0-9]*- /, '')))
       }
     }
