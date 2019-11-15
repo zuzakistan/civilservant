@@ -22,8 +22,22 @@ module.exports = {
       }
     },
     ge: {
-      help: 'Gets the time until the next General Election under FTPA',
-      command: () => 'Polls open in ' + moment('2022-05-05T08:00:00Z').countdown().toString()
+      help: 'Gets the time until the 2019 Parliamentary General Election',
+      command: () => {
+        const now = moment()
+
+        const date = '2019-12-12' // 58th PGE
+        const pollStart = moment(date + 'T' + '07:00Z')
+        const pollEnd = moment(date + 'T' + '22:00Z')
+
+        if (now.isBefore(pollStart)) {
+          return 'Polls open in ' + pollStart.countdown().toString()
+        }
+        if (now.isBefore(pollEnd)) {
+          return 'Polls close in ' + pollEnd.countdown().toString()
+        }
+        return 'Polls open in ' + moment('2024-05-24').countdown().toString() // 59th PGE
+      }
     },
     python2: {
       help: 'Gets the time until Python 2 support is dropped',
