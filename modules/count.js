@@ -22,7 +22,7 @@ module.exports = {
         } else {
           count[counter]++
         }
-        fs.writeFile(__rootdir + '/data/count.json', JSON.stringify(count, null, 4))
+        fs.writeFileSync(__rootdir + '/data/count.json', JSON.stringify(count, null, 4))
         if (counter === '') { // reuse :(
           return String(count[counter])
         }
