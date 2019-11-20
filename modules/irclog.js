@@ -34,7 +34,7 @@ function logExec (forExec) {
 module.exports = {
   events: {
     message: async function (bot, nick, to) {
-      const speakRate = bot.config('ircspeak.speakRate')
+      const speakRate = bot.config.get('ircspeak.speakRate')
       if (Math.random() < 1 / speakRate) {
         const res = await logExec(`${__rootdir}/ircspeak.sh '${esc([to])}'`)
         bot.shout(to, preventHilight(res.replace(/^.+?> +/, '').replace(/^[0-9-]+T[0-9:+].*-[A-Za-z0-9]*:#*[A-Za-z0-9]*- /, '')))
