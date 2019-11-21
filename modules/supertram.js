@@ -7,10 +7,25 @@ module.exports = {
   commands: {
     tram: {
       help: `Shows the next ${NUMBER_TO_SHOW} trams to stop at a Sheffield stop`,
-      usage: ['stop'],
+      usage: ['stop', 'direction'],
       command: async function (bot, msg) {
         const dateStr = moment().format('ddd MMM YYYY HH:mm:ss 0000')
         const url = 'https://tsy.yorkshiretravel.net/lts/departures/' + encodeURIComponent(dateStr)
+
+        let platform = msg.args.direction.toLowerCase()
+
+        switch (platform) {
+          case 'down':
+          case 'in':
+            platform = 1
+            break
+          case 'up':
+          case 'out':
+            platform = 2
+            break
+          default:
+            throw new Error('Unrecognised direction: try "in" or "out"')
+        }
 
         /**
          * Stop syntax is the three letter stop code followed by the platform number
@@ -25,7 +40,7 @@ module.exports = {
          */
 
         const stop = {
-          id: `9400ZZSY${msg.args.stop.toUpperCase()}`,
+          id: `9400ZZSY${msg.args.stop.toUpperCase()}${platform}`,
           type: 'TRAM_STOP'
         }
 
