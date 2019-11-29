@@ -90,7 +90,7 @@ module.exports = {
             eta = moment(tram.scheduledDeparture).format('HH:mm')
           }
 
-          return colors.wrap(color, eta)
+          return colors.wrap(color, `${eta} to ${tram.destination}`)
         }).join(', ')
       }
     }
