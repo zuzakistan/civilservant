@@ -57,7 +57,7 @@ module.exports = {
     irccount: {
       help: 'count the occurences of a string in the irc logs',
       privileged: true,
-      aliases: [ 'agc', 'ircc', 'irclogc' ],
+      aliases: ['agc', 'ircc', 'irclogc'],
       command: async function (bot, msg) {
         if (msg.args.length === 1) {
           return 'Usage: !irclog <search phrase>'
