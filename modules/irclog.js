@@ -50,7 +50,7 @@ module.exports = {
         if (msg.args.length === 1) {
           return 'Usage: !irclog <search phrase>'
         }
-        const res = await logExec(`${__rootdir}/irclog.sh ${esc(msg.body)}`)
+        const res = await logExec(`${__rootdir}/irclog.sh ${esc([msg.body])}`)
         return processAg(res)
       }
     },
@@ -63,7 +63,7 @@ module.exports = {
           return 'Usage: !irclog <search phrase>'
         }
         if (!bot.config.has('irclogs')) return 'Error: No logfile specified'
-        const res = await logExec(`ag -c -- ${esc(msg.body)} ${bot.config.get('irclogs')}`)
+        const res = await logExec(`ag -c -- ${esc([msg.body])} ${bot.config.get('irclogs')}`)
         return processAg(res)
       }
     }
