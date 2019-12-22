@@ -76,6 +76,14 @@ var shorten = async function (bot, url) {
 module.exports = {
   events: {
     url: async function (bot, url, nick, to, text, msg) {
+      if (process.env.NODE_ENV === 'kgz') {
+        // dirty fix for bizarro IRC server github.com/kragniz/anon-ircd
+        // which converts any mention of "You" to "You", but with cyrillc homoglyph
+        //
+        // url.href is already punycode normalised so being clever is complicated
+        // so let's just hardcode to YouTube for now:
+        url.href = url.href.replace('xn--yutube-wqf.com', 'youtube.com')
+      }
       // let shortenedUrl = await shorten(bot, url.href)
       // let urlTitle = await getTitle(url.href)
 
