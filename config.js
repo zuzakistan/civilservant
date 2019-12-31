@@ -231,7 +231,16 @@ module.exports = config = convict({
         doc: 'Channel to copy sent tweets to',
         format: String,
         default: '##zuzakistan-lab'
-      }
+      },
+    },
+    blacklist: {
+      doc: 'Strings to never tweet',
+      format: Array,
+      default: [
+        // Unsavoury @BBCBweaking phrases:
+        'tawwant',
+        'wape'
+      ]
     }
   },
   scrabble: {
