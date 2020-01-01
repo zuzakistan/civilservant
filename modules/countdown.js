@@ -38,12 +38,6 @@ module.exports = {
         }
         return 'Polls open in ' + moment('2024-05-24').countdown().toString() // 59th PGE
       }
-    },
-    python2: {
-      help: 'Gets the time until Python 2 support is dropped',
-      command: function () {
-        return 'Python 2.7 support ends in ' + moment('2020-01-01T00:00:00Z').countdown().toString()
-      }
     }
   },
   events: {
