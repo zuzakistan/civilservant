@@ -40,7 +40,7 @@ describe('mutations module', function () {
     })
   })
 
-  it(`should return usage information if nothing sensible entered`, function () {
+  it('should return usage information if nothing sensible entered', function () {
     assert.strictEqual(
       mockBot.runCommand('!mutate', { type: 'xxx', radical: 'xxx' }).toString(),
       ['Usage: (soft|nasal|aspirate) <radical>', 'Defnydd: (meddial|trwynol|llaes) <radical>'].toString()
