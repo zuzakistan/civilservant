@@ -2,7 +2,7 @@ const request = require('request-promise-cache')
 module.exports = {
   commands: {
     unicode: {
-      aliases: [ 'char' ],
+      aliases: ['char'],
       help: 'Returns a unicode character whose name or codepoint matches a regular expression',
       command: async function (bot, msg) {
         try {

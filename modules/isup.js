@@ -2,10 +2,10 @@ const request = require('request-promise')
 module.exports = {
   commands: {
     isup: {
-      aliases: [ 'get', 'web' ],
+      aliases: ['get', 'web'],
       privileged: true,
       help: 'Performs a HTTP(S) request to an arbitrary host.',
-      usage: [ 'host' ],
+      usage: ['host'],
       command: async function (bot, msg) {
         const res = await request({ url: msg.args.host, resolveWithFullResponse: true })
         let str = 'HTTP/' + res.httpVersion

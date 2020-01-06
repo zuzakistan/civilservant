@@ -102,7 +102,7 @@ module.exports = {
   commands: {
     scrabble: {
       help: 'Scores a word in Scrabble',
-      usage: [ 'word' ],
+      usage: ['word'],
       command: function (bot, msg) {
         return reportScore(bot, msg.args.word)
       }

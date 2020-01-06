@@ -3,7 +3,7 @@ require('date-util')
 module.exports = {
   commands: {
     sunup: {
-      aliases: [ 'sunup', 'sunrise' ],
+      aliases: ['sunup', 'sunrise'],
       help: 'Returns solar data for Aberystwyth',
       command: function (bot, msg) {
         var date = new Date()

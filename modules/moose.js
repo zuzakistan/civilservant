@@ -2,7 +2,7 @@ module.exports = {
   commands: {
     moose: {
       help: 'A møøse once bit my sister',
-      aliases: [ 'swedish' ],
+      aliases: ['swedish'],
       command: function (bot, msg) {
         return msg.body
           .replace(/\band\b|ith\b/g, 'ik')

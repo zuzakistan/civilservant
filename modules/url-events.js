@@ -113,7 +113,7 @@ module.exports = {
     },
     shorten: {
       help: 'Shorten a URL',
-      usage: [ 'url' ],
+      usage: ['url'],
       command: async function (bot, msg) {
         let bitly = new BitlyClient(bot.config.get('bitly.accesstoken'))
         let res = await bitly.shorten(msg.args.url)

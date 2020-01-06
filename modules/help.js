@@ -10,7 +10,7 @@ module.exports = {
       }
     },
     help: {
-      usage: [ 'command' ],
+      usage: ['command'],
       help: 'Returns summary of purpose of command',
       command: function (bot, msg) {
         if (!bot.commands[msg.args.command]) {

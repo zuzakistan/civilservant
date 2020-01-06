@@ -4,9 +4,9 @@
 module.exports = {
   commands: {
     soft: {
-      aliases: [ 'mutate', 'treglad', 'meddal' ],
+      aliases: ['mutate', 'treglad', 'meddal'],
       help: 'Mutates a given word',
-      usage: [ 'type', 'radical' ],
+      usage: ['type', 'radical'],
       command: function (bot, msg) {
         /* TODO: uppercase */
         var initial = msg.args.radical.charAt(0)

@@ -6,7 +6,7 @@ module.exports = {
       command: function (bot, msg) {
         msg.args.shift()
         if (typeof msg.args[0] === 'undefined') {
-          msg.args = [ 'khan' ]
+          msg.args = ['khan']
         }
         var limit = bot.maxLineLength - msg.args.length
         var length = Math.floor(Math.random() * limit) - 1

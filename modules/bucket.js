@@ -189,7 +189,7 @@ module.exports = {
     },
     droprate: {
       help: 'Sets the rate at which the bot drops items',
-      usage: [ 'rate' ],
+      usage: ['rate'],
       command: function (bot, msg) {
         var newRate = parseInt(msg.args.rate, 10)
         if (isNaN(newRate) || newRate < 1) {
@@ -202,7 +202,7 @@ module.exports = {
     inventorylimit: {
       help: 'Sets the inventory limit of the bot',
       privileged: true,
-      usage: [ 'limit' ],
+      usage: ['limit'],
       command: function (bot, msg) {
         var old = inventoryLimit
         var newLimit = parseInt(msg.args.limit, 10)
