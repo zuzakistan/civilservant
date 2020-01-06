@@ -1,13 +1,13 @@
 const PROJECTS = {
-  'wp': 'wikipedia',
-  'wt': 'wiktionary',
-  'wq': 'wikiquote',
-  'wb': 'wikibooks',
-  'ws': 'wikisource',
-  'wn': 'wikinews',
-  'wv': 'wikiversity',
-  'mw': 'mediawiki',
-  'wd': 'wikidata'
+  wp: 'wikipedia',
+  wt: 'wiktionary',
+  wq: 'wikiquote',
+  wb: 'wikibooks',
+  ws: 'wikisource',
+  wn: 'wikinews',
+  wv: 'wikiversity',
+  mw: 'mediawiki',
+  wd: 'wikidata'
 }
 
 module.exports = {

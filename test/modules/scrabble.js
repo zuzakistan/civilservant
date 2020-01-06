@@ -4,6 +4,7 @@ const assert = require('assert')
 
 describe('Scrabble module', function () {
   const tests = {
+    /* eslint-disable quote-props */
     'a': 'Not a valid word',
     'abcdefghijklmnop': 'Not a valid word',
     'jjjj': 'Not a valid word',
@@ -16,6 +17,7 @@ describe('Scrabble module', function () {
     'box': 'BOX scores 12 points.',
     'OwO': 'OWO* scores 6 points.',
     'xyzzy': 'XYZzY* scores 26 points!'
+    /* eslint-enable quote-props */
   }
 
   before(function () {
@@ -24,7 +26,7 @@ describe('Scrabble module', function () {
 
   for (const word in tests) {
     it(`should score '${word}' correctly`, function () {
-      assert.strictEqual(mockBot.runCommand('!scrabble', { 'word': word }),
+      assert.strictEqual(mockBot.runCommand('!scrabble', { word: word }),
         tests[word])
     })
   }
