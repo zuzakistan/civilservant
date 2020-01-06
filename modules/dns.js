@@ -3,9 +3,9 @@ var dns = require('dns')
 module.exports = {
   commands: {
     rdns: {
-      aliases: [ 'host' ],
+      aliases: ['host'],
       help: 'Attempts to look up a domain from an IP address.',
-      usage: [ 'ip' ],
+      usage: ['ip'],
       command: function (bot, msg) {
         try {
           dns.reverse(msg.args.ip, function (err, data) {
@@ -23,7 +23,7 @@ module.exports = {
     },
     dns: {
       help: 'Attempts to look up an IP address from a domain.',
-      usage: [ 'host' ],
+      usage: ['host'],
       command: function (bot, msg) {
         dns.lookup(msg.args.host, function (err, data) {
           if (err) {

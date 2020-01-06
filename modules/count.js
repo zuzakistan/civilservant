@@ -8,7 +8,7 @@ try {
 module.exports = {
   commands: {
     increment: {
-      aliases: [ 'count', '++' ],
+      aliases: ['count', '++'],
       help: 'Increments a number.',
       command: function (bot, msg) {
         var counter = msg.args.splice(1)

@@ -2,8 +2,8 @@ module.exports = {
   commands: {
     units: {
       help: 'Get UK alcohol units from ABV and volume (in ml)',
-      aliases: [ 'abv' ],
-      usage: [ 'volume', 'abv' ],
+      aliases: ['abv'],
+      usage: ['volume', 'abv'],
       command: function (bot, msg) {
         // convert human units into ml
         var volumes = {

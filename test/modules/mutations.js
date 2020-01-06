@@ -8,26 +8,26 @@ describe('mutations module', function () {
   })
 
   const dictionary = [
-    [ 'soft', 'pxx', 'bxx' ],
-    [ 'soft', 'txx', 'dxx' ],
-    [ 'soft', 'cxx', 'gxx' ],
-    [ 'soft', 'bxx', 'fxx' ],
-    [ 'soft', 'dxx', 'ddxx' ],
-    [ 'soft', 'gxx', 'xx' ],
-    [ 'soft', 'llxx', 'lxx' ],
-    [ 'soft', 'mxx', 'fxx' ],
-    [ 'soft', 'rhxx', 'rxx' ],
+    ['soft', 'pxx', 'bxx'],
+    ['soft', 'txx', 'dxx'],
+    ['soft', 'cxx', 'gxx'],
+    ['soft', 'bxx', 'fxx'],
+    ['soft', 'dxx', 'ddxx'],
+    ['soft', 'gxx', 'xx'],
+    ['soft', 'llxx', 'lxx'],
+    ['soft', 'mxx', 'fxx'],
+    ['soft', 'rhxx', 'rxx'],
 
-    [ 'nasal', 'pxx', 'mhxx' ],
-    [ 'nasal', 'txx', 'nhxx' ],
-    [ 'nasal', 'cxx', 'nghxx' ],
-    [ 'nasal', 'bxx', 'mxx' ],
-    [ 'nasal', 'dxx', 'nxx' ],
-    [ 'nasal', 'gxx', 'ngxx' ],
+    ['nasal', 'pxx', 'mhxx'],
+    ['nasal', 'txx', 'nhxx'],
+    ['nasal', 'cxx', 'nghxx'],
+    ['nasal', 'bxx', 'mxx'],
+    ['nasal', 'dxx', 'nxx'],
+    ['nasal', 'gxx', 'ngxx'],
 
-    [ 'aspirate', 'pxx', 'phxx' ],
-    [ 'aspirate', 'txx', 'thxx' ],
-    [ 'aspirate', 'cxx', 'chxx' ]
+    ['aspirate', 'pxx', 'phxx'],
+    ['aspirate', 'txx', 'thxx'],
+    ['aspirate', 'cxx', 'chxx']
   ]
 
   dictionary.forEach(function (mutation) {

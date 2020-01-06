@@ -4,7 +4,7 @@ module.exports = {
   commands: {
     geo: {
       help: 'Returns a country code associated with a certain IP address',
-      usage: [ 'ip' ],
+      usage: ['ip'],
       command: function (bot, msg) {
         request('https://freegeoip.net/json/' + msg.args.ip, function (e, r, b) {
           if (e) {

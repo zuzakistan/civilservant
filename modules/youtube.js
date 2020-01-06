@@ -41,7 +41,7 @@ module.exports = {
   commands: {
     yt: {
       help: 'Searches YouTube for a query string',
-      aliases: [ 'youtube' ],
+      aliases: ['youtube'],
       command: function (bot, msg) {
         var opts = bot.config.get('youtube') || {}
         opts.maxResults = 1

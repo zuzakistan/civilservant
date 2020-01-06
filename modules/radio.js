@@ -90,26 +90,26 @@ module.exports = {
     // https://github.com/MikeRalphson/bbcparse/wiki/BBC-Linear-Services-(SIDs)
     tv: {
       help: 'Displays the schedule for an arbitary BBC television channel',
-      usage: [ 'channel' ],
+      usage: ['channel'],
       command: async (bot, msg) => tv(msg.args.channel)
     },
     bbc1: {
-      aliases: [ 'bbcone' ],
+      aliases: ['bbcone'],
       help: 'Displays the current BBC One schedule',
       command: async (bot, msg) => tv('bbc_one_hd')
     },
     bbc2: {
-      aliases: [ 'bbc2e', 'bbctwo' ],
+      aliases: ['bbc2e', 'bbctwo'],
       help: 'Displays the current BBC Two schedule',
       command: async (bot, msg) => tv('bbc_two_england')
     },
     bbc4: {
-      aliases: [ 'bbcfour' ],
+      aliases: ['bbcfour'],
       help: 'Displays the current BBC Four schedule',
       command: async (bot, msg) => tv('bbc_four')
     },
     bbcparl: {
-      aliases: [ 'bbcp', 'parly' ],
+      aliases: ['bbcp', 'parly'],
       help: 'Displays the current BBC Parliament schedule',
       command: async (bot, msg) => tv('bbc_parliament')
     },
@@ -127,7 +127,7 @@ module.exports = {
     },
     radio: {
       help: 'Displays the schedule for an arbitary BBC Radio station',
-      usage: [ 'station' ],
+      usage: ['station'],
       command: async (bot, msg) => radio(msg.args.station)
     },
     worldservice: {

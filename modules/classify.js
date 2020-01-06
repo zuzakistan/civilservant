@@ -2,7 +2,7 @@ var classify = require('classify2')
 module.exports = {
   commands: {
     dewey: {
-      usage: [ 'isbn' ],
+      usage: ['isbn'],
       help: 'Looks up the Dewey Decimal classmark of an ISBN',
       command: function (bot, msg) {
         return classify.get(msg.args.isbn, function (data) {
@@ -11,7 +11,7 @@ module.exports = {
       }
     },
     locc: {
-      usage: [ 'isbn' ],
+      usage: ['isbn'],
       help: 'Looks up the Library of Congress Classification of an ISBN',
       command: function (bot, msg) {
         return classify.get(msg.args.isbn, function (data) {

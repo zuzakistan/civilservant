@@ -4,9 +4,9 @@ module.exports = {
   commands: {
     man: {
       help: 'look up a man page',
-      usage: [ 'page' ],
+      usage: ['page'],
       command: function (bot, msg) {
-        var args = [ msg.args.page ]
+        var args = [msg.args.page]
         var c = exec('man -f ' + esc(args))
         var stdout = ''
         c.stderr.on('data', function (data) {
