@@ -24,7 +24,7 @@ bot.connect((welcomeMsg) => {
   if (welcomeMsg.user && welcomeMsg.host) {
     bot.log('info', `Connected to ${welcomeMsg.host} as ${welcomeMsg.user}`)
   } else {
-    bot.log('info', `Connected`)
+    bot.log('info', 'Connected')
   }
   if (welcomeMsg.args && welcomeMsg.args.length > 1) {
     bot.log('verbose', welcomeMsg.args[1])
