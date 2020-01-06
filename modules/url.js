@@ -1,5 +1,4 @@
 var getUrls = require('get-urls')
-var parseurl = require('url')
 module.exports = {
   events: {
     message: function (bot, nick, to, text, msg) {
@@ -7,7 +6,7 @@ module.exports = {
       if (urls.size) {
         bot.fireEvents('urls', urls, nick, to, text, msg)
         for (const url of urls) {
-          const curr = parseurl.parse(url)
+          const curr = new URL(url)
           bot.fireEvents('url', curr, nick, to, text, msg)
           bot.fireEvents('url:' + curr.hostname, curr, nick, to, text, msg)
         }
