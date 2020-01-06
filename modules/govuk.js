@@ -24,7 +24,7 @@ module.exports = {
         })
         const orgs = []
         for (const prop in data) {
-          if (data.hasOwnProperty(prop)) {
+          if (Object.prototype.hasOwnProperty.call(data, prop)) {
             orgs.push(data[prop])
           }
         }

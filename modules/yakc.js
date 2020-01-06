@@ -26,7 +26,7 @@ module.exports = {
             bot.log('silly', actions)
             var str = []
             for (var action in actions) {
-              if (!actions.hasOwnProperty(action)) {
+              if (!Object.prototype.hasOwnProperty.call(actions, action)) {
                 continue
               }
 

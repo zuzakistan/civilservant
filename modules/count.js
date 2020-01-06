@@ -17,7 +17,7 @@ module.exports = {
         } else {
           counter = counter.join(' ')
         }
-        if (!count.hasOwnProperty(counter)) {
+        if (!Object.prototype.hasOwnProperty.call(count, counter)) {
           count[counter] = 1
         } else {
           count[counter]++
