@@ -33,7 +33,7 @@ describe('unicode module', function () {
   let i = 1
   for (const word in tests) {
     it(`should find matching characters (${i++})`, async function () {
-      let promise = await mockBot.runCommand(`!unicode ${word}`)
+      const promise = await mockBot.runCommand(`!unicode ${word}`)
       assert.strictEqual(promise, tests[word])
     })
 

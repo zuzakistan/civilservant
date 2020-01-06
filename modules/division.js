@@ -25,7 +25,7 @@ module.exports = {
 
         if (!timeOfInterruption) return 'no moment of interruption on ' + now.format('dddd')
 
-        let dateOfInterruption = now
+        const dateOfInterruption = now
         dateOfInterruption.set(timeOfInterruption)
 
         if (dateOfInterruption.isBefore(now)) return 'moment of interruption has passed'

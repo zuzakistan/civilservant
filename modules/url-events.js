@@ -43,7 +43,7 @@ var getTitle = function (url) {
     })
 }
 
-let ofn = (number) => {
+const ofn = (number) => {
   if (number === 2) return ' (again)'
   if (number > 2) return ' (again ×' + (number - 1) + ')'
   return ''
@@ -52,7 +52,7 @@ let ofn = (number) => {
 var shorten = async function (bot, url) {
   try {
     const bitly = new BitlyClient(bot.config.get('bitly.accesstoken'), {})
-    let result = await bitly.shorten(url)
+    const result = await bitly.shorten(url)
     if (LOG[result.hash]) {
       LOG[result.hash]++
     } else {
@@ -115,8 +115,8 @@ module.exports = {
       help: 'Shorten a URL',
       usage: ['url'],
       command: async function (bot, msg) {
-        let bitly = new BitlyClient(bot.config.get('bitly.accesstoken'))
-        let res = await bitly.shorten(msg.args.url)
+        const bitly = new BitlyClient(bot.config.get('bitly.accesstoken'))
+        const res = await bitly.shorten(msg.args.url)
         if (res.url) {
           return res.url
         }

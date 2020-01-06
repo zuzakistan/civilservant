@@ -45,7 +45,7 @@ module.exports = {
       bot.log('debug', 'Event fired')
       if (bot.config.get('github.autoPull.enabled') !== false) {
         bot.log('debug', 'Autopull enabled')
-        let config = bot.config.get('github.autoPull')
+        const config = bot.config.get('github.autoPull')
         if (ghEvent.payload.ref === 'refs/heads/' + config.branch) {
           bot.log('debug', 'Matching branch')
           bot.notice(bot.config.get('irc.control'), 'Fetching new changes from GitHub')

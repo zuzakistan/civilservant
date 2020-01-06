@@ -14,7 +14,7 @@ module.exports = {
 
         let flag = ''
         try {
-          let headers = [
+          const headers = [
             res.headers['content-type'],
             res.headers.server,
             res.body.length + 'B'

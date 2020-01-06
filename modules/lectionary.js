@@ -1,21 +1,21 @@
 const lectionary = require('lectionary')
 const colors = require('irc').colors
-let prevSunday = () => {
-  let d = new Date()
+const prevSunday = () => {
+  const d = new Date()
   d.setUTCDate(d.getUTCDate() - (7 + d.getUTCDay()) % 7)
   d.setHours(0, 0, 0, 0)
   return d
 }
-let nextSunday = () => {
+const nextSunday = () => {
   // https://stackoverflow.com/a/43838243/1875784
-  let d = new Date()
+  const d = new Date()
   d.setUTCDate(d.getUTCDate() + (7 - d.getUTCDay()) % 7)
   d.setHours(0, 0, 0, 0)
   return d
 }
 const getLectionary = (date) => {
-  let dates = lectionary(date.getFullYear(), date.getMonth())
-  let day = dates.find((d) => d.date.valueOf() === date.valueOf())
+  const dates = lectionary(date.getFullYear(), date.getMonth())
+  const day = dates.find((d) => d.date.valueOf() === date.valueOf())
   if (!day) return 'no lectionary entry for then'
   return [
     colors.wrap('gray',
@@ -35,21 +35,21 @@ module.exports = {
     sunday: {
       help: 'Gets the RCL liturgical calendar name for next Sunday',
       command: () => {
-        let date = nextSunday()
+        const date = nextSunday()
         return getLectionary(date)
       }
     },
     lsunday: {
       help: 'Gets the RCL liturgical calendar name for last Sunday',
       command: () => {
-        let date = prevSunday()
+        const date = prevSunday()
         return getLectionary(date)
       }
     },
     lectionary: {
       help: 'Gets the RCL liturgical calendar name for a date',
       command: (bot, msg) => {
-        let date = new Date(msg.body)
+        const date = new Date(msg.body)
         date.setHours(0, 0, 0, 0)
         return getLectionary(date)
       }

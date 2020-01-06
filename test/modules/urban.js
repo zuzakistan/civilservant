@@ -10,7 +10,7 @@ describe('urban module', function () {
     mockery.registerMock('urban', (headword) => {
       return {
         first: (cb) => {
-          let defs = {
+          const defs = {
             one: 'one two three four',
             two: 'five [six] seven',
             three: 'eight [nine] ten [eleven twelve]',
@@ -35,22 +35,22 @@ describe('urban module', function () {
   })
 
   it('should return a definition', async function () {
-    let response = await mockBot.runCommand('!ud one')
+    const response = await mockBot.runCommand('!ud one')
     assert.strictEqual(response, '\u000307one\u000f (2019): one two three four \u000314https://example.com\u000f')
   })
 
   it('should format brackets in definitions', async function () {
-    let response = await mockBot.runCommand('!ud two')
+    const response = await mockBot.runCommand('!ud two')
     assert.strictEqual(response, '\u000307two\u000f (2019): five \u000300six\u000f seven \u000314https://example.com\u000f')
   })
 
   it('should format multiple brackets in definitions', async function () {
-    let response = await mockBot.runCommand('!ud three')
+    const response = await mockBot.runCommand('!ud three')
     assert.strictEqual(response, '\u000307three\u000f (2019): eight \u000300nine\u000f ten \u000300eleven twelve\u000f \u000314https://example.com\u000f')
   })
 
   it('should be a different colour when not an exact match', async function () {
-    let response = await mockBot.runCommand('!ud four')
+    const response = await mockBot.runCommand('!ud four')
     assert.strictEqual(response, '\u000308for\u000f (2019): thirteen fourteen \u000314https://example.com\u000f')
   })
 

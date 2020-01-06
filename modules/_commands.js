@@ -7,7 +7,7 @@ const processOutput = (bot, msg, cmd, output, customFormatter) => {
   const outputFormatter = customFormatter || ((str) => msg.nick + ': ' + str)
   if (!output) return null
   if (typeof output === 'string') {
-    let say = outputFormatter(output)
+    const say = outputFormatter(output)
     if (cmd.fireMessageEvent) {
       bot.fireEvents('message', bot.nick, msg.to, say, null)
     }
@@ -22,7 +22,7 @@ const processOutput = (bot, msg, cmd, output, customFormatter) => {
 module.exports = {
   events: {
     message: function (bot, nick, to, text, message) {
-      let controlChar = bot.config.get('irc.controlChar')
+      const controlChar = bot.config.get('irc.controlChar')
       if (text.substr(0, 1) === controlChar) {
         var msg = {
           body: text.substr(text.indexOf(' ') + 1),

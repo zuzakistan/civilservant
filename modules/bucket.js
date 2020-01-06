@@ -30,7 +30,7 @@ function dropItem () {
  * Returns dropped item, if any.
  */
 function addToInventory (item, nick) {
-  let representation = { item, nick }
+  const representation = { item, nick }
   let droppedItem = null
   if (inventory.current.push(representation) > inventoryLimit) {
     droppedItem = dropItem()

@@ -31,7 +31,7 @@ describe('radio module', function () {
   it('should parse the API correctly', async function () {
     sandbox.useFakeTimers({ now: 1553040900000 }) // 2019-03-20T00:15:00Z
 
-    let promise = await mockBot.runCommand('!r4')
+    const promise = await mockBot.runCommand('!r4')
     assert.strictEqual(promise, 'Now: \u000300Midnight News\u000f \u000315(20/03/2019)\u000f followed by Book of the Week in 15 minutes (12:30 am)')
   })
 

@@ -50,7 +50,7 @@ module.exports = {
       usage: ['country'],
       command: function (bot, msg) {
         var code = msg.args.country.toUpperCase()
-        let languages = ['en', 'de', 'fr', 'el']
+        const languages = ['en', 'de', 'fr', 'el']
         if (countries.getName(code, 'en')) {
           return code + ' → ' + languages.map((lang) => countries.getName(code, lang)).join(' · ')
         }
