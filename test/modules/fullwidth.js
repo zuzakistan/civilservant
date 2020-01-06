@@ -4,12 +4,14 @@ const assert = require('assert')
 
 describe('fullwidthmodule', function () {
   const tests = {
+    /* eslint-disable quote-props */
     'abcdefghijklmnopqrstuvwxyz': 'ａｂｃｄｅｆｇｈｉｊｋｌｍｎｏｐｑｒｓｔｕｖｗｘｙｚ',
     'ABCDEFGHIJKLMNOPQRSTUVWYXZ': 'ＡＢＣＤＥＦＧＨＩＪＫＬＭＮＯＰＱＲＳＴＵＶＷＹＸＺ',
     '0123456789': '０１２３４５６７８９',
     '!"#$%&\'()*+,-./': '！＂＃＄％＆＇（）＊＋，－．／',
     '¢£¥¦¬¯₩': '￠￡￥￤￢￣￦',
     '¡aBc¥': '¡ａＢｃ￥'
+    /* eslint-enable quote-props */
   }
 
   before(function () {

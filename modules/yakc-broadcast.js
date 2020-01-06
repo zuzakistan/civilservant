@@ -10,16 +10,16 @@ module.exports = {
       // cyan light_cyan light_blue light_magenta
       // gray light_grey reset
       var actions = {
-        'placebo': 'gray',
-        'directly': 'white',
-        'veto': 'dark_red',
-        'decent': 'light_green',
-        'bad': 'light_red',
-        'shunted': 'dark_blue',
-        'unshunted': 'light_blue',
-        'demoted': 'magenta',
-        'featured': 'orange',
-        'held': 'yellow'
+        placebo: 'gray',
+        directly: 'white',
+        veto: 'dark_red',
+        decent: 'light_green',
+        bad: 'light_red',
+        shunted: 'dark_blue',
+        unshunted: 'light_blue',
+        demoted: 'magenta',
+        featured: 'orange',
+        held: 'yellow'
       }
 
       for (var i = split.length; i > 0; i--) { /* backwards */

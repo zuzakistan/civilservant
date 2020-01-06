@@ -52,7 +52,7 @@ module.exports = {
     },
     action: function (bot, nick, to, text) {
       var synonyms = {
-        'adverb': [
+        adverb: [
           'absentmindedly',
           'agreeably',
           'anxiously',
@@ -83,7 +83,7 @@ module.exports = {
           '', '', '', '', '', '', '', '', '', '', '', '', '',
           '', '', '', '', '', '', '', '', '', '', '', '', ''
         ],
-        'give': [
+        give: [
           'awards',
           'gives',
           'hands',
@@ -91,13 +91,13 @@ module.exports = {
           'passes',
           'throws'
         ],
-        'take': [
+        take: [
           'accepts',
           'grabs',
           'picks up',
           'takes'
         ],
-        'discard': [
+        discard: [
           'abandons',
           'discards',
           'dispenses with',
