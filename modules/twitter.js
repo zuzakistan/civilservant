@@ -15,6 +15,16 @@ module.exports = {
         access_token_key: bot.config.get(`twitter.users.${user}.key`),
         access_token_secret: bot.config.get(`twitter.users.${user}.secret`)
       })
+      const blacklist = bot.config.get('twitter.blacklist')
+      if (blacklist.some((x) => payload.status.toLowerCase().includes(x))) {
+        if (bot.config.has('twitter.reportingChannel')) {
+          bot.notice(bot.config.get('twitter.reportingChannel'), [
+            colors.wrap('light_red', `@${user} tweet rejected:`),
+            colors.wrap('cyan', payload.status)
+          ].join(' '))
+        }
+        throw new Error('Blacklisted tweet')
+      }
       let response = await client.tweet(payload)
       if (bot.config.has('twitter.reportingChannel')) {
         bot.notice(bot.config.get('twitter.reportingChannel'), [
