@@ -33,7 +33,7 @@ module.exports = {
           message: message
         }
         msg._cmd = controlChar + msg.args[0]
-        if (bot.commands.hasOwnProperty(msg.args[0])) {
+        if (Object.prototype.hasOwnProperty.call(bot, msg.args[0])) {
           try {
             var cmd = bot.commands[msg.args[0]]
             if (cmd.command) {
