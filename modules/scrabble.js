@@ -52,9 +52,9 @@ function scoreLetter (letter, str) {
   }
 }
 function computeWord (str) {
-  let score = scrabbleScore(str)
-  let isImpossible = str.length > 15 || str.length < 2 || /[^a-zA-Z]/.test(str) || score === null
-  let isAllowable = sowpods.verify(str)
+  const score = scrabbleScore(str)
+  const isImpossible = str.length > 15 || str.length < 2 || /[^a-zA-Z]/.test(str) || score === null
+  const isAllowable = sowpods.verify(str)
 
   return {
     word: str,
@@ -120,11 +120,11 @@ module.exports = {
   events: {
     message: function (bot, nick, to, text) {
       if (text.match(bot.config.get('irc.controlChar') + 'scrabble')) return
-      let phrase = text.split(/[ '"]/)
-      let words = []
+      const phrase = text.split(/[ '"]/)
+      const words = []
       phrase.forEach((word) => {
         word = word.replace(/[^A-Za-z]+$/, '')
-        let result = computeWord(word)
+        const result = computeWord(word)
         if (wordHistory.map(word => word.toUpperCase()).includes(word.toUpperCase())) return
         if (!result.isPossible) return
         if (bot.config.get('scrabble.sowpodsOnly') && !result.isAllowable) return

@@ -33,7 +33,7 @@ describe('wikis module', function () {
   })
 
   Object.keys(WIKIS).forEach(function (key) {
-    let name = WIKIS[key]
+    const name = WIKIS[key]
     it('should link to english ' + name, function () {
       assert.strictEqual(mockBot.runCommand(`!${key}`), `https://en.${name}.org/wiki/`)
     })

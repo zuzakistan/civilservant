@@ -4,7 +4,7 @@ const assert = require('assert')
 const mockery = require('mockery')
 
 describe('co2 module', function () {
-  let response = '411.50ppm'
+  const response = '411.50ppm'
 
   before(function () {
     // mockery mocks the entire require()
@@ -17,7 +17,7 @@ describe('co2 module', function () {
   })
 
   it('should get the data correctly', async function () {
-    let promise = await mockBot.runCommand('!co2')
+    const promise = await mockBot.runCommand('!co2')
     assert.strictEqual(promise, response)
   })
 

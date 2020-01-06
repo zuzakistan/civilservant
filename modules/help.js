@@ -5,7 +5,7 @@ module.exports = {
       command: function (bot) {
         var commands = Object.keys(bot.commands)
         commands.sort()
-        let controlChar = bot.config.get('irc.controlChar')
+        const controlChar = bot.config.get('irc.controlChar')
         return 'Commands loaded: ' + controlChar + commands.join(' ' + controlChar)
       }
     },

@@ -5,7 +5,6 @@ const colors = require('irc').colors
 const tv = async (station) => {
   const url = `https://ibl.api.bbci.co.uk/ibl/v1/channels/${station}/broadcasts?per_page=2`
   let data
-  let str
   const response = await request.get(url)
   try {
     data = JSON.parse(response)
@@ -19,7 +18,7 @@ const tv = async (station) => {
   const now = data.broadcasts.elements[0]
   const next = data.broadcasts.elements[1]
 
-  str = [
+  const str = [
     now.episode.live ? 'Live' : 'Now',
     'on',
     data.broadcasts.channel.title + ':',
@@ -41,8 +40,8 @@ const tv = async (station) => {
   ].filter(x => x != null)
 
   if (now.transmission_start && now.scheduled_start !== now.transmission_start) {
-    let paperStart = moment(now.scheduled_start)
-    let actualStart = moment(now.transmission_start)
+    const paperStart = moment(now.scheduled_start)
+    const actualStart = moment(now.transmission_start)
     str.push(colors.wrap('light_red',
       'overrunning by ' + moment.duration(actualStart.diff(paperStart)).humanize()
     ))

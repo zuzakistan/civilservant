@@ -5,7 +5,7 @@ const sinon = require('sinon')
 
 const momentProto = require('moment').fn
 
-let sandbox = sinon.sandbox.create()
+const sandbox = sinon.sandbox.create()
 
 describe('division module', function () {
   before(function () {

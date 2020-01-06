@@ -31,9 +31,9 @@ describe('mutations module', function () {
   ]
 
   dictionary.forEach(function (mutation) {
-    let type = mutation[0]
-    let original = mutation[1]
-    let mutated = mutation[2]
+    const type = mutation[0]
+    const original = mutation[1]
+    const mutated = mutation[2]
 
     it(`should handle ${type} mutation of ${original.substr(0, original.length - 2).toUpperCase()}`, function () {
       assert.strictEqual(mockBot.runCommand('!mutate', { type: type, radical: original }), mutated)

@@ -9,13 +9,13 @@ module.exports = {
   onload: (bot) => {
     twitterPin = TwitterPin(bot.config.get('twitter.keys.consumerKey'), bot.config.get('twitter.keys.consumerSecret'))
     bot.tweet = async (user, payload) => {
-      let client = new Tweeter({
+      const client = new Tweeter({
         consumer_key: bot.config.get('twitter.keys.consumerKey'),
         consumer_secret: bot.config.get('twitter.keys.consumerSecret'),
         access_token_key: bot.config.get(`twitter.users.${user}.key`),
         access_token_secret: bot.config.get(`twitter.users.${user}.secret`)
       })
-      let response = await client.tweet(payload)
+      const response = await client.tweet(payload)
       if (bot.config.has('twitter.reportingChannel')) {
         bot.notice(bot.config.get('twitter.reportingChannel'), [
           colors.wrap('light_cyan', '@' + user),
@@ -44,7 +44,7 @@ module.exports = {
       help: 'Authenticate with a Twitter PIN',
       usage: ['pin'],
       command: async (bot, msg) => {
-        let response = await new Promise((resolve, reject) => {
+        const response = await new Promise((resolve, reject) => {
           twitterPin.authorize(msg.args.pin, (err, result) => {
             if (err) return reject(err)
             resolve(result)
@@ -60,9 +60,9 @@ module.exports = {
       privileged: true,
       help: 'Tweets a tweet',
       command: async (bot, msg) => {
-        let user = bot.config.get('twitter.tweetUser')
+        const user = bot.config.get('twitter.tweetUser')
         if (!user) return 'tweeting disabled'
-        let tweet = await bot.tweet(user, { status: msg.body })
+        const tweet = await bot.tweet(user, { status: msg.body })
         return 'https://twitter.com/statuses/' + tweet.id_str
       }
     }
@@ -70,9 +70,9 @@ module.exports = {
   events: {
     newNews: (bot, news) => {
       if (!bot.config.has('twitter.newsUser')) return undefined
-      let user = bot.config.get('twitter.newsUser')
+      const user = bot.config.get('twitter.newsUser')
       if (!user) return 'tweeting disabled'
-      let url = news.url ? news.url : ''
+      const url = news.url ? news.url : ''
       bot.tweet(user, { status: owo(news.text) + '\r\n' + url })
     }
   }

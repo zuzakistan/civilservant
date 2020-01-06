@@ -16,7 +16,7 @@ describe('rot13 module', function () {
 
   VALUES.forEach(function (num) {
     it(`should return the same string if ROT${num}d then ROT${26 - num}'d`, function () {
-      let command = `!rot ${num} ${STR}`
+      const command = `!rot ${num} ${STR}`
       assert.strictEqual(mockBot.runCommand(`!rot ${26 - num} ${mockBot.runCommand(command)}`), STR)
     })
   })
