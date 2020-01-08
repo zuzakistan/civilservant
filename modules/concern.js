@@ -10,21 +10,23 @@ var nox = false
 var colors = require('irc').colors
 var verbose = false // TODO: cvar
 
+const computeSentiment = (str) => {
+  const result = isEmotional(str)
+  if (result.bayes) {
+    const percentage = (result.bayes.proba * 100).toFixed(2)
+    return [
+      result.bayes.prediction,
+      colors.wrap('light_gray', `(${percentage}%)`)
+    ].join(' ')
+  }
+  return 'no sentiment found'
+}
+
 module.exports = {
   commands: {
     sentiment: {
       help: 'Runs a phrase through very nuanced sentiment analysis',
-      command: (bot, msg) => {
-        const result = isEmotional(msg.body)
-        if (result.bayes) {
-          const percentage = (result.bayes.proba * 100).toFixed(2)
-          return [
-            result.bayes.prediction,
-            colors.wrap('light_gray', `(${percentage}%)`)
-          ].join(' ')
-        }
-        return 'no sentiment found'
-      }
+      command: (bot, msg) => computeSentiment(msg.body)
     },
     rawconcern: {
       aliases: ['rawsentiment'],
@@ -46,6 +48,9 @@ module.exports = {
     }
   },
   events: {
+    newNews: (bot, news) => {
+      bot.shout(bot.config.get('irc.control'), computeSentiment(news.text))
+    },
     message: function (bot, nick, to, text) {
       if (!nox) {
         var x = isEmotional(text)
