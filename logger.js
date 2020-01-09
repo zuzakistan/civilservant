@@ -28,7 +28,7 @@ const logger = winston.createLogger({
     winston.format.simple()
   ),
   transports: [
-    new winston.transports.Console({ level: 'verbose' })
+    new winston.transports.Console({ level: 'debug' })
   ]
 })
 
