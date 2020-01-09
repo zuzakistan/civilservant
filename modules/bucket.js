@@ -40,16 +40,16 @@ function addToInventory (item, nick) {
 }
 
 module.exports = {
+  onload: (bot) => {
+    try {
+      inventory = require(__rootdir + '/data/inventory.json')
+      bot.log('debug', 'Loaded bucket inventory')
+    } catch (e) {
+      if (e.code !== 'MODULE_NOT_FOUND') throw e
+      bot.log('warn', 'Bucket inventory non-existent; creating')
+    }
+  },
   events: {
-    onload: (bot) => {
-      try {
-        inventory = require(__rootdir + '/data/inventory.json')
-        bot.log('debug', 'Loaded bucket inventory')
-      } catch (e) {
-        if (e.code !== 'MODULE_NOT_FOUND') throw e
-        bot.log('warn', 'Bucket inventory non-existent; creating')
-      }
-    },
     action: function (bot, nick, to, text) {
       var synonyms = {
         adverb: [
