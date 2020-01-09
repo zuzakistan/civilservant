@@ -10,6 +10,7 @@ function loadModule (self, bot, file) {
     self.addEvents(bot, curr.events)
   }
   if (curr.onload) {
+    bot.log('debug', `Running onload function for ${file}`)
     curr.onload(bot)
   }
 }
