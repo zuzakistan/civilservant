@@ -41,6 +41,8 @@ module.exports = {
           return
       }
       announce(bot, colors.wrap('light_gray', `Unknown webhook event ${ghEvent.name}. keys: ${Object.keys(ghEvent.payload)}`))
+      bot.log('debug', `Unknown GitHub event ${ghEvent.name}`)
+      bot.log('debug', JSON.stringify(ghEvent.payload))
     },
     'github:issues': (bot, ghEvent) => {
       const actionColors = {
