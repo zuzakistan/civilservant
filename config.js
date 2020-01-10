@@ -25,7 +25,7 @@ module.exports = config = convict({
     port: {
       doc: 'the port to connect to the IRC server on',
       format: 'port',
-      default: 6667,
+      default: 6697,
       env: 'IRC_PORT'
     },
     sasl: {
@@ -74,7 +74,7 @@ module.exports = config = convict({
       doc: 'Whether to connect to IRC via SSL',
       format: Boolean,
       env: 'IRC_SECURE',
-      default: false
+      default: true
     },
     insecure: {
       doc: 'Whether to disable the concept of a control channel',
