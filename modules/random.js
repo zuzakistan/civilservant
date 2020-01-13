@@ -8,10 +8,10 @@ module.exports = {
         if (msg.args.length > 2) {
           msg.args.shift()
           randint = msg.args[Math.floor(Math.random() * msg.args.length)]
-          return randstirng
+          return randstring
         } else if (msg.args.length === 2) {
           randint = Math.floor(Math.random() * Math.floor(msg.args[1]))
-          if (!isNaN(res)) {
+          if (!isNaN(randint)) {
             return randstring
           }
         }
