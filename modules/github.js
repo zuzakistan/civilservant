@@ -79,7 +79,7 @@ module.exports = {
     'github:issue_comment': (bot, ghEvent) => {
       let verb = ghEvent.payload.action
       if (verb === 'created') verb = 'added'
-      verb += ' comment on '
+      verb += ' comment on'
       return announce(bot, `${ghEvent.payload.sender.login} ${verb} issue comment ${ghEvent.payload.issue.html_url}`)
     },
     'github:push': (bot, ghEvent) => {
