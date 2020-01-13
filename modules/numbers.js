@@ -2,7 +2,7 @@ var writeInt = require('write-int')
 module.exports = {
   commands: {
     num: {
-      help: 'Asks the bot to greet the channel',
+      help: 'Outputs a number in a given language',
       usage: ['lang', 'number'],
       command: function (bot, msg) {
         if (msg.args.lang === 'jbo') {
