@@ -5,10 +5,10 @@ module.exports = {
       command: function (bot, msg) {
         if (msg.args.length > 2) {
           msg.args.shift()
-          randint = msg.args[Math.floor(Math.random() * msg.args.length)]
+          var randint = msg.args[Math.floor(Math.random() * msg.args.length)]
           return randint.toString()
         } else if (msg.args.length === 2) {
-          randint = Math.floor(Math.random() * Math.floor(msg.args[1]))
+          var randint = Math.floor(Math.random() * Math.floor(msg.args[1]))
           if (!isNaN(randint)) {
             return randint.toString()
           }
