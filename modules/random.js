@@ -3,16 +3,14 @@ module.exports = {
     random: {
       help: 'Selects a random choice or number',
       command: function (bot, msg) {
-        var randint
-        var randstring = randint.toString()
         if (msg.args.length > 2) {
           msg.args.shift()
           randint = msg.args[Math.floor(Math.random() * msg.args.length)]
-          return randstring
+          return randint.toString()
         } else if (msg.args.length === 2) {
           randint = Math.floor(Math.random() * Math.floor(msg.args[1]))
           if (!isNaN(randint)) {
-            return randstring
+            return randint.toString()
           }
         }
         return 'Usage: (<number>|<choice 1> … <choice n>)'
