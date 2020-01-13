@@ -8,9 +8,9 @@ module.exports = {
           var randint = msg.args[Math.floor(Math.random() * msg.args.length)]
           return randint.toString()
         } else if (msg.args.length === 2) {
-          var randint = Math.floor(Math.random() * Math.floor(msg.args[1]))
-          if (!isNaN(randint)) {
-            return randint.toString()
+          var res = Math.floor(Math.random() * Math.floor(msg.args[1]))
+          if (!isNaN(res)) {
+          return res
           }
         }
         return 'Usage: (<number>|<choice 1> … <choice n>)'
