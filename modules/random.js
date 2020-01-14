@@ -9,7 +9,7 @@ module.exports = {
         } else if (msg.args.length === 2) {
           var res = Math.floor(Math.random() * Math.floor(msg.args[1]))
           if (!isNaN(res)) {
-            return res.toString
+            return res.toString()
           }
         }
         return 'Usage: (<number>|<choice 1> … <choice n>)'
