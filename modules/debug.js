@@ -14,6 +14,7 @@ module.exports = {
           color: 'light_blue',
           id: 'test' + Math.random() * 1000,
           text: 'This is a test of the news system: poll',
+          tweetable: false,
           prompt: 'TEST'
         })
       }
