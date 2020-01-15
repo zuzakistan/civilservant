@@ -1,6 +1,7 @@
 module.exports = {
   commands: {
     random: {
+      aliases: ['choice'],
       help: 'Selects a random choice or number',
       command: function (bot, msg) {
         if (msg.args.length > 2) { // e.g. !random foo bar baz
