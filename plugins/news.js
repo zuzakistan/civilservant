@@ -13,30 +13,6 @@ function APIs (loud) {
       url: 'http://www.aljazeera.com/addons/alert.ashx',
       eventName: 'aljaz'
     },
-    /* { // Bloomberg seems blocked by CAPTCHAs
-      url: 'https://www.bloomberg.com/api/modules/id/africa_breaking_news',
-      eventName: 'bloomberg',
-      payload: {tag: 'Africa'}
-    },
-    {
-      url: 'https://www.bloomberg.com/api/modules/id/canada_breaking_news',
-      eventName: 'bloomberg',
-      payload: {tag: 'Canada'}
-    },
-    {
-      url: 'https://www.bloomberg.com/api/modules/id/europe_breaking_news',
-      eventName: 'bloomberg',
-      payload: {tag: 'Europe'}
-    },
-    {
-      url: 'https://www.bloomberg.com/api/modules/id/us_breaking_news',
-      eventname: 'bloomberg',
-      payload: {tag: 'us'}
-    },
-    {
-      url: 'https://www.bloomberg.com/api/modules/id/breaking_news',
-      eventname: 'bloomberg'
-    }, */
     {
       url: 'http://polling.bbc.co.uk/news/latest_breaking_news_waf?audience=Domestic',
       eventName: 'bbc',
