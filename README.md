@@ -32,3 +32,20 @@ If you have questions, you can contact us via IRC at [##zuzakistan-lab on freeno
 ([webchat](https://kiwiirc.com/nextclient/irc.freenode.net/##zuzakistan-lab)).
 
 If you encounter unacceptable behaviour in the community, please email conduct@zuzakistan.com.
+
+## CI/CD
+Included in this repo is an example job file for a Jenkins job as well as a cicd.sh file within the 'jenkins example' folder.
+
+The Jenkins job file requires the following plugins:
+- IRC Plugin (Plus dependancies)
+- Publish over SSH (Plus dependancies)
+
+You will need to have configured an SSH server in your global config. You will need to change the name of said server and key information in the .xml.
+
+You will need to have node.js installed on your Jenkins instance.
+
+Your remote instance will require node.js.
+
+Your remote instance will require your custom config.js file to be listed in your users home directory, along with the cicd.sh file (which requires execute permissions with CHMOD).
+
+Remember to edit the cicd.sh to use your linux username - by default it is configured for ec2-user - which is the default user created on an AWS EC2 instance using the Amazon Linux 2 AMI.
