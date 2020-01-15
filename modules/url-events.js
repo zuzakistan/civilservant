@@ -37,7 +37,7 @@ var getTitle = function (url) {
       }).on('end', () => {
         // After aborting (or finishing), parse title
         const $ = cheerio.load(response)
-        const title = $('title').text().trim().replace(/\s+/g, ' ').substring(0, 400) || null
+        const title = $('title').first().text().trim().replace(/\s+/g, ' ').substring(0, 400) || null
         resolve(title)
       })
     })
