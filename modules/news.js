@@ -77,21 +77,6 @@ module.exports = {
         url: item.link
       })
     },
-    'rawnews:bloomberg': function (bot, stories) {
-      for (var i = 0; i < stories.length; i++) {
-        var story = stories[i]
-        if (story) {
-          bot.fireEvents('news', {
-            color: 'purple',
-            id: 'bbrg' + story.toString(),
-            text: JSON.stringify(story),
-            url: null,
-            prompt: stories.editorialTitle,
-            tail: 'Bloomberg (test)'
-          })
-        }
-      }
-    },
     'rawnews:reuwire': function (bot, stories) {
       for (let i = 0; i < stories.length; i++) {
         const story = stories[i]
