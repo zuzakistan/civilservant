@@ -73,6 +73,10 @@ module.exports = {
       const user = bot.config.get('twitter.newsUser')
       if (!user) return 'tweeting disabled'
       const url = news.url ? news.url : ''
+
+      if (news.label && !news.label.toUpperCase().includes('BREAKING')) {
+        news.text = `${news.label}: ${news.text}`
+      }
       bot.tweet(user, { status: owo(news.text) + '\r\n' + url })
     }
   }
