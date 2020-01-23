@@ -4,17 +4,39 @@ require('moment-countdown')
 let timeout = null
 
 const ARTICLE_50 = '2020-01-31T00:00:00+01:00'
+const TRANSITION = '2020-12-31T00:00:00+01:00'
 
 function autoCount (bot, lastTick) {
   const now = moment()
-  const thisTick = moment(ARTICLE_50).countdown().toString().split(/, | and /)[0]
 
-  if (moment(ARTICLE_50).isBefore(now)) return
+  var eventName
+  var deadline
+  if (moment(ARTICLE_50).isBefore(now)) {
+    eventName = 'Article 50'
+    deadline = ARTICLE_50
+  } else {
+    eventName = 'The transition period'
+    deadline = TRANSITION
+  }
+
+  const thisTick = moment(deadline).countdown().toString().split(/, | and /)[0]
+
   if (lastTick != null && thisTick !== lastTick) {
-    bot.broadcast('Article 50 expires in ' + lastTick)
+    bot.broadcast(`${eventName} expires in ${lastTick}`)
   }
 
   timeout = setTimeout(autoCount, 1000, bot, thisTick)
+}
+
+function expiry (name, date) {
+  const now = moment()
+  const expiryDate = moment(date)
+  const countdown = expiryDate.countdown().toString()
+
+  if (expiryDate.isBefore(now)) {
+    return `${name} expired ${countdown} ago`
+  }
+  return `${name} expires in ${countdown}`
 }
 
 module.exports = {
@@ -25,9 +47,9 @@ module.exports = {
         const now = moment()
 
         if (moment(ARTICLE_50).isBefore(now)) {
-          return 'Article 50 expired ' + moment(ARTICLE_50).countdown().toString() + ' ago'
+          return expiry('The transition period', TRANSITION)
         }
-        return 'Article 50 expires in ' + moment(ARTICLE_50).countdown().toString()
+        return expiry('Article 50', ARTICLE_50)
       }
     },
     ge: {
@@ -51,13 +73,7 @@ module.exports = {
     python2: {
       help: 'Gets the time until Python 2 support is dropped',
       command: function () {
-        const now = moment()
-        const python2 = '2020-01-01T00:00:00Z'
-
-        if (moment(python2).isBefore(now)) {
-          return 'Python 2.7 support ended ' + moment(python2).countdown().toString() + ' ago'
-        }
-        return 'Python 2.7 support ends in ' + moment(python2).countdown().toString()
+        return expiry('Python 2.7 support', '2020-01-01T00:00:00Z')
       }
     }
   },
