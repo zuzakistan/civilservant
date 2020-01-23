@@ -51,4 +51,16 @@ describe('countdown module', function () {
     assert.strictEqual(mockBot.runCommand('!ge'), 'Polls open in 4 years, 5 months, 11 days and 2 hours')
     clock.restore()
   })
+
+  it('outputs a py2 countdown', function () {
+    const clock = sinon.useFakeTimers(new Date(2016, 11, 1).getTime())
+    assert.strictEqual(mockBot.runCommand('!python2'), 'Python 2.7 support expires in 3 years and 1 month')
+    clock.restore()
+  })
+
+  it('outputs a py2 countup', function () {
+    const clock = sinon.useFakeTimers(new Date(2020, 11, 1).getTime())
+    assert.strictEqual(mockBot.runCommand('!python2'), 'Python 2.7 support expired 11 months ago')
+    clock.restore()
+  })
 })
