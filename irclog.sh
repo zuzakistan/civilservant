@@ -6,6 +6,6 @@
 # Distributed under terms of the MIT license.
 #
  
-ag --nonumbers --color -- "${@}" ~/irclogs/freenode/\##zuzakistan.log | \
+ag --nonumbers --color -- "${@}" ~/irclogs/kgz/\#random.log | \
 ag --nonumbers --color -v "civilservant|!(ag|irclog)" | \
 perl -e 'while (<>) { push(@_,$_); } print @_[rand()*@_];'

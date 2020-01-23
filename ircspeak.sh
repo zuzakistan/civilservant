@@ -1,2 +1,2 @@
 #! /bin/sh
-shuf -n 1 ~/irclogs/freenode/$1.log
+shuf -n 1 ~/irclogs/kgz/$1.log
