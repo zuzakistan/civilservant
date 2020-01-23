@@ -6,10 +6,14 @@ let timeout = null
 const ARTICLE_50 = '2020-01-31T00:00:00+01:00'
 
 function autoCount (bot, lastTick) {
+  const now = moment()
   const thisTick = moment(ARTICLE_50).countdown().toString().split(/, | and /)[0]
+
+  if (moment(ARTICLE_50).isBefore(now)) return
   if (lastTick != null && thisTick !== lastTick) {
     bot.broadcast('Article 50 expires in ' + lastTick)
   }
+
   timeout = setTimeout(autoCount, 1000, bot, thisTick)
 }
 
@@ -18,6 +22,11 @@ module.exports = {
     a50: {
       help: 'Gets the time until the UK Article 50 procedure expires',
       command: function () {
+        const now = moment()
+
+        if (moment(ARTICLE_50).isBefore(now)) {
+          return 'Article 50 expired ' + moment(ARTICLE_50).countdown().toString() + ' ago'
+        }
         return 'Article 50 expires in ' + moment(ARTICLE_50).countdown().toString()
       }
     },
@@ -42,7 +51,13 @@ module.exports = {
     python2: {
       help: 'Gets the time until Python 2 support is dropped',
       command: function () {
-        return 'Python 2.7 support ends in ' + moment('2020-01-01T00:00:00Z').countdown().toString()
+        const now = moment()
+        const python2 = '2020-01-01T00:00:00Z'
+
+        if (moment(python2).isBefore(now)) {
+          return 'Python 2.7 support ended ' + moment(python2).countdown().toString() + ' ago'
+        }
+        return 'Python 2.7 support ends in ' + moment(python2).countdown().toString()
       }
     }
   },
