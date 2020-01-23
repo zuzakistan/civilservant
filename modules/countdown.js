@@ -13,20 +13,20 @@ function nextDate (milestones) {
   for (const milestone in milestones) {
     if (!isPast(milestone.date)) return milestone
   }
-  return { name: null, date: null }
+  throw new Error('No date available')
 }
 
 function nextBrexitDate () {
   const milestones = [
     { name: 'Article 50', date: '2020-01-31T00:00:00+01:00' },
+    { name: 'The extension request deadline', date: '2020-06-31T00:00:00+01:00' },
     { name: 'The transition period', date: '2019-12-31T00:00:00+01:00' }
   ]
   return nextDate(milestones)
 }
 
 function autoCount (bot, lastTick) {
-  const { name, date } = nextBrexitDate
-  if (!name) return
+  const { name, date } = nextBrexitDate()
   const thisTick = moment(date).countdown().toString().split(/, | and /)[0]
   if (lastTick != null && thisTick !== lastTick) {
     bot.broadcast(`${name} expires in ${date}`)
@@ -48,7 +48,7 @@ module.exports = {
     a50: {
       help: "Gets the time until the next stage of the UK's withdrawal from the European Union",
       command: function () {
-        return expiry(nextBrexitDate)
+        return expiry(nextBrexitDate())
       }
     },
     ge: {
