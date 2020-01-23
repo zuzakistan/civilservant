@@ -9,43 +9,38 @@ function isPast (date) {
   return expiryDate.isBefore(now)
 }
 
-function nextBrexitDate () {
-  const article50 = '2020-01-31T00:00:00+01:00'
-  const transition = '2020-12-31T00:00:00+01:00'
+function nextDate (milestones) {
+  for (const milestone in milestones) {
+    if (!isPast(milestone.date)) return milestone
+  }
+  return { name: null, date: null }
+}
 
-  if (isPast(transition)) {
-    return { name: null, date: null }
-  }
-  if (isPast(article50)) {
-    return { name: 'The transition period', date: transition }
-  }
-  return { name: 'Article 50', date: article50 }
+function nextBrexitDate () {
+  const milestones = [
+    { name: 'Article 50', date: '2020-01-31T00:00:00+01:00' },
+    { name: 'The transition period', date: '2019-12-31T00:00:00+01:00' }
+  ]
+  return nextDate(milestones)
 }
 
 function autoCount (bot, lastTick) {
-  const eventName = nextBrexitDate.name
-  const deadline = nextBrexitDate.date
-
-  if (!eventName) return
-
-  const thisTick = moment(deadline).countdown().toString().split(/, | and /)[0]
-
+  const { name, date } = nextBrexitDate
+  if (!name) return
+  const thisTick = moment(date).countdown().toString().split(/, | and /)[0]
   if (lastTick != null && thisTick !== lastTick) {
-    bot.broadcast(`${eventName} expires in ${lastTick}`)
+    bot.broadcast(`${name} expires in ${date}`)
   }
-
   timeout = setTimeout(autoCount, 1000, bot, thisTick)
 }
 
 function expiry (eventInfo) {
-  const expiryDate = moment(eventInfo.date)
-  const eventName = eventInfo.name
-  const countdown = expiryDate.countdown().toString()
-
-  if (isPast(expiryDate)) {
-    return `${eventName} expired ${countdown} ago`
+  const { name, date } = eventInfo
+  const countdown = moment(date).countdown().toString()
+  if (isPast(date)) {
+    return `${name} expired ${countdown} ago`
   }
-  return `${eventName} expires in ${countdown}`
+  return `${name} expires in ${countdown}`
 }
 
 module.exports = {
@@ -57,19 +52,20 @@ module.exports = {
       }
     },
     ge: {
-      help: 'Gets the time until the 2019 Parliamentary General Election',
+      help: 'Gets the time until the next Parliamentary General Election',
       command: () => {
-        const date = '2019-12-12' // 58th PGE
-        const pollStart = moment(date + 'T' + '07:00Z')
-        const pollEnd = moment(date + 'T' + '22:00Z')
-
-        if (!isPast(pollStart)) {
-          return 'Polls open in ' + pollStart.countdown().toString()
-        }
-        if (!isPast(pollEnd)) {
-          return 'Polls close in ' + pollEnd.countdown().toString()
-        }
-        return 'Polls open in ' + moment('2024-05-24').countdown().toString() // 59th PGE
+        const pollDate = '2024-05-24' // 58th PGE
+        const pollStart = moment(pollDate + 'T' + '07:00Z')
+        const pollEnd = moment(pollDate + 'T' + '22:00Z')
+        const milestones = [
+          { name: 'Polls open', date: pollStart },
+          { name: 'Polls close', date: pollEnd },
+          { name: 'Polls open', date: '2029-05-24T07:00Z' }
+        ]
+        const { name, date } = nextDate(milestones)
+        if (!name) return
+        const countdown = moment(date).countdown().toString()
+        return `${name} in ${countdown}`
       }
     },
     python2: {
