@@ -64,7 +64,7 @@ module.exports = {
           { name: 'Polls open', date: '2029-05-24T07:00Z' }
         ]
         const { name, date } = nextDate(milestones)
-        if (!name) return
+        if (!name) throw new Error('No milestones found')
         const countdown = moment(date).countdown().toString()
         return `${name} in ${countdown}`
       }
