@@ -48,9 +48,7 @@ module.exports = {
   commands: {
     a50: {
       help: "Gets the time until the next stage of the UK's withdrawal from the European Union",
-      command: function () {
-        return expiry(nextBrexitDate())
-      }
+      command: () => expiry(nextBrexitDate())
     },
     ge: {
       help: 'Gets the time until the next Parliamentary General Election',
@@ -61,7 +59,7 @@ module.exports = {
         const milestones = [
           { name: 'Polls open', date: pollStart },
           { name: 'Polls close', date: pollEnd },
-          { name: 'Polls open', date: '2029-05-24T07:00Z' }
+          { name: 'Polls open', date: '2029-05-03T07:00Z' }
         ]
         const { name, date } = nextDate(milestones)
         if (!name) throw new Error('No milestones found')
@@ -71,12 +69,10 @@ module.exports = {
     },
     python2: {
       help: 'Gets the time until Python 2 support is dropped',
-      command: function () {
-        return expiry({
-          name: 'Python 2.7 support',
-          date: '2020-01-01T00:00:00Z'
-        })
-      }
+      command: () => expiry({
+        name: 'Python 2.7 support',
+        date: '2020-01-01T00:00:00Z'
+      })
     }
   },
   events: {
