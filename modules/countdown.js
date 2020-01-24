@@ -55,7 +55,7 @@ module.exports = {
     ge: {
       help: 'Gets the time until the next Parliamentary General Election',
       command: () => {
-        const pollDate = '2024-05-24' // 58th PGE
+        const pollDate = '2024-05-02' // 59th PGE
         const pollStart = moment(pollDate + 'T' + '07:00Z')
         const pollEnd = moment(pollDate + 'T' + '22:00Z')
         const milestones = [
