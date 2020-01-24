@@ -84,6 +84,7 @@ module.exports = {
           color: 'yellow',
           id: story.id,
           text: story.headline,
+          loud: true,
           prompt: 'Reuters',
           url: 'http://www.reuters.com' + story.url
         })
@@ -148,7 +149,11 @@ module.exports = {
         str += ' ' + colors.wrap('magenta', '(' + news.tail + ')')
       }
 
-      bot.broadcast(str)
+      if (!news.loud) {
+        bot.broadcast(str)
+      } else {
+        bot.log('debug', 'Not broadcasting loud news')
+      }
     }
   }
 }
