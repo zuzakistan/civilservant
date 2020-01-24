@@ -73,6 +73,10 @@ module.exports = {
       const user = bot.config.get('twitter.newsUser')
       if (!user) return 'tweeting disabled'
       const url = news.url ? news.url : ''
+      if (!news.tweetable) {
+        bot.log('info', 'Skipping tweet: ' + JSON.stringify(news))
+        return
+      }
       bot.tweet(user, { status: owo(news.text) + '\r\n' + url })
     }
   }

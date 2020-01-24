@@ -52,6 +52,7 @@ module.exports = {
           id: 'BBC' + story.headline + story.assetUri,
           text: story.headline,
           url: 'https://bbc.co.uk' + story.assetUri,
+          tweetable: true,
           prompt: 'BBC BREAKING'
         })
       }
@@ -64,6 +65,7 @@ module.exports = {
         prompt: story.label ? story.label : 'Reuters',
         tail: story.tag ? story.tag : null,
         text: story.headline,
+        tweetable: true,
         url: story.url ? story.url : null
       })
     },
@@ -73,6 +75,7 @@ module.exports = {
         color: 'light_cyan',
         id: item.guid,
         prompt: feed.feed.title,
+        tweetable: false,
         text: item.content,
         url: item.link
       })
@@ -84,6 +87,7 @@ module.exports = {
           color: 'yellow',
           id: story.id,
           text: story.headline,
+          tweetable: false,
           prompt: 'Reuters',
           url: 'http://www.reuters.com' + story.url
         })
@@ -98,6 +102,7 @@ module.exports = {
             id: curr.GUID,
             prompt: 'Al Jazeera ' + curr.Type,
             text: curr.Text,
+            tweetable: true,
             url: curr.Url
           })
         }
