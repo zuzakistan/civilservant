@@ -8,15 +8,18 @@ let twitterPin
 module.exports = {
   onload: (bot) => {
     twitterPin = TwitterPin(bot.config.get('twitter.keys.consumerKey'), bot.config.get('twitter.keys.consumerSecret'))
+
+    const getTwitterClient = (bot, user) => new Tweeter({
+      consumer_key: bot.config.get('twitter.keys.consumerKey'),
+      consumer_secret: bot.config.get('twitter.keys.consumerSecret'),
+      access_token_key: bot.config.get(`twitter.users.${user}.key`),
+      access_token_secret: bot.config.get(`twitter.users.${user}.secret`)
+    })
+
     bot.tweet = async (user, payload) => {
-      const client = new Tweeter({
-        consumer_key: bot.config.get('twitter.keys.consumerKey'),
-        consumer_secret: bot.config.get('twitter.keys.consumerSecret'),
-        access_token_key: bot.config.get(`twitter.users.${user}.key`),
-        access_token_secret: bot.config.get(`twitter.users.${user}.secret`)
-      })
+      const client = getTwitterClient(bot, user)
       const response = await client.tweet(payload)
-      if (bot.config.has('twitter.reportingChannel')) {
+      if (bot.config.get('twitter.reportingChannel')) {
         bot.notice(bot.config.get('twitter.reportingChannel'), [
           colors.wrap('light_cyan', '@' + user),
           ' ',
@@ -26,6 +29,15 @@ module.exports = {
         ].join(''))
       }
       return response
+    }
+    bot.retweet = async (user, id) => {
+      const client = getTwitterClient(bot, user)
+      try {
+        return await client.post(`statuses/retweet/${id}`, { id, trim_user: true })
+      } catch (e) {
+        bot.log('error', 'RT error: ' + JSON.stringify(e))
+        throw e
+      }
     }
   },
   commands: {
@@ -56,19 +68,32 @@ module.exports = {
         return 'authorized as ' + response.screen_name
       }
     },
+    retweet: {
+      privileged: true,
+      help: 'Retweets a tweet',
+      usage: ['id'],
+      command: async (bot, msg) => {
+        try {
+          return await bot.retweet(bot.config.get('twitter.tweetUser'), msg.args.id)
+        } catch (e) {
+          return `Error: ${JSON.stringify(e)}`
+        }
+      }
+    },
     tweet: {
       privileged: true,
       help: 'Tweets a tweet',
       command: async (bot, msg) => {
         const user = bot.config.get('twitter.tweetUser')
         if (!user) return 'tweeting disabled'
+        bot.log('silly', 'Tweeting...')
         const tweet = await bot.tweet(user, { status: msg.body })
         return 'https://twitter.com/statuses/' + tweet.id_str
       }
     }
   },
   events: {
-    newNews: (bot, news) => {
+    newNews: async (bot, news) => {
       if (!bot.config.has('twitter.newsUser')) return undefined
       let user = bot.config.get('twitter.newsUser')
       if (news.loud) {
@@ -77,7 +102,19 @@ module.exports = {
       }
       if (!user) return new Error('tweeting disabled')
       const url = news.url ? news.url : ''
-      bot.tweet(user, { status: owo(news.text) + '\r\n' + url })
+      bot.log('debug', `Tweeting OWO as ${user}: ${news.text}`)
+      const tweet = await bot.tweet(user, { status: owo(news.text) + '\r\n' + url })
+      bot.log('debug', 'Tweeted')
+      console.dir(tweet)
+      if (news.text.includes('coronavirus') && news.loud) {
+        try {
+          bot.retweet(bot.config.get('twitter.newsUser'), tweet.id_str)
+          bot.log('silly', 'Retweeted')
+        } catch (e) {
+          bot.log('error', 'Failed to retweet')
+          console.dir(e)
+        }
+      }
     }
   }
 }
