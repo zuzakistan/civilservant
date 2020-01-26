@@ -17,6 +17,9 @@ module.exports = {
     })
 
     bot.tweet = async (user, payload) => {
+      const isAllowedToTweet = await bot.isNotDisabled()
+      if (!isAllowedToTweet) throw new Error('Bot disabled')
+      bot.log('debug', 'Passed speech check')
       const client = getTwitterClient(bot, user)
       const response = await client.tweet(payload)
       if (bot.config.get('twitter.reportingChannel')) {
