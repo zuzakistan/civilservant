@@ -257,6 +257,18 @@ module.exports = config = convict({
       format: Boolean,
       default: true
     }
+  },
+  govzk: {
+    endpoint: {
+      doc: 'Instance of zuzak/gov.zk to use',
+      format: String,
+      default: 'https://zuzakistan.com'
+    },
+    key: {
+      doc: 'zuzakistan.com API key',
+      format: String,
+      default: ''
+    }
   }
 })
 
