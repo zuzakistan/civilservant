@@ -103,12 +103,26 @@ module.exports = {
         user = bot.config.get('twitter.loudNewsUser')
         bot.log('debug', 'Tweeting with loud news user')
       }
-      if (!user) return new Error('tweeting disabled')
-      const url = news.url ? news.url : ''
-      bot.log('debug', `Tweeting OWO as ${user}: ${news.text}`)
-      const tweet = await bot.tweet(user, { status: owo(news.text) + '\r\n' + url })
-      bot.log('debug', 'Tweeted')
-      console.dir(tweet)
+
+      if (!user) return 'tweeting disabled'
+
+      let url
+      try {
+        url = new URL(url)
+      } catch (e) {
+        if (e.code === 'ERR_INVALID_URL') {
+          if (news.source) {
+            url = `- ${news.source}`
+          } else {
+            url = ''
+          }
+        } else {
+          throw e
+        }
+      }
+
+      const tweet = bot.tweet(user, { status: owo(news.text) + '\r\n' + url })
+
       if (news.text.includes('coronavirus') && news.loud) {
         try {
           bot.retweet(bot.config.get('twitter.newsUser'), tweet.id_str)
