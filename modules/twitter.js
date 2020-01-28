@@ -70,7 +70,11 @@ module.exports = {
   events: {
     newNews: (bot, news) => {
       if (!bot.config.has('twitter.newsUser')) return undefined
-      const user = bot.config.get('twitter.newsUser')
+      let user = bot.config.get('twitter.newsUser')
+      if (news.loud) {
+        user = bot.config.get('twitter.loudNewsUser')
+        bot.log('debug', 'Tweeting with loud news user')
+      }
       if (!user) return 'tweeting disabled'
       let url
       try {
@@ -86,7 +90,6 @@ module.exports = {
           throw e
         }
       }
-
       bot.tweet(user, { status: owo(news.text) + '\r\n' + url })
     }
   }

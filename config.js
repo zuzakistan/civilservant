@@ -118,7 +118,7 @@ module.exports = config = convict({
       default: true
     },
     loud: {
-      doc: 'Whether to allow more noisy news feeds',
+      doc: 'Whether to send noisy news feeds to IRC',
       format: Boolean,
       default: false
     },
