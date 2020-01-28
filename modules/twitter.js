@@ -75,8 +75,21 @@ module.exports = {
         user = bot.config.get('twitter.loudNewsUser')
         bot.log('debug', 'Tweeting with loud news user')
       }
-      if (!user) return new Error('tweeting disabled')
-      const url = news.url ? news.url : ''
+      if (!user) return 'tweeting disabled'
+      let url
+      try {
+        url = new URL(url)
+      } catch (e) {
+        if (e.code === 'ERR_INVALID_URL') {
+          if (news.source) {
+            url = `- ${news.source}`
+          } else {
+            url = ''
+          }
+        } else {
+          throw e
+        }
+      }
       bot.tweet(user, { status: owo(news.text) + '\r\n' + url })
     }
   }
