@@ -10,8 +10,7 @@ function isPast (date) {
 }
 
 function nextDate (milestones) {
-  for (const i in milestones) {
-    const milestone = milestones[i]
+  for (const milestone of milestones) {
     if (!isPast(milestone.date)) return milestone
   }
   throw new Error('No date available')
