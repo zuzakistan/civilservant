@@ -5,7 +5,7 @@ module.exports = {
     bot.isNotDisabled = async () => {
       bot.log('debug', 'Checking GOV.ZK to see if we can tweet')
       const data = await request.get({
-        url: `${bot.config.get('govzk.endpoint')}/civil-servant/scram.json?key=${bot.config.get('govzk.key')}`,
+        url: `${bot.config.get('govzk.endpoint')}/civilservant/scram.json?key=${bot.config.get('govzk.key')}`,
         json: true,
         maxRedirects: 0
       })
