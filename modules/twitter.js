@@ -106,13 +106,13 @@ module.exports = {
 
       if (!user) return 'tweeting disabled'
 
-      let url
+      let url = news.url
       try {
         url = new URL(url)
       } catch (e) {
         if (e.code === 'ERR_INVALID_URL') {
           if (news.source) {
-            url = `- ${news.source}`
+            url = `\u2015 ${news.source}` // U+2015 - HORIZONTAL BAR
           } else {
             url = ''
           }
@@ -121,7 +121,7 @@ module.exports = {
         }
       }
 
-      const tweet = bot.tweet(user, { status: owo(news.text) + '\r\n' + url })
+      const tweet = await bot.tweet(user, { status: owo(news.text) + '\r\n' + url })
 
       if (news.text.includes('coronavirus') && news.loud) {
         try {
