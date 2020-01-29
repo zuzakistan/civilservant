@@ -27,9 +27,7 @@ module.exports = {
     },
     corrections: {
       help: 'Sends link to BBC News corrections',
-      command: function () {
-        return 'http://www.bbc.co.uk/faqs/bbcnews_editorial'
-      }
+      command: () => 'https://www.bbc.co.uk/contact/questions/getting-in-touch/report-news-fault'
     }
   },
   onload: function () {
