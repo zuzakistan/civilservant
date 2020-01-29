@@ -19,8 +19,8 @@ function nextDate (milestones) {
 function nextBrexitDate () {
   const milestones = [
     { name: 'Article 50', date: '2020-01-31T00:00:00+01:00' },
-    { name: 'The extension request deadline', date: '2020-06-31T00:00:00+01:00' },
-    { name: 'The transition period', date: '2019-12-31T00:00:00+01:00' }
+    { name: 'The extension request deadline', date: '2020-07-01T00:00:00+01:00' },
+    { name: 'The transition period', date: '2020-12-31T00:00:00+01:00' }
   ]
   return nextDate(milestones)
 }
