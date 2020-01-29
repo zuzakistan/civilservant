@@ -20,6 +20,24 @@ describe('countdown module', function () {
     clock.restore()
   })
 
+  it('outputs a countdown to the second milestone once we have passed the first', function () {
+    const clock = sinon.useFakeTimers(new Date(2020, 2, 13).getTime())
+    assert.strictEqual(mockBot.runCommand('!a50'), 'The extension request deadline expires in 3 months, 17 days and 23 hours')
+    clock.restore()
+  })
+
+  it('outputs a countdown to the third milestone once we have passed the second', function () {
+    const clock = sinon.useFakeTimers(new Date(2020, 11, 1).getTime())
+    assert.strictEqual(mockBot.runCommand('!a50'), 'The transition period expires in 29 days and 23 hours')
+    clock.restore()
+  })
+
+  it('outputs a countdown when all milestones have elapsed', function () {
+    const clock = sinon.useFakeTimers(new Date(3000, 1, 1).getTime())
+    assert.throws(() => mockBot.runCommand('!a50'), Error, 'No date available')
+    clock.restore()
+  })
+
   it('outputs a countdown with a second to go', function () {
     const clock = sinon.useFakeTimers(new Date('2020-01-30T23:59+01:00').getTime())
     assert.strictEqual(mockBot.runCommand('!a50'), 'Article 50 expires in 1 minute')
@@ -28,27 +46,39 @@ describe('countdown module', function () {
 
   it('outputs a countup a second after')
 
-  it('counts down to the 58th PGE in 2019', function () {
-    const clock = sinon.useFakeTimers(new Date('2019-12-01').getTime())
-    assert.strictEqual(mockBot.runCommand('!ge'), 'Polls open in 11 days and 7 hours')
+  it('counts down to the 59th PGE in 2020', function () {
+    const clock = sinon.useFakeTimers(new Date('2020-12-01').getTime())
+    assert.strictEqual(mockBot.runCommand('!ge'), 'Polls open in 3 years, 5 months, 1 day and 7 hours')
     clock.restore()
   })
 
-  it('counts down to the 59th PGE in 2020', function () {
-    const clock = sinon.useFakeTimers(new Date(2020, 1, 1).getTime())
-    assert.strictEqual(mockBot.runCommand('!ge'), 'Polls open in 4 years, 3 months and 23 days')
+  it('counts down to the 60th PGE in 2025', function () {
+    const clock = sinon.useFakeTimers(new Date(2025, 1, 1).getTime())
+    assert.strictEqual(mockBot.runCommand('!ge'), 'Polls open in 4 years, 3 months, 2 days and 7 hours')
     clock.restore()
   })
 
   it('counts down to poll closure mid-election', function () {
-    const clock = sinon.useFakeTimers(new Date('2019-12-12T07:01Z').getTime())
+    const clock = sinon.useFakeTimers(new Date('2024-05-02T07:01Z').getTime())
     assert.strictEqual(mockBot.runCommand('!ge'), 'Polls close in 14 hours and 59 minutes')
     clock.restore()
   })
 
   it('counts down next election immediately after poll closure', function () {
-    const clock = sinon.useFakeTimers(new Date('2019-12-12T22:00:00Z').getTime())
-    assert.strictEqual(mockBot.runCommand('!ge'), 'Polls open in 4 years, 5 months, 11 days and 2 hours')
+    const clock = sinon.useFakeTimers(new Date('2024-05-02T22:00:01Z').getTime())
+    assert.strictEqual(mockBot.runCommand('!ge'), 'Polls open in 5 years, 8 hours, 59 minutes and 59 seconds')
+    clock.restore()
+  })
+
+  it('outputs a py2 countdown', function () {
+    const clock = sinon.useFakeTimers(new Date(2016, 11, 1).getTime())
+    assert.strictEqual(mockBot.runCommand('!python2'), 'Python 2.7 support expires in 3 years and 1 month')
+    clock.restore()
+  })
+
+  it('outputs a py2 countup', function () {
+    const clock = sinon.useFakeTimers(new Date(2020, 11, 1).getTime())
+    assert.strictEqual(mockBot.runCommand('!python2'), 'Python 2.7 support expired 11 months ago')
     clock.restore()
   })
 })
