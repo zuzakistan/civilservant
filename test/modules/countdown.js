@@ -10,13 +10,13 @@ describe('countdown module', function () {
 
   it('outputs a countdown', function () {
     const clock = sinon.useFakeTimers(new Date(2016, 11, 1).getTime())
-    assert.strictEqual(mockBot.runCommand('!a50'), 'Article 50 expires in 3 years, 1 month, 29 days and 23 hours')
+    assert.strictEqual(mockBot.runCommand('!a50'), 'Article 50 expires in 3 years, 1 month, 30 days and 23 hours')
     clock.restore()
   })
 
   it('outputs a countdown less than a year to go', function () {
     const clock = sinon.useFakeTimers(new Date(2019, 11, 1).getTime())
-    assert.strictEqual(mockBot.runCommand('!a50'), 'Article 50 expires in 1 month, 29 days and 23 hours')
+    assert.strictEqual(mockBot.runCommand('!a50'), 'Article 50 expires in 1 month, 30 days and 23 hours')
     clock.restore()
   })
 
@@ -28,7 +28,7 @@ describe('countdown module', function () {
 
   it('outputs a countdown to the third milestone once we have passed the second', function () {
     const clock = sinon.useFakeTimers(new Date(2020, 11, 1).getTime())
-    assert.strictEqual(mockBot.runCommand('!a50'), 'The transition period expires in 29 days and 23 hours')
+    assert.strictEqual(mockBot.runCommand('!a50'), 'The transition period expires in 30 days and 23 hours')
     clock.restore()
   })
 
@@ -39,7 +39,7 @@ describe('countdown module', function () {
   })
 
   it('outputs a countdown with a second to go', function () {
-    const clock = sinon.useFakeTimers(new Date('2020-01-30T23:59+01:00').getTime())
+    const clock = sinon.useFakeTimers(new Date('2020-01-31T23:59+01:00').getTime())
     assert.strictEqual(mockBot.runCommand('!a50'), 'Article 50 expires in 1 minute')
     clock.restore()
   })
