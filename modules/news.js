@@ -61,6 +61,7 @@ module.exports = {
         color: 'orange',
         id: story.headline,
         prompt: story.label ? story.label : 'Reuters',
+        label: story.label,
         tail: story.tag ? story.tag : null,
         text: story.headline,
         source: 'Reuters',
@@ -100,6 +101,7 @@ module.exports = {
             color: 'orange',
             id: curr.GUID,
             prompt: 'Al Jazeera ' + curr.Type,
+            label: curr.Type,
             text: curr.Text,
             source: 'Al Jazeera',
             url: curr.Url

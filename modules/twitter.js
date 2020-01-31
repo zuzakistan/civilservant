@@ -106,6 +106,10 @@ module.exports = {
 
       if (!user) return 'tweeting disabled'
 
+      if (news.label && !news.label.toUpperCase().includes('BREAKING')) {
+        news.text = `${news.label}: ${news.text}`
+      }
+
       let url = news.url
       try {
         url = new URL(url)
