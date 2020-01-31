@@ -3,47 +3,75 @@ require('moment-countdown')
 
 let timeout = null
 
-const ARTICLE_50 = '2020-01-31T00:00:00+01:00'
+function isPast (date) {
+  const now = moment()
+  const expiryDate = moment(date)
+  return expiryDate.isBefore(now)
+}
+
+function nextDate (milestones) {
+  for (const milestone of milestones) {
+    if (!isPast(milestone.date)) return milestone
+  }
+  throw new Error('No date available')
+}
+
+function nextBrexitDate () {
+  const milestones = [
+    { name: 'Article 50', date: '2020-02-01T00:00:00+01:00' },
+    { name: 'The extension request deadline', date: '2020-07-01T00:00:00+01:00' },
+    { name: 'The transition period', date: '2021-01-01T00:00:00+01:00' }
+  ]
+  return nextDate(milestones)
+}
 
 function autoCount (bot, lastTick) {
-  const thisTick = moment(ARTICLE_50).countdown().toString().split(/, | and /)[0]
+  const { name, date } = nextBrexitDate()
+  const thisTick = moment(date).countdown().toString().split(/, | and /)[0]
   if (lastTick != null && thisTick !== lastTick) {
-    bot.broadcast('Article 50 expires in ' + lastTick)
+    bot.broadcast(`${name} expires in ${lastTick}`)
   }
   timeout = setTimeout(autoCount, 1000, bot, thisTick)
+}
+
+function expiry (eventInfo) {
+  const { name, date } = eventInfo
+  const countdown = moment(date).countdown().toString()
+  if (isPast(date)) {
+    return `${name} expired ${countdown} ago`
+  }
+  return `${name} expires in ${countdown}`
 }
 
 module.exports = {
   commands: {
     a50: {
-      help: 'Gets the time until the UK Article 50 procedure expires',
-      command: function () {
-        return 'Article 50 expires in ' + moment(ARTICLE_50).countdown().toString()
-      }
+      help: "Gets the time until the next stage of the UK's withdrawal from the European Union",
+      command: () => expiry(nextBrexitDate())
     },
     ge: {
-      help: 'Gets the time until the 2019 Parliamentary General Election',
+      help: 'Gets the time until the next Parliamentary General Election',
       command: () => {
-        const now = moment()
-
-        const date = '2019-12-12' // 58th PGE
-        const pollStart = moment(date + 'T' + '07:00Z')
-        const pollEnd = moment(date + 'T' + '22:00Z')
-
-        if (now.isBefore(pollStart)) {
-          return 'Polls open in ' + pollStart.countdown().toString()
-        }
-        if (now.isBefore(pollEnd)) {
-          return 'Polls close in ' + pollEnd.countdown().toString()
-        }
-        return 'Polls open in ' + moment('2024-05-24').countdown().toString() // 59th PGE
+        const pollDate = '2024-05-02' // 59th PGE
+        const pollStart = moment(pollDate + 'T' + '07:00Z')
+        const pollEnd = moment(pollDate + 'T' + '22:00Z')
+        const milestones = [
+          { name: 'Polls open', date: pollStart },
+          { name: 'Polls close', date: pollEnd },
+          { name: 'Polls open', date: '2029-05-03T07:00Z' }
+        ]
+        const { name, date } = nextDate(milestones)
+        if (!name) throw new Error('No milestones found')
+        const countdown = moment(date).countdown().toString()
+        return `${name} in ${countdown}`
       }
     },
     python2: {
       help: 'Gets the time until Python 2 support is dropped',
-      command: function () {
-        return 'Python 2.7 support ends in ' + moment('2020-01-01T00:00:00Z').countdown().toString()
-      }
+      command: () => expiry({
+        name: 'Python 2.7 support',
+        date: '2020-01-01T00:00:00Z'
+      })
     }
   },
   events: {

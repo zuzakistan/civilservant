@@ -118,7 +118,7 @@ module.exports = config = convict({
       default: true
     },
     loud: {
-      doc: 'Whether to allow more noisy news feeds',
+      doc: 'Whether to send noisy news feeds to IRC',
       format: Boolean,
       default: false
     },
@@ -256,6 +256,18 @@ module.exports = config = convict({
       doc: 'Whether to transliterate Cyrillic',
       format: Boolean,
       default: true
+    }
+  },
+  govzk: {
+    endpoint: {
+      doc: 'Instance of zuzak/gov.zk to use',
+      format: String,
+      default: 'https://zuzakistan.com'
+    },
+    key: {
+      doc: 'zuzakistan.com API key',
+      format: String,
+      default: ''
     }
   }
 })

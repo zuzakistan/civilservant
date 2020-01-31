@@ -11,6 +11,6 @@ describe('news module', function () {
   it('should do something cool with news')
 
   it('should link to the editor feedback', function () {
-    assert.strictEqual(mockBot.runCommand('!corrections'), 'http://www.bbc.co.uk/faqs/bbcnews_editorial')
+    assert.strictEqual(mockBot.runCommand('!corrections'), 'https://www.bbc.co.uk/contact/questions/getting-in-touch/report-news-fault')
   })
 })

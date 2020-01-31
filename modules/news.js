@@ -27,9 +27,7 @@ module.exports = {
     },
     corrections: {
       help: 'Sends link to BBC News corrections',
-      command: function () {
-        return 'http://www.bbc.co.uk/faqs/bbcnews_editorial'
-      }
+      command: () => 'https://www.bbc.co.uk/contact/questions/getting-in-touch/report-news-fault'
     }
   },
   onload: function () {
@@ -52,6 +50,7 @@ module.exports = {
           id: 'BBC' + story.headline + story.assetUri,
           text: story.headline,
           url: 'https://bbc.co.uk' + story.assetUri,
+          source: 'BBC',
           prompt: 'BBC BREAKING'
         })
       }
@@ -65,6 +64,7 @@ module.exports = {
         label: story.label,
         tail: story.tag ? story.tag : null,
         text: story.headline,
+        source: 'Reuters',
         url: story.url ? story.url : null
       })
     },
@@ -75,6 +75,7 @@ module.exports = {
         id: item.guid,
         prompt: feed.feed.title,
         text: item.content,
+        source: 'Security Service',
         url: item.link
       })
     },
@@ -85,7 +86,9 @@ module.exports = {
           color: 'yellow',
           id: story.id,
           text: story.headline,
+          loud: true,
           prompt: 'Reuters',
+          source: 'Reuters',
           url: 'http://www.reuters.com' + story.url
         })
       }
@@ -100,6 +103,7 @@ module.exports = {
             prompt: 'Al Jazeera ' + curr.Type,
             label: curr.Type,
             text: curr.Text,
+            source: 'Al Jazeera',
             url: curr.Url
           })
         }
@@ -150,7 +154,11 @@ module.exports = {
         str += ' ' + colors.wrap('magenta', '(' + news.tail + ')')
       }
 
-      bot.broadcast(str)
+      if (!news.loud) {
+        bot.broadcast(str)
+      } else {
+        bot.log('debug', 'Not broadcasting loud news')
+      }
     }
   }
 }
