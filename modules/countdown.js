@@ -29,7 +29,7 @@ function autoCount (bot, lastTick) {
   const { name, date } = nextBrexitDate()
   const thisTick = moment(date).countdown().toString().split(/, | and /)[0]
   if (lastTick != null && thisTick !== lastTick) {
-    bot.broadcast(`${name} expires in ${moment(date).countdown()}`)
+    bot.broadcast(`${name} expires in ${lastTick}`)
   }
   timeout = setTimeout(autoCount, 1000, bot, thisTick)
 }
