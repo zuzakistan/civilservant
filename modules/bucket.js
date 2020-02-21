@@ -167,10 +167,10 @@ module.exports = {
   commands: {
     give: {
       help: 'Gives an inventory item to someone',
-      usage: [ 'recipient' ],
+      usage: ['recipient'],
       command: (bot, msg) => {
         const item = dropItem()
-        if (!item) throw new Error('Inventory is empty')
+        if (!item.item) return new Error('Inventory is empty')
         bot.action(msg.to, `gives ${msg.args.recipient} ${item.item}`)
       }
     },
@@ -179,7 +179,7 @@ module.exports = {
       command: function (bot, msg) {
         if (inventory.current.length !== 0) {
           const output = 'I\'m holding ' + inventory.current.map((x) => x.item).join(', and ')
-          if (output.length > 300 && !msg.args[1]) return `I\'m holding ${inventory.current.length} items: to list them, use !inventory all`
+          if (output.length > 300 && !msg.args[1]) return `I'm holding ${inventory.current.length} items: to list them, use !inventory all`
           return output
         }
         return 'I\'m holding nowt'
@@ -189,8 +189,8 @@ module.exports = {
       help: 'Drop an item from inventory',
       command: function () {
         var item = dropItem()
-        if (item) {
-          if (item === 'apple') {
+        if (item && item.item) {
+          if (item.item === 'apple') {
             return 'Core dumped.'
           }
           return 'dropped ' + item.item
