@@ -167,9 +167,11 @@ module.exports = {
   commands: {
     inventory: {
       help: 'Displays the inventory of the bot',
-      command: function () {
+      command: function (bot, msg) {
         if (inventory.current.length !== 0) {
-          return 'I\'m holding ' + inventory.current.map((x) => x.item).join(', and ')
+          const output = 'I\'m holding ' + inventory.current.map((x) => x.item).join(', and ')
+          if (output.length > 300 && !msg.args[1]) return `I\'m holding ${inventory.current.length} items: to list them, use !inventory all`
+          return output
         }
         return 'I\'m holding nowt'
       }
