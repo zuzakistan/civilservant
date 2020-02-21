@@ -165,6 +165,15 @@ module.exports = {
     }
   },
   commands: {
+    give: {
+      help: 'Gives an inventory item to someone',
+      usage: [ 'recipient' ],
+      command: (bot, msg) => {
+        const item = dropItem()
+        if (!item) throw new Error('Inventory is empty')
+        bot.action(msg.to, `gives ${msg.args.recipient} ${item.item}`)
+      }
+    },
     inventory: {
       help: 'Displays the inventory of the bot',
       command: function (bot, msg) {
