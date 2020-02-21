@@ -19,7 +19,7 @@
   "license": "ISC",
   "dependencies": {
     "@octokit/webhooks": "^7.0.0",
-    "@zuzak/owo": "^1.1.1",
+    "@zuzak/owo": "^1.5.1",
     "airport-lookup": "^1.1.0",
     "asciify": "^1.3.5",
     "bitly": "~6.1.0",
