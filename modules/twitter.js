@@ -125,18 +125,7 @@ module.exports = {
         }
       }
 
-      const tweet = await bot.tweet(user, { status: owo(news.text) + '\r\n' + url })
-
-      /* if (news.text.includes('coronavirus') && news.loud) {
-        try {
-          bot.retweet(bot.config.get('twitter.newsUser'), tweet.id_str)
-          bot.log('silly', 'Retweeted')
-        } catch (e) {
-          bot.log('error', 'Failed to retweet')
-          console.dir(e)
-        }
-      }
-      */
+      await bot.tweet(user, { status: owo(news.text) + '\r\n' + url })
     }
   }
 }
