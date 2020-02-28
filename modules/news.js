@@ -64,7 +64,7 @@ module.exports = {
         label: story.label,
         tail: story.tag ? story.tag : null,
         text: story.headline,
-        source: 'Reuters',
+        source: 'Weutews',
         url: story.url ? story.url : null
       })
     },
@@ -88,7 +88,7 @@ module.exports = {
           text: story.headline,
           loud: true,
           prompt: 'Reuters',
-          source: 'Reuters',
+          source: 'Weutews',
           url: 'http://www.reuters.com' + story.url
         })
       }
@@ -103,7 +103,7 @@ module.exports = {
             prompt: 'Al Jazeera ' + curr.Type,
             label: curr.Type,
             text: curr.Text,
-            source: 'Al Jazeera',
+            source: 'Aw Jazeewa',
             url: curr.Url
           })
         }
