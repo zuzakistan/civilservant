@@ -25,7 +25,7 @@ module.exports = {
     stop: {
       alias: ['scram'],
       help: 'Links to the emergency stop interface',
-      command: () => 'https://zuzakistan.com/civil-servant/scram'
+      command: () => 'https://zuzakistan.com/civilservant/scram'
     }
   }
 }

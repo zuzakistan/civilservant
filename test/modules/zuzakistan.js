@@ -8,6 +8,6 @@ describe('zuzakistan module', function () {
   })
 
   it('should link appropriately', function () {
-    assert.strictEqual(mockBot.runCommand('!logs'), 'https://zuzakistan.com/civil-servant/console')
+    assert.strictEqual(mockBot.runCommand('!logs'), 'https://zuzakistan.com/civilservant/console')
   })
 })
