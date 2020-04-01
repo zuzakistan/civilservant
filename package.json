@@ -74,7 +74,7 @@
     "node-dir": "^0.1.11",
     "nyc": "^15.0.0",
     "precommit-hook": "^3.0.0",
-    "sinon": "^7.2.7",
+    "sinon": "^9.0.1",
     "standard": "^14.3.1"
   },
   "standard": {
