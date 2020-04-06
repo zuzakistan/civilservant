@@ -22,7 +22,7 @@
     "@zuzak/owo": "^1.8.0",
     "airport-lookup": "^1.1.0",
     "asciify": "^1.3.5",
-    "bitly": "~6.1.0",
+    "bitly": "~7.0.1",
     "cheerio": "^1.0.0-rc.3",
     "classify2": "0.0.3",
     "convict": "^5.0.0",
