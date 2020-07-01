@@ -217,6 +217,18 @@ module.exports = config = convict({
     }
   },
   twitter: {
+    badWords: {
+      doc: 'Words the bot should never tweet',
+      format: String,
+      default: [
+        /* Racial slurs that might get output from owo() for @BBCBweaking
+         * (we only wish to block if it's a word the bot might generate
+         *  for itself; other words have a chance of being newsworthy so
+         *  we'll outsource the editorial judgement to the BBC and Reuters)
+         */
+        'wog', 'wogs', 'wop', 'wops'
+      ]
+    },
     keys: {
       consumerKey: {
         doc: 'Twitter consumer key',

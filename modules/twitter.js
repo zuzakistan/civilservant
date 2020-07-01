@@ -90,6 +90,12 @@ module.exports = {
         const user = bot.config.get('twitter.tweetUser')
         if (!user) return 'tweeting disabled'
         bot.log('silly', 'Tweeting...')
+        if (bot.config.has('twitter.badWords')) {
+          const badTweet = bot.config.get('twitter.badWords').some((x) => {
+            msg.body.test(new RegExp(`\\b${x}\\b`))
+          })
+          if (badTweet) throw new Error('Word on denylist; not tweeting')
+        }
         const tweet = await bot.tweet(user, { status: msg.body })
         return 'https://twitter.com/statuses/' + tweet.id_str
       }
