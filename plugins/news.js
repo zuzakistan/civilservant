@@ -10,18 +10,19 @@ const APIS = [
   },
   {
     url: 'http://www.aljazeera.com/addons/alert.ashx',
+    disabled: true,
     eventName: 'aljaz'
   },
   {
-    url: 'http://polling.bbc.co.uk/news/latest_breaking_news_waf?audience=Domestic',
+    url: 'http://polling.bbc.co.uk/news/breaking-news/audience/domestic',
     eventName: 'bbc',
     payload: { tag: 'domestic' },
     customDecoder: (data) => data.asset
   },
   {
-    url: 'http://polling.bbc.co.uk/news/latest_breaking_news_waf?audience=US',
-    eventName: 'bbc2',
-    payload: { tag: 'US & Canada' },
+    url: 'http://polling.bbc.co.uk/news/breaking-news/audience/international',
+    eventName: 'bbc',
+    payload: { tag: 'international' },
     customDecoder: (data) => data.asset
   },
   {
