@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 var config = require('./config')
 var githash = require('githash')
 var path = require('path')
