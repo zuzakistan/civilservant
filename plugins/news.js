@@ -28,6 +28,7 @@ const APIS = [
   {
     url: 'http://uk.reuters.com/assets/breakingNews?view=json',
     eventName: 'reuters',
+    disabled: true,
     payload: { tag: 'UK' }
   },
   {
@@ -52,7 +53,7 @@ const requestApi = (bot, api) => {
       payload = JSON.parse(body)
     } catch (e) {
       if (!(e instanceof SyntaxError)) throw e
-      return bot.log('error', `Syntax error decoding ${api.url}: ${payload} ${body}`)
+      return bot.log('error', `Syntax error decoding ${api.url}`)//: ${payload} ${body}`)
     }
     if (api.customDecoder) {
       payload = api.customDecoder(payload)
