@@ -30,7 +30,7 @@
     "cyrillic-to-latin": "^2.0.0",
     "date-util": "^1.2.1",
     "emotional_alert": "zuzak/emotional_alert#2210de11025ff4eea73bf9b90340fbad602f4532",
-    "escape-string-regexp": "^2.0.0",
+    "escape-string-regexp": "^5.0.0",
     "fast-tweet": "^1.0.1",
     "get-urls": "^9.0.0",
     "githash": "0.0.4",
