@@ -1,0 +1,51 @@
+version: 2
+updates:
+- package-ecosystem: npm
+  directory: "/"
+  schedule:
+    interval: monthly
+  pull-request-branch-name:
+    separator: "-"
+  open-pull-requests-limit: 10
+  reviewers:
+  - zuzak
+  ignore:
+  - dependency-name: mocha
+    versions:
+    - "> 2.3.4"
+  - dependency-name: parse5
+    versions:
+    - "> 3.0.1"
+  - dependency-name: sinon
+    versions:
+    - ">= 8.a, < 9"
+  - dependency-name: i18n-iso-countries
+    versions:
+    - 6.4.0
+    - 6.5.0
+  - dependency-name: "@octokit/webhooks"
+    versions:
+    - 8.4.1
+  - dependency-name: sinon
+    versions:
+    - 9.2.2
+    - 9.2.4
+  - dependency-name: bitly
+    versions:
+    - 7.1.0
+    - 7.1.2
+  - dependency-name: standard
+    versions:
+    - 16.0.3
+  - dependency-name: get-urls
+    versions:
+    - 10.0.0
+  - dependency-name: convict
+    versions:
+    - 6.0.0
+  - dependency-name: escape-string-regexp
+    versions:
+    - 4.0.0
+  - dependency-name: currency-codes
+    versions:
+    - 2.1.0
