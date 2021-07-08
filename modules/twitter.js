@@ -116,7 +116,7 @@ module.exports = {
       } catch (e) {
         if (e.code === 'ERR_INVALID_URL') {
           if (news.source) {
-            url = `\u2015 ${news.source}` // U+2015 - HORIZONTAL BAR
+            url = `\u2015 ${owo(news.source)}` // U+2015 - HORIZONTAL BAR
           } else {
             url = ''
           }
