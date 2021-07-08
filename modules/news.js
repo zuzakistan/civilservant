@@ -112,7 +112,7 @@ module.exports = {
     news: function (bot, news) {
       if (!oldnews[news.id]) {
         oldnews[news.id] = news
-        write(__rootdir + '/data/news.json', JSON.stringify(news))
+        write(__rootdir + '/data/news.json', JSON.stringify(oldnews))
         bot.fireEvents('newNews', news)
       }
     },
