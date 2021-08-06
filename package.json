@@ -26,7 +26,7 @@
     "cheerio": "^1.0.0-rc.3",
     "classify2": "0.0.3",
     "convict": "^5.0.0",
-    "currency-codes": "^1.1.2",
+    "currency-codes": "^2.0.0",
     "cyrillic-to-latin": "^2.0.0",
     "date-util": "^1.2.1",
     "emotional_alert": "zuzak/emotional_alert#2210de11025ff4eea73bf9b90340fbad602f4532",
