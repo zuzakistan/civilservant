@@ -35,7 +35,7 @@
     "get-urls": "^9.0.0",
     "githash": "0.0.4",
     "greek-utils": "^1.2.2",
-    "i18n-iso-countries": "^4.1.0",
+    "i18n-iso-countries": "^7.2.0",
     "imdb-api": "^4.0.2",
     "intl": "^1.2.4",
     "irc": "^0.5.2",
