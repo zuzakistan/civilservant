@@ -51,7 +51,7 @@
     "twitter-pin": "^1.0.0",
     "underscore": "^1.13.4",
     "urban": "^0.3.0",
-    "winston": "^3.2.1",
+    "winston": "^3.7.2",
     "xkcd-37": "^1.1.0",
     "youtube-search": "^1.1.6"
   },
