@@ -1,8 +1,8 @@
 /**
  * Port of dbot/dbot's quotes feature
  */
-var fs = require('fs')
-var quotes = {}
+const fs = require('fs')
+let quotes = {}
 try {
   quotes = require(__rootdir + '/data/quotes.json')
 } catch (e) {
@@ -13,8 +13,8 @@ module.exports = {
     qadd: {
       help: 'Add a quote',
       command: function (bot, msg) {
-        var body = msg.body.split('=')
-        var key = body.shift()
+        let body = msg.body.split('=')
+        const key = body.shift()
         body = body.join('=') // so clunky
         if (!body || !key) {
           return 'Usage: ' + bot.config.get('irc.controlChar') + 'qadd foo=bar'
@@ -33,7 +33,7 @@ module.exports = {
       help: 'Gets a quote',
       command: function (bot, msg) {
         try {
-          var q = quotes[msg.body]
+          const q = quotes[msg.body]
           return q[Math.floor(Math.random() * q.length)]
         } catch (e) {
           return e
@@ -44,9 +44,9 @@ module.exports = {
       aliases: ['quotel'],
       help: 'Lists quote categories',
       command: function () {
-        var str = ''
-        var keys = Object.keys(quotes)
-        for (var i = 0; i < keys.length; i++) {
+        let str = ''
+        const keys = Object.keys(quotes)
+        for (let i = 0; i < keys.length; i++) {
           str += ' ' + keys[i] + ' (' + quotes[keys[i]].length + ') ·'
         }
         return str.substring(0, str.length - 1)

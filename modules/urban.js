@@ -1,4 +1,4 @@
-var urban = require('urban')
+const urban = require('urban')
 const colors = require('irc').colors
 
 module.exports = {
@@ -10,7 +10,7 @@ module.exports = {
         if (msg.args.length === 1) {
           return ': Usage: !urban <headword>'
         }
-        var req = urban(msg.body)
+        const req = urban(msg.body)
         const promise = new Promise((resolve, reject) => {
           req.first(function (data) {
             if (typeof data === 'undefined') {

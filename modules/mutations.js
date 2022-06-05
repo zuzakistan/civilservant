@@ -9,8 +9,8 @@ module.exports = {
       usage: ['type', 'radical'],
       command: function (bot, msg) {
         /* TODO: uppercase */
-        var initial = msg.args.radical.charAt(0)
-        var rest = msg.args.radical.substr(1)
+        const initial = msg.args.radical.charAt(0)
+        const rest = msg.args.radical.substr(1)
         switch (msg.args.type.toUpperCase()) {
           case 'ASPIRATE':
           case 'LLAES':

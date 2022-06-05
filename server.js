@@ -1,13 +1,13 @@
 #!/usr/bin/env node
-var config = require('./config')
-var githash = require('githash')
-var path = require('path')
-var modules = require('./modules')
-var irc = require('irc')
+const config = require('./config')
+const githash = require('githash')
+const path = require('path')
+const modules = require('./modules')
+const irc = require('irc')
 const logger = require('./logger')
 
 global.__rootdir = path.resolve(__dirname)
-var bot = new irc.Client(config.get('irc.server'), config.get('irc.nick'), config.get('irc'))
+const bot = new irc.Client(config.get('irc.server'), config.get('irc.nick'), config.get('irc'))
 bot.config = config
 
 module.exports = bot

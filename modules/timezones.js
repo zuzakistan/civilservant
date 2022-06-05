@@ -1,4 +1,4 @@
-var moment = require('moment-timezone')
+const moment = require('moment-timezone')
 module.exports = {
   commands: {
     tz: {
@@ -6,7 +6,7 @@ module.exports = {
       alias: 'tz',
       usage: 'foo',
       command: function (bot, msg) {
-        var output = []
+        const output = []
         if (msg.args.length === 1) {
           msg.args = [
             msg.args[0],
@@ -19,7 +19,7 @@ module.exports = {
             'Asia/Tokyo'
           ]
         }
-        for (var i = 1; i < msg.args.length; i++) {
+        for (let i = 1; i < msg.args.length; i++) {
           output.push(moment(+new Date()).tz(msg.args[i]).format('ha z'))
         }
         return output.join(' · ')

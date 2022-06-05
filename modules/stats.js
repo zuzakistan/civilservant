@@ -1,4 +1,4 @@
-var msgcount = 0
+let msgcount = 0
 module.exports = {
   events: {
     message: function () {

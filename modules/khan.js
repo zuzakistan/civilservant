@@ -1,4 +1,4 @@
-var khan = require('khaan')
+const khan = require('khaan')
 module.exports = {
   commands: {
     khan: {
@@ -8,9 +8,9 @@ module.exports = {
         if (typeof msg.args[0] === 'undefined') {
           msg.args = ['khan']
         }
-        var limit = bot.maxLineLength - msg.args.length
-        var length = Math.floor(Math.random() * limit) - 1
-        var words = msg.args.map(function (word) {
+        const limit = bot.maxLineLength - msg.args.length
+        const length = Math.floor(Math.random() * limit) - 1
+        const words = msg.args.map(function (word) {
           return khan.khan(word, length)
         })
         return words.join(' ')

@@ -1,4 +1,4 @@
-var dns = require('dns')
+const dns = require('dns')
 
 module.exports = {
   commands: {
@@ -12,7 +12,7 @@ module.exports = {
             if (err) {
               bot.say(msg.to, 'Error:' + err + ' ' + msg.args.ip)
             }
-            for (var i = 0; i < data.length; i++) {
+            for (let i = 0; i < data.length; i++) {
               bot.say(msg.to, msg.args.ip + ' → ' + data[i])
             }
           })

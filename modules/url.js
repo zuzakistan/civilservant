@@ -1,8 +1,8 @@
-var getUrls = require('get-urls')
+const getUrls = require('get-urls')
 module.exports = {
   events: {
     message: function (bot, nick, to, text, msg) {
-      var urls = getUrls(text)
+      const urls = getUrls(text)
       if (urls.size) {
         bot.fireEvents('urls', urls, nick, to, text, msg)
         for (const url of urls) {

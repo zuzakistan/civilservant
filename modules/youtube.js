@@ -3,25 +3,25 @@
  * You need the key for the Youtube Data API:
  * https://console.developers.google.com/apis/credentials
  */
-var yt = require('youtube-search')
+const yt = require('youtube-search')
 module.exports = {
   events: {
     'url:youtube.com': function (bot, url, nick, to) {
-      var query = url.query
+      let query = url.query
       if (typeof query === 'string') {
         // docs say it could already be an object
-        var params = url.query.split('&')
+        const params = url.query.split('&')
         query = {}
         // this is dumb:
-        for (var i = 0; i < params.length; i++) {
-          var curr = params[i].split('=')
+        for (let i = 0; i < params.length; i++) {
+          const curr = params[i].split('=')
           curr.push(null) // to prevent ?foo breaking things
           query[curr[0]] = curr[1]
         }
       }
       if (query.v) {
         // TODO: remove this code duplication
-        var opts = bot.config.get('youtube') || {}
+        const opts = bot.config.get('youtube') || {}
         opts.maxResults = 1
         opts.type = 'video,channel'
         // this is particularly dumb:
@@ -43,7 +43,7 @@ module.exports = {
       help: 'Searches YouTube for a query string',
       aliases: ['youtube'],
       command: function (bot, msg) {
-        var opts = bot.config.get('youtube') || {}
+        const opts = bot.config.get('youtube') || {}
         opts.maxResults = 1
         opts.type = 'video,channel'
         yt(msg.body, opts, function (err, results) {
@@ -52,7 +52,7 @@ module.exports = {
           } else if (results.length < 1) {
             bot.say(msg.to, msg.nick + ': no results found')
           } else {
-            var result = results[0]
+            const result = results[0]
             bot.say(msg.to, msg.nick + ': ' + result.link + ' ' + result.title)
           }
         })

@@ -2,7 +2,7 @@ module.exports = {
   events: {
     message: function (bot, nick, to, text) {
       if (text === 'help me' && Math.random() < 1 / 5) { // 1 in 5
-        var interjections = [
+        const interjections = [
           'nah',
           'no'
         ]

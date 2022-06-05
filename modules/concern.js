@@ -5,10 +5,10 @@
  * Toggles whether the bot should interrupt charged conversations
  * with an unhelpful message.
  */
-var isEmotional = require('emotional_alert')
-var nox = false
-var colors = require('irc').colors
-var verbose = false // TODO: cvar
+const isEmotional = require('emotional_alert')
+let nox = false
+const colors = require('irc').colors
+const verbose = false // TODO: cvar
 
 module.exports = {
   commands: {
@@ -48,10 +48,10 @@ module.exports = {
   events: {
     message: function (bot, nick, to, text) {
       if (!nox) {
-        var x = isEmotional(text)
+        const x = isEmotional(text)
         if (x.emotional) {
           if (x.winner) {
-            var adj = {
+            const adj = {
               0: '',
               1: 'slightly ',
               2: 'rather ',

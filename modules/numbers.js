@@ -1,4 +1,4 @@
-var writeInt = require('write-int')
+const writeInt = require('write-int')
 module.exports = {
   commands: {
     num: {
@@ -8,7 +8,7 @@ module.exports = {
         if (msg.args.lang === 'jbo') {
           msg.args.lang = 'jb'
         }
-        var attempt = writeInt(msg.args.number, { lang: msg.args.lang })
+        const attempt = writeInt(msg.args.number, { lang: msg.args.lang })
         if (attempt) {
           return attempt
         }

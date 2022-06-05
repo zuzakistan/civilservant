@@ -9,12 +9,12 @@
  * If the value isn't a string, the bot will parrot the match, preserving case.
  *
  */
-var regexpesc = require('escape-string-regexp')
-var triggers = {}
-var COUNT = 0
+const regexpesc = require('escape-string-regexp')
+let triggers = {}
+let COUNT = 0
 
 // adjust this to change the bot's tolerance to botstorms
-var MAX_COUNT = 5
+const MAX_COUNT = 5
 
 module.exports = {
   onload: (bot) => {
@@ -34,16 +34,16 @@ module.exports = {
   },
   events: {
     message: function (bot, nick, to, text) {
-      var t = Object.keys(triggers)
-      for (var i = 0; i < t.length; i++) {
+      const t = Object.keys(triggers)
+      for (let i = 0; i < t.length; i++) {
         if (text.toLowerCase().indexOf(t[i]) !== -1) {
           if (typeof triggers[t[i]] === 'string' && COUNT < MAX_COUNT) {
             bot.shout(to, triggers[t[i]])
             COUNT += 2
           } else {
-            var w = regexpesc(t[i])
-            var r = new RegExp(w, 'gi')
-            var m = text.match(r)
+            const w = regexpesc(t[i])
+            const r = new RegExp(w, 'gi')
+            const m = text.match(r)
             if (m && m.length !== 0 && COUNT < MAX_COUNT) {
               bot.shout(to, m.join(' '))
               COUNT += 1

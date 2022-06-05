@@ -1,4 +1,4 @@
-var classify = require('classify2')
+const classify = require('classify2')
 module.exports = {
   commands: {
     dewey: {

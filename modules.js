@@ -1,8 +1,8 @@
-var fs = require('fs')
+const fs = require('fs')
 const MODULE_DIR = './modules'
 
 function loadModule (self, bot, file) {
-  var curr = require(file)
+  const curr = require(file)
   if (curr.commands) {
     self.addCommands(bot, curr.commands)
   }
@@ -23,7 +23,7 @@ function enumerateModules (dir) {
   })
 }
 
-var self = module.exports = {
+const self = module.exports = {
   loadAllModules: async function (bot, dir) {
     dir = dir || MODULE_DIR // default param
     // clear existing:
@@ -83,9 +83,9 @@ var self = module.exports = {
     delete require.cache[filename]
   },
   addCommands: function (bot, commands, clobber) {
-    var keys = Object.keys(commands)
-    for (var i = 0; i < keys.length; i++) {
-      var cmd = commands[keys[i]]
+    const keys = Object.keys(commands)
+    for (let i = 0; i < keys.length; i++) {
+      const cmd = commands[keys[i]]
       if (bot.commands[keys[i]] && clobber) {
         bot.log('debug', 'Won\'t clobber: ' + keys[i])
         continue
@@ -93,7 +93,7 @@ var self = module.exports = {
       bot.commands[keys[i]] = cmd
       bot.log('debug', 'Added command: ' + keys[i])
       if (cmd.aliases) {
-        for (var j = 0; j < cmd.aliases.length; j++) {
+        for (let j = 0; j < cmd.aliases.length; j++) {
           bot.commands[cmd.aliases[j]] = commands[keys[i]]
           bot.log('silly', `Aliased ${cmd.aliases[j]} to ${keys[i]}`)
         }
@@ -101,9 +101,9 @@ var self = module.exports = {
     }
   },
   addEvents: function (bot, events) {
-    var keys = Object.keys(events)
-    for (var i = 0; i < keys.length; i++) {
-      var x = keys[i]
+    const keys = Object.keys(events)
+    for (let i = 0; i < keys.length; i++) {
+      const x = keys[i]
       if (!bot.events[x]) {
         bot.events[x] = []
       }

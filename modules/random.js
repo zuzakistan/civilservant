@@ -10,7 +10,7 @@ module.exports = {
           return msg.args[Math.floor(Math.random() * msg.args.length)]
         } else if (msg.args.length === 2) { // e.g. !random 6
           // Select a random integer from a range:
-          var res = Math.floor(Math.random() * Math.floor(msg.args[1]))
+          const res = Math.floor(Math.random() * Math.floor(msg.args[1]))
           if (!isNaN(res)) {
             return res.toString()
           }
@@ -21,7 +21,7 @@ module.exports = {
     coin: {
       help: 'Flips a coin',
       command: function () {
-        var faces = ['Heads!', 'Tails!']
+        const faces = ['Heads!', 'Tails!']
         return faces[Math.floor(Math.random() * faces.length)]
       }
     }

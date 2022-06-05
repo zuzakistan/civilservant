@@ -6,7 +6,7 @@ module.exports = {
       usage: ['volume', 'abv'],
       command: function (bot, msg) {
         // convert human units into ml
-        var volumes = {
+        const volumes = {
           shot: 25,
           double: 50,
           can: 330,

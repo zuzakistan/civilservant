@@ -1,4 +1,4 @@
-var request = require('request')
+const request = require('request')
 
 module.exports = {
   commands: {
@@ -10,7 +10,7 @@ module.exports = {
           if (e) {
             bot.say(msg.to, 'unable to reach GeoIP service')
           }
-          var dat
+          let dat
           try {
             dat = JSON.parse(b)
           } catch (e) {

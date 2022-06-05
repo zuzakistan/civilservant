@@ -3,13 +3,13 @@
  */
 
 function fireEvents () {
-  var args = Array.prototype.slice.call(arguments)
-  var name = args.shift()
+  const args = Array.prototype.slice.call(arguments)
+  const name = args.shift()
 
   try { // events can fire mid-reload
     if (!this.events[name]) return
-    for (var i = 0; i < this.events[name].length; i++) {
-      var cargs = args
+    for (let i = 0; i < this.events[name].length; i++) {
+      const cargs = args
       if (cargs[0] !== this) { // getting dupes for some reason
         cargs.unshift(this)
       }

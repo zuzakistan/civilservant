@@ -1,4 +1,4 @@
-var asciify = require('asciify')
+const asciify = require('asciify')
 module.exports = {
   commands: {
     ascii: {
@@ -22,7 +22,7 @@ module.exports = {
       help: 'ASCIIifies a phrase',
       command: function (bot, msg) {
         msg.args.shift()
-        var font = msg.args.shift()
+        const font = msg.args.shift()
         asciify(msg.args.join(' '), font, function (e, r) {
           bot.say(msg.to, r)
         })

@@ -13,7 +13,7 @@ module.exports = {
             cacheTTL: 3.0E9
           })
           const data = response.split('\n')
-          var matches
+          let matches
           // If more than one character is given, search for a matching
           // character name or codepoint
           if (Array.from(msg.body).length > 1) {

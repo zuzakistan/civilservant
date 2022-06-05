@@ -5,7 +5,7 @@
  * bot.config.minecraft.map needs to be set to the root endpoint of
  * the server's map.
  */
-var request = require('request')
+const request = require('request')
 module.exports = {
   commands: {
     minecraft: {
@@ -18,10 +18,10 @@ module.exports = {
           if (r.statusCode !== 200) {
             bot.say(msg.to, 'problem fetching data (' + r.statusCode + ')')
           }
-          var data = JSON.parse(b)
+          const data = JSON.parse(b)
           if (data.players.length !== 0) {
-            var ret = []
-            for (var i = 0; i < data.players.length; i++) {
+            const ret = []
+            for (let i = 0; i < data.players.length; i++) {
               ret.push(data.players[i].name)
             }
             bot.say(msg.to, 'The following players are online: ' + ret.join(' '))

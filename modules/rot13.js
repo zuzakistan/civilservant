@@ -1,4 +1,4 @@
-var rot = require('rot')
+const rot = require('rot')
 module.exports = {
   commands: {
     rot13: {
@@ -12,7 +12,7 @@ module.exports = {
       command: function (bot, msg) {
         // remove first two elements
         // !rot 13 abc def ghi
-        var index = msg.args.shift()
+        let index = msg.args.shift()
         index = msg.args.shift()
         return rot(msg.args.join(' '), index)
       }

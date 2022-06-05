@@ -3,7 +3,7 @@ module.exports = {
     commands: {
       help: 'Lists all commands for which the bot will react',
       command: function (bot) {
-        var commands = Object.keys(bot.commands)
+        const commands = Object.keys(bot.commands)
         commands.sort()
         const controlChar = bot.config.get('irc.controlChar')
         return 'Commands loaded: ' + controlChar + commands.join(' ' + controlChar)
@@ -17,11 +17,11 @@ module.exports = {
           return 'No command of that nature found.'
         }
         if (typeof bot.commands[msg.args.command] === 'object') {
-          var cmd = bot.commands[msg.args.command]
+          const cmd = bot.commands[msg.args.command]
           if (!cmd.help) {
             cmd.help = 'No help for ' + bot.config.get('irc.controlChar') + msg.args.command
           }
-          var attr = []
+          let attr = []
           if (cmd.privileged) {
             attr.push('control channel only')
           }

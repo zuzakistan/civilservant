@@ -19,14 +19,14 @@ describe('urban module', function () {
 
           if (!headword) return undefined
 
-          /* eslint-disable standard/no-callback-literal */
+          /* eslint-disable node/no-callback-literal */
           return cb({
             definition: defs[headword],
             permalink: 'https://example.com',
             written_on: '2019-10-08T11:47:22.198Z',
             word: headword === 'four' ? 'for' : headword
           })
-          /* eslint-enable standard/no-callback-literal */
+          /* eslint-enable node/no-callback-literal */
         }
       }
     })

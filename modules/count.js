@@ -1,5 +1,5 @@
-var fs = require('fs')
-var count
+const fs = require('fs')
+let count
 try {
   count = require(__rootdir + '/data/count.json')
 } catch (e) {
@@ -11,7 +11,7 @@ module.exports = {
       aliases: ['count', '++'],
       help: 'Increments a number.',
       command: function (bot, msg) {
-        var counter = msg.args.splice(1)
+        let counter = msg.args.splice(1)
         if (counter === []) {
           counter = ' ' // impossible to send ' ' as argument
         } else {

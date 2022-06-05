@@ -3,22 +3,22 @@ const cheerio = require('cheerio')
 const fs = require('fs')
 const request = require('request')
 
-var LOG = {}
+let LOG = {}
 
-var LOGFILE = __rootdir + '/data/ofn.json'
+const LOGFILE = __rootdir + '/data/ofn.json'
 try {
   LOG = require(LOGFILE)
 } catch (e) {
   //
 }
 
-var getTitle = function (url) {
+const getTitle = function (url) {
   return new Promise(
     (resolve, reject) => {
       const maxSize = 1024
-      var size = 0
-      var response = ''
-      var req = request(url)
+      let size = 0
+      let response = ''
+      const req = request(url)
       // Check the size of the downloaded data regularly
       req.on('data', chunk => {
         size += chunk.length
@@ -49,7 +49,7 @@ const ofn = (number) => {
   return ''
 }
 
-var shorten = async function (bot, url) {
+const shorten = async function (bot, url) {
   try {
     const bitly = new BitlyClient(bot.config.get('bitly.accesstoken'), {})
     const result = await bitly.shorten(url)
@@ -101,7 +101,7 @@ module.exports = {
       fireMessageEvent: true,
       help: 'Output a random URL from the channel history',
       command: function () {
-        var keys = Object.keys(LOG)
+        const keys = Object.keys(LOG)
         return 'https://bit.ly/' + keys[Math.floor(Math.random() * keys.length)]
       }
     },

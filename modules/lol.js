@@ -4,7 +4,7 @@ module.exports = {
       if (text === 'lol' && Math.random() < 1 / 5) { // 1 in 5
         if (Math.random() < 1 / 5) { // 1 in 25
           if (Math.random() < 1 / 5) { // 1 in 50
-            var interjections = [
+            const interjections = [
               'LMAO',
               'ROFL',
               'blol',

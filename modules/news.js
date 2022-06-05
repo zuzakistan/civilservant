@@ -1,12 +1,12 @@
-var write = require('fs').writeFileSync
-var read = require('fs').readFileSync
-var colors = require('irc').colors
-var BitlyClient = require('bitly').BitlyClient
+const write = require('fs').writeFileSync
+const read = require('fs').readFileSync
+const colors = require('irc').colors
+const BitlyClient = require('bitly').BitlyClient
 const owo = require('@zuzak/owo')
 
 const plugin = require('../plugins/news')
 
-var oldnews = {}
+let oldnews = {}
 
 module.exports = {
   commands: {
@@ -95,8 +95,8 @@ module.exports = {
     },
     'rawnews:aljaz': function (bot, story) {
       if (story.Alert) {
-        for (var i = 0; i < story.AlertText.length; i++) {
-          var curr = story.AlertText[0]
+        for (let i = 0; i < story.AlertText.length; i++) {
+          const curr = story.AlertText[0]
           bot.fireEvents('news', {
             color: 'orange',
             id: curr.GUID,
@@ -118,7 +118,7 @@ module.exports = {
       bot.log('debug', 'News: ' + JSON.stringify(news))
     },
     newNews: async (bot, news) => {
-      var bitly = new BitlyClient(bot.config.get('bitly.accesstoken'), {})
+      const bitly = new BitlyClient(bot.config.get('bitly.accesstoken'), {})
       bot.log('debug', 'New news: ' + JSON.stringify(news))
       let res
       try {
@@ -126,17 +126,17 @@ module.exports = {
       } catch (e) {
         res = { data: { url: news.url } }
       }
-      var str = ''
+      let str = ''
       if (news.prompt) {
         str += colors.wrap(news.color, news.prompt + ': ')
       }
       // news transform
       try {
         if (bot.config.get('news.replace')) {
-          var substitutions = JSON.parse(read(__rootdir + '/data/substitutions.json', { encoding: 'utf-8' }))
-          var stringsToReplace = Object.keys(substitutions)
-          var newstr = news.text
-          for (var i = 0; i < stringsToReplace.length; i++) {
+          const substitutions = JSON.parse(read(__rootdir + '/data/substitutions.json', { encoding: 'utf-8' }))
+          const stringsToReplace = Object.keys(substitutions)
+          let newstr = news.text
+          for (let i = 0; i < stringsToReplace.length; i++) {
             newstr = newstr.replace(stringsToReplace[i], '\x1f' + substitutions[stringsToReplace[i]] + '\x0f')
           }
           str += newstr

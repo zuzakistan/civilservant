@@ -24,7 +24,7 @@ module.exports = {
     message: function (bot, nick, to, text, message) {
       const controlChar = bot.config.get('irc.controlChar')
       if (text.substr(0, 1) === controlChar) {
-        var msg = {
+        const msg = {
           body: text.substr(text.indexOf(' ') + 1),
           args: text.substr(1).split(' '),
           nick: nick,
@@ -35,7 +35,7 @@ module.exports = {
         msg._cmd = controlChar + msg.args[0]
         if (Object.prototype.hasOwnProperty.call(bot.commands, msg.args[0])) {
           try {
-            var cmd = bot.commands[msg.args[0]]
+            const cmd = bot.commands[msg.args[0]]
             if (cmd.command) {
               // stats hook
               if (bot.commandcount) {
@@ -64,7 +64,7 @@ module.exports = {
                   o[k] = p
                   return o
                 }, {})
-                for (var i = 0; i < cmd.usage.length; i++) {
+                for (let i = 0; i < cmd.usage.length; i++) {
                   msg.args[cmd.usage[i]] = msg.args[i + 1]
                 }
               }

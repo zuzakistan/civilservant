@@ -1,5 +1,5 @@
-var DDG = require('node-ddg-api').DDG
-var ddg = new DDG('civilservant')
+const DDG = require('node-ddg-api').DDG
+const ddg = new DDG('civilservant')
 module.exports = {
   commands: {
     ddg: {

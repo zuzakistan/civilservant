@@ -1,8 +1,8 @@
 // inspired by xkcd's bucket :)
-var inventory = { old: [], current: [] }
-var inventoryLimit = 20
-var dropRate = 500
-var write = require('fs').writeFileSync
+let inventory = { old: [], current: [] }
+let inventoryLimit = 20
+let dropRate = 500
+const write = require('fs').writeFileSync
 
 /**
  * Save current inventory to disk
@@ -51,7 +51,7 @@ module.exports = {
   },
   events: {
     action: function (bot, nick, to, text) {
-      var synonyms = {
+      const synonyms = {
         adverb: [
           'absentmindedly',
           'agreeably',
@@ -113,17 +113,17 @@ module.exports = {
           'tosses'
         ]
       }
-      var regex = new RegExp('(' + synonyms.give.join('|') + ') ' + bot.nick + ' (.+)')
+      const regex = new RegExp('(' + synonyms.give.join('|') + ') ' + bot.nick + ' (.+)')
 
-      var matches = regex.exec(text)
+      const matches = regex.exec(text)
 
       if (matches) {
-        var newItem = matches[2]
+        let newItem = matches[2]
         // maybe put this elsewhere?
         if (newItem.includes('\u0003')) {
           newItem = newItem + '\u000f'
         }
-        var oldItem = addToInventory(newItem, nick)
+        const oldItem = addToInventory(newItem, nick)
 
         if (oldItem) {
           bot.action(to, [
@@ -149,7 +149,7 @@ module.exports = {
     message: function (bot, nick, to) {
       if (inventory.current.length < 1) return undefined
       if (Math.random() < 1 / dropRate) { // 1 in 500
-        var item = dropItem()
+        const item = dropItem()
         if (item) {
           if (Math.random() < 1 / 5) {
             bot.action(to, [
@@ -188,7 +188,7 @@ module.exports = {
     drop: {
       help: 'Drop an item from inventory',
       command: function () {
-        var item = dropItem()
+        const item = dropItem()
         if (item && item.item) {
           if (item.item === 'apple') {
             return 'Core dumped.'
@@ -202,7 +202,7 @@ module.exports = {
       help: 'Sets the rate at which the bot drops items',
       usage: ['rate'],
       command: function (bot, msg) {
-        var newRate = parseInt(msg.args.rate, 10)
+        const newRate = parseInt(msg.args.rate, 10)
         if (isNaN(newRate) || newRate < 1) {
           return 'Usage: !rate <integer>'
         }
@@ -215,8 +215,8 @@ module.exports = {
       privileged: true,
       usage: ['limit'],
       command: function (bot, msg) {
-        var old = inventoryLimit
-        var newLimit = parseInt(msg.args.limit, 10)
+        const old = inventoryLimit
+        const newLimit = parseInt(msg.args.limit, 10)
         if (typeof newLimit !== 'number') {
           return 'cannae do that cap\'n'
         }

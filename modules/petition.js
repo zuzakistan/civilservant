@@ -1,7 +1,7 @@
 const request = require('request-promise')
 const colors = require('irc').colors
-var delta = {}
-var id = null
+const delta = {}
+let id = null
 
 module.exports = {
   commands: {
@@ -35,8 +35,8 @@ module.exports = {
         const change = data.attributes.signature_count - old
         delta[data.id] = old + change
 
-        var domestic = 0
-        var foreign = 0
+        let domestic = 0
+        let foreign = 0
         if (data.attributes.signatures_by_country) {
           data.attributes.signatures_by_country.forEach(country => {
             if (country.code === 'GB') {

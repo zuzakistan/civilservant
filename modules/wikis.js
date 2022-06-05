@@ -16,7 +16,7 @@ module.exports = {
       help: 'returns a URL to the given Wikimedia project',
       aliases: Object.keys(PROJECTS),
       command: function (bot, msg) {
-        var key = msg.args.shift()
+        const key = msg.args.shift()
         return 'https://en.' + PROJECTS[key] + '.org/wiki/' + encodeURIComponent(msg.args.join(' '))
       }
     }

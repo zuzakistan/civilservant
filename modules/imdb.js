@@ -1,8 +1,8 @@
-var imdb = require('imdb-api')
+const imdb = require('imdb-api')
 module.exports = {
   events: {
     'url:imdb.com': function (bot, url, nick, to) {
-      var id = url.pathname.split('/').pop()
+      const id = url.pathname.split('/').pop()
       imdb.getReq({ id }, function (err, movie) {
         if (err) {
           throw err

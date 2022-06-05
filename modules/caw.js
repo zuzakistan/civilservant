@@ -1,4 +1,4 @@
-var khan = require('khaan')
+const khan = require('khaan')
 module.exports = {
   commands: {
     caw: {

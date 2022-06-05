@@ -1,4 +1,4 @@
-var request = require('request')
+const request = require('request')
 module.exports = {
   commands: {
     space: {
@@ -11,9 +11,9 @@ module.exports = {
           if (r.statusCode !== 200) {
             bot.say(msg.to, 'problem fetching data (' + r.statusCode + ')')
           }
-          var data = JSON.parse(b)
-          var ret = []
-          for (var i = 0; i < data.people.length; i++) {
+          const data = JSON.parse(b)
+          const ret = []
+          for (let i = 0; i < data.people.length; i++) {
             if (data.people[i].country === 'England') { // pet peeve
               data.people[i].country = 'United Kingdom'
             }

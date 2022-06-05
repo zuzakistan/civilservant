@@ -1,8 +1,8 @@
-var request = require('request')
+const request = require('request')
 module.exports = {
   events: {
     'url:webm.website': function (bot, url, nick, to) {
-      var apiUrl = 'http://api.' + url.host + url.pathname + '.json'
+      const apiUrl = 'http://api.' + url.host + url.pathname + '.json'
 
       request.get(apiUrl, function (e, r, b) {
         if (r.statusCode !== 200) {
@@ -12,11 +12,11 @@ module.exports = {
           bot.say(to, 'problem fetching data')
         } else {
           try {
-            var data = JSON.parse(b)
-            var history = data.history
-            var actions = {}
+            const data = JSON.parse(b)
+            const history = data.history
+            const actions = {}
 
-            for (var i = 0; i < history.length; i++) {
+            for (let i = 0; i < history.length; i++) {
               if (!actions[history[i].action]) {
                 actions[history[i].action] = 1
               } else {
@@ -24,8 +24,8 @@ module.exports = {
               }
             }
             bot.log('silly', actions)
-            var str = []
-            for (var action in actions) {
+            const str = []
+            for (const action in actions) {
               if (!Object.prototype.hasOwnProperty.call(actions, action)) {
                 continue
               }

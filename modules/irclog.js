@@ -1,5 +1,5 @@
-var exec = require('child_process').exec
-var esc = require('shell-escape')
+const exec = require('child_process').exec
+const esc = require('shell-escape')
 const colors = require('irc').colors.codes
 
 function convertAgToIRC (str) {
@@ -23,8 +23,8 @@ function processAg (str) {
 
 function logExec (forExec) {
   return new Promise((resolve, reject) => {
-    var c = exec(forExec)
-    var stdout = ''
+    const c = exec(forExec)
+    let stdout = ''
     c.stdout.on('data', (d) => { stdout += d.toString() })
     c.stderr.on('data', (d) => { stdout += d.toString() })
     c.on('close', () => resolve(stdout))
