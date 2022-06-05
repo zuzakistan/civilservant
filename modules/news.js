@@ -149,8 +149,8 @@ module.exports = {
       } catch (e) {
         str += news.text + '(err)'
       }
-      if (res.url) {
-        str += ' ' + colors.wrap('gray', res.url)
+      if (res.link) {
+        str += ' ' + colors.wrap('gray', res.link)
       }
       if (news.tail) {
         str += ' ' + colors.wrap('magenta', '(' + news.tail + ')')
