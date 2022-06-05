@@ -2,7 +2,7 @@
 const mockBot = require('../mockBot')
 const assert = require('assert')
 
-describe('buttery module', function () {
+describe('hello world module', function () {
   before(function () {
     mockBot.loadModule('hello')
   })
