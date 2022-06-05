@@ -51,7 +51,6 @@
     "request-promise": "^4.2.4",
     "request-promise-cache": "^2.0.1",
     "rot": "^0.1.0",
-    "scrape": "^0.2.3",
     "shell-escape": "^0.2.0",
     "snyk": "^1.946.0",
     "suncalc": "^1.7.0",
