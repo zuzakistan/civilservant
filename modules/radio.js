@@ -1,20 +1,11 @@
-const request = require('request-promise')
 const moment = require('moment')
+const axios = require('axios')
 const colors = require('irc').colors
 
 const tv = async (station) => {
   const url = `https://ibl.api.bbci.co.uk/ibl/v1/channels/${station}/broadcasts?per_page=2`
-  let data
-  const response = await request.get(url)
-  try {
-    data = JSON.parse(response)
-  } catch (e) {
-    if (e instanceof SyntaxError) {
-      return response
-    }
-    throw e
-  }
 
+  const { data } = await axios(url)
   const now = data.broadcasts.elements[0]
   const next = data.broadcasts.elements[1]
 

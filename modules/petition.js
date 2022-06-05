@@ -1,4 +1,4 @@
-const request = require('request-promise')
+const axios = require('axios')
 const colors = require('irc').colors
 const delta = {}
 let id = null
@@ -14,13 +14,12 @@ module.exports = {
 
         let data
         try {
-          data = await request.get({
+          data = (await axios({
             url: `https://petition.parliament.uk/petitions/${id}.json`,
-            json: true,
             headers: {
               'User-Agent': 'https://github.com/zuzakistan/civilservant'
             }
-          })
+          })).data
           data = data.data
         } catch (e) {
           // if HTTP error intercept to remove body of response

@@ -1,5 +1,5 @@
-const request = require('request-promise')
 const moment = require('moment')
+const axios = require('axios')
 const colors = require('irc').colors
 const NUMBER_TO_SHOW = 5
 
@@ -46,13 +46,9 @@ module.exports = {
 
         const now = new Date()
 
-        const data = await request(url, {
+        const { data } = await axios(url, {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json;charset=utf-8'
-          },
-          json: true,
-          body: {
+          data: {
             clientTimeZoneOffsetInMS: 0,
             departureDate: now,
             departureOrArrival: 'DEPARTURE',

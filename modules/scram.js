@@ -1,15 +1,14 @@
-const request = require('request-promise')
+const axios = require('axios')
 
 module.exports = {
   onload: (bot) => {
     bot.isNotDisabled = async () => {
       bot.log('debug', 'Checking GOV.ZK to see if we can tweet')
-      const data = await request.get({
-        url: `${bot.config.get('govzk.endpoint')}/civilservant/scram.json?key=${bot.config.get('govzk.key')}`,
-        json: true,
+      const url = `${bot.config.get('govzk.endpoint')}/civilservant/scram.json?key=${bot.config.get('govzk.key')}`
+      const { data } = await axios(url, {
+        method: 'GET',
         maxRedirects: 0
       })
-      bot.log('debug', 'GOV.ZK Result: ' + JSON.stringify(data))
       if (data === 'ok') return true
       if (data.reason && data.user) {
         throw new Error(`Scram enabled by ${data.user}: ${data.reason}`)
