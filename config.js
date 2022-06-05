@@ -1,5 +1,9 @@
 const convict = require('convict')
 
+// ipaddress format lives in here:
+const convictWithValidator = require('convict-format-with-validator')
+convict.addFormats(convictWithValidator)
+
 let config
 
 module.exports = config = convict({
