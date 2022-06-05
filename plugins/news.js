@@ -1,18 +1,9 @@
 const request = require('request')
+const axios = require('axios')
 
 const POLL_TIMEOUT = 30 * 1000
 
 const APIS = [
-  {
-    url: 'https://api.rss2json.com/v1/api.json?rss_url=https://www.mi5.gov.uk/UKThreatLevel/UKThreatLevel.xml',
-    eventName: 'mi5',
-    disabled: true
-  },
-  {
-    url: 'http://www.aljazeera.com/addons/alert.ashx',
-    disabled: true,
-    eventName: 'aljaz'
-  },
   {
     url: 'http://polling.bbc.co.uk/news/breaking-news/audience/domestic',
     eventName: 'bbc',
