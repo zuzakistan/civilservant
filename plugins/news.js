@@ -51,6 +51,7 @@ const APIS = [
   { // this one is very loud
     url: 'http://uk.reuters.com/assets/jsonWireNews',
     eventName: 'reuwire',
+    disabled: true, // discontinued?
     customDecoder: (data) => data.headlines
   }
 ]
