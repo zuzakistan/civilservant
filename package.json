@@ -43,7 +43,6 @@
     "moment": "^2.29.3",
     "moment-countdown": "0.0.3",
     "moment-timezone": "^0.5.11",
-    "node-ddg-api": "^0.1.4",
     "pf-sowpods": "^1.2.1",
     "rainbow-log": "^1.0.1",
     "request": "^2.67.0",
