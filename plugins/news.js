@@ -16,7 +16,19 @@ const APIS = [
   {
     url: 'http://polling.bbc.co.uk/news/breaking-news/audience/domestic',
     eventName: 'bbc',
-    payload: { tag: 'domestic' },
+    payload: { tag: 'uk' },
+    customDecoder: (data) => data.asset
+  },
+  {
+    url: 'http://polling.bbc.co.uk/news/breaking-news/audience/asia',
+    eventName: 'bbc',
+    payload: { tag: 'asia' },
+    customDecoder: (data) => data.asset
+  },
+  {
+    url: 'http://polling.bbc.co.uk/news/breaking-news/audience/us',
+    eventName: 'bbc',
+    payload: { tag: 'us' },
     customDecoder: (data) => data.asset
   },
   {
