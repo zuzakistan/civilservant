@@ -11,10 +11,7 @@
   "scripts": {
     "test": "npm run lint && npm run mocha",
     "mocha": "nyc mocha test/modules",
-    "lint": "node_modules/standard/bin/cmd.js",
-    "snyk-protect": "snyk protect",
-    "prepare": "npm run snyk-protect",
-    "prepublish": "npm run snyk-protect"
+    "lint": "node_modules/standard/bin/cmd.js"
   },
   "license": "ISC",
   "dependencies": {
@@ -50,7 +47,6 @@
     "request-promise-cache": "^2.0.1",
     "rot": "^0.1.0",
     "shell-escape": "^0.2.0",
-    "snyk": "^1.946.0",
     "suncalc": "^1.7.0",
     "twitter-pin": "^1.0.0",
     "underscore": "^1.13.4",
@@ -75,6 +71,5 @@
     "globals": [
       "__rootdir"
     ]
-  },
-  "snyk": true
+  }
 }
