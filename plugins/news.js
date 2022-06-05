@@ -72,7 +72,7 @@ const requestApi = (bot, api) => {
       payload = api.customDecoder(payload)
     }
     if (api.payload) {
-      Object.assign(api.payload, payload)
+      payload = Object.assign(api.payload, payload)
     }
     bot.fireEvents(`rawnews:${api.eventName}`, payload)
   })
