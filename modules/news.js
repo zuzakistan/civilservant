@@ -115,9 +115,11 @@ module.exports = {
         write(__rootdir + '/data/news.json', JSON.stringify(oldnews))
         bot.fireEvents('newNews', news)
       }
+      bot.log('debug', 'News: ' + JSON.stringify(news))
     },
     newNews: async (bot, news) => {
       var bitly = new BitlyClient(bot.config.get('bitly.accesstoken'), {})
+      bot.log('debug', 'New news: ' + JSON.stringify(news))
       let res
       try {
         res = await bitly.shorten(news.url)
