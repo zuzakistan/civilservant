@@ -11,7 +11,8 @@
   "scripts": {
     "test": "npm run lint && npm run mocha",
     "mocha": "nyc mocha test/modules",
-    "lint": "node_modules/standard/bin/cmd.js"
+    "lint": "node_modules/standard/bin/cmd.js",
+    "validate": "npm ls"
   },
   "license": "ISC",
   "dependencies": {
@@ -69,5 +70,10 @@
     "globals": [
       "__rootdir"
     ]
-  }
+  },
+  "pre-commit": [
+    "lint",
+    "validate",
+    "test"
+  ]
 }
