@@ -6,7 +6,7 @@ describe('mutations module', function () {
   before(function () {
     mockBot.loadModule('mutations')
   })
-
+  const helpMessage = ['Usage: (soft|nasal|aspirate) <radical>', 'Defnydd: (meddial|trwynol|llaes) <radical>']
   const dictionary = [
     ['soft', 'pxx', 'bxx'],
     ['soft', 'txx', 'dxx'],
@@ -15,8 +15,11 @@ describe('mutations module', function () {
     ['soft', 'dxx', 'ddxx'],
     ['soft', 'gxx', 'xx'],
     ['soft', 'llxx', 'lxx'],
+    ['soft', 'lxx', 'lxx'],
     ['soft', 'mxx', 'fxx'],
     ['soft', 'rhxx', 'rxx'],
+    ['soft', 'rxx', 'rxx'],
+    ['soft', 'aaa', 'aaa'],
 
     ['nasal', 'pxx', 'mhxx'],
     ['nasal', 'txx', 'nhxx'],
@@ -24,10 +27,14 @@ describe('mutations module', function () {
     ['nasal', 'bxx', 'mxx'],
     ['nasal', 'dxx', 'nxx'],
     ['nasal', 'gxx', 'ngxx'],
+    ['nasal', 'xbx', 'xbx'],
 
     ['aspirate', 'pxx', 'phxx'],
     ['aspirate', 'txx', 'thxx'],
-    ['aspirate', 'cxx', 'chxx']
+    ['aspirate', 'cxx', 'chxx'],
+    ['aspirate', 'xxx', 'xxx'],
+
+    ['nothing', 'foo', helpMessage]
   ]
 
   dictionary.forEach(function (mutation) {
@@ -36,14 +43,14 @@ describe('mutations module', function () {
     const mutated = mutation[2]
 
     it(`should handle ${type} mutation of ${original.substr(0, original.length - 2).toUpperCase()}`, function () {
-      assert.strictEqual(mockBot.runCommand('!mutate', { type: type, radical: original }), mutated)
+      assert.deepEqual(mockBot.runCommand('!mutate', { type: type, radical: original }), mutated)
     })
   })
 
   it('should return usage information if nothing sensible entered', function () {
     assert.strictEqual(
       mockBot.runCommand('!mutate', { type: 'xxx', radical: 'xxx' }).toString(),
-      ['Usage: (soft|nasal|aspirate) <radical>', 'Defnydd: (meddial|trwynol|llaes) <radical>'].toString()
+      helpMessage.toString()
     )
   })
 })

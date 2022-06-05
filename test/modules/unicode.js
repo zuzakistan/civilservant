@@ -46,3 +46,23 @@ describe('unicode module', function () {
     })
   }
 })
+describe('unicode module error handling', function () {
+  before(function () {
+    // Mock up the HTTP request
+    mockery.enable()
+    mockery.registerMock('request-promise-cache', function () { throw new Error('some kind of problem') })
+
+    mockBot.loadModule('unicode')
+  })
+
+  it('should echo an error', async function () {
+    const promise = await mockBot.runCommand('!unicode foo')
+    assert.strictEqual(promise, 'err: Error: some kind of problem')
+  })
+
+  after(function (done) {
+    mockery.disable()
+    mockery.deregisterAll()
+    done()
+  })
+})
