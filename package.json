@@ -41,7 +41,6 @@
     "moment-countdown": "0.0.3",
     "moment-timezone": "^0.5.11",
     "pf-sowpods": "^1.2.1",
-    "rainbow-log": "^1.0.1",
     "request": "^2.67.0",
     "request-promise": "^4.2.4",
     "request-promise-cache": "^2.0.1",
