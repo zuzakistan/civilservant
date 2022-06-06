@@ -5,30 +5,22 @@
  * bot.config.minecraft.map needs to be set to the root endpoint of
  * the server's map.
  */
-const request = require('request')
+const axios = require('axios')
 module.exports = {
   commands: {
     minecraft: {
       help: 'Lists current players on a Minecraft server',
-      command: function (bot, msg) {
-        request.get(bot.config.get('minecraft.map') + '/up/world/world/0', function (e, r, b) {
-          if (e) {
-            bot.say(msg.to, 'problem fetching data')
+      command: async function (bot, msg) {
+        const { data } = await axios.get(bot.config.get('minecraft.map') + '/up/world/world/0')
+        if (data.players.length !== 0) {
+          const ret = []
+          for (let i = 0; i < data.players.length; i++) {
+            ret.push(data.players[i].name)
           }
-          if (r.statusCode !== 200) {
-            bot.say(msg.to, 'problem fetching data (' + r.statusCode + ')')
-          }
-          const data = JSON.parse(b)
-          if (data.players.length !== 0) {
-            const ret = []
-            for (let i = 0; i < data.players.length; i++) {
-              ret.push(data.players[i].name)
-            }
-            bot.say(msg.to, 'The following players are online: ' + ret.join(' '))
-          } else {
-            bot.say(msg.to, 'no players online')
-          }
-        })
+          return 'The following players are online: ' + ret.join(' ')
+        } else {
+          return 'no players online'
+        }
       }
     }
   }
