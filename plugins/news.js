@@ -1,4 +1,3 @@
-const request = require('request')
 const axios = require('axios')
 
 const POLL_TIMEOUT = 30 * 1000
@@ -27,46 +26,19 @@ const APIS = [
     eventName: 'bbc',
     payload: { tag: 'international' },
     customDecoder: (data) => data.asset
-  },
-  {
-    url: 'http://uk.reuters.com/assets/breakingNews?view=json',
-    eventName: 'reuters',
-    disabled: true,
-    payload: { tag: 'UK' }
-  },
-  {
-    url: 'http://reuters.com/assets/breakingNews?view=json',
-    eventName: 'reuters',
-    payload: { tag: 'US?' }
-  },
-  { // this one is very loud
-    url: 'http://uk.reuters.com/assets/jsonWireNews',
-    eventName: 'reuwire',
-    disabled: true, // discontinued?
-    customDecoder: (data) => data.headlines
   }
 ]
 
-const requestApi = (bot, api) => {
-  if (api.disabled) return
-  request(api.url, (err, res, body) => {
-    if (err) return bot.log('warn', `Error polling ${api.url}: ${err}`)
-    let payload
-    try {
-      if (res.body.trim() === '') body = '{}' // reuters sends empty on no news
-      payload = JSON.parse(body)
-    } catch (e) {
-      if (!(e instanceof SyntaxError)) throw e
-      return bot.log('error', `Syntax error decoding ${api.url}`)// : ${payload} ${body}`)
-    }
-    if (api.customDecoder) {
-      payload = api.customDecoder(payload)
-    }
-    if (api.payload) {
-      payload = Object.assign(api.payload, payload)
-    }
-    bot.fireEvents(`rawnews:${api.eventName}`, payload)
-  })
+const requestApi = async (bot, api) => {
+  const { data } = await axios(api.url)
+  let payload = data
+  if (api.customDecoder) {
+    payload = api.customDecoder(payload)
+  }
+  if (api.payload) {
+    payload = Object.assign(api.payload, payload)
+  }
+  bot.fireEvents(`rawnews:${api.eventName}`, payload)
 }
 
 const pollApis = (bot, skip) => {
