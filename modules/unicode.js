@@ -1,4 +1,10 @@
-const request = require('request-promise-cache')
+const setup = require('axios-cache-adapter').setup
+const api = setup({
+  cache: {
+    maxAge: 3.0E9
+  }
+})
+
 module.exports = {
   commands: {
     unicode: {
@@ -7,12 +13,8 @@ module.exports = {
       command: async function (bot, msg) {
         try {
           // Get data from Unicode, cached for ~1 month
-          const response = await request({
-            url: 'https://unicode.org/Public/UNIDATA/UnicodeData.txt',
-            cacheKey: 'https://unicode.org/Public/UNIDATA/UnicodeData.txt',
-            cacheTTL: 3.0E9
-          })
-          const data = response.split('\n')
+          const response = await api('https://unicode.org/Public/UNIDATA/UnicodeData.txt', { responseFormat: 'text' })
+          const data = response.data.split('\n')
           let matches
           // If more than one character is given, search for a matching
           // character name or codepoint

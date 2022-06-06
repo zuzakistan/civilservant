@@ -11,8 +11,7 @@
   "scripts": {
     "test": "npm run lint && npm run mocha",
     "mocha": "nyc mocha test/modules",
-    "lint": "node_modules/standard/bin/cmd.js",
-    "validate": "npm ls"
+    "lint": "node_modules/standard/bin/cmd.js"
   },
   "license": "ISC",
   "dependencies": {
@@ -20,6 +19,7 @@
     "@zuzak/owo": "^1.14.0",
     "airport-lookup": "^1.1.0",
     "axios": "^0.27.2",
+    "axios-cache-adapter": "^2.7.3",
     "bitly": "^7.1.2",
     "cheerio": "^1.0.0-rc.11",
     "convict": "^6.2.3",
@@ -42,7 +42,6 @@
     "pf-sowpods": "^1.2.1",
     "request": "^2.67.0",
     "request-promise": "^4.2.4",
-    "request-promise-cache": "^2.0.1",
     "rot": "^0.1.0",
     "shell-escape": "^0.2.0",
     "suncalc": "^1.7.0",
@@ -71,7 +70,6 @@
   },
   "pre-commit": [
     "lint",
-    "validate",
     "test"
   ]
 }

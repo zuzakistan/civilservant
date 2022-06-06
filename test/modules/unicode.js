@@ -27,7 +27,9 @@ describe('unicode module', function () {
   before(function () {
     // Mock up the HTTP request
     mockery.enable()
-    mockery.registerMock('request-promise-cache', function () { return data })
+    mockery.registerMock('axios-cache-adapter', {
+      setup: () => { return (x) => Promise.resolve({ data: data }) }
+    })
 
     mockBot.loadModule('unicode')
   })
@@ -50,7 +52,9 @@ describe('unicode module error handling', function () {
   before(function () {
     // Mock up the HTTP request
     mockery.enable()
-    mockery.registerMock('request-promise-cache', function () { throw new Error('some kind of problem') })
+    mockery.registerMock('axios-cache-adapter', {
+      setup: () => { return (x) => { throw new Error('some kind of problem') } }
+    })
 
     mockBot.loadModule('unicode')
   })
