@@ -30,12 +30,13 @@ module.exports = {
       command: () => 'https://www.bbc.co.uk/contact/questions/getting-in-touch/report-news-fault'
     }
   },
-  onload: function () {
+  onload: function (bot) {
     try {
       oldnews = require(__rootdir + '/data/news.json') || {}
     } catch (e) {
       oldnews = {}
     }
+    bot.log('info', `News cache loaded with ${Object.keys(oldnews).length} stories`)
   },
   events: {
     /**
