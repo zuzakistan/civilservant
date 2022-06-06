@@ -13,10 +13,7 @@ module.exports = {
       command: async function (bot, msg) {
         const { data } = await axios.get(bot.config.get('minecraft.map') + '/up/world/world/0')
         if (data.players.length !== 0) {
-          const ret = []
-          for (let i = 0; i < data.players.length; i++) {
-            ret.push(data.players[i].name)
-          }
+          const ret = data.players.map((x) => x.name)
           return 'The following players are online: ' + ret.join(' ')
         } else {
           return 'no players online'
