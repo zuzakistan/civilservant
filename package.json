@@ -15,7 +15,7 @@
   },
   "license": "ISC",
   "dependencies": {
-    "@octokit/webhooks": "^7.0.0",
+    "@octokit/webhooks": "^9.24.0",
     "@zuzak/owo": "^1.14.0",
     "airport-lookup": "^1.1.0",
     "axios": "^0.27.2",
