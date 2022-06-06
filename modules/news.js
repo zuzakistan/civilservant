@@ -52,7 +52,8 @@ module.exports = {
           text: story.headline,
           url: 'https://bbc.co.uk' + story.assetUri,
           source: 'BBC',
-          prompt: 'BBC BREAKING'
+          prompt: 'BBC BREAKING',
+          tag: story.tag ? story.tag : null
         })
       }
     },
