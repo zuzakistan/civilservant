@@ -49,7 +49,6 @@
     "youtube-search": "^1.1.6"
   },
   "devDependencies": {
-    "coveralls": "^3.0.3",
     "jshint": "^2.13.4",
     "mocha": "^7.2.0",
     "mockery": "^2.1.0",
