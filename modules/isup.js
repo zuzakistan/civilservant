@@ -1,4 +1,4 @@
-const request = require('request-promise')
+const axios = require('axios')
 module.exports = {
   commands: {
     isup: {
@@ -7,23 +7,20 @@ module.exports = {
       help: 'Performs a HTTP(S) request to an arbitrary host.',
       usage: ['host'],
       command: async function (bot, msg) {
-        const res = await request({ url: msg.args.host, resolveWithFullResponse: true })
-        let str = 'HTTP/' + res.httpVersion
-        str += ' ' + res.req.method + ' ' + res.request.href
-        str += ' → ' + res.statusCode
+        const response = await axios(msg.args.host, { responseFormat: 'arraybuffer' })
+        const str = [
+          response.status,
+          response.statusText
+        ]
 
-        let flag = ''
-        try {
-          const headers = [
-            res.headers['content-type'],
-            res.headers.server,
-            res.body.length + 'B'
-          ]
-          str += ' ' + headers.join(' · ')
-        } catch (e) {
-          flag = '!'
-        }
-        return str + flag
+        const headers = [
+          response.headers['content-type'],
+          response.headers.server,
+          response.data.length + 'B'
+        ]
+
+        str.push(`(${headers.join(' · ')})`)
+        return str.join(' ')
       }
     }
   }

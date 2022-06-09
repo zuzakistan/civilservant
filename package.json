@@ -39,7 +39,6 @@
     "moment-timezone": "^0.5.11",
     "pf-sowpods": "^1.2.1",
     "request": "^2.67.0",
-    "request-promise": "^4.2.4",
     "rot": "^0.1.0",
     "shell-escape": "^0.2.0",
     "suncalc": "^1.7.0",
