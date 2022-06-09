@@ -27,7 +27,7 @@
     "date-util": "^1.2.1",
     "escape-string-regexp": "^2.0.0",
     "fast-tweet": "^1.0.1",
-    "get-urls": "^9.0.0",
+    "get-urls": "^11.0.0",
     "githash": "0.0.4",
     "greek-utils": "^1.3.0",
     "irc": "^0.5.2",
