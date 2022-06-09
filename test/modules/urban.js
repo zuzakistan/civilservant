@@ -58,6 +58,11 @@ describe('urban module', function () {
     assert.rejects(mockBot.runCommand('!ud zero'))
   })
 
+  it('should return usage info', async function () {
+    const response = await mockBot.runCommand('!ud')
+    assert.strictEqual(response, ': Usage: !urban <headword>')
+  })
+
   after(function (done) {
     mockery.disable()
     mockery.deregisterAll()
