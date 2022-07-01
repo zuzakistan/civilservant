@@ -16,7 +16,7 @@
   "license": "ISC",
   "dependencies": {
     "@octokit/webhooks": "^7.0.0",
-    "@zuzak/owo": "^1.14.0",
+    "@zuzak/owo": "^1.16.1",
     "axios": "^0.27.2",
     "axios-cache-adapter": "^2.7.3",
     "bitly": "^7.1.2",
@@ -53,7 +53,7 @@
     "mocha": "^7.2.0",
     "mockery": "^2.1.0",
     "node-dir": "^0.1.11",
-    "nyc": "^15.0.0",
+    "nyc": "^15.1.0",
     "precommit-hook": "^3.0.0",
     "sinon": "^7.2.7",
     "standard": "^16.0.4"
