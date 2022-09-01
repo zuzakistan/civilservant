@@ -14,13 +14,13 @@ We use Mozilla's [Convict](https://github.com/mozilla/node-convict) library for
 configuration, which provides a variety of ways to define settings.
 
 Most important configuration variables can be set via an environment variable.
-Alternatively, you can define them in a JSON file (such as `debug.json` or
-production.json`), and Convict will read those changes in at startup.
+Alternatively, you can define them in `config.json` and they will be read at startup.
 
 For example:
 ```sh
 npm install
-NODE_ENV=production npm start
+echo '{"irc": {"nick": "civilservant"}}' > config.json
+npm start
 ```
 
 ## Contributing
@@ -29,5 +29,6 @@ If you're unsure where to start, we curate a list of [good first issues](https:/
 
 If you have questions, you can contact us via IRC at [##zuzakistan-lab on freenode](irc://chat.freenode.net/##zuzakistan-lab)
 ([webchat](https://kiwiirc.com/nextclient/irc.freenode.net/##zuzakistan-lab)).
+This is where the bot will connect to by default, if you do not change any settings.
 
 If you encounter unacceptable behaviour in the community, please email conduct@zuzakistan.com.
