@@ -43,7 +43,7 @@
     "shell-escape": "^0.2.0",
     "suncalc": "^1.7.0",
     "twitter-pin": "^1.0.0",
-    "urban": "^0.3.0",
+    "urban": "^0.3.4",
     "winston": "^3.8.2",
     "xkcd-37": "^1.1.0",
     "youtube-search": "^1.1.6"
