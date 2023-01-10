@@ -20,7 +20,7 @@
     "axios": "^0.27.2",
     "axios-cache-adapter": "^2.7.3",
     "bitly": "^7.1.2",
-    "cheerio": "^1.0.0-rc.11",
+    "cheerio": "^1.0.0-rc.12",
     "convict": "^6.2.4",
     "convict-format-with-validator": "^6.2.0",
     "cyrillic-to-latin": "^2.0.0",
