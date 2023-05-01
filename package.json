@@ -15,7 +15,7 @@
   },
   "license": "ISC",
   "dependencies": {
-    "@octokit/webhooks": "^7.0.0",
+    "@octokit/webhooks": "^11.0.0",
     "@zuzak/owo": "^1.16.1",
     "axios": "^0.27.2",
     "axios-cache-adapter": "^2.7.3",
